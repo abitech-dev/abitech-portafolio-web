@@ -1,0 +1,38 @@
+---
+import "@/styles/global.css";
+import { metadatosDe } from "@/lib/seo";
+
+interface Props {
+  descripcion: string;
+  titulo?: string;
+}
+
+const { descripcion, titulo } = Astro.props;
+if (!Astro.site) {
+  throw new Error("Falta `site` en astro.config.ts.");
+}
+const metadatos = metadatosDe(
+  Astro.url.pathname,
+  Astro.site,
+  descripcion,
+  titulo,
+);
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{metadatos.titulo}</title>
+    <meta name="description" content={metadatos.descripcion} />
+    <link rel="canonical" href={metadatos.canonica} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={metadatos.titulo} />
+    <meta property="og:description" content={metadatos.descripcion} />
+    <meta property="og:url" content={metadatos.canonica} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body class="bg-fondo text-texto antialiased">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,698 @@
+{
+  "basics": {
+    "name": "Abimael Fernandez Ventura",
+    "label": "Full Stack Developer with Laravel, Vue, .NET and AWS",
+    "email": "abimaelfv@hotmail.com",
+    "summary": "Full stack developer with a degree in Systems and Computer Engineering and 3+ years in web systems and integrations for Interbank and Scotiabank. As the sole developer, I built Tu Coach UDH, a course platform with more than 8,800 users.",
+    "location": {
+      "city": "Huánuco",
+      "region": "Huánuco"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/abitechdev/"
+      },
+      {
+        "network": "GitHub",
+        "url": "https://github.com/abitech-dev"
+      }
+    ]
+  },
+  "work": [
+    {
+      "id": "tecnovo",
+      "name": "Tecnovo Perú Soluciones S.A.C.",
+      "position": "Full Stack Developer",
+      "startDate": "2025-11",
+      "summary": "Software consultancy. I built and deployed to the cloud systems for more than 5 of its clients.",
+      "highlights": []
+    },
+    {
+      "id": "arsy-innova",
+      "name": "Arsy Innova S.A.C.",
+      "position": "Full Stack Developer and Co-founder",
+      "startDate": "2025-07",
+      "summary": "Education company behind Arsy Academy, for online courses, and Arsy Coworker, which connects companies with specialists.",
+      "highlights": [
+        "Built the single account (SSO with OAuth2) that lets each user sign in to every platform.",
+        "Designed the architecture of the 4 platforms (Laravel 13, Vue 3, Docker) and put them into production, with Stripe and Mercado Pago payments.",
+        "Built Coworker with a team of 3, designed to cut handling time per request from 71 to about 9 business hours."
+      ]
+    },
+    {
+      "id": "abitech-peru",
+      "name": "ABItech Perú E.I.R.L.",
+      "position": "Full Stack Developer and Founder",
+      "startDate": "2025-01",
+      "summary": "Software company I founded, with its own products online and custom systems for education, healthcare and tourism clients.",
+      "highlights": []
+    },
+    {
+      "id": "olsa",
+      "name": "OLSA",
+      "position": "Integration Software Engineer",
+      "startDate": "2025-02",
+      "endDate": "2025-10",
+      "summary": "Technology vendor for Interbank.",
+      "highlights": [
+        "Built for Interbank, one of Peru's four largest banks, about 10 integration flows in IBM App Connect Enterprise, now in production, for its card system.",
+        "Took each integration from development to monitoring, with ESQL, CI/CD in Azure DevOps, Docker containers, testing in Postman and Bruno, and tracking in New Relic."
+      ]
+    },
+    {
+      "id": "udh-laboratorio",
+      "name": "Universidad de Huánuco",
+      "position": "Digital Transformation Lab Lead",
+      "startDate": "2024-07",
+      "endDate": "2025-02",
+      "summary": "University lab where student teams build software for the institution.",
+      "highlights": [
+        "Ran the lab and its computers. Under my lead, students built more than 10 projects for the university and the Huánuco regional tourism office.",
+        "Coordinated about 12 students on the Graduation Copilot, which digitizes the degree process, and automated its deployment.",
+        "Coordinated SmartLab, a QR-based system for lab entries and equipment bookings, which reached its testing phase."
+      ]
+    },
+    {
+      "id": "udh-vri",
+      "name": "Universidad de Huánuco",
+      "position": "Full Stack Developer, Office of the Vice-Rector for Research",
+      "startDate": "2023-05",
+      "endDate": "2024-06",
+      "summary": "Office that runs the university's research, with its grant calls, procedures and courses.",
+      "highlights": []
+    },
+    {
+      "id": "it-corp",
+      "name": "IT Corp Perú E.I.R.L.",
+      "position": "Software Development Intern",
+      "startDate": "2023-01",
+      "endDate": "2023-05",
+      "summary": "Software development company.",
+      "highlights": [
+        "Built the website and the DSpace 7 institutional repository of a teacher training school, required for its licensing by the Ministry of Education.",
+        "Built Gestión EVOL, a system where about 50 SAP consultants logged their hours and that calculated their payments."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Escuela de Posgrado Newman",
+      "area": "Master's in Software Engineering and Information Systems",
+      "studyType": "Master's degree (coursework completed)",
+      "startDate": "2025-09",
+      "endDate": "2026-10"
+    },
+    {
+      "institution": "Universidad de Huánuco",
+      "area": "Professional Degree in Systems and Computer Engineering",
+      "studyType": "Professional degree",
+      "endDate": "2026-04-24"
+    },
+    {
+      "institution": "Universidad de Huánuco",
+      "area": "Bachelor's degree in Systems and Computer Engineering",
+      "studyType": "Bachelor's degree",
+      "startDate": "2019-04",
+      "endDate": "2023-12"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Claude Code in Action",
+      "date": "2026-01-08",
+      "issuer": "Anthropic",
+      "url": "https://verify.skilljar.com/c/ndd4auyni4f7"
+    },
+    {
+      "name": "Introduction to Model Context Protocol",
+      "date": "2026-01-08",
+      "issuer": "Anthropic",
+      "url": "https://verify.skilljar.com/c/hdiuyhz8id5d"
+    },
+    {
+      "name": "Curso de Vue JS",
+      "date": "2024-11-11",
+      "issuer": "Instituto Internacional de Software (ISI)"
+    },
+    {
+      "name": "SAP ABAP, iniciación a la programación",
+      "date": "2024-10-10",
+      "issuer": "Logali Group"
+    },
+    {
+      "name": "SAP, conceptos e iniciación",
+      "date": "2024-10-10",
+      "issuer": "Logali Group"
+    },
+    {
+      "name": "SAP Fiori, administración e iniciación",
+      "date": "2024-10-10",
+      "issuer": "Logali Group"
+    },
+    {
+      "name": "Desarrollo web en PHP, MVC, POO y MySQL",
+      "date": "2022-07-20",
+      "issuer": "Udemy",
+      "url": "https://www.udemy.com/certificate/UC-8193c895-cec3-4015-8276-176556cec4b2/"
+    },
+    {
+      "name": "Diploma en Soft Skills y Habilidades Directivas",
+      "date": "2026-01-27",
+      "issuer": "Escuela de Posgrado Newman y UNIR México"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Contenedores con peras y manzanas",
+      "summary": "Colección para aprender Docker desde cero en español. Hay 7 volúmenes en borrador, con unas 140 000 palabras y un banco de pruebas que ejecuta cada comando del libro en la CI."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Laravel",
+      "level": "Advanced",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "PHP",
+      "level": "Advanced",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "MVC",
+      "level": "Advanced",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "C# and .NET",
+      "level": "Advanced",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Python and Django",
+      "level": "Intermediate",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Vue.js",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "JavaScript",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "jQuery and Ajax",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "HTML and CSS",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "Inertia.js",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "Tailwind CSS",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "TypeScript",
+      "level": "Intermediate",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "React",
+      "level": "Intermediate",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "Angular",
+      "level": "Intermediate",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "MySQL and MariaDB",
+      "level": "Advanced",
+      "keywords": ["Data"]
+    },
+    {
+      "name": "SQL Server",
+      "level": "Advanced",
+      "keywords": ["Data"]
+    },
+    {
+      "name": "PostgreSQL",
+      "level": "Intermediate",
+      "keywords": ["Data"]
+    },
+    {
+      "name": "Redis",
+      "level": "Intermediate",
+      "keywords": ["Data"]
+    },
+    {
+      "name": "AWS",
+      "level": "Advanced",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "Terraform",
+      "level": "Advanced",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "Docker",
+      "level": "Advanced",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "Linux",
+      "level": "Intermediate",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "Nginx",
+      "level": "Intermediate",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "Apache",
+      "level": "Advanced",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "Git",
+      "level": "Advanced",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "GitHub Actions (CI/CD)",
+      "level": "Advanced",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "PHPUnit and Pest",
+      "level": "Advanced",
+      "keywords": ["Quality"]
+    },
+    {
+      "name": "Playwright",
+      "level": "Advanced",
+      "keywords": ["Quality"]
+    },
+    {
+      "name": "SUNAT e-invoicing",
+      "level": "Advanced",
+      "keywords": ["Domain"]
+    },
+    {
+      "name": "payment gateways (Culqi, Mercado Pago)",
+      "level": "Advanced",
+      "keywords": ["Domain"]
+    },
+    {
+      "name": "anti-money laundering compliance (UIF-SBS, LAFT)",
+      "level": "Intermediate",
+      "keywords": ["Domain"]
+    },
+    {
+      "name": "REST and SOAP APIs",
+      "level": "Advanced",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "IBM App Connect Enterprise",
+      "level": "Intermediate",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "LLM (Claude, Gemini)",
+      "level": "Intermediate",
+      "keywords": ["AI"]
+    },
+    {
+      "name": "Claude Code",
+      "level": "Advanced",
+      "keywords": ["AI"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Elementary"
+    }
+  ],
+  "projects": [
+    {
+      "id": "lms-de-idiomas-con-suscripciones",
+      "name": "Language learning LMS with subscriptions",
+      "description": "Subscription-based language learning platform (LMS), with payments through the Culqi payment gateway, SUNAT e-invoicing and AI grading.",
+      "highlights": [
+        "Automated releases with CI/CD in GitHub Actions, with about 6 production releases a week.",
+        "Built AI grading (Gemini) for text, audio and video answers. It assessed 1,812 answers in 5 months.",
+        "Took the legacy system from 3 to 140 automated test files, so each new change would not break what already worked.",
+        "Rebuilt the billing history of 573 subscriptions inherited from the previous system, with no differences in the amounts."
+      ],
+      "keywords": [
+        "Laravel 12",
+        "MySQL",
+        "Redis",
+        "Gemini",
+        "Culqi",
+        "Passport",
+        "SUNAT",
+        "GitHub Actions"
+      ],
+      "startDate": "2026-01",
+      "endDate": "2026-10"
+    },
+    {
+      "id": "sistema-de-empeno-y-compraventa-de-oro",
+      "name": "Gold pawn and trading system",
+      "description": "Gold pawn and trading system, with cash desks per branch, a vault and bank reconciliation.",
+      "highlights": [
+        "Connected the system to the business's currency exchange software, so every transaction goes through the SBS anti-money laundering checks.",
+        "Integrated a fingerprint reader so each customer signs contracts and sworn statements with their fingerprint, as anti-money laundering rules require.",
+        "Wrote the tests for the daily check that screens customers against about 20,000 names on the UN and OFAC sanctions lists.",
+        "Restricted system access to authorized networks, so it cannot be used from outside the business.",
+        "Automated staging deployments, so the client could review changes about 6 times a week before production.",
+        "Sped up inventory lot withdrawals, with 42% fewer database queries."
+      ],
+      "keywords": [
+        "Laravel 12",
+        "Vue 3",
+        "MySQL",
+        "Inertia SSR",
+        "Playwright",
+        "axe"
+      ],
+      "startDate": "2025-11"
+    },
+    {
+      "id": "pwa-offline-de-actas-de-mantenimiento",
+      "name": "Offline maintenance reports PWA",
+      "description": "Installable web app (PWA), now in client testing, that lets technicians fill out and sign electrical maintenance reports on their phones, even without signal.",
+      "highlights": [
+        "Built the offline mode, so technicians can work without signal and their reports, with encrypted signatures, sync without duplicates once back online.",
+        "Connected the app to the client's ERP so no data is lost or duplicated when a request fails.",
+        "Backed the app with over 1,800 automated tests, including 35 that walk through the full flow in the browser (E2E)."
+      ],
+      "keywords": [
+        "Laravel 13",
+        "Vue 3",
+        "TypeScript",
+        "Pest",
+        "Playwright",
+        "Inertia",
+        "PWA",
+        "Dexie",
+        "Vitest",
+        "PHPStan"
+      ],
+      "startDate": "2026-08"
+    },
+    {
+      "id": "plataforma-de-una-casa-de-cambio-digital",
+      "name": "Digital currency exchange platform",
+      "description": "Platform for a digital currency exchange supervised by the SBS, with identity verification (KYC) and generative AI-assisted anti-money laundering review.",
+      "highlights": [
+        "Deployed the platform to the client's AWS account with Terraform (infrastructure as code), and a full environment is created in about 20 minutes, with no manual setup.",
+        "Adapted the .NET 10 API to run in containers on ECS Fargate with ARM processors and to work with PostgreSQL as well as SQL Server.",
+        "Fixed the precision of amounts in 38 database columns and the code that uses them, to prevent rounding errors.",
+        "Doubled the automated tests of the legacy API, from 130 to 274, so it could be changed with less risk.",
+        "Installed an adapted version of the platform for 2 more clients on Windows servers. Published the API and the web app on IIS with HTTPS and a free certificate, and managed SQL Server with SSMS.",
+        "Optimized the search for Peruvian location codes, which now reads 25 records instead of 2,077, 99% fewer."
+      ],
+      "keywords": [
+        ".NET 10",
+        "SQL Server",
+        "PostgreSQL",
+        "Terraform",
+        "AWS ECS",
+        "EF Core 10",
+        "ASP.NET Core",
+        "SignalR",
+        "Hangfire",
+        "Angular 21",
+        "RDS",
+        "CloudFront",
+        "WAF",
+        "IIS",
+        "SSMS"
+      ],
+      "startDate": "2026-08"
+    },
+    {
+      "id": "pilot-ssh",
+      "name": "Pilot SSH",
+      "description": "Cloud service (SaaS), now in testing, that controls who accesses each server and records what they do, with an in-browser terminal.",
+      "highlights": [
+        "Designed the REST API and the web terminal. Credentials are stored encrypted and the activity log cannot be altered."
+      ],
+      "keywords": [
+        "Python",
+        "Django 5.2",
+        "Django REST Framework",
+        "React 19",
+        "MySQL",
+        "Channels",
+        "Celery",
+        "Redis",
+        "TypeScript",
+        "Tailwind CSS",
+        "Docker Swarm"
+      ],
+      "startDate": "2026-09",
+      "url": "https://uat-pilotssh.abitech.com.pe/"
+    },
+    {
+      "id": "recaudacion-scotiabank",
+      "name": "Recaudación Scotiabank",
+      "description": "Service for paying a municipality's taxes at Scotiabank, delivered and in certification.",
+      "highlights": [
+        "Implemented in SOAP the 5 operations Scotiabank requires, with fixed-width messages similar to ISO 8583, and validated them with real bank messages.",
+        "Automated the packaging of each release, which stops if a test fails or if it finds a secret in the code."
+      ],
+      "keywords": [
+        "C#",
+        ".NET Framework 4.7.2",
+        "SOAP",
+        "SQL Server",
+        "MSTest",
+        "ASP.NET ASMX",
+        "procedimientos almacenados"
+      ],
+      "startDate": "2026-09",
+      "endDate": "2026-10"
+    },
+    {
+      "id": "cred-plus",
+      "name": "CRED+",
+      "description": "Web app (PWA) for growth monitoring, vaccines and family planning under Ministry of Health guidelines, with WhatsApp and email reminders.",
+      "highlights": [
+        "Delivered the system in 6 days, ready for all 9,401 health facilities in Peru listed in the RENIPRESS registry.",
+        "Verified with the axe tool, at 7 screen sizes, that it has no accessibility violations under the WCAG 2.2 AA rules.",
+        "Redesigned reminders so their cost depends on pending notices, not on the number of registered mothers."
+      ],
+      "keywords": [
+        "Laravel 12",
+        "Vue 3",
+        "MySQL",
+        "Playwright",
+        "PWA",
+        "Inertia",
+        "Redis",
+        "axe",
+        "Larastan"
+      ],
+      "startDate": "2026-10",
+      "url": "https://cred.abitech.dev/"
+    },
+    {
+      "id": "yachacuy",
+      "name": "Yachakuy",
+      "description": "Online course store (LMS) with the Mercado Pago payment gateway and QR-verifiable certificates.",
+      "highlights": [
+        "Led 4 developers, with whom I took the platform to production and shipped about 3 releases a month, with a 96% success rate."
+      ],
+      "keywords": [
+        "Laravel 11",
+        "Inertia 1 SSR",
+        "Vue 3",
+        "MySQL",
+        "Mercado Pago",
+        "GitHub Actions",
+        "webhooks"
+      ],
+      "startDate": "2025-01",
+      "url": "https://yachacuy.com/",
+      "entity": "Yachakuy Perú"
+    },
+    {
+      "id": "la-fruteria",
+      "name": "La Frutería",
+      "description": "Sample app for my Docker books, which grows with each chapter.",
+      "highlights": [
+        "Built the app with 5 Docker services, and each image ships signed and with a list of its components (SBOM).",
+        "Wrote 43 automated API, smoke and browser tests."
+      ],
+      "keywords": [
+        "Docker",
+        "Docker Bake",
+        "Compose",
+        "Node 24",
+        "Express",
+        "PostgreSQL 18",
+        "Redis 8",
+        "Vue 3",
+        "Caddy",
+        "Trivy",
+        "cosign",
+        "OpenVEX"
+      ],
+      "startDate": "2026-10"
+    },
+    {
+      "id": "claude-config",
+      "name": "Configuración de Claude Code",
+      "description": "Rules and validators I use to work with AI (Claude Code) the same way across all my projects.",
+      "highlights": [
+        "Unified how I work with AI across 10 repositories, with validators covered by 19 automated tests."
+      ],
+      "keywords": ["Claude Code", "Python"],
+      "startDate": "2026-10"
+    },
+    {
+      "id": "optipix",
+      "name": "OptiPix",
+      "description": "My own version of Google's Squoosh, a web app that shrinks images right in the browser, without uploading them.",
+      "highlights": [
+        "Added batch compression, to optimize many images at once and download them as ZIP files."
+      ],
+      "keywords": [
+        "TypeScript",
+        "Preact",
+        "WebAssembly",
+        "Web Workers",
+        "Service Worker"
+      ],
+      "startDate": "2025-12",
+      "url": "https://optipix.abitech.com.pe/"
+    },
+    {
+      "id": "tu-coach",
+      "name": "Tu Coach UDH",
+      "description": "Online course platform (LMS) at Universidad de Huánuco on research and thesis writing.",
+      "highlights": [
+        "Built it as the sole developer, and it has more than 8,800 users and more than 7,700 certificates issued across 4 courses.",
+        "Thesis students who used it improved their academic writing, according to a study with 60 of them."
+      ],
+      "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],
+      "startDate": "2023-05",
+      "url": "https://tucoach.udh.edu.pe/",
+      "entity": "Universidad de Huánuco"
+    },
+    {
+      "id": "hackathon-udh",
+      "name": "Hackathon UDH 2024",
+      "description": "Team registration system for the university hackathon.",
+      "highlights": [
+        "Led a team of 4 that put the system into production in 3 weeks."
+      ],
+      "keywords": ["Laravel 11", "Inertia", "Vue 3", "PhpSpreadsheet"],
+      "startDate": "2024-11",
+      "endDate": "2024-12",
+      "entity": "Universidad de Huánuco"
+    },
+    {
+      "id": "sigep",
+      "name": "SIGEP UDH",
+      "description": "Universidad de Huánuco system for calling for research projects and receiving applications.",
+      "highlights": [
+        "I was its sole developer, and the university has run more than 10 grant calls on it, with over 150 applications and nearly 300 participants."
+      ],
+      "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
+      "url": "https://sigep.udh.edu.pe/",
+      "entity": "Universidad de Huánuco"
+    },
+    {
+      "id": "portal-investigacion",
+      "name": "Portal de Investigación UDH",
+      "description": "Research procedures portal for Universidad de Huánuco, with certificates, Turnitin, RENACYT and the university press.",
+      "highlights": [
+        "I was its sole developer and kept maintaining it after leaving the role."
+      ],
+      "keywords": ["Laravel 10", "Livewire 3", "Bootstrap 5"],
+      "url": "https://investigacion.udh.edu.pe/",
+      "entity": "Universidad de Huánuco"
+    },
+    {
+      "id": "banco-necesidades",
+      "name": "Banco de Necesidades UDH",
+      "description": "Platform for recording the university's needs and receiving solution proposals from student teams.",
+      "highlights": [],
+      "keywords": ["Laravel 11", "Livewire 3", "Jetstream", "Tailwind CSS"],
+      "startDate": "2024-07",
+      "endDate": "2024-12",
+      "entity": "Universidad de Huánuco"
+    },
+    {
+      "id": "historias-clinicas-psicologicas",
+      "name": "Psychological clinical records",
+      "description": "Clinical records system for a psychological trauma treatment service, with roles and two-factor authentication (2FA).",
+      "highlights": [],
+      "keywords": [
+        "Laravel 11",
+        "Jetstream",
+        "Inertia 2",
+        "Vue 3",
+        "Tailwind CSS"
+      ],
+      "startDate": "2025-02",
+      "endDate": "2025-11"
+    },
+    {
+      "id": "abitech-payments",
+      "name": "abitech-payments-laravel",
+      "description": "Open-source Laravel package that integrates the Stripe and Mercado Pago payment gateways behind a single interface.",
+      "highlights": [
+        "Designed it with the Strategy and Factory patterns so a new gateway can be added without touching the app, covered by 199 automated tests."
+      ],
+      "keywords": [
+        "PHP 8.2",
+        "Laravel 12",
+        "Laravel 13",
+        "Stripe",
+        "Mercado Pago"
+      ],
+      "startDate": "2026-06"
+    },
+    {
+      "id": "hostal-pacifico",
+      "name": "Hostal Pacífico",
+      "description": "Bilingual website for a hostel, in Spanish and English, with its rooms and booking requests.",
+      "highlights": [],
+      "keywords": ["Laravel 12", "Inertia 2", "Vue 3", "Tailwind CSS"],
+      "startDate": "2025-03",
+      "endDate": "2026-05",
+      "url": "https://hostalpacifico.com/",
+      "entity": "Hostal Pacífico"
+    }
+  ],
+  "meta": {
+    "version": "1.0.0"
+  }
+}

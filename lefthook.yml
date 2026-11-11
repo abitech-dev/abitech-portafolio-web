@@ -1,0 +1,9 @@
+pre-commit:
+  parallel: true
+  commands:
+    formato:
+      glob: "*.{astro,vue,ts,js,json,css,md,mdx,yml}"
+      run: npx prettier --check {staged_files}
+    estilo:
+      glob: "*.{astro,vue,ts,js}"
+      run: npx eslint {staged_files}
