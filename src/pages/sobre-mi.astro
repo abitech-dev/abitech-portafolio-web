@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
+import graduacion from "@/assets/sobre-mi-graduacion.jpg";
 import huanuco from "@/assets/sobre-mi-huanuco.jpg";
 import Seccion from "@/components/Seccion.astro";
 import resume from "@/data/resume.json";
@@ -25,13 +26,6 @@ const libro = publications[0];
   <div class="mt-6 grid gap-8 md:grid-cols-[1fr_16rem]">
     <div class="text-tenue space-y-4 leading-relaxed">
       <p>{basics.summary}</p>
-      {titulo && maestria && (
-        <p>
-          Me titulé como ingeniero de sistemas e informática en la{" "}
-          {titulo.institution} y egresé de la {maestria.area} de la{" "}
-          {maestria.institution}.
-        </p>
-      )}
       <p>
         Vivo en {basics.location.city}, Perú, y trabajo en remoto. También puedo
         mudarme dentro o fuera del país.
@@ -49,6 +43,24 @@ const libro = publications[0];
       </figcaption>
     </figure>
   </div>
+
+  {titulo && maestria && (
+    <Seccion titulo="Formación" id="formacion">
+      <div class="grid items-center gap-6 md:grid-cols-[14rem_1fr]">
+        <Image
+          src={graduacion}
+          alt="Abimael con terno y medalla en su ceremonia de graduación"
+          width={448}
+          class="rounded-xl object-cover"
+        />
+        <p class="text-tenue leading-relaxed">
+          Me titulé como ingeniero de sistemas e informática en la{" "}
+          {titulo.institution} y egresé de la {maestria.area} de la{" "}
+          {maestria.institution}.
+        </p>
+      </div>
+    </Seccion>
+  )}
 
   {libro && (
     <Seccion titulo="Lo que escribo" id="escribo">
