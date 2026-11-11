@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import foto from "@/assets/foto-perfil.jpg";
+import BotonTema from "@/components/islands/BotonTema.vue";
+import TipeoRoles from "@/components/islands/TipeoRoles.vue";
+import Navegacion from "@/components/Navegacion.astro";
+import resume from "@/data/resume.json";
+
+const { name, email, location, profiles } = resume.basics;
+const ROLES = [
+  "Desarrollador full stack",
+  "Laravel, Vue y .NET",
+  "Nube con AWS y Terraform",
+  "Integraciones bancarias",
+];
+const ICONOS: Record<string, string> = {
+  LinkedIn: "lucide:linkedin",
+  GitHub: "lucide:github",
+};
+---
+
+<aside class="border-borde bg-superficie/90 flex flex-col gap-5 rounded-2xl border p-6 shadow-sm backdrop-blur lg:sticky lg:top-8">
+  <div class="flex items-center gap-4 lg:flex-col lg:text-center">
+    <Image
+      src={foto}
+      alt={`Foto de ${name}`}
+      width={160}
+      height={160}
+      loading="eager"
+      class="border-acento size-20 rounded-full border-2 object-cover lg:size-36"
+    />
+    <div>
+      <p class="text-xl font-bold">{name}</p>
+      <p class="text-acento mt-1 min-h-6 text-sm">
+        <TipeoRoles client:idle roles={ROLES} />
+      </p>
+    </div>
+  </div>
+
+  <p class="text-tenue flex items-center gap-2 text-sm lg:justify-center">
+    <Icon name="lucide:map-pin" class="size-4" aria-hidden="true" />
+    {location.city}, Perú
+  </p>
+
+  <ul class="flex gap-2 lg:justify-center" aria-label="Perfiles y correo">
+    {profiles.map((perfil) => (
+      <li>
+        <a
+          href={perfil.url}
+          rel="me noopener"
+          target="_blank"
+          aria-label={perfil.network}
+          class="border-borde text-tenue hover:text-acento inline-flex rounded-full border p-2 transition-colors"
+        >
+          <Icon
+            name={ICONOS[perfil.network] ?? "lucide:external-link"}
+            class="size-4"
+          />
+        </a>
+      </li>
+    ))}
+    <li>
+      <a
+        href={`mailto:${email}`}
+        aria-label="Correo"
+        class="border-borde text-tenue hover:text-acento inline-flex rounded-full border p-2 transition-colors"
+      >
+        <Icon name="lucide:mail" class="size-4" />
+      </a>
+    </li>
+    <li>
+      <BotonTema client:load>
+        <Icon slot="claro" name="lucide:moon" class="size-4" />
+        <Icon slot="oscuro" name="lucide:sun" class="size-4" />
+      </BotonTema>
+    </li>
+  </ul>
+
+  <Navegacion />
+</aside>

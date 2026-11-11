@@ -1,13 +1,19 @@
 ---
-import "@/styles/global.css";
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+
+import FondoLineas from "@/components/islands/FondoLineas.vue";
+import Tarjeta from "@/components/Tarjeta.astro";
 import { metadatosDe } from "@/lib/seo";
+import "@/styles/global.css";
 
 interface Props {
   descripcion: string;
   titulo?: string;
+  datosEstructurados?: Record<string, unknown>;
 }
 
-const { descripcion, titulo } = Astro.props;
+const { descripcion, titulo, datosEstructurados } = Astro.props;
 if (!Astro.site) {
   throw new Error("Falta `site` en astro.config.ts.");
 }
@@ -27,12 +33,68 @@ const metadatos = metadatosDe(
     <meta name="description" content={metadatos.descripcion} />
     <link rel="canonical" href={metadatos.canonica} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:title" content={metadatos.titulo} />
     <meta property="og:description" content={metadatos.descripcion} />
     <meta property="og:url" content={metadatos.canonica} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-jetbrains" />
+    {datosEstructurados && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(datosEstructurados)}
+      />
+    )}
+    <script is:inline>
+      // Corre antes de pintar para que el tema no parpadee.
+      const aplicarTema = () => {
+        let guardado = null;
+        try {
+          guardado = localStorage.getItem("tema");
+        } catch {
+          // Sin almacenamiento, manda la preferencia del sistema.
+        }
+        const oscuro = guardado
+          ? guardado === "oscuro"
+          : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", oscuro);
+      };
+      aplicarTema();
+      document.addEventListener("astro:after-swap", aplicarTema);
+    </script>
+    <ClientRouter />
   </head>
-  <body class="bg-fondo text-texto antialiased">
-    <slot />
+  <body class="bg-fondo text-texto font-sans antialiased">
+    <a
+      href="#contenido"
+      class="bg-acento text-fondo sr-only rounded-lg px-4 py-2 focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+    >
+      Saltar al contenido
+    </a>
+    <FondoLineas client:idle transition:persist />
+    <div class="mx-auto grid max-w-6xl gap-8 px-4 py-6 lg:grid-cols-[18rem_1fr] lg:py-12">
+      <div transition:persist="tarjeta">
+        <Tarjeta />
+      </div>
+      <main
+        id="contenido"
+        class="border-borde bg-superficie/80 min-w-0 rounded-2xl border p-6 backdrop-blur sm:p-10"
+        transition:animate="fade"
+      >
+        <slot />
+      </main>
+    </div>
+    <footer class="text-tenue pb-8 text-center text-xs">
+      Hecho con Astro y Vue. El código está en
+      <a
+        class="hover:text-acento underline"
+        href="https://github.com/abitech-dev/abitech-portafolio-web"
+      >
+        GitHub
+      </a>
+      .
+    </footer>
   </body>
 </html>

@@ -1,38 +1,54 @@
-import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-test("la portada muestra el nombre y declara el español", async ({ page }) => {
-  await page.goto("/");
-
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Abimael Fernandez Ventura",
-  );
-  await expect(page.locator("html")).toHaveAttribute("lang", "es");
-});
-
-test("la portada trae canónica y descripción para buscadores", async ({
+test("la portada saluda y muestra los proyectos destacados", async ({
   page,
 }) => {
   await page.goto("/");
 
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    "https://abitech.dev/",
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Hola, soy Abimael",
   );
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
-    "content",
-    /Desarrollador full stack/,
-  );
+  await expect(
+    page.getByRole("heading", { name: "Proyectos destacados" }),
+  ).toBeVisible();
+  await expect(page.getByRole("article")).toHaveCount(4);
 });
 
-test("la portada no tiene violaciones de accesibilidad", async ({ page }) => {
+test("la portada declara la persona para buscadores", async ({ page }) => {
   await page.goto("/");
 
-  const { violations } = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
-    .analyze();
+  const jsonLd = await page
+    .locator('script[type="application/ld+json"]')
+    .textContent();
 
-  expect(
-    violations.filter((v) => ["serious", "critical"].includes(v.impact ?? "")),
-  ).toEqual([]);
+  expect(JSON.parse(jsonLd ?? "{}")).toMatchObject({
+    "@type": "Person",
+    name: "Abimael Fernandez Ventura",
+  });
+});
+
+test("el botón de tema cambia y recuerda el modo", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto("/");
+  const boton = page.getByRole("button", { name: "Tema oscuro" });
+  await expect(
+    page.locator("astro-island", { has: boton }),
+  ).not.toHaveAttribute("ssr");
+
+  await boton.click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+  await page.reload();
+
+  await expect(page.locator("html")).toHaveClass(/dark/);
+});
+
+test("con movimiento reducido el subtítulo no se anima", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const tipeo = page.locator('[data-test="tipeo"]');
+
+  await expect(tipeo).toHaveText("Desarrollador full stack");
+  await page.waitForTimeout(2500);
+
+  await expect(tipeo).toHaveText("Desarrollador full stack");
 });

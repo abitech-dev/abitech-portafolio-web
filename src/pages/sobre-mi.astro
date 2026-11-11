@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+
+import huanuco from "@/assets/sobre-mi-huanuco.jpg";
+import Seccion from "@/components/Seccion.astro";
+import resume from "@/data/resume.json";
+import Base from "@/layouts/Base.astro";
+
+const { basics, education, publications } = resume;
+const titulo = education.find((estudio) =>
+  estudio.studyType.startsWith("Título"),
+);
+const maestria = education.find((estudio) =>
+  estudio.studyType.startsWith("Maestría"),
+);
+const libro = publications[0];
+---
+
+<Base
+  titulo="Sobre mí"
+  descripcion={`Quién es ${basics.name}: desarrollador full stack de Huánuco, Perú.`}
+>
+  <h1 class="text-3xl font-bold">Sobre mí</h1>
+
+  <div class="mt-6 grid gap-8 md:grid-cols-[1fr_16rem]">
+    <div class="text-tenue space-y-4 leading-relaxed">
+      <p>{basics.summary}</p>
+      {titulo && maestria && (
+        <p>
+          Me titulé como ingeniero de sistemas e informática en la{" "}
+          {titulo.institution} y egresé de la {maestria.area} de la{" "}
+          {maestria.institution}.
+        </p>
+      )}
+      <p>
+        Vivo en {basics.location.city}, Perú, y trabajo en remoto. También puedo
+        mudarme dentro o fuera del país.
+      </p>
+    </div>
+    <figure>
+      <Image
+        src={huanuco}
+        alt="Abimael en un mirador de Huánuco, con el río y los cerros de fondo"
+        width={512}
+        class="rounded-xl object-cover"
+      />
+      <figcaption class="text-tenue mt-2 text-center text-xs">
+        En un mirador de {basics.location.city}.
+      </figcaption>
+    </figure>
+  </div>
+
+  {libro && (
+    <Seccion titulo="Lo que escribo" id="escribo">
+      <p class="font-semibold">{libro.name}</p>
+      <p class="text-tenue mt-2">{libro.summary}</p>
+    </Seccion>
+  )}
+</Base>

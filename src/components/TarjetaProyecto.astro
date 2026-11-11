@@ -1,0 +1,38 @@
+---
+import { Icon } from "astro-icon/components";
+
+import type { Proyecto } from "@/lib/trayectoria";
+
+interface Props {
+  proyecto: Proyecto;
+}
+
+const { proyecto } = Astro.props;
+---
+
+<article class="border-borde bg-superficie hover:border-acento flex flex-col gap-3 rounded-xl border p-5 transition-colors">
+  <h3 class="font-semibold">
+    {proyecto.url ? (
+      <a
+        href={proyecto.url}
+        target="_blank"
+        rel="noopener"
+        class="hover:text-acento inline-flex items-center gap-1"
+      >
+        {proyecto.name}
+        <Icon name="lucide:arrow-up-right" class="size-4" aria-hidden="true" />
+        <span class="sr-only">(abre en otra pestaña)</span>
+      </a>
+    ) : (
+      proyecto.name
+    )}
+  </h3>
+  <p class="text-tenue text-sm leading-relaxed">{proyecto.description}</p>
+  <ul class="mt-auto flex flex-wrap gap-2" aria-label="Tecnologías">
+    {proyecto.keywords.slice(0, 4).map((tecnologia) => (
+      <li class="bg-acento-suave text-acento rounded-full px-2.5 py-0.5 font-mono text-xs">
+        {tecnologia}
+      </li>
+    ))}
+  </ul>
+</article>

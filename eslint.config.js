@@ -1,5 +1,6 @@
 import js from "@eslint/js";
 import astro from "eslint-plugin-astro";
+import prettier from "eslint-config-prettier";
 import vue from "eslint-plugin-vue";
 import { defineConfig } from "eslint/config";
 import globals from "globals";
@@ -18,4 +19,5 @@ export default defineConfig(
   {
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
+  prettier,
 );

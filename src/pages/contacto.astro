@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon/components";
+
+import resume from "@/data/resume.json";
+import Base from "@/layouts/Base.astro";
+
+const { basics } = resume;
+const ICONOS: Record<string, string> = {
+  LinkedIn: "lucide:linkedin",
+  GitHub: "lucide:github",
+};
+const medios = [
+  {
+    etiqueta: "Correo",
+    valor: basics.email,
+    url: `mailto:${basics.email}`,
+    icono: "lucide:mail",
+  },
+  ...basics.profiles.map((perfil) => ({
+    etiqueta: perfil.network,
+    valor: perfil.url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, ""),
+    url: perfil.url,
+    icono: ICONOS[perfil.network] ?? "lucide:external-link",
+  })),
+];
+---
+
+<Base
+  titulo="Contacto"
+  descripcion={`Cómo contactar a ${basics.name}: correo, LinkedIn y GitHub.`}
+>
+  <h1 class="text-3xl font-bold">Contacto</h1>
+  <p class="text-tenue mt-3 max-w-prose leading-relaxed">
+    Busco un puesto full stack, de nube o de DevOps, en remoto o con mudanza
+    dentro o fuera del Perú.
+  </p>
+
+  <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+    {medios.map((medio) => (
+      <li>
+        <a
+          href={medio.url}
+          target={medio.url.startsWith("mailto:") ? undefined : "_blank"}
+          rel={medio.url.startsWith("mailto:") ? undefined : "me noopener"}
+          class="border-borde hover:border-acento flex items-center gap-4 rounded-xl border p-5 transition-colors"
+        >
+          <Icon
+            name={medio.icono}
+            class="text-acento size-6"
+            aria-hidden="true"
+          />
+          <span>
+            <span class="block font-semibold">{medio.etiqueta}</span>
+            <span class="text-tenue text-sm break-all">{medio.valor}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

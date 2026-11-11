@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { SECCIONES, estaActiva } from "@/lib/navegacion";
+
+const actual = Astro.url.pathname;
+---
+
+<nav aria-label="Secciones">
+  <ul class="flex flex-wrap gap-1 lg:flex-col">
+    {SECCIONES.map((seccion) => {
+      const activa = estaActiva(seccion.ruta, actual);
+      return (
+        <li>
+          <a
+            href={seccion.ruta}
+            aria-current={activa ? "page" : undefined}
+            class:list={[
+              "flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
+              activa
+                ? "bg-acento-suave text-acento font-semibold"
+                : "text-tenue hover:text-texto",
+            ]}
+          >
+            <Icon name={seccion.icono} class="size-4" aria-hidden="true" />
+            {seccion.etiqueta}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

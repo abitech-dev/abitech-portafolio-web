@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
   site: "https://abitech.dev",
@@ -13,6 +13,22 @@ export default defineConfig({
     locales: ["es", "en"],
     routing: { prefixDefaultLocale: false },
   },
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      weights: [400, 500, 600, 700],
+      subsets: ["latin"],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "JetBrains Mono",
+      cssVariable: "--font-jetbrains",
+      weights: [400, 600],
+      subsets: ["latin"],
+    },
+  ],
   integrations: [
     vue(),
     mdx(),

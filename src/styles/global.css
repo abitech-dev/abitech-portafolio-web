@@ -1,8 +1,42 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-fondo: oklch(0.98 0.005 260);
-  --color-texto: oklch(0.25 0.02 260);
-  --color-acento: oklch(0.55 0.18 255);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-fondo: oklch(0.985 0.003 250);
+  --color-superficie: oklch(1 0 0);
+  --color-borde: oklch(0.9 0.01 250);
+  --color-texto: oklch(0.22 0.02 255);
+  --color-tenue: oklch(0.46 0.02 255);
+  --color-acento: oklch(0.5 0.11 190);
+  --color-acento-suave: oklch(0.94 0.04 190);
+}
+
+@layer base {
+  .dark {
+    --color-fondo: oklch(0.16 0.02 255);
+    --color-superficie: oklch(0.21 0.02 255);
+    --color-borde: oklch(0.3 0.02 255);
+    --color-texto: oklch(0.93 0.01 250);
+    --color-tenue: oklch(0.74 0.02 250);
+    --color-acento: oklch(0.8 0.12 185);
+    --color-acento-suave: oklch(0.3 0.05 190);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-acento);
+    outline-offset: 3px;
+  }
 }
