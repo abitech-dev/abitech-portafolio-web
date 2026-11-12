@@ -12,8 +12,31 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 - Portada con el nombre, el titular y el resumen de `resume.json`.
 - Puertas de calidad: Prettier, ESLint, `astro check`, Vitest y
   Playwright con axe.
-- Diseño base: tarjeta fija con foto, subtítulo tipeado, fondo de líneas
-  animado, tema claro y oscuro, y transiciones entre páginas.
+- Diseño base con tarjeta fija y foto, tema claro y oscuro, y
+  transiciones entre páginas.
 - Páginas de inicio, sobre mí, CV, contacto y 404, con datos de
   `resume.json` y la persona de schema.org.
 - Fuentes Inter y JetBrains Mono servidas desde el sitio.
+- Proyectos con filtro por tecnología, página de cada caso con su
+  captura, logos propios y de tecnologías.
+- Código abierto, con los paquetes separados de los proyectos.
+- Aprende, con los libros, en lugar de la página Libros.
+- CV en PDF para descargar, generado sin contacto reservado.
+- Cifras destacadas en la portada.
+- Barra compacta con menú desplegable en el celular.
+- Versión en inglés bajo `/en`, con `hreflang` y enlace para cambiar de
+  idioma.
+- Imagen para compartir por página, `robots.txt` y `llms.txt`.
+- Grafo de schema.org con el sitio y la persona enlazados por `@id`.
+- Analítica opcional con Umami, activada por variables de entorno.
+
+### Cambiado
+
+- Menú ordenado por lo que busca cada visitante, con el CV a la vista.
+- Esquinas menos redondeadas, sin degradados y foto de la tarjeta más
+  alejada.
+- Estilos incrustados en el HTML y solo los pesos de fuente que se usan.
+
+### Quitado
+
+- Subtítulo tipeado y fondo de líneas animado.
