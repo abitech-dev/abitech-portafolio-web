@@ -63,7 +63,9 @@ const metadatos = metadatosDe(
     {alternas.map((alterna) => (
       <link rel="alternate" hreflang={alterna.idioma} href={alterna.href} />
     ))}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:title" content={metadatos.titulo} />
     <meta property="og:description" content={metadatos.descripcion} />
@@ -132,15 +134,21 @@ const metadatos = metadatosDe(
         <slot />
       </main>
     </div>
-    <footer class="text-tenue pb-8 text-center text-xs">
-      {sitio.pie}{" "}
-      <a
-        class="hover:text-acento underline"
-        href="https://github.com/abitech-dev/abitech-portafolio-web"
-      >
-        GitHub
-      </a>
-      .
+    <footer class="text-tenue space-y-1 pb-8 text-center text-xs">
+      <p class="flex items-center justify-center gap-2">
+        <img src="/favicon-32.png" alt="" width="16" height="16" />
+        {sitio.firma}
+      </p>
+      <p>
+        {sitio.pie}{" "}
+        <a
+          class="hover:text-acento underline"
+          href="https://github.com/abitech-dev/abitech-portafolio-web"
+        >
+          GitHub
+        </a>
+        .
+      </p>
     </footer>
   </body>
 </html>

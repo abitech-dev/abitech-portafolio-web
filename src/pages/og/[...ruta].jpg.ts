@@ -18,7 +18,8 @@ const COLORES = {
   borde: "#dbe1e8",
   texto: "#1b2430",
   tenue: "#566170",
-  acento: "#0b7377",
+  acento: "#1c6ccc",
+  marca: "#fbbd1b",
 };
 
 const fuente = (peso: number): Buffer =>
@@ -109,7 +110,7 @@ function tarjeta({ titulo, idioma }: PaginaParaCompartir): Nodo {
         bottom: 0,
         width: ANCHO,
         height: 12,
-        background: COLORES.acento,
+        background: COLORES.marca,
       }),
     ],
   );

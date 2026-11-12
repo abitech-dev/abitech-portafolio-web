@@ -2,6 +2,7 @@ const es = {
   sitio: {
     saltar: "Saltar al contenido",
     navegacion: "Secciones",
+    firma: "Abimael Fernandez Ventura, fundador de ABItech Perú.",
     pie: "Hecho con Astro y Vue. El código está en",
     otraPestana: "abre en otra pestaña",
     menu: "Menú",
@@ -110,6 +111,7 @@ const en: Textos = {
   sitio: {
     saltar: "Skip to content",
     navegacion: "Sections",
+    firma: "Abimael Fernandez Ventura, founder of ABItech Perú.",
     pie: "Built with Astro and Vue. The code is on",
     otraPestana: "opens in a new tab",
     menu: "Menu",
