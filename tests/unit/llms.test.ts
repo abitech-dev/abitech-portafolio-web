@@ -28,9 +28,9 @@ describe("llmsTxt", () => {
       { id: "mi-articulo", titulo: "Mi artículo", descripcion: "Resumen" },
     ]);
 
-    expect(conEscritos).toContain("## Escritos");
+    expect(conEscritos).toContain("## Blog");
     expect(conEscritos).toContain(
-      "- [Mi artículo](https://abitech.dev/escritos/mi-articulo): Resumen",
+      "- [Mi artículo](https://abitech.dev/blog/mi-articulo): Resumen",
     );
   });
 });

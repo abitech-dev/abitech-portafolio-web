@@ -15,7 +15,7 @@ export const GET: APIRoute = async ({ site }) => {
       title: escrito.data.titulo,
       description: escrito.data.descripcion,
       pubDate: escrito.data.fecha,
-      link: `/escritos/${escrito.id}`,
+      link: `/blog/${escrito.id}`,
       categories: escrito.data.etiquetas,
     })),
   });

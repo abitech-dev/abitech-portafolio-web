@@ -44,9 +44,7 @@ describe("imagenParaCompartir", () => {
   });
 
   it("un escrito usa la imagen de su sección", () => {
-    expect(imagenParaCompartir("/escritos/un-articulo")).toBe(
-      "/og/escritos.jpg",
-    );
+    expect(imagenParaCompartir("/blog/un-articulo")).toBe("/og/blog.jpg");
   });
 
   it("cae a la portada de su idioma si la página no tiene imagen", () => {

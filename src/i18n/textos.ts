@@ -24,7 +24,7 @@ const es = {
   secciones: {
     inicio: "Inicio",
     proyectos: "Proyectos",
-    escritos: "Escritos",
+    escritos: "Blog",
     cv: "CV",
     codigoAbierto: "Código abierto",
     aprende: "Aprende",
@@ -160,13 +160,13 @@ const es = {
       `Artículos y notas de ${nombre} sobre desarrollo web, nube y lo que aprende en el camino.`,
     intro:
       "Artículos largos y notas cortas sobre lo que construyo y lo que aprendo.",
-    vacio: "Pronto publicaré el primer escrito.",
+    vacio: "Pronto publicaré la primera entrada.",
     articulo: "Artículo",
     nota: "Nota",
     minutos: (n: number) => `${n} min de lectura`,
-    volver: "Todos los escritos",
+    volver: "Volver al blog",
     etiquetas: "Etiquetas",
-    sobre: (etiqueta: string) => `Escritos sobre ${etiqueta}`,
+    sobre: (etiqueta: string) => `Publicaciones sobre ${etiqueta}`,
     suscribirse: "Suscribirse por RSS",
   },
   contacto: {
@@ -205,7 +205,7 @@ const en: Textos = {
   secciones: {
     inicio: "Home",
     proyectos: "Projects",
-    escritos: "Writing",
+    escritos: "Blog",
     cv: "Resume",
     codigoAbierto: "Open source",
     aprende: "Learn",
@@ -338,13 +338,13 @@ const en: Textos = {
     descripcion: (nombre) =>
       `Articles and notes by ${nombre} about web development, the cloud and what he learns along the way.`,
     intro: "Long articles and short notes, written in Spanish.",
-    vacio: "The first piece is coming soon.",
+    vacio: "The first post is coming soon.",
     articulo: "Article",
     nota: "Note",
     minutos: (n) => `${n} min read`,
-    volver: "All writing",
+    volver: "Back to the blog",
     etiquetas: "Tags",
-    sobre: (etiqueta) => `Writing about ${etiqueta}`,
+    sobre: (etiqueta) => `Posts about ${etiqueta}`,
     suscribirse: "Subscribe via RSS",
   },
   contacto: {

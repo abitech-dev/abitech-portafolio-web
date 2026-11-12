@@ -3,19 +3,19 @@ import { expect, test } from "@playwright/test";
 
 import { abrirMenuEnCelular } from "./ayudas";
 
-const ARTICULO = "/escritos/como-construi-mi-sitio";
+const ARTICULO = "/blog/como-construi-mi-sitio";
 
-test("el menú lleva a Escritos y la lista enlaza el artículo", async ({
+test("el menú lleva al blog y la lista enlaza el artículo", async ({
   page,
 }) => {
   await page.goto("/");
   await abrirMenuEnCelular(page);
   await page
     .getByRole("navigation", { name: "Secciones" })
-    .getByRole("link", { name: "Escritos" })
+    .getByRole("link", { name: "Blog" })
     .click();
 
-  await expect(page).toHaveURL(/\/escritos$/);
+  await expect(page).toHaveURL(/\/blog$/);
   await page
     .getByRole("link", { name: "Cómo construí mi sitio con Astro" })
     .click();
@@ -36,7 +36,7 @@ test("el artículo tiene su título, datos de artículo y es accesible", async (
   expect(jsonLd).toContain('"@type":"BlogPosting"');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     "content",
-    /\/og\/escritos\.jpg$/,
+    /\/og\/blog\.jpg$/,
   );
   const { violations } = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
@@ -53,10 +53,10 @@ test("cada etiqueta tiene su página y el RSS lista el artículo", async ({
   await page.goto(ARTICULO);
   await page.getByRole("link", { name: "#astro" }).first().click();
 
-  await expect(page).toHaveURL(/\/escritos\/etiquetas\/astro$/);
+  await expect(page).toHaveURL(/\/blog\/etiquetas\/astro$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("#astro");
 
-  const rss = await (await request.get("/escritos/rss.xml")).text();
+  const rss = await (await request.get("/blog/rss.xml")).text();
   expect(rss).toContain("<title>Cómo construí mi sitio con Astro");
   expect(rss).toContain(`https://abitech.dev${ARTICULO}`);
 });

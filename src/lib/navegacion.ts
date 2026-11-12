@@ -23,7 +23,7 @@ export const SECCIONES: readonly Seccion[] = [
   { ruta: "/sobre-mi", clave: "sobreMi", icono: "lucide:user" },
   { ruta: "/proyectos", clave: "proyectos", icono: "lucide:folder-code" },
   {
-    ruta: "/escritos",
+    ruta: "/blog",
     clave: "escritos",
     icono: "lucide:pen-line",
     isSoloEspanol: true,

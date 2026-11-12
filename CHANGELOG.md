@@ -7,7 +7,7 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Agregado
 
-- Escritos con artículos y notas, etiquetas, tiempo de lectura, RSS y
+- Blog con artículos y notas, etiquetas, tiempo de lectura, RSS y
   datos de artículo de schema.org. Aparece en el menú cuando hay algo
   publicado.
 - Primer artículo, sobre cómo está hecho el sitio.

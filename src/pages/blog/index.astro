@@ -23,7 +23,7 @@ const etiquetas = etiquetasDe(escritos);
   <TituloDePagina titulo={secciones.escritos} icono="lucide:pen-line" />
   <p class="text-tenue mt-3 max-w-prose">{t.intro}</p>
   <a
-    href="/escritos/rss.xml"
+    href="/blog/rss.xml"
     class="text-tenue hover:text-acento mt-3 inline-flex items-center gap-1.5 text-sm"
   >
     <Icon name="lucide:rss" class="size-4" aria-hidden="true" />
@@ -36,7 +36,7 @@ const etiquetas = etiquetasDe(escritos);
         {etiquetas.map(([etiqueta, veces]) => (
           <li>
             <a
-              href={`/escritos/etiquetas/${idDeEtiqueta(etiqueta)}`}
+              href={`/blog/etiquetas/${idDeEtiqueta(etiqueta)}`}
               class="border-borde text-tenue hover:border-acento hover:text-acento inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-xs transition-colors"
             >
               #{etiqueta}

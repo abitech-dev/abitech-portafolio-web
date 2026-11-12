@@ -35,7 +35,7 @@ const formato = new Intl.DateTimeFormat("es-PE", {
           </p>
           <h2 class="font-display group-hover:text-acento mt-1 text-xl font-semibold transition-colors">
             <a
-              href={`/escritos/${escrito.id}`}
+              href={`/blog/${escrito.id}`}
               class="after:absolute after:inset-0"
             >
               {escrito.data.titulo}
@@ -48,7 +48,7 @@ const formato = new Intl.DateTimeFormat("es-PE", {
             {escrito.data.etiquetas.map((etiqueta) => (
               <li>
                 <a
-                  href={`/escritos/etiquetas/${idDeEtiqueta(etiqueta)}`}
+                  href={`/blog/etiquetas/${idDeEtiqueta(etiqueta)}`}
                   class="text-tenue hover:text-acento font-mono text-xs"
                 >
                   #{etiqueta}

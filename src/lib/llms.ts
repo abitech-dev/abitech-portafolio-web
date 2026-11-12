@@ -63,10 +63,10 @@ export function llmsTxt(
     "",
     ...(escritos.length > 0
       ? [
-          "## Escritos",
+          "## Blog",
           "",
           ...escritos.map((e) =>
-            enlace(e.titulo, url(`/escritos/${e.id}`), e.descripcion),
+            enlace(e.titulo, url(`/blog/${e.id}`), e.descripcion),
           ),
           "",
         ]
