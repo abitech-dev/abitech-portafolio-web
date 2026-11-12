@@ -36,14 +36,14 @@ describe("paginasParaCompartir", () => {
 describe("imagenParaCompartir", () => {
   it("usa la imagen de la página, con o sin barra final", () => {
     expect(imagenParaCompartir("/proyectos/tu-coach/")).toBe(
-      "/og/proyectos/tu-coach.png",
+      "/og/proyectos/tu-coach.jpg",
     );
-    expect(imagenParaCompartir("/en/cv")).toBe("/og/en/cv.png");
-    expect(archivoDeLaImagen("/")).toBe("/og/inicio.png");
+    expect(imagenParaCompartir("/en/cv")).toBe("/og/en/cv.jpg");
+    expect(archivoDeLaImagen("/")).toBe("/og/inicio.jpg");
   });
 
   it("cae a la portada de su idioma si la página no tiene imagen", () => {
-    expect(imagenParaCompartir("/no-existe")).toBe("/og/inicio.png");
-    expect(imagenParaCompartir("/en/no-existe")).toBe("/og/en.png");
+    expect(imagenParaCompartir("/no-existe")).toBe("/og/inicio.jpg");
+    expect(imagenParaCompartir("/en/no-existe")).toBe("/og/en.jpg");
   });
 });

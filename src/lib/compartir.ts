@@ -9,7 +9,7 @@ export type PaginaParaCompartir = {
   idioma: Idioma;
 };
 
-const RUTA_DE_INICIO = "/og/inicio.png";
+const RUTA_DE_INICIO = "/og/inicio.jpg";
 
 function sinBarraFinal(ruta: string): string {
   return ruta.replace(/\/+$/, "") || "/";
@@ -39,7 +39,7 @@ export function paginasParaCompartir(): PaginaParaCompartir[] {
 
 export function archivoDeLaImagen(ruta: string): string {
   const limpia = sinBarraFinal(ruta);
-  return limpia === "/" ? RUTA_DE_INICIO : `/og${limpia}.png`;
+  return limpia === "/" ? RUTA_DE_INICIO : `/og${limpia}.jpg`;
 }
 
 /** Una página sin imagen propia, como la 404, usa la portada de su idioma. */

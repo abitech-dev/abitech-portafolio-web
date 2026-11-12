@@ -124,8 +124,10 @@ export const GET: APIRoute = async ({ props }) => {
       { name: "Inter", data: fuente(700), weight: 700, style: "normal" },
     ],
   });
-  const png = await sharp(Buffer.from(svg)).png().toBuffer();
-  return new Response(new Uint8Array(png), {
-    headers: { "Content-Type": "image/png" },
+  const jpg = await sharp(Buffer.from(svg))
+    .jpeg({ quality: 85, mozjpeg: true })
+    .toBuffer();
+  return new Response(new Uint8Array(jpg), {
+    headers: { "Content-Type": "image/jpeg" },
   });
 };

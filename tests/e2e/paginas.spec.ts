@@ -188,7 +188,7 @@ test("cada página tiene una imagen para compartir que existe", async ({
     const { pathname } = new URL(imagen ?? "");
     const respuesta = await request.get(pathname);
 
-    expect(respuesta.headers()["content-type"], ruta).toBe("image/png");
+    expect(respuesta.headers()["content-type"], ruta).toBe("image/jpeg");
   }
   await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
     "content",
