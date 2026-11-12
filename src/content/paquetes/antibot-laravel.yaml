@@ -19,6 +19,8 @@ ejemplo:
 
     $request->validate([
         'email' => 'required|email',
-        'password' => 'required',
-        'cf-turnstile-response' => ['required', new AntiBotRule()],
+        'cf-turnstile-response' => [
+            'required',
+            new AntiBotRule(),
+        ],
     ]);

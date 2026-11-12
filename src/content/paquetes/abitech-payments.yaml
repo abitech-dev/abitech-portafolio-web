@@ -17,18 +17,15 @@ ejemplo:
   archivo: BillingController.php
   lenguaje: php
   codigo: |-
-    $request = new PaymentRequest(
-        amount: '100.00',
-        currency: 'PEN',
-        email: 'cliente@email.com',
-        description: 'Suscripcion mensual',
-        idempotencyKey: request()->header('X-Idempotency-Key'),
-        metadata: [
-            'success_url' => route('billing.success'),
-            'cancel_url'  => route('billing.cancel'),
-        ],
-    );
-
-    $response = $manager->driver('mercadopago_checkout')->purchase($request);
+    $response = $manager
+        ->driver('mercadopago_checkout')
+        ->purchase(new PaymentRequest(
+            amount: '100.00',
+            currency: 'PEN',
+            email: 'cliente@email.com',
+            description: 'Suscripcion mensual',
+            idempotencyKey: $idempotencyKey,
+            metadata: $urlsDeRetorno,
+        ));
 
     return redirect($response->redirectUrl);
