@@ -4,6 +4,7 @@ import { PUBLIC_UMAMI_ID, PUBLIC_UMAMI_SRC } from "astro:env/client";
 import { ClientRouter } from "astro:transitions";
 
 import BarraLateral from "@/components/BarraLateral.astro";
+import Pie from "@/components/Pie.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn, sinIdioma } from "@/i18n/rutas";
 import { imagenParaCompartir } from "@/lib/compartir";
@@ -133,25 +134,7 @@ const metadatos = metadatosDe(
       >
         <slot />
       </main>
-      <footer
-        id="pie"
-        class="border-borde text-tenue max-w-5xl space-y-1 border-t px-5 py-8 text-xs sm:px-8 lg:mx-16 lg:px-0"
-      >
-        <p class="flex items-center gap-2">
-          <img src="/favicon-32.png" alt="" width="16" height="16" />
-          {sitio.firma}
-        </p>
-        <p>
-          {sitio.pie}{" "}
-          <a
-            class="hover:text-acento underline"
-            href="https://github.com/abitech-dev/abitech-portafolio-web"
-          >
-            GitHub
-          </a>
-          .
-        </p>
-      </footer>
+      <Pie />
     </div>
   </body>
 </html>

@@ -1,13 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
 
 import saludo from "@/assets/saludo.png";
 import DescargaDelCv from "@/components/DescargaDelCv.astro";
 import Seccion from "@/components/Seccion.astro";
 import TarjetaProyecto from "@/components/TarjetaProyecto.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
-import { rutasPorIdioma, idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
 import { cifrasDestacadas } from "@/lib/cifras";
 import { periodo } from "@/lib/fechas";
@@ -86,14 +85,4 @@ const libro = publications[0];
       <p class="text-tenue mt-2">{libro.summary}</p>
     </Seccion>
   )}
-
-  <Seccion titulo={t.inicio.conversamos} id="contacto">
-    <a
-      href={rutaEn(idioma, "/contacto")}
-      class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
-    >
-      {t.inicio.escribeme}
-      <Icon name="lucide:send" class="size-4" aria-hidden="true" />
-    </a>
-  </Seccion>
 </Base>

@@ -2,8 +2,6 @@ const es = {
   sitio: {
     saltar: "Saltar al contenido",
     navegacion: "Secciones",
-    firma: "Abimael Fernandez Ventura, fundador de ABItech Perú.",
-    pie: "Hecho con Astro y Vue. El código está en",
     otraPestana: "abre en otra pestaña",
     menu: "Menú",
     cerrar: "Cerrar",
@@ -14,6 +12,15 @@ const es = {
     pais: "Perú",
     otroIdioma: { etiqueta: "English", codigo: "en" },
     locale: "es_PE",
+  },
+  pie: {
+    llamado: "¿Buscas un desarrollador full stack para tu equipo?",
+    detalle: "Escríbeme o descarga mi CV y conversemos.",
+    escribir: "Escribir correo",
+    cv: "Descargar CV",
+    fundador: "Fundador de ABItech Perú.",
+    actualizado: "Actualizado en",
+    codigo: "Este sitio en GitHub",
   },
   secciones: {
     inicio: "Inicio",
@@ -43,8 +50,6 @@ const es = {
     hoy: "En qué trabajo hoy",
     destacados: "Proyectos destacados",
     libro: "Libro en curso",
-    conversamos: "¿Conversamos?",
-    escribeme: "Escríbeme",
     cifras: {
       anios: "años creando sistemas web",
       usuarios: "usuarios en Tu Coach UDH",
@@ -112,8 +117,6 @@ const en: Textos = {
   sitio: {
     saltar: "Skip to content",
     navegacion: "Sections",
-    firma: "Abimael Fernandez Ventura, founder of ABItech Perú.",
-    pie: "Built with Astro and Vue. The code is on",
     otraPestana: "opens in a new tab",
     menu: "Menu",
     cerrar: "Close",
@@ -124,6 +127,15 @@ const en: Textos = {
     pais: "Peru",
     otroIdioma: { etiqueta: "Español", codigo: "es" },
     locale: "en_US",
+  },
+  pie: {
+    llamado: "Looking for a full stack developer for your team?",
+    detalle: "Write to me or download my resume and let's talk.",
+    escribir: "Send an email",
+    cv: "Download resume",
+    fundador: "Founder of ABItech Perú.",
+    actualizado: "Updated",
+    codigo: "This site on GitHub",
   },
   secciones: {
     inicio: "Home",
@@ -153,8 +165,6 @@ const en: Textos = {
     hoy: "What I work on today",
     destacados: "Featured projects",
     libro: "Book in progress",
-    conversamos: "Let's talk",
-    escribeme: "Write to me",
     cifras: {
       anios: "years building web systems",
       usuarios: "users on Tu Coach UDH",

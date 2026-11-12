@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta } from "@/i18n/rutas";
+import { mesYAnio } from "@/lib/fechas";
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { pie, sitio } = textosDe(idioma);
+const { otraPestana } = sitio;
+const { name, email } = datosDe(idioma).basics;
+const hoy = new Date();
+const mes = `${hoy.getUTCFullYear()}-${String(hoy.getUTCMonth() + 1).padStart(2, "0")}`;
+const CV = {
+  es: "/descargas/cv-abimael-fernandez-ventura.pdf",
+  en: "/descargas/resume-abimael-fernandez-ventura.pdf",
+};
+---
+
+<footer id="pie" class="max-w-5xl px-5 sm:px-8 lg:px-16">
+  <div class="border-borde border-t py-10">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-lg font-semibold">{pie.llamado}</p>
+        <p class="text-tenue mt-1 text-sm">{pie.detalle}</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`mailto:${email}`}
+          data-umami-event="escribir-correo"
+          class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold"
+        >
+          <Icon name="lucide:mail" class="size-4" aria-hidden="true" />
+          {pie.escribir}
+        </a>
+        <a
+          href={CV[idioma]}
+          download
+          data-umami-event="descargar-cv"
+          data-umami-event-idioma={idioma}
+          class="border-borde hover:border-acento inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm"
+        >
+          <Icon name="lucide:download" class="size-4" aria-hidden="true" />
+          {pie.cv}
+        </a>
+      </div>
+    </div>
+
+    <div class="text-tenue mt-10 flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between">
+      <p class="flex items-center gap-2">
+        <img src="/favicon-32.png" alt="" width="16" height="16" />©{" "}
+        {hoy.getUTCFullYear()} {name}. {pie.fundador}
+      </p>
+      <div class="flex items-center gap-4">
+        <span>
+          {pie.actualizado} {mesYAnio(mes, idioma)}
+        </span>
+        <a
+          href="https://github.com/abitech-dev/abitech-portafolio-web"
+          target="_blank"
+          rel="noopener"
+          class="border-borde hover:border-acento hover:text-acento inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 transition-colors"
+        >
+          <Icon name="lucide:github" class="size-3.5" aria-hidden="true" />
+          {pie.codigo}
+          <span class="sr-only">({otraPestana})</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
