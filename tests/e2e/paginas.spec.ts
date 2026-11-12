@@ -155,6 +155,24 @@ test.describe("en el celular", () => {
     await expect(boton).toHaveAttribute("aria-expanded", "false");
   });
 
+  test("el menú cubre la pantalla, bloquea el fondo y se cierra", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Menú" }).click();
+
+    const menu = page.locator("#menu-movil");
+    const caja = await menu.boundingBox();
+    expect(caja?.height).toBeGreaterThanOrEqual(800);
+    await expect(page.locator("#contenido")).toHaveAttribute("inert", "");
+    await expect(page.getByRole("button", { name: "Cerrar" })).toBeFocused();
+
+    await page.getByRole("button", { name: "Cerrar" }).click();
+    await expect(menu).toBeHidden();
+    await expect(page.locator("#contenido")).not.toHaveAttribute("inert");
+    await expect(page.getByRole("button", { name: "Menú" })).toBeFocused();
+  });
+
   test("el contenido empieza en la primera pantalla", async ({ page }) => {
     await page.goto("/");
 

@@ -23,7 +23,7 @@ function alternar(): void {
 <template>
   <button
     type="button"
-    class="rounded-md border border-borde p-2 text-tenue transition-colors hover:text-acento"
+    class="inline-flex size-9 items-center justify-center rounded-md border border-borde text-tenue transition-colors hover:text-acento"
     :aria-pressed="esOscuro"
     :aria-label="etiqueta"
     data-test="boton-tema"

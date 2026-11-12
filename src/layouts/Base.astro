@@ -3,7 +3,7 @@ import { Font } from "astro:assets";
 import { PUBLIC_UMAMI_ID, PUBLIC_UMAMI_SRC } from "astro:env/client";
 import { ClientRouter } from "astro:transitions";
 
-import Tarjeta from "@/components/Tarjeta.astro";
+import BarraLateral from "@/components/BarraLateral.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn, sinIdioma } from "@/i18n/rutas";
 import { imagenParaCompartir } from "@/lib/compartir";
@@ -122,33 +122,36 @@ const metadatos = metadatosDe(
     >
       {sitio.saltar}
     </a>
-    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-6 lg:grid-cols-[18rem_1fr] lg:py-12">
-      <div transition:persist={`tarjeta-${idioma}`}>
-        <Tarjeta />
-      </div>
+    <div class="contents" transition:persist={`lateral-${idioma}`}>
+      <BarraLateral />
+    </div>
+    <div class="lg:pl-72">
       <main
         id="contenido"
-        class="border-borde bg-superficie/80 min-w-0 rounded-lg border p-6 backdrop-blur sm:p-10"
+        class="max-w-5xl px-5 py-10 sm:px-8 lg:px-16 lg:py-16"
         transition:animate="fade"
       >
         <slot />
       </main>
+      <footer
+        id="pie"
+        class="border-borde text-tenue max-w-5xl space-y-1 border-t px-5 py-8 text-xs sm:px-8 lg:mx-16 lg:px-0"
+      >
+        <p class="flex items-center gap-2">
+          <img src="/favicon-32.png" alt="" width="16" height="16" />
+          {sitio.firma}
+        </p>
+        <p>
+          {sitio.pie}{" "}
+          <a
+            class="hover:text-acento underline"
+            href="https://github.com/abitech-dev/abitech-portafolio-web"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+      </footer>
     </div>
-    <footer class="text-tenue space-y-1 pb-8 text-center text-xs">
-      <p class="flex items-center justify-center gap-2">
-        <img src="/favicon-32.png" alt="" width="16" height="16" />
-        {sitio.firma}
-      </p>
-      <p>
-        {sitio.pie}{" "}
-        <a
-          class="hover:text-acento underline"
-          href="https://github.com/abitech-dev/abitech-portafolio-web"
-        >
-          GitHub
-        </a>
-        .
-      </p>
-    </footer>
   </body>
 </html>

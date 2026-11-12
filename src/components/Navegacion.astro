@@ -13,7 +13,7 @@ const { sitio } = textosDe(idioma);
 ---
 
 <nav aria-label={sitio.navegacion}>
-  <ul class="flex flex-wrap gap-1 lg:flex-col">
+  <ul class="flex flex-col gap-1">
     {secciones.map((seccion) => (
       <li>
         <a
@@ -21,13 +21,17 @@ const { sitio } = textosDe(idioma);
           data-seccion
           aria-current={estaActiva(seccion.ruta, actual) ? "page" : undefined}
           class:list={[
-            "aria-[current=page]:bg-acento-suave flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors aria-[current=page]:font-semibold",
+            "aria-[current=page]:bg-acento-suave flex items-center gap-3 rounded-md px-3 py-3 text-lg transition-colors aria-[current=page]:font-semibold lg:gap-2 lg:py-2 lg:text-sm",
             seccion.isDestacado
               ? "border-acento text-acento hover:bg-acento-suave mt-1 border font-semibold"
               : "text-tenue hover:text-texto aria-[current=page]:text-acento",
           ]}
         >
-          <Icon name={seccion.icono} class="size-4" aria-hidden="true" />
+          <Icon
+            name={seccion.icono}
+            class="size-5 lg:size-4"
+            aria-hidden="true"
+          />
           {seccion.etiqueta}
         </a>
       </li>

@@ -43,9 +43,17 @@
   }
 }
 
-/* Sin JavaScript, el menú del celular queda siempre visible. */
+/* Sin JavaScript, el menú del celular queda visible bajo la barra. */
 @media (width < 64rem) {
   .js .menu-movil:not([data-abierto]) {
     display: none;
+  }
+
+  .js .menu-movil[data-abierto] {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    overflow-y: auto;
+    padding: 1rem 1.25rem 2rem;
   }
 }
