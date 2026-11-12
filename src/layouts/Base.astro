@@ -1,22 +1,50 @@
 ---
 import { Font } from "astro:assets";
+import { PUBLIC_UMAMI_ID, PUBLIC_UMAMI_SRC } from "astro:env/client";
 import { ClientRouter } from "astro:transitions";
 
-import FondoLineas from "@/components/islands/FondoLineas.vue";
 import Tarjeta from "@/components/Tarjeta.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn, sinIdioma } from "@/i18n/rutas";
+import { imagenParaCompartir } from "@/lib/compartir";
+import { grafo, type Nodo } from "@/lib/datos-estructurados";
 import { metadatosDe } from "@/lib/seo";
 import "@/styles/global.css";
 
 interface Props {
   descripcion: string;
   titulo?: string;
-  datosEstructurados?: Record<string, unknown>;
+  nodos?: Nodo[];
+  hasVersionEnIngles?: boolean;
 }
 
-const { descripcion, titulo, datosEstructurados } = Astro.props;
+const {
+  descripcion,
+  titulo,
+  nodos = [],
+  hasVersionEnIngles = true,
+} = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { sitio } = textosDe(idioma);
+const datosEstructurados = grafo(
+  datosDe(idioma),
+  Astro.site ?? Astro.url,
+  idioma,
+  nodos,
+);
 if (!Astro.site) {
   throw new Error("Falta `site` en astro.config.ts.");
 }
+const imagen = new URL(imagenParaCompartir(Astro.url.pathname), Astro.site)
+  .href;
+const base = sinIdioma(Astro.url.pathname);
+const alternas = hasVersionEnIngles
+  ? [
+      { idioma: "es", href: new URL(rutaEn("es", base), Astro.site).href },
+      { idioma: "en", href: new URL(rutaEn("en", base), Astro.site).href },
+      { idioma: "x-default", href: new URL(base, Astro.site).href },
+    ]
+  : [];
 const metadatos = metadatosDe(
   Astro.url.pathname,
   Astro.site,
@@ -25,28 +53,34 @@ const metadatos = metadatosDe(
 );
 ---
 
-<html lang="es">
+<html lang={idioma}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{metadatos.titulo}</title>
     <meta name="description" content={metadatos.descripcion} />
     <link rel="canonical" href={metadatos.canonica} />
+    {alternas.map((alterna) => (
+      <link rel="alternate" hreflang={alterna.idioma} href={alterna.href} />
+    ))}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:title" content={metadatos.titulo} />
     <meta property="og:description" content={metadatos.descripcion} />
     <meta property="og:url" content={metadatos.canonica} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_PE" />
+    <meta property="og:locale" content={sitio.locale} />
+    <meta property="og:image" content={imagen} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={metadatos.titulo} />
+    <meta name="twitter:card" content="summary_large_image" />
     <Font cssVariable="--font-inter" preload />
     <Font cssVariable="--font-jetbrains" />
-    {datosEstructurados && (
-      <script
-        type="application/ld+json"
-        set:html={JSON.stringify(datosEstructurados)}
-      />
-    )}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(datosEstructurados)}
+    />
     <script is:inline>
       // Corre antes de pintar para que el tema no parpadee.
       const aplicarTema = () => {
@@ -61,33 +95,45 @@ const metadatos = metadatosDe(
           : matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.classList.toggle("dark", oscuro);
       };
+      const marcarJavascript = () =>
+        document.documentElement.classList.add("js");
       aplicarTema();
+      marcarJavascript();
       document.addEventListener("astro:after-swap", aplicarTema);
+      document.addEventListener("astro:after-swap", marcarJavascript);
     </script>
+    {PUBLIC_UMAMI_SRC && PUBLIC_UMAMI_ID && (
+      <script
+        is:inline
+        defer
+        src={PUBLIC_UMAMI_SRC}
+        data-website-id={PUBLIC_UMAMI_ID}
+        data-domains="abitech.dev"
+      />
+    )}
     <ClientRouter />
   </head>
   <body class="bg-fondo text-texto font-sans antialiased">
     <a
       href="#contenido"
-      class="bg-acento text-fondo sr-only rounded-lg px-4 py-2 focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+      class="bg-acento text-fondo sr-only rounded-md px-4 py-2 focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
     >
-      Saltar al contenido
+      {sitio.saltar}
     </a>
-    <FondoLineas client:idle transition:persist />
-    <div class="mx-auto grid max-w-6xl gap-8 px-4 py-6 lg:grid-cols-[18rem_1fr] lg:py-12">
-      <div transition:persist="tarjeta">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-6 lg:grid-cols-[18rem_1fr] lg:py-12">
+      <div transition:persist={`tarjeta-${idioma}`}>
         <Tarjeta />
       </div>
       <main
         id="contenido"
-        class="border-borde bg-superficie/80 min-w-0 rounded-2xl border p-6 backdrop-blur sm:p-10"
+        class="border-borde bg-superficie/80 min-w-0 rounded-lg border p-6 backdrop-blur sm:p-10"
         transition:animate="fade"
       >
         <slot />
       </main>
     </div>
     <footer class="text-tenue pb-8 text-center text-xs">
-      Hecho con Astro y Vue. El código está en
+      {sitio.pie}{" "}
       <a
         class="hover:text-acento underline"
         href="https://github.com/abitech-dev/abitech-portafolio-web"

@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import interbank from "@/assets/sobre-mi-interbank.jpg";
+import sustentacion from "@/assets/sobre-mi-sustentacion.jpg";
+import Seccion from "@/components/Seccion.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+
+const { basics, education, publications } = resume;
+const titulo = education.find((estudio) =>
+  estudio.studyType.startsWith(t.sobreMi.tipoTitulo),
+);
+const maestria = education.find((estudio) =>
+  estudio.studyType.startsWith(t.sobreMi.tipoMaestria),
+);
+const libro = publications[0];
+---
+
+<Base
+  titulo={t.secciones.sobreMi}
+  descripcion={t.sobreMi.descripcion(basics.name)}
+>
+  <TituloDePagina titulo={t.secciones.sobreMi} icono="lucide:user-round" />
+
+  <div class="mt-6 grid gap-8 md:grid-cols-[1fr_16rem]">
+    <div class="text-tenue space-y-4 leading-relaxed">
+      <p>{basics.summary}</p>
+      <p>{t.sobreMi.vivo(basics.location.city)}</p>
+      <a
+        href={rutaEn(idioma, "/cv")}
+        class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
+      >
+        <Icon name="lucide:file-text" class="size-4" aria-hidden="true" />
+        {t.sobreMi.verCv}
+      </a>
+    </div>
+    <figure>
+      <Image
+        src={interbank}
+        alt={t.sobreMi.altInterbank}
+        width={512}
+        loading="eager"
+        fetchpriority="high"
+        class="rounded-md object-cover"
+      />
+      <figcaption class="text-tenue mt-2 text-center text-xs">
+        {t.sobreMi.pieInterbank}
+      </figcaption>
+    </figure>
+  </div>
+
+  {titulo && maestria && (
+    <Seccion titulo={t.sobreMi.formacion} id="formacion">
+      <div class="grid items-center gap-6 md:grid-cols-[14rem_1fr]">
+        <figure>
+          <Image
+            src={sustentacion}
+            alt={t.sobreMi.altSustentacion}
+            width={448}
+            class="rounded-md object-cover"
+          />
+          <figcaption class="text-tenue mt-2 text-center text-xs">
+            {t.sobreMi.pieSustentacion}
+          </figcaption>
+        </figure>
+        <p class="text-tenue leading-relaxed">
+          {t.sobreMi.estudios(
+            titulo.institution,
+            maestria.area,
+            maestria.institution,
+          )}
+        </p>
+      </div>
+    </Seccion>
+  )}
+
+  {libro && (
+    <Seccion titulo={t.sobreMi.escribo} id="escribo">
+      <p class="font-semibold">{libro.name}</p>
+      <p class="text-tenue mt-2">{libro.summary}</p>
+    </Seccion>
+  )}
+</Base>

@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Seccion from "@/components/Seccion.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { libro } from "@/lib/datos-estructurados";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+
+const { publications, basics } = resume;
+const [principal] = publications;
+---
+
+<Base
+  titulo={t.secciones.aprende}
+  descripcion={t.aprende.descripcion(basics.name)}
+  nodos={principal ? [libro(principal, Astro.site ?? Astro.url)] : []}
+>
+  <TituloDePagina titulo={t.secciones.aprende} icono="lucide:book-open" />
+  <p class="text-tenue mt-3 max-w-prose">{t.aprende.intro}</p>
+
+  <Seccion titulo={t.aprende.libros} id="libros">
+    <ul class="space-y-4">
+      {publications.map((publicacion) => (
+        <li class="border-borde bg-superficie flex gap-4 rounded-md border p-5">
+          <Icon
+            name="lucide:book-open"
+            class="text-acento size-8 shrink-0"
+            aria-hidden="true"
+          />
+          <div>
+            <h3 class="font-semibold">{publicacion.name}</h3>
+            <p class="text-tenue mt-2 leading-relaxed">{publicacion.summary}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Seccion>
+</Base>

@@ -2,7 +2,18 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
-      "url": ["/", "/sobre-mi", "/cv", "/contacto"],
+      "url": [
+        "/",
+        "/sobre-mi",
+        "/cv",
+        "/proyectos",
+        "/proyectos/tu-coach",
+        "/codigo-abierto",
+        "/aprende",
+        "/contacto",
+        "/en",
+        "/en/cv"
+      ],
       "numberOfRuns": 1
     },
     "assert": {

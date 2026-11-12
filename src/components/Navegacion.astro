@@ -1,32 +1,54 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import { SECCIONES, estaActiva } from "@/lib/navegacion";
+import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta } from "@/i18n/rutas";
+import { seccionesDe } from "@/lib/navegacion";
+import { estaActiva } from "@/lib/seccion-activa";
 
 const actual = Astro.url.pathname;
+const idioma = idiomaDeLaRuta(actual);
+const secciones = seccionesDe(idioma);
+const { sitio } = textosDe(idioma);
 ---
 
-<nav aria-label="Secciones">
+<nav aria-label={sitio.navegacion}>
   <ul class="flex flex-wrap gap-1 lg:flex-col">
-    {SECCIONES.map((seccion) => {
-      const activa = estaActiva(seccion.ruta, actual);
-      return (
-        <li>
-          <a
-            href={seccion.ruta}
-            aria-current={activa ? "page" : undefined}
-            class:list={[
-              "flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
-              activa
-                ? "bg-acento-suave text-acento font-semibold"
-                : "text-tenue hover:text-texto",
-            ]}
-          >
-            <Icon name={seccion.icono} class="size-4" aria-hidden="true" />
-            {seccion.etiqueta}
-          </a>
-        </li>
-      );
-    })}
+    {secciones.map((seccion) => (
+      <li>
+        <a
+          href={seccion.ruta}
+          data-seccion
+          aria-current={estaActiva(seccion.ruta, actual) ? "page" : undefined}
+          class:list={[
+            "aria-[current=page]:bg-acento-suave flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors aria-[current=page]:font-semibold",
+            seccion.isDestacado
+              ? "border-acento text-acento hover:bg-acento-suave mt-1 border font-semibold"
+              : "text-tenue hover:text-texto aria-[current=page]:text-acento",
+          ]}
+        >
+          <Icon name={seccion.icono} class="size-4" aria-hidden="true" />
+          {seccion.etiqueta}
+        </a>
+      </li>
+    ))}
   </ul>
 </nav>
+
+<script>
+  import { estaActiva } from "@/lib/seccion-activa";
+
+  // La tarjeta persiste entre páginas, así que el menú se marca en el cliente.
+  function marcarSeccionActual(): void {
+    for (const enlace of document.querySelectorAll("a[data-seccion]")) {
+      const ruta = enlace.getAttribute("href") ?? "";
+      if (estaActiva(ruta, location.pathname)) {
+        enlace.setAttribute("aria-current", "page");
+      } else {
+        enlace.removeAttribute("aria-current");
+      }
+    }
+  }
+
+  document.addEventListener("astro:page-load", marcarSeccionActual);
+</script>

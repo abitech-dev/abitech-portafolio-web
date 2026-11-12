@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon/components";
+
+import ChipDeTecnologia from "@/components/ChipDeTecnologia.astro";
+import LogoDeProyecto from "@/components/LogoDeProyecto.astro";
+import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta } from "@/i18n/rutas";
+import type { Proyecto } from "@/lib/trayectoria";
+
+interface Props {
+  paquete: Proyecto;
+}
+
+const { paquete } = Astro.props;
+const nombre = "package" in paquete ? paquete.package : undefined;
+const repositorio = "repository" in paquete ? paquete.repository : undefined;
+const { sitio, proyectos, codigoAbierto } = textosDe(
+  idiomaDeLaRuta(Astro.url.pathname),
+);
+---
+
+<article class="border-borde bg-superficie flex flex-col gap-4 rounded-md border p-6">
+  <div class="flex items-center gap-3">
+    <LogoDeProyecto id={paquete.id} class="size-12" />
+    <div class="min-w-0">
+      <h2 class="font-semibold">{paquete.name}</h2>
+      {nombre && <p class="text-tenue font-mono text-sm">{nombre}</p>}
+    </div>
+  </div>
+  <p class="text-tenue leading-relaxed">{paquete.description}</p>
+  {paquete.highlights.length > 0 && (
+    <ul class="text-tenue list-disc space-y-1 pl-5 text-sm">
+      {paquete.highlights.map((logro) => (
+        <li>{logro}</li>
+      ))}
+    </ul>
+  )}
+  <ul class="flex flex-wrap gap-2" aria-label={proyectos.tecnologias}>
+    {paquete.keywords.map((tecnologia) => (
+      <ChipDeTecnologia tecnologia={tecnologia} class="px-2.5 py-0.5 text-xs" />
+    ))}
+  </ul>
+  {repositorio && (
+    <a
+      href={repositorio}
+      data-umami-event="abrir-paquete"
+      data-umami-event-paquete={paquete.id}
+      target="_blank"
+      rel="noopener"
+      class="text-acento inline-flex items-center gap-2 text-sm font-semibold"
+    >
+      <Icon name="lucide:github" class="size-4" aria-hidden="true" />
+      {codigoAbierto.verEnGithub}
+      <span class="sr-only">
+        {paquete.name} ({sitio.otraPestana})
+      </span>
+    </a>
+  )}
+</article>

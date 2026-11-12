@@ -1,11 +1,31 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
+import { abrirMenuEnCelular } from "./ayudas";
+
 const PAGINAS = [
   { ruta: "/", titulo: "Abimael Fernandez Ventura" },
-  { ruta: "/sobre-mi", titulo: "Sobre mí | Abimael Fernandez Ventura" },
+  {
+    ruta: "/sobre-mi",
+    titulo: "Sobre mí | Abimael Fernandez Ventura",
+  },
   { ruta: "/cv", titulo: "CV | Abimael Fernandez Ventura" },
-  { ruta: "/contacto", titulo: "Contacto | Abimael Fernandez Ventura" },
+  {
+    ruta: "/contacto",
+    titulo: "Contacto | Abimael Fernandez Ventura",
+  },
+  {
+    ruta: "/proyectos",
+    titulo: "Proyectos | Abimael Fernandez Ventura",
+  },
+  {
+    ruta: "/codigo-abierto",
+    titulo: "Código abierto | Abimael Fernandez Ventura",
+  },
+  {
+    ruta: "/aprende",
+    titulo: "Aprende | Abimael Fernandez Ventura",
+  },
 ];
 
 for (const { ruta, titulo } of PAGINAS) {
@@ -30,6 +50,7 @@ for (const { ruta, titulo } of PAGINAS) {
 
     test("marca su sección como actual en el menú", async ({ page }) => {
       await page.goto(ruta);
+      await abrirMenuEnCelular(page);
 
       const actual = page
         .getByRole("navigation", { name: "Secciones" })
@@ -57,11 +78,30 @@ for (const { ruta, titulo } of PAGINAS) {
 
 test("el menú lleva de una sección a otra", async ({ page }) => {
   await page.goto("/");
+  await abrirMenuEnCelular(page);
 
   await page
     .getByRole("navigation", { name: "Secciones" })
-    .getByRole("link", { name: "CV" })
+    .getByRole("link", { name: "Código abierto" })
     .click();
+
+  await expect(page).toHaveURL(/\/codigo-abierto$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Código abierto",
+  );
+  // En el celular el menú ya se cerró, así que se busca también oculto.
+  const menu = page.locator('nav[aria-label="Secciones"]');
+  await expect(menu.locator('[aria-current="page"]')).toHaveAttribute(
+    "href",
+    "/codigo-abierto",
+  );
+  await expect(menu.locator('[aria-current="page"]')).toHaveCount(1);
+});
+
+test("el CV se abre desde Sobre mí", async ({ page }) => {
+  await page.goto("/sobre-mi");
+
+  await page.getByRole("link", { name: "Ver mi CV" }).click();
 
   await expect(page).toHaveURL(/\/cv$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
@@ -75,5 +115,83 @@ test("una ruta que no existe responde con la página 404", async ({ page }) => {
   expect(respuesta?.status()).toBe(404);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "Esta página no existe",
+  );
+});
+
+test("el CV en PDF se descarga desde el inicio", async ({ page }) => {
+  await page.goto("/");
+
+  const descarga = page.waitForEvent("download");
+  await page.getByRole("link", { name: "Descargar CV en PDF" }).click();
+
+  expect((await descarga).suggestedFilename()).toBe(
+    "CV - Abimael Fernandez Ventura.pdf",
+  );
+});
+
+test.describe("en el celular", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  test("el menú se abre, se cierra con Escape y tras navegar", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const boton = page.getByRole("button", { name: "Menú" });
+    const menu = page.getByRole("navigation", { name: "Secciones" });
+
+    await expect(menu).toBeHidden();
+    await boton.click();
+    await expect(boton).toHaveAttribute("aria-expanded", "true");
+    await expect(menu).toBeVisible();
+
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(boton).toBeFocused();
+
+    await boton.click();
+    await menu.getByRole("link", { name: "CV" }).click();
+    await expect(page).toHaveURL(/\/cv$/);
+    await expect(menu).toBeHidden();
+    await expect(boton).toHaveAttribute("aria-expanded", "false");
+  });
+
+  test("el contenido empieza en la primera pantalla", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(
+      page.getByRole("link", { name: "Descargar CV en PDF" }),
+    ).toBeInViewport();
+  });
+});
+
+test("ninguna página se desborda a lo ancho", async ({ page }) => {
+  for (const { ruta } of PAGINAS) {
+    await page.goto(ruta);
+    const anchos = await page.evaluate(() => [
+      document.documentElement.scrollWidth,
+      window.innerWidth,
+    ]);
+
+    expect(anchos[0], ruta).toBeLessThanOrEqual(anchos[1] ?? 0);
+  }
+});
+
+test("cada página tiene una imagen para compartir que existe", async ({
+  page,
+  request,
+}) => {
+  for (const { ruta } of PAGINAS) {
+    await page.goto(ruta);
+    const imagen = await page
+      .locator('meta[property="og:image"]')
+      .getAttribute("content");
+    const { pathname } = new URL(imagen ?? "");
+    const respuesta = await request.get(pathname);
+
+    expect(respuesta.headers()["content-type"], ruta).toBe("image/png");
+  }
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+    "content",
+    "summary_large_image",
   );
 });

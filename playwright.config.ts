@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: "tests/e2e",
   forbidOnly: !!process.env["CI"],
   reporter: process.env["CI"] ? "github" : "list",
-  use: { baseURL: "http://localhost:4321" },
+  use: { baseURL: "http://localhost:4322" },
   projects: [
     {
       name: "celular",
@@ -19,8 +19,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run preview",
-    url: "http://localhost:4321",
+    command: "npm run preview -- --port 4322",
+    url: "http://localhost:4322",
     reuseExistingServer: !process.env["CI"],
   },
 });

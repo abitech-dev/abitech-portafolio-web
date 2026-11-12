@@ -40,3 +40,10 @@
     outline-offset: 3px;
   }
 }
+
+/* Sin JavaScript, el menú del celular queda siempre visible. */
+@media (width < 64rem) {
+  .js .menu-movil:not([data-abierto]) {
+    display: none;
+  }
+}

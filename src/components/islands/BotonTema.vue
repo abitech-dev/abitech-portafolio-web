@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
+defineProps<{ etiqueta: string }>();
+
 const esOscuro = ref(false);
 
 onMounted(() => {
@@ -21,9 +23,9 @@ function alternar(): void {
 <template>
   <button
     type="button"
-    class="rounded-full border border-borde p-2 text-tenue transition-colors hover:text-acento"
+    class="rounded-md border border-borde p-2 text-tenue transition-colors hover:text-acento"
     :aria-pressed="esOscuro"
-    aria-label="Tema oscuro"
+    :aria-label="etiqueta"
     data-test="boton-tema"
     @click="alternar"
   >

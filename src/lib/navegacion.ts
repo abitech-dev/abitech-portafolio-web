@@ -1,18 +1,43 @@
+import { textosDe } from "@/i18n/idioma";
+import { rutaEn, type Idioma } from "@/i18n/rutas";
+import type { Textos } from "@/i18n/textos";
+
 export interface Enlace {
   ruta: string;
   etiqueta: string;
   icono: string;
+  isDestacado?: boolean;
 }
 
-export const SECCIONES: readonly Enlace[] = [
-  { ruta: "/", etiqueta: "Inicio", icono: "lucide:house" },
-  { ruta: "/sobre-mi", etiqueta: "Sobre mí", icono: "lucide:user" },
-  { ruta: "/cv", etiqueta: "CV", icono: "lucide:file-text" },
-  { ruta: "/contacto", etiqueta: "Contacto", icono: "lucide:send" },
+interface Seccion {
+  ruta: string;
+  clave: keyof Textos["secciones"];
+  icono: string;
+  isDestacado?: boolean;
+}
+
+/** Rutas sin prefijo de idioma, en el orden del menú. */
+export const SECCIONES: readonly Seccion[] = [
+  { ruta: "/", clave: "inicio", icono: "lucide:house" },
+  { ruta: "/proyectos", clave: "proyectos", icono: "lucide:folder-code" },
+  { ruta: "/cv", clave: "cv", icono: "lucide:file-text" },
+  { ruta: "/codigo-abierto", clave: "codigoAbierto", icono: "lucide:package" },
+  { ruta: "/aprende", clave: "aprende", icono: "lucide:book-open" },
+  { ruta: "/sobre-mi", clave: "sobreMi", icono: "lucide:user" },
+  {
+    ruta: "/contacto",
+    clave: "contacto",
+    icono: "lucide:send",
+    isDestacado: true,
+  },
 ];
 
-/** La portada solo está activa en «/»; las demás, también en sus subrutas. */
-export function estaActiva(ruta: string, actual: string): boolean {
-  const limpia = actual.replace(/\/+$/, "") || "/";
-  return ruta === "/" ? limpia === "/" : limpia.startsWith(ruta);
+export function seccionesDe(idioma: Idioma): Enlace[] {
+  const { secciones } = textosDe(idioma);
+  return SECCIONES.map(({ ruta, clave, icono, isDestacado }) => ({
+    ruta: rutaEn(idioma, ruta),
+    etiqueta: secciones[clave],
+    icono,
+    ...(isDestacado ? { isDestacado } : {}),
+  }));
 }

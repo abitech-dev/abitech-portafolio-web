@@ -1,13 +1,23 @@
 ---
 import { Icon } from "astro-icon/components";
 
+import DescargaDelCv from "@/components/DescargaDelCv.astro";
 import LineaDeTiempo from "@/components/LineaDeTiempo.astro";
 import Seccion from "@/components/Seccion.astro";
-import resume from "@/data/resume.json";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
-import { persona } from "@/lib/datos-estructurados";
 import { mesYAnio, periodo } from "@/lib/fechas";
 import { habilidadesPorCategoria } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
 
 const { basics, work, education, certificates, skills, languages } = resume;
 
@@ -17,6 +27,7 @@ const experiencia = work.map((empleo) => ({
   periodo: periodo(
     empleo.startDate,
     "endDate" in empleo ? empleo.endDate : undefined,
+    idioma,
   ),
   resumen: empleo.summary,
   logros: empleo.highlights,
@@ -26,42 +37,34 @@ const formacion = education.map((estudio) => ({
   titulo: estudio.area,
   lugar: `${estudio.institution}, ${estudio.studyType}`,
   periodo: estudio.startDate
-    ? periodo(estudio.startDate, estudio.endDate)
-    : mesYAnio(estudio.endDate),
+    ? periodo(estudio.startDate, estudio.endDate, idioma)
+    : mesYAnio(estudio.endDate, idioma),
 }));
 
 const habilidades = habilidadesPorCategoria(skills);
 ---
 
-<Base
-  titulo="CV"
-  descripcion={`Experiencia, formación, certificaciones y habilidades de ${basics.name}.`}
-  datosEstructurados={persona(resume, Astro.site ?? new URL(Astro.url))}
->
-  <h1 class="text-3xl font-bold">Currículum</h1>
-  <p class="text-tenue mt-3 max-w-prose">
-    Para recibir el CV en PDF, escríbeme a
-    <a class="text-acento underline" href={`mailto:${basics.email}`}>
-      {basics.email}
-    </a>
-    .
-  </p>
+<Base titulo={t.secciones.cv} descripcion={t.cv.descripcion(basics.name)}>
+  <TituloDePagina titulo={t.cv.titulo} icono="lucide:file-text" />
+  <div class="mt-5">
+    <DescargaDelCv />
+  </div>
 
-  <Seccion titulo="Experiencia" id="experiencia">
+  <Seccion titulo={t.cv.experiencia} id="experiencia">
     <LineaDeTiempo hitos={experiencia} />
   </Seccion>
 
-  <Seccion titulo="Formación" id="formacion">
+  <Seccion titulo={t.cv.formacion} id="formacion">
     <LineaDeTiempo hitos={formacion} />
   </Seccion>
 
-  <Seccion titulo="Certificaciones" id="certificaciones">
+  <Seccion titulo={t.cv.certificaciones} id="certificaciones">
     <ul class="grid gap-3 sm:grid-cols-2">
       {certificates.map((certificado) => (
-        <li class="border-borde rounded-xl border p-4">
+        <li class="border-borde rounded-md border p-4">
           <p class="font-semibold">{certificado.name}</p>
           <p class="text-tenue text-sm">
-            {certificado.issuer}, {mesYAnio(certificado.date)}
+            {certificado.issuer}, {mesYAnio(certificado.date, idioma)}
           </p>
           {"url" in certificado && certificado.url && (
             <a
@@ -70,14 +73,14 @@ const habilidades = habilidadesPorCategoria(skills);
               rel="noopener"
               class="text-acento mt-1 inline-flex items-center gap-1 text-sm"
             >
-              Verificar
+              {t.cv.verificar}
               <Icon
                 name="lucide:external-link"
                 class="size-3.5"
                 aria-hidden="true"
               />
               <span class="sr-only">
-                {certificado.name} (abre en otra pestaña)
+                {certificado.name} ({t.sitio.otraPestana})
               </span>
             </a>
           )}
@@ -86,7 +89,7 @@ const habilidades = habilidadesPorCategoria(skills);
     </ul>
   </Seccion>
 
-  <Seccion titulo="Habilidades" id="habilidades">
+  <Seccion titulo={t.cv.habilidades} id="habilidades">
     <dl class="grid gap-4 sm:grid-cols-2">
       {[...habilidades].map(([categoria, lista]) => (
         <div>
@@ -101,7 +104,7 @@ const habilidades = habilidadesPorCategoria(skills);
     </dl>
   </Seccion>
 
-  <Seccion titulo="Idiomas" id="idiomas">
+  <Seccion titulo={t.cv.idiomas} id="idiomas">
     <ul class="text-tenue">
       {languages.map((idioma) => (
         <li>

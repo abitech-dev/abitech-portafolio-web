@@ -1,12 +1,14 @@
 ---
+import TituloDePagina from "@/components/TituloDePagina.astro";
 import Base from "@/layouts/Base.astro";
 ---
 
 <Base
+  hasVersionEnIngles={false}
   titulo="Página no encontrada"
   descripcion="Esta página no existe o cambió de dirección."
 >
-  <h1 class="text-3xl font-bold">Esta página no existe</h1>
+  <TituloDePagina titulo="Esta página no existe" icono="lucide:compass" />
   <p class="text-tenue mt-3">
     Puede que haya cambiado de dirección. Vuelve al
     <a class="text-acento underline" href="/">

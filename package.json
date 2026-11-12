@@ -17,7 +17,8 @@
     "test": "node scripts/vitest.mjs run",
     "e2e": "playwright test",
     "lighthouse": "npx --yes @lhci/cli@0.16.0 autorun",
-    "datos": "node scripts/copiar-datos.mjs",
+    "capturas": "node scripts/capturar-proyectos.mjs",
+    "datos": "node scripts/copiar-datos.mjs && prettier --write src/data",
     "verificar": "npm run format:check && npm run lint && npm run check && npm run test && npm run build"
   },
   "dependencies": {
@@ -46,6 +47,7 @@
     "@astrojs/check": "0.9.12",
     "@axe-core/playwright": "4.14.0",
     "@eslint/js": "10.0.1",
+    "@fontsource/inter": "5.3.0",
     "@playwright/test": "1.65.0",
     "@vitejs/plugin-vue": "6.0.10",
     "@vue/test-utils": "2.5.1",
@@ -59,6 +61,7 @@
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.2",
     "prettier-plugin-tailwindcss": "0.8.1",
+    "satori": "0.63.2",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.2",
     "vitest": "5.1.0"

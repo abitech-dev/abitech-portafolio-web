@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import saludo from "@/assets/saludo.png";
+import DescargaDelCv from "@/components/DescargaDelCv.astro";
+import Seccion from "@/components/Seccion.astro";
+import TarjetaProyecto from "@/components/TarjetaProyecto.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { cifrasDestacadas } from "@/lib/cifras";
+import { periodo } from "@/lib/fechas";
+import { proyectosPorId } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+
+const DESTACADOS = ["tu-coach", "pilot-ssh", "cred-plus", "yachacuy"];
+const { basics, work, publications } = resume;
+const actual = work[0];
+const cifras = cifrasDestacadas(resume, idioma);
+const proyectos = proyectosPorId(resume, DESTACADOS);
+const libro = publications[0];
+---
+
+<Base descripcion={basics.summary}>
+  <div class="flex items-center gap-3">
+    <Image
+      src={saludo}
+      alt=""
+      width={128}
+      height={128}
+      loading="eager"
+      class="size-12 shrink-0 sm:size-14"
+    />
+    <h1 class="text-3xl font-bold sm:text-4xl">
+      {t.inicio.saludo}{" "}
+      <span class="text-acento">{basics.name.split(" ")[0]}</span>
+    </h1>
+  </div>
+  <p class="mt-3 text-lg">{basics.label}.</p>
+  <p class="text-tenue mt-4 max-w-prose leading-relaxed">{basics.summary}</p>
+  <div class="mt-6">
+    <DescargaDelCv />
+  </div>
+  <dl class="border-borde bg-borde mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-md border sm:grid-cols-4">
+    {cifras.map((cifra) => (
+      <div class="bg-superficie flex flex-col-reverse gap-1 p-4">
+        <dt class="text-tenue text-sm leading-snug">{cifra.etiqueta}</dt>
+        <dd class="text-acento text-3xl font-bold tabular-nums">
+          {cifra.valor}
+        </dd>
+      </div>
+    ))}
+  </dl>
+
+  {actual && (
+    <Seccion titulo={t.inicio.hoy} id="hoy">
+      <p class="font-semibold">
+        {actual.position}, {actual.name}
+      </p>
+      <p class="text-tenue font-mono text-xs">
+        {periodo(actual.startDate, undefined, idioma)}
+      </p>
+      <p class="text-tenue mt-2">{actual.summary}</p>
+    </Seccion>
+  )}
+
+  <Seccion titulo={t.inicio.destacados} id="proyectos">
+    <div class="grid gap-4 sm:grid-cols-2">
+      {proyectos.map((proyecto) => (
+        <TarjetaProyecto proyecto={proyecto} hasCaptura />
+      ))}
+    </div>
+  </Seccion>
+
+  {libro && (
+    <Seccion titulo={t.inicio.libro} id="libro">
+      <p class="font-semibold">{libro.name}</p>
+      <p class="text-tenue mt-2">{libro.summary}</p>
+    </Seccion>
+  )}
+
+  <Seccion titulo={t.inicio.conversamos} id="contacto">
+    <a
+      href={rutaEn(idioma, "/contacto")}
+      class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
+    >
+      {t.inicio.escribeme}
+      <Icon name="lucide:send" class="size-4" aria-hidden="true" />
+    </a>
+  </Seccion>
+</Base>

@@ -3,11 +3,26 @@ import sitemap from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 
 export default defineConfig({
   site: "https://abitech.dev",
   trailingSlash: "never",
+  build: { inlineStylesheets: "always" },
+  env: {
+    schema: {
+      PUBLIC_UMAMI_SRC: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
+      PUBLIC_UMAMI_ID: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
+    },
+  },
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en"],
@@ -18,14 +33,14 @@ export default defineConfig({
       provider: fontProviders.fontsource(),
       name: "Inter",
       cssVariable: "--font-inter",
-      weights: [400, 500, 600, 700],
+      weights: [400, 600, 700],
       subsets: ["latin"],
     },
     {
       provider: fontProviders.fontsource(),
       name: "JetBrains Mono",
       cssVariable: "--font-jetbrains",
-      weights: [400, 600],
+      weights: [400],
       subsets: ["latin"],
     },
   ],

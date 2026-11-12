@@ -377,7 +377,8 @@
         "GitHub Actions"
       ],
       "startDate": "2026-01",
-      "endDate": "2026-10"
+      "endDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "sistema-de-empeno-y-compraventa-de-oro",
@@ -399,7 +400,8 @@
         "Playwright",
         "axe"
       ],
-      "startDate": "2025-11"
+      "startDate": "2025-11",
+      "type": "application"
     },
     {
       "id": "pwa-offline-de-actas-de-mantenimiento",
@@ -422,7 +424,8 @@
         "Vitest",
         "PHPStan"
       ],
-      "startDate": "2026-08"
+      "startDate": "2026-08",
+      "type": "application"
     },
     {
       "id": "plataforma-de-una-casa-de-cambio-digital",
@@ -453,7 +456,8 @@
         "IIS",
         "SSMS"
       ],
-      "startDate": "2026-08"
+      "startDate": "2026-08",
+      "type": "application"
     },
     {
       "id": "pilot-ssh",
@@ -476,7 +480,8 @@
         "Docker Swarm"
       ],
       "startDate": "2026-09",
-      "url": "https://uat-pilotssh.abitech.com.pe/"
+      "url": "https://uat-pilotssh.abitech.com.pe/",
+      "type": "application"
     },
     {
       "id": "recaudacion-scotiabank",
@@ -496,7 +501,8 @@
         "procedimientos almacenados"
       ],
       "startDate": "2026-09",
-      "endDate": "2026-10"
+      "endDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "cred-plus",
@@ -519,7 +525,8 @@
         "Larastan"
       ],
       "startDate": "2026-10",
-      "url": "https://cred.abitech.dev/"
+      "url": "https://cred.abitech.dev/",
+      "type": "application"
     },
     {
       "id": "yachacuy",
@@ -539,7 +546,8 @@
       ],
       "startDate": "2025-01",
       "url": "https://yachacuy.com/",
-      "entity": "Yachakuy Perú"
+      "entity": "Yachakuy Perú",
+      "type": "application"
     },
     {
       "id": "la-fruteria",
@@ -563,7 +571,8 @@
         "cosign",
         "OpenVEX"
       ],
-      "startDate": "2026-10"
+      "startDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "claude-config",
@@ -573,24 +582,30 @@
         "Unified how I work with AI across 10 repositories, with validators covered by 19 automated tests."
       ],
       "keywords": ["Claude Code", "Python"],
-      "startDate": "2026-10"
+      "startDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "optipix",
       "name": "OptiPix",
-      "description": "My own version of Google's Squoosh, a web app that shrinks images right in the browser, without uploading them.",
+      "description": "My own version of Google's Squoosh, in Spanish and with a batch mode that optimizes many images at once. Everything runs in the browser, without uploading the images.",
       "highlights": [
-        "Added batch compression, to optimize many images at once and download them as ZIP files."
+        "Added batch compression, to optimize many images at once and download them as ZIP files.",
+        "Kept the browser from running out of memory with large photos, by resizing them before compressing and splitting the download into ZIP files of up to 50 images.",
+        "Kept the EXIF metadata of JPEG photos and made batch mode available offline.",
+        "Automated deployment with GitHub Actions to two environments, staging and production."
       ],
       "keywords": [
         "TypeScript",
         "Preact",
         "WebAssembly",
         "Web Workers",
-        "Service Worker"
+        "Service Worker",
+        "GitHub Actions"
       ],
       "startDate": "2025-12",
-      "url": "https://optipix.abitech.com.pe/"
+      "url": "https://optipix.abitech.com.pe/",
+      "type": "application"
     },
     {
       "id": "tu-coach",
@@ -603,7 +618,8 @@
       "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],
       "startDate": "2023-05",
       "url": "https://tucoach.udh.edu.pe/",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "hackathon-udh",
@@ -615,7 +631,8 @@
       "keywords": ["Laravel 11", "Inertia", "Vue 3", "PhpSpreadsheet"],
       "startDate": "2024-11",
       "endDate": "2024-12",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "sigep",
@@ -626,7 +643,8 @@
       ],
       "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
       "url": "https://sigep.udh.edu.pe/",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "portal-investigacion",
@@ -637,7 +655,8 @@
       ],
       "keywords": ["Laravel 10", "Livewire 3", "Bootstrap 5"],
       "url": "https://investigacion.udh.edu.pe/",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "banco-necesidades",
@@ -647,7 +666,8 @@
       "keywords": ["Laravel 11", "Livewire 3", "Jetstream", "Tailwind CSS"],
       "startDate": "2024-07",
       "endDate": "2024-12",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "historias-clinicas-psicologicas",
@@ -662,7 +682,8 @@
         "Tailwind CSS"
       ],
       "startDate": "2025-02",
-      "endDate": "2025-11"
+      "endDate": "2025-11",
+      "type": "application"
     },
     {
       "id": "abitech-payments",
@@ -678,7 +699,23 @@
         "Stripe",
         "Mercado Pago"
       ],
-      "startDate": "2026-06"
+      "startDate": "2026-06",
+      "type": "library",
+      "package": "abitech/payments-laravel",
+      "repository": "https://github.com/abitech-dev/abitech-payments-laravel"
+    },
+    {
+      "id": "antibot-laravel",
+      "name": "abitech-antibot-laravel",
+      "description": "Open-source Laravel package that protects forms from bots with Cloudflare Turnstile, reCAPTCHA v2 or reCAPTCHA v3 through a single API.",
+      "highlights": [
+        "Works from Laravel 8 to Laravel 13 and can be used as a validation rule, middleware or facade."
+      ],
+      "keywords": ["PHP", "Laravel", "Cloudflare Turnstile", "reCAPTCHA"],
+      "startDate": "2026-06",
+      "type": "library",
+      "package": "abitech/antibot-laravel",
+      "repository": "https://github.com/abitech-dev/abitech-antibot-laravel"
     },
     {
       "id": "hostal-pacifico",
@@ -689,10 +726,11 @@
       "startDate": "2025-03",
       "endDate": "2026-05",
       "url": "https://hostalpacifico.com/",
-      "entity": "Hostal Pacífico"
+      "entity": "Hostal Pacífico",
+      "type": "application"
     }
   ],
   "meta": {
-    "version": "1.0.0"
+    "version": "1.1.0"
   }
 }

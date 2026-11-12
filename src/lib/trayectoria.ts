@@ -13,6 +13,11 @@ export function proyectosPorId(
   return ids.flatMap((id) => porId.get(id) ?? []);
 }
 
+/** Los paquetes van en Código abierto y no se repiten en Proyectos. */
+export function esPaquete(proyecto: Proyecto): boolean {
+  return proyecto.type === "library";
+}
+
 /** Agrupa por la primera palabra clave, que es la categoría del CV. */
 export function habilidadesPorCategoria(
   habilidades: readonly Habilidad[],
@@ -23,4 +28,31 @@ export function habilidadesPorCategoria(
     grupos.set(categoria, [...(grupos.get(categoria) ?? []), habilidad]);
   }
   return grupos;
+}
+
+/** «Laravel 12» e «Inertia 1 SSR» se agrupan como «Laravel» e «Inertia». */
+export function tecnologiaBase(tecnologia: string): string {
+  const palabras = tecnologia
+    .replace(/\(.*?\)/g, "")
+    .trim()
+    .split(/\s+/);
+  const corte = palabras.findIndex((palabra) => /^\d/.test(palabra));
+  return (corte === -1 ? palabras : palabras.slice(0, corte)).join(" ");
+}
+
+/** Las que aparecen en al menos `minimo` proyectos, de la más usada a la menos. */
+export function tecnologiasFrecuentes(
+  proyectos: readonly { keywords: readonly string[] }[],
+  minimo: number,
+): string[] {
+  const usos = new Map<string, number>();
+  for (const proyecto of proyectos) {
+    for (const tecnologia of new Set(proyecto.keywords.map(tecnologiaBase))) {
+      usos.set(tecnologia, (usos.get(tecnologia) ?? 0) + 1);
+    }
+  }
+  return [...usos]
+    .filter(([, veces]) => veces >= minimo)
+    .sort(([a, x], [b, y]) => y - x || a.localeCompare(b, "es"))
+    .map(([tecnologia]) => tecnologia);
 }

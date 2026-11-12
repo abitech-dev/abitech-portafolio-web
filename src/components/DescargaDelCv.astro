@@ -1,0 +1,42 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta } from "@/i18n/rutas";
+
+const ARCHIVOS = {
+  es: "/descargas/cv-abimael-fernandez-ventura.pdf",
+  en: "/descargas/resume-abimael-fernandez-ventura.pdf",
+};
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const otro = idioma === "es" ? "en" : "es";
+const { cv } = textosDe(idioma);
+const { name } = datosDe(idioma).basics;
+const nombreDe = (codigo: "es" | "en") =>
+  `${codigo === "es" ? "CV" : "Resume"} - ${name}.pdf`;
+---
+
+<div class="flex flex-wrap items-center gap-3">
+  <a
+    href={ARCHIVOS[idioma]}
+    download={nombreDe(idioma)}
+    data-umami-event="descargar-cv"
+    data-umami-event-idioma={idioma}
+    class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
+  >
+    <Icon name="lucide:download" class="size-4" aria-hidden="true" />
+    {cv.descargar}
+  </a>
+  <a
+    href={ARCHIVOS[otro]}
+    download={nombreDe(otro)}
+    data-umami-event="descargar-cv"
+    data-umami-event-idioma={otro}
+    hreflang={otro}
+    class="border-borde hover:border-acento inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm"
+  >
+    <Icon name="lucide:languages" class="size-4" aria-hidden="true" />
+    <span lang={otro}>{cv.otraVersion}</span>
+  </a>
+</div>
