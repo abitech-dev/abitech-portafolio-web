@@ -12,6 +12,7 @@ caracteristicas:
 compatibilidad:
   es: [PHP 8.2+, Laravel 12 y 13]
   en: [PHP 8.2+, Laravel 12 and 13]
+integra: [Stripe, Mercado Pago]
 licencia: MIT
 ejemplo:
   archivo: BillingController.php

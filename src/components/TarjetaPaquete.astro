@@ -22,7 +22,8 @@ const detalle = await getEntry("paquetes", paquete.id);
 if (!detalle) {
   throw new Error(`Falta src/content/paquetes/${paquete.id}.yaml.`);
 }
-const { caracteristicas, compatibilidad, licencia, ejemplo } = detalle.data;
+const { caracteristicas, compatibilidad, integra, licencia, ejemplo } =
+  detalle.data;
 const insignia =
   "border-borde text-tenue inline-flex items-center gap-1.5 rounded-md border px-2 py-1 font-mono text-xs";
 ---
@@ -38,6 +39,23 @@ const insignia =
     </div>
 
     <p class="text-tenue leading-relaxed">{paquete.description}</p>
+
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="text-tenue text-xs font-semibold tracking-wide uppercase">
+        {codigoAbierto.integra}
+      </span>
+      <ul class="flex flex-wrap gap-2">
+        {integra.map((servicio) => {
+          const logo = logoDeTecnologia(servicio);
+          return (
+            <li class="border-borde bg-superficie inline-flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm font-medium">
+              {logo && <Icon name={logo} class="size-5" aria-hidden="true" />}
+              {servicio}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
 
     <ul class="space-y-2.5 text-sm">
       {caracteristicas[idioma].map((caracteristica) => (

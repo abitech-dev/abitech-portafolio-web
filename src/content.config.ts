@@ -28,6 +28,7 @@ const paquetes = defineCollection({
       es: z.array(z.string()).min(1),
       en: z.array(z.string()).min(1),
     }),
+    integra: z.array(z.string()).min(1),
     licencia: z.string(),
     ejemplo: z.object({
       archivo: z.string(),

@@ -10,6 +10,7 @@ caracteristicas:
 compatibilidad:
   es: [PHP 7.3+, Laravel 8 a 13]
   en: [PHP 7.3+, Laravel 8 to 13]
+integra: [Cloudflare Turnstile, reCAPTCHA]
 licencia: MIT
 ejemplo:
   archivo: LoginController.php
