@@ -32,6 +32,12 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Cambiado
 
+- Barra lateral fija con el contenido alineado a su lado y menú a
+  pantalla completa en el celular.
+- Pie con un llamado a escribir o descargar el CV, el año y la fecha de
+  actualización.
+- Colores, favicon y firma de ABItech Perú, y logos en el filtro de
+  proyectos.
 - Menú ordenado por lo que busca cada visitante, con el CV a la vista.
 - Esquinas menos redondeadas, sin degradados y foto de la tarjeta más
   alejada.
