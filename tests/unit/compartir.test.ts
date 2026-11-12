@@ -13,8 +13,9 @@ describe("paginasParaCompartir", () => {
   it("incluye cada sección y cada caso en ambos idiomas, sin paquetes", () => {
     const rutas = paginasParaCompartir().map((p) => p.ruta);
 
-    for (const { ruta } of SECCIONES) {
+    for (const { ruta, isSoloEspanol } of SECCIONES) {
       expect(rutas).toContain(ruta);
+      if (isSoloEspanol) continue;
       expect(rutas).toContain(ruta === "/" ? "/en" : `/en${ruta}`);
     }
     expect(rutas).toContain("/en/proyectos/tu-coach");
@@ -40,6 +41,12 @@ describe("imagenParaCompartir", () => {
     );
     expect(imagenParaCompartir("/en/cv")).toBe("/og/en/cv.jpg");
     expect(archivoDeLaImagen("/")).toBe("/og/inicio.jpg");
+  });
+
+  it("un escrito usa la imagen de su sección", () => {
+    expect(imagenParaCompartir("/escritos/un-articulo")).toBe(
+      "/og/escritos.jpg",
+    );
   });
 
   it("cae a la portada de su idioma si la página no tiene imagen", () => {

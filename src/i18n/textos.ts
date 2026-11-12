@@ -24,6 +24,7 @@ const es = {
   secciones: {
     inicio: "Inicio",
     proyectos: "Proyectos",
+    escritos: "Escritos",
     cv: "CV",
     codigoAbierto: "Código abierto",
     aprende: "Aprende",
@@ -154,6 +155,20 @@ const es = {
       `Me titulé como ingeniero de sistemas e informática en la ${universidad}, con una tesis que evaluó Tu Coach UDH con 60 tesistas. También egresé de la ${maestria} de la ${escuela}.`,
     escribo: "Lo que escribo",
   },
+  escritos: {
+    descripcion: (nombre: string) =>
+      `Artículos y notas de ${nombre} sobre desarrollo web, nube y lo que aprende en el camino.`,
+    intro:
+      "Artículos largos y notas cortas sobre lo que construyo y lo que aprendo.",
+    vacio: "Pronto publicaré el primer escrito.",
+    articulo: "Artículo",
+    nota: "Nota",
+    minutos: (n: number) => `${n} min de lectura`,
+    volver: "Todos los escritos",
+    etiquetas: "Etiquetas",
+    sobre: (etiqueta: string) => `Escritos sobre ${etiqueta}`,
+    suscribirse: "Suscribirse por RSS",
+  },
   contacto: {
     descripcion: (nombre: string) =>
       `Cómo contactar a ${nombre} por correo, LinkedIn o GitHub.`,
@@ -190,6 +205,7 @@ const en: Textos = {
   secciones: {
     inicio: "Home",
     proyectos: "Projects",
+    escritos: "Writing",
     cv: "Resume",
     codigoAbierto: "Open source",
     aprende: "Learn",
@@ -317,6 +333,19 @@ const en: Textos = {
     estudios: (universidad, maestria, escuela) =>
       `I earned my professional degree in Systems and Computer Engineering at the ${universidad}, with a thesis that evaluated Tu Coach UDH with 60 thesis students. I also completed the coursework of the ${maestria} at ${escuela}.`,
     escribo: "What I write",
+  },
+  escritos: {
+    descripcion: (nombre) =>
+      `Articles and notes by ${nombre} about web development, the cloud and what he learns along the way.`,
+    intro: "Long articles and short notes, written in Spanish.",
+    vacio: "The first piece is coming soon.",
+    articulo: "Article",
+    nota: "Note",
+    minutos: (n) => `${n} min read`,
+    volver: "All writing",
+    etiquetas: "Tags",
+    sobre: (etiqueta) => `Writing about ${etiqueta}`,
+    suscribirse: "Subscribe via RSS",
   },
   contacto: {
     descripcion: (nombre) =>

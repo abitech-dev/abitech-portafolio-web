@@ -22,4 +22,15 @@ describe("llmsTxt", () => {
     );
     expect(texto).not.toContain("/proyectos/abitech-payments)");
   });
+
+  it("lista los escritos cuando los hay", () => {
+    const conEscritos = llmsTxt(resume, new URL("https://abitech.dev"), [
+      { id: "mi-articulo", titulo: "Mi artículo", descripcion: "Resumen" },
+    ]);
+
+    expect(conEscritos).toContain("## Escritos");
+    expect(conEscritos).toContain(
+      "- [Mi artículo](https://abitech.dev/escritos/mi-articulo): Resumen",
+    );
+  });
 });

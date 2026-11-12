@@ -17,6 +17,7 @@ interface Props {
   titulo?: string;
   nodos?: Nodo[];
   hasVersionEnIngles?: boolean;
+  isIndexable?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   titulo,
   nodos = [],
   hasVersionEnIngles = true,
+  isIndexable = true,
 } = Astro.props;
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const { sitio } = textosDe(idioma);
@@ -61,6 +63,13 @@ const metadatos = metadatosDe(
     <title>{metadatos.titulo}</title>
     <meta name="description" content={metadatos.descripcion} />
     <link rel="canonical" href={metadatos.canonica} />
+    {!isIndexable && <meta name="robots" content="noindex" />}
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Escritos"
+      href="/escritos/rss.xml"
+    />
     {alternas.map((alterna) => (
       <link rel="alternate" hreflang={alterna.idioma} href={alterna.href} />
     ))}

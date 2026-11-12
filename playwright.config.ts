@@ -4,7 +4,11 @@ export default defineConfig({
   testDir: "tests/e2e",
   forbidOnly: !!process.env["CI"],
   reporter: process.env["CI"] ? "github" : "list",
-  use: { baseURL: "http://localhost:4322" },
+  // Sin animaciones, axe mide el contraste final y no un fotograma intermedio.
+  use: {
+    baseURL: "http://localhost:4322",
+    contextOptions: { reducedMotion: "reduce" },
+  },
   projects: [
     {
       name: "celular",

@@ -75,6 +75,33 @@ export function libro(
   };
 }
 
+/** Un escrito como artículo de blog, firmado por la persona del sitio. */
+export function articulo(
+  datos: {
+    titulo: string;
+    descripcion: string;
+    fecha: Date;
+    actualizado?: Date | undefined;
+    etiquetas: string[];
+  },
+  sitio: URL,
+  pagina: URL,
+): Nodo {
+  return {
+    "@type": "BlogPosting",
+    "@id": `${pagina.href}#articulo`,
+    headline: datos.titulo,
+    description: datos.descripcion,
+    datePublished: datos.fecha.toISOString(),
+    dateModified: (datos.actualizado ?? datos.fecha).toISOString(),
+    keywords: datos.etiquetas.join(", "),
+    inLanguage: "es",
+    url: pagina.href,
+    author: { "@id": idDeLaPersona(sitio) },
+    isPartOf: { "@id": new URL("/#sitio", sitio).href },
+  };
+}
+
 /** Un proyecto como obra creativa, con sus tecnologías como palabras clave. */
 export function proyecto(
   datos: Resume["projects"][number],

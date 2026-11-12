@@ -34,7 +34,10 @@ function paginasDelIdioma(idioma: Idioma): PaginaParaCompartir[] {
 
 /** Cada sección del menú y cada caso tiene su imagen, en ambos idiomas. */
 export function paginasParaCompartir(): PaginaParaCompartir[] {
-  return IDIOMAS.flatMap(paginasDelIdioma);
+  const porRuta = new Map(
+    IDIOMAS.flatMap(paginasDelIdioma).map((p) => [p.ruta, p] as const),
+  );
+  return [...porRuta.values()];
 }
 
 export function archivoDeLaImagen(ruta: string): string {
@@ -42,12 +45,14 @@ export function archivoDeLaImagen(ruta: string): string {
   return limpia === "/" ? RUTA_DE_INICIO : `/og${limpia}.jpg`;
 }
 
-/** Una página sin imagen propia, como la 404, usa la portada de su idioma. */
+/** Sin imagen propia usa la de su sección, o la portada de su idioma. */
 export function imagenParaCompartir(ruta: string): string {
   const limpia = sinBarraFinal(ruta);
-  const tieneImagen = paginasDelIdioma(idiomaDeLaRuta(limpia)).some(
-    (pagina) => pagina.ruta === limpia,
-  );
+  const conImagen = new Set(paginasParaCompartir().map((p) => p.ruta));
+  const ancestro = [...conImagen]
+    .filter((ruta) => ruta !== "/" && ruta !== "/en")
+    .find((ruta) => limpia.startsWith(`${ruta}/`));
   const portada = rutaEn(idiomaDeLaRuta(limpia), "/");
-  return archivoDeLaImagen(tieneImagen ? limpia : portada);
+  if (conImagen.has(limpia)) return archivoDeLaImagen(limpia);
+  return archivoDeLaImagen(ancestro ?? portada);
 }

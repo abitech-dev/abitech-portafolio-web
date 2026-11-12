@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+
+import ListaDeEscritos from "@/components/ListaDeEscritos.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import Base from "@/layouts/Base.astro";
+import { escritosPublicados } from "@/lib/coleccion-escritos";
+import { etiquetasDe, idDeEtiqueta, type Escrito } from "@/lib/escritos";
+
+export async function getStaticPaths() {
+  const escritos = await escritosPublicados();
+  return etiquetasDe(escritos).map(([etiqueta]) => ({
+    params: { etiqueta: idDeEtiqueta(etiqueta) },
+    props: {
+      etiqueta,
+      escritos: escritos.filter((e) => e.data.etiquetas.includes(etiqueta)),
+    },
+  }));
+}
+
+interface Props {
+  etiqueta: string;
+  escritos: Escrito[];
+}
+
+const { etiqueta, escritos } = Astro.props;
+const { escritos: t } = textosDe("es");
+const { basics } = datosDe("es");
+---
+
+<Base
+  titulo={t.sobre(etiqueta)}
+  descripcion={`${t.sobre(etiqueta)}, por ${basics.name}.`}
+  hasVersionEnIngles={false}
+>
+  <a
+    href="/escritos"
+    class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
+  >
+    <Icon name="lucide:arrow-left" class="size-4" aria-hidden="true" />
+    {t.volver}
+  </a>
+  <div class="mt-4">
+    <TituloDePagina titulo={`#${etiqueta}`} icono="lucide:hash" />
+  </div>
+  <div class="mt-8">
+    <ListaDeEscritos escritos={escritos} />
+  </div>
+</Base>

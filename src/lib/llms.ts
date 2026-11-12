@@ -1,7 +1,17 @@
 import { esPaquete, type Resume } from "@/lib/trayectoria";
 
 /** Formato de https://llmstxt.org, con título, resumen y listas de enlaces. */
-export function llmsTxt(datos: Resume, sitio: URL): string {
+export interface EscritoParaLlms {
+  id: string;
+  titulo: string;
+  descripcion: string;
+}
+
+export function llmsTxt(
+  datos: Resume,
+  sitio: URL,
+  escritos: readonly EscritoParaLlms[] = [],
+): string {
   const { basics, projects, publications } = datos;
   const url = (ruta: string) => new URL(ruta, sitio).href;
   const enlace = (nombre: string, destino: string, nota?: string) =>
@@ -51,6 +61,16 @@ export function llmsTxt(datos: Resume, sitio: URL): string {
       ),
     ),
     "",
+    ...(escritos.length > 0
+      ? [
+          "## Escritos",
+          "",
+          ...escritos.map((e) =>
+            enlace(e.titulo, url(`/escritos/${e.id}`), e.descripcion),
+          ),
+          "",
+        ]
+      : []),
     "## Libros",
     "",
     ...publications.map((libro) =>

@@ -94,3 +94,16 @@
     object-position: bottom;
   }
 }
+
+/* Shiki trae los dos temas y el oscuro se activa con la clase del sitio. */
+.dark .astro-code,
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+:not(pre) > code {
+  border-radius: 0.25rem;
+  background-color: var(--color-acento-suave);
+  padding: 0.1em 0.35em;
+}

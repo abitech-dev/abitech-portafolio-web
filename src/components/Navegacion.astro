@@ -3,12 +3,14 @@ import { Icon } from "astro-icon/components";
 
 import { textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta } from "@/i18n/rutas";
+import { escritosPublicados } from "@/lib/coleccion-escritos";
 import { seccionesDe } from "@/lib/navegacion";
 import { estaActiva } from "@/lib/seccion-activa";
 
 const actual = Astro.url.pathname;
 const idioma = idiomaDeLaRuta(actual);
-const secciones = seccionesDe(idioma);
+const hayEscritos = (await escritosPublicados()).length > 0;
+const secciones = seccionesDe(idioma, hayEscritos);
 const { sitio } = textosDe(idioma);
 ---
 
