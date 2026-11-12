@@ -185,12 +185,22 @@
       "keywords": ["Backend"]
     },
     {
-      "name": "C# y .NET",
+      "name": "C#",
       "level": "Avanzado",
       "keywords": ["Backend"]
     },
     {
-      "name": "Python y Django",
+      "name": ".NET",
+      "level": "Avanzado",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Python",
+      "level": "Intermedio",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Django",
       "level": "Intermedio",
       "keywords": ["Backend"]
     },
@@ -205,12 +215,22 @@
       "keywords": ["Frontend"]
     },
     {
-      "name": "jQuery y Ajax",
+      "name": "jQuery",
       "level": "Avanzado",
       "keywords": ["Frontend"]
     },
     {
-      "name": "HTML y CSS",
+      "name": "Ajax",
+      "level": "Avanzado",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "HTML",
+      "level": "Avanzado",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "CSS",
       "level": "Avanzado",
       "keywords": ["Frontend"]
     },
@@ -240,7 +260,12 @@
       "keywords": ["Frontend"]
     },
     {
-      "name": "MySQL y MariaDB",
+      "name": "MySQL",
+      "level": "Avanzado",
+      "keywords": ["Datos"]
+    },
+    {
+      "name": "MariaDB",
       "level": "Avanzado",
       "keywords": ["Datos"]
     },
@@ -300,7 +325,12 @@
       "keywords": ["Nube y DevOps"]
     },
     {
-      "name": "PHPUnit y Pest",
+      "name": "PHPUnit",
+      "level": "Avanzado",
+      "keywords": ["Calidad"]
+    },
+    {
+      "name": "Pest",
       "level": "Avanzado",
       "keywords": ["Calidad"]
     },
@@ -315,17 +345,27 @@
       "keywords": ["Dominio"]
     },
     {
-      "name": "pasarelas de pago (Culqi, Mercado Pago)",
-      "level": "Avanzado",
-      "keywords": ["Dominio"]
-    },
-    {
       "name": "cumplimiento antilavado (UIF-SBS, LAFT)",
       "level": "Intermedio",
       "keywords": ["Dominio"]
     },
     {
-      "name": "API REST y SOAP",
+      "name": "API REST",
+      "level": "Avanzado",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "SOAP",
+      "level": "Avanzado",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "Culqi",
+      "level": "Avanzado",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "Mercado Pago",
       "level": "Avanzado",
       "keywords": ["Integración"]
     },
@@ -335,7 +375,12 @@
       "keywords": ["Integración"]
     },
     {
-      "name": "LLM (Claude, Gemini)",
+      "name": "Gemini",
+      "level": "Intermedio",
+      "keywords": ["IA"]
+    },
+    {
+      "name": "Claude",
       "level": "Intermedio",
       "keywords": ["IA"]
     },

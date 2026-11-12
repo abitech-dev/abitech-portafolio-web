@@ -185,12 +185,22 @@
       "keywords": ["Backend"]
     },
     {
-      "name": "C# and .NET",
+      "name": "C#",
       "level": "Advanced",
       "keywords": ["Backend"]
     },
     {
-      "name": "Python and Django",
+      "name": ".NET",
+      "level": "Advanced",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Python",
+      "level": "Intermediate",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Django",
       "level": "Intermediate",
       "keywords": ["Backend"]
     },
@@ -205,12 +215,22 @@
       "keywords": ["Frontend"]
     },
     {
-      "name": "jQuery and Ajax",
+      "name": "jQuery",
       "level": "Advanced",
       "keywords": ["Frontend"]
     },
     {
-      "name": "HTML and CSS",
+      "name": "Ajax",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "HTML",
+      "level": "Advanced",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "CSS",
       "level": "Advanced",
       "keywords": ["Frontend"]
     },
@@ -240,7 +260,12 @@
       "keywords": ["Frontend"]
     },
     {
-      "name": "MySQL and MariaDB",
+      "name": "MySQL",
+      "level": "Advanced",
+      "keywords": ["Data"]
+    },
+    {
+      "name": "MariaDB",
       "level": "Advanced",
       "keywords": ["Data"]
     },
@@ -300,7 +325,12 @@
       "keywords": ["Cloud and DevOps"]
     },
     {
-      "name": "PHPUnit and Pest",
+      "name": "PHPUnit",
+      "level": "Advanced",
+      "keywords": ["Quality"]
+    },
+    {
+      "name": "Pest",
       "level": "Advanced",
       "keywords": ["Quality"]
     },
@@ -315,17 +345,27 @@
       "keywords": ["Domain"]
     },
     {
-      "name": "payment gateways (Culqi, Mercado Pago)",
-      "level": "Advanced",
-      "keywords": ["Domain"]
-    },
-    {
       "name": "anti-money laundering compliance (UIF-SBS, LAFT)",
       "level": "Intermediate",
       "keywords": ["Domain"]
     },
     {
-      "name": "REST and SOAP APIs",
+      "name": "API REST",
+      "level": "Advanced",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "SOAP",
+      "level": "Advanced",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "Culqi",
+      "level": "Advanced",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "Mercado Pago",
       "level": "Advanced",
       "keywords": ["Integration"]
     },
@@ -335,7 +375,12 @@
       "keywords": ["Integration"]
     },
     {
-      "name": "LLM (Claude, Gemini)",
+      "name": "Gemini",
+      "level": "Intermediate",
+      "keywords": ["AI"]
+    },
+    {
+      "name": "Claude",
       "level": "Intermediate",
       "keywords": ["AI"]
     },

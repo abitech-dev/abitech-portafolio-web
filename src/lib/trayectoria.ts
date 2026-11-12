@@ -13,6 +13,20 @@ export function proyectosPorId(
   return ids.flatMap((id) => porId.get(id) ?? []);
 }
 
+/** Avanzado vale 3, intermedio 2 y lo demás 1, en español o en inglés. */
+export function nivelDe(nivel: string): 1 | 2 | 3 {
+  const texto = nivel.toLowerCase();
+  if (/avanzado|advanced|experto|expert/.test(texto)) return 3;
+  if (/intermedio|intermediate/.test(texto)) return 2;
+  return 1;
+}
+
+/** Las frases van con mayúscula; marcas como jQuery quedan como son. */
+export function conMayuscula(nombre: string): string {
+  const isFrase = nombre.includes(" ") && /^\p{Ll}/u.test(nombre);
+  return isFrase ? nombre.charAt(0).toUpperCase() + nombre.slice(1) : nombre;
+}
+
 /** En el sitio va nombre y primer apellido; el completo queda en el CV. */
 export function nombreCorto(nombre: string): string {
   return nombre.split(/\s+/).slice(0, 2).join(" ");

@@ -45,6 +45,7 @@ const es = {
     certificaciones: "Certificaciones",
     verificar: "Verificar",
     habilidades: "Habilidades",
+    niveles: { 3: "Avanzado", 2: "Intermedio", 1: "Básico" },
     idiomas: "Idiomas",
   },
   inicio: {
@@ -228,6 +229,7 @@ const en: Textos = {
     certificaciones: "Certifications",
     verificar: "Verify",
     habilidades: "Skills",
+    niveles: { 3: "Advanced", 2: "Intermediate", 1: "Basic" },
     idiomas: "Languages",
   },
   inicio: {

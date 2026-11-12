@@ -10,6 +10,8 @@ import {
 import { estaActiva } from "../../src/lib/seccion-activa";
 import {
   esPaquete,
+  conMayuscula,
+  nivelDe,
   nombreCorto,
   habilidadesPorCategoria,
   proyectosPorId,
@@ -26,6 +28,24 @@ describe("proyectosPorId", () => {
     ]);
 
     expect(proyectos.map((p) => p.id)).toEqual(["cred-plus", "tu-coach"]);
+  });
+});
+
+describe("conMayuscula", () => {
+  it("capitaliza frases y respeta las marcas", () => {
+    expect(conMayuscula("cumplimiento antilavado (LAFT)")).toBe(
+      "Cumplimiento antilavado (LAFT)",
+    );
+    expect(conMayuscula("jQuery")).toBe("jQuery");
+    expect(conMayuscula(".NET")).toBe(".NET");
+  });
+});
+
+describe("nivelDe", () => {
+  it("convierte el nivel en puntos, en español o en inglés", () => {
+    expect(nivelDe("Avanzado")).toBe(3);
+    expect(nivelDe("Intermediate")).toBe(2);
+    expect(nivelDe("Básico")).toBe(1);
   });
 });
 

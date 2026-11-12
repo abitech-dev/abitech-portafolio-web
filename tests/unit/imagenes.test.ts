@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
+import resumeEn from "@/data/resume.en.json";
 import resume from "@/data/resume.json";
 import {
   RUBRO_DEL_PROYECTO,
@@ -53,6 +54,14 @@ describe("logos e íconos", () => {
   it("ignora la versión", () => {
     expect(logoDeTecnologia("Laravel 12")).toBe("logos:laravel");
     expect(logoDeTecnologia("SUNAT")).toBeUndefined();
+  });
+
+  it("cada habilidad de los datos tiene ícono, en ambos idiomas", () => {
+    const sinIcono = [...resume.skills, ...resumeEn.skills]
+      .map((habilidad) => habilidad.name)
+      .filter((nombre) => !logoDeTecnologia(nombre));
+
+    expect(sinIcono).toEqual([]);
   });
 
   it("solo apunta a íconos que existen", () => {

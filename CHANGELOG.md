@@ -38,6 +38,9 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Cambiado
 
+- Habilidades por categoría con ícono, logo de cada tecnología y nivel en
+  puntos; idiomas en tarjetas. Las habilidades compuestas se separaron en
+  los datos.
 - Nombre corto «Abimael Fernandez» en el sitio; el completo queda en el
   CV y en los datos estructurados.
 - Selector de idioma ES y EN y botón de tema en una fila propia, aparte
