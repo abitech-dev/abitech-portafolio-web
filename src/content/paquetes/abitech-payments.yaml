@@ -1,0 +1,34 @@
+caracteristicas:
+  es:
+    - Mercado Pago y Stripe con una sola interfaz, con Strategy y Factory.
+    - Montos como cadenas decimales, nunca como números de coma flotante.
+    - Webhooks con registro del contenido original antes de procesarlo.
+    - Cubierto por 199 pruebas automatizadas.
+  en:
+    - Mercado Pago and Stripe behind one interface, using Strategy and Factory.
+    - Amounts as decimal strings, never as floating point numbers.
+    - Webhooks that log the raw payload before processing it.
+    - Covered by 199 automated tests.
+compatibilidad:
+  es: [PHP 8.2+, Laravel 12 y 13]
+  en: [PHP 8.2+, Laravel 12 and 13]
+licencia: MIT
+ejemplo:
+  archivo: BillingController.php
+  lenguaje: php
+  codigo: |-
+    $request = new PaymentRequest(
+        amount: '100.00',
+        currency: 'PEN',
+        email: 'cliente@email.com',
+        description: 'Suscripcion mensual',
+        idempotencyKey: request()->header('X-Idempotency-Key'),
+        metadata: [
+            'success_url' => route('billing.success'),
+            'cancel_url'  => route('billing.cancel'),
+        ],
+    );
+
+    $response = $manager->driver('mercadopago_checkout')->purchase($request);
+
+    return redirect($response->redirectUrl);

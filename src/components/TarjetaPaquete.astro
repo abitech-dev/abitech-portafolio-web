@@ -1,10 +1,12 @@
 ---
+import { Code } from "astro:components";
+import { getEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
-import ChipDeTecnologia from "@/components/ChipDeTecnologia.astro";
 import LogoDeProyecto from "@/components/LogoDeProyecto.astro";
 import { textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta } from "@/i18n/rutas";
+import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
 import type { Proyecto } from "@/lib/trayectoria";
 
 interface Props {
@@ -12,48 +14,98 @@ interface Props {
 }
 
 const { paquete } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { sitio, codigoAbierto } = textosDe(idioma);
 const nombre = "package" in paquete ? paquete.package : undefined;
 const repositorio = "repository" in paquete ? paquete.repository : undefined;
-const { sitio, proyectos, codigoAbierto } = textosDe(
-  idiomaDeLaRuta(Astro.url.pathname),
-);
+const detalle = await getEntry("paquetes", paquete.id);
+if (!detalle) {
+  throw new Error(`Falta src/content/paquetes/${paquete.id}.yaml.`);
+}
+const { caracteristicas, compatibilidad, licencia, ejemplo } = detalle.data;
+const insignia =
+  "border-borde text-tenue inline-flex items-center gap-1.5 rounded-md border px-2 py-1 font-mono text-xs";
 ---
 
-<article class="border-borde bg-superficie flex flex-col gap-4 rounded-md border p-6">
-  <div class="flex items-center gap-3">
-    <LogoDeProyecto id={paquete.id} class="size-12" />
-    <div class="min-w-0">
-      <h2 class="font-semibold">{paquete.name}</h2>
-      {nombre && <p class="text-tenue font-mono text-sm">{nombre}</p>}
+<article class="revelar border-borde grid gap-8 rounded-lg border p-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:p-8">
+  <div class="flex flex-col gap-5">
+    <div class="flex items-center gap-3">
+      <LogoDeProyecto id={paquete.id} class="size-12" />
+      <div class="min-w-0">
+        <h2 class="font-display text-xl font-semibold">{paquete.name}</h2>
+        {nombre && <p class="text-tenue font-mono text-sm">{nombre}</p>}
+      </div>
     </div>
-  </div>
-  <p class="text-tenue leading-relaxed">{paquete.description}</p>
-  {paquete.highlights.length > 0 && (
-    <ul class="text-tenue list-disc space-y-1 pl-5 text-sm">
-      {paquete.highlights.map((logro) => (
-        <li>{logro}</li>
+
+    <p class="text-tenue leading-relaxed">{paquete.description}</p>
+
+    <ul class="space-y-2.5 text-sm">
+      {caracteristicas[idioma].map((caracteristica) => (
+        <li class="flex gap-2.5">
+          <Icon
+            name="lucide:check"
+            class="text-acento mt-0.5 size-4 shrink-0"
+            aria-hidden="true"
+          />
+          <span>{caracteristica}</span>
+        </li>
       ))}
     </ul>
-  )}
-  <ul class="flex flex-wrap gap-2" aria-label={proyectos.tecnologias}>
-    {paquete.keywords.map((tecnologia) => (
-      <ChipDeTecnologia tecnologia={tecnologia} class="px-2.5 py-0.5 text-xs" />
-    ))}
-  </ul>
-  {repositorio && (
-    <a
-      href={repositorio}
-      data-umami-event="abrir-paquete"
-      data-umami-event-paquete={paquete.id}
-      target="_blank"
-      rel="noopener"
-      class="text-acento inline-flex items-center gap-2 text-sm font-semibold"
-    >
-      <Icon name="lucide:github" class="size-4" aria-hidden="true" />
-      {codigoAbierto.verEnGithub}
-      <span class="sr-only">
-        {paquete.name} ({sitio.otraPestana})
+
+    <ul class="flex flex-wrap gap-2" aria-label={codigoAbierto.compatibilidad}>
+      {compatibilidad[idioma].map((version) => {
+        const logo = logoDeTecnologia(version);
+        return (
+          <li class={insignia}>
+            {logo && <Icon name={logo} class="size-3.5" aria-hidden="true" />}
+            {version}
+          </li>
+        );
+      })}
+      <li class={insignia}>
+        <Icon name="lucide:scale" class="size-3.5" aria-hidden="true" />
+        {licencia}
+      </li>
+    </ul>
+
+    {repositorio && (
+      <a
+        href={repositorio}
+        data-umami-event="abrir-paquete"
+        data-umami-event-paquete={paquete.id}
+        target="_blank"
+        rel="noopener"
+        class="group bg-acento text-fondo mt-auto inline-flex w-fit items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold"
+      >
+        <Icon name="lucide:github" class="size-4" aria-hidden="true" />
+        {codigoAbierto.verEnGithub}
+        <Icon
+          name="lucide:arrow-up-right"
+          class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          aria-hidden="true"
+        />
+        <span class="sr-only">
+          {paquete.name} ({sitio.otraPestana})
+        </span>
+      </a>
+    )}
+  </div>
+
+  <figure class="border-borde min-w-0 self-start overflow-hidden rounded-lg border">
+    <figcaption class="border-borde bg-superficie flex items-center gap-3 border-b px-3 py-2">
+      <span class="flex gap-1.5" aria-hidden="true">
+        <span class="bg-borde size-2.5 rounded-full"></span>
+        <span class="bg-borde size-2.5 rounded-full"></span>
+        <span class="bg-borde size-2.5 rounded-full"></span>
       </span>
-    </a>
-  )}
+      <span class="text-tenue font-mono text-xs">{ejemplo.archivo}</span>
+    </figcaption>
+    <div class="ejemplo-de-codigo text-sm">
+      <Code
+        code={ejemplo.codigo}
+        lang={ejemplo.lenguaje as "php"}
+        themes={{ light: "github-light-high-contrast", dark: "github-dark" }}
+      />
+    </div>
+  </figure>
 </article>

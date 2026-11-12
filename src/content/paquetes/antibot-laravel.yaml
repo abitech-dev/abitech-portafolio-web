@@ -1,0 +1,24 @@
+caracteristicas:
+  es:
+    - Cloudflare Turnstile, reCAPTCHA v2 y reCAPTCHA v3 desde una sola API.
+    - Se usa como regla de validación, middleware o facade.
+    - Un interruptor apaga la validación en los entornos de prueba.
+  en:
+    - Cloudflare Turnstile, reCAPTCHA v2 and reCAPTCHA v3 through one API.
+    - Works as a validation rule, middleware or facade.
+    - A switch turns validation off in testing environments.
+compatibilidad:
+  es: [PHP 7.3+, Laravel 8 a 13]
+  en: [PHP 7.3+, Laravel 8 to 13]
+licencia: MIT
+ejemplo:
+  archivo: LoginController.php
+  lenguaje: php
+  codigo: |-
+    use Abitech\AntiBot\Rules\AntiBotRule;
+
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+        'cf-turnstile-response' => ['required', new AntiBotRule()],
+    ]);

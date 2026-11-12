@@ -16,4 +16,25 @@ const escritos = defineCollection({
   }),
 });
 
-export const collections = { escritos };
+/** Lo que el sitio muestra de cada paquete, además de lo que trae resume.json. */
+const paquetes = defineCollection({
+  loader: glob({ pattern: "*.yaml", base: "./src/content/paquetes" }),
+  schema: z.object({
+    caracteristicas: z.object({
+      es: z.array(z.string()).min(2).max(5),
+      en: z.array(z.string()).min(2).max(5),
+    }),
+    compatibilidad: z.object({
+      es: z.array(z.string()).min(1),
+      en: z.array(z.string()).min(1),
+    }),
+    licencia: z.string(),
+    ejemplo: z.object({
+      archivo: z.string(),
+      lenguaje: z.string(),
+      codigo: z.string(),
+    }),
+  }),
+});
+
+export const collections = { escritos, paquetes };

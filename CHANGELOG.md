@@ -38,6 +38,8 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Cambiado
 
+- Código abierto con características, compatibilidad, licencia y un
+  ejemplo de uso real de cada paquete.
 - Habilidades por categoría con ícono, logo de cada tecnología y nivel en
   puntos; idiomas en tarjetas. Las habilidades compuestas se separaron en
   los datos.

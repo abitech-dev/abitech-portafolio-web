@@ -25,7 +25,7 @@ const paquetes = resume.projects.filter(esPaquete);
   <TituloDePagina titulo={t.secciones.codigoAbierto} icono="lucide:package" />
   <p class="text-tenue mt-3 max-w-prose">{t.codigoAbierto.intro}</p>
 
-  <div class="mt-8 grid gap-4">
+  <div class="mt-8 grid gap-6">
     {paquetes.map((paquete) => (
       <TarjetaPaquete paquete={paquete} />
     ))}

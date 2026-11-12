@@ -132,6 +132,7 @@ const es = {
     intro:
       "Paquetes que saqué de mis proyectos para que otros los usen. Cada uno tiene su guía de instalación en GitHub.",
     verEnGithub: "Ver en GitHub",
+    compatibilidad: "Compatibilidad y licencia",
   },
   aprende: {
     descripcion: (nombre: string) =>
@@ -314,6 +315,7 @@ const en: Textos = {
     intro:
       "Packages I extracted from my projects so others can use them. Each one has its install guide on GitHub.",
     verEnGithub: "View on GitHub",
+    compatibilidad: "Compatibility and license",
   },
   aprende: {
     descripcion: (nombre) =>

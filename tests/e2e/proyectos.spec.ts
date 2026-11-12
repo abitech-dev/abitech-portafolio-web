@@ -73,6 +73,8 @@ test("los paquetes van en Código abierto y no en Proyectos", async ({
   const paquetes = page.getByRole("article");
 
   await expect(paquetes).toHaveCount(2);
+  await expect(page.locator("article pre.astro-code")).toHaveCount(2);
+  await expect(paquetes.first()).toContainText("MIT");
   await expect(
     paquetes.first().getByRole("link", { name: /Ver en GitHub/ }),
   ).toHaveAttribute("href", /^https:\/\/github\.com\/abitech-dev\//);
