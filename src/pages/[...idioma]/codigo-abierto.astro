@@ -1,5 +1,5 @@
 ---
-import TarjetaPaquete from "@/components/TarjetaPaquete.astro";
+import PaqueteDestacado from "@/components/PaqueteDestacado.astro";
 import TituloDePagina from "@/components/TituloDePagina.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
@@ -25,9 +25,9 @@ const paquetes = resume.projects.filter(esPaquete);
   <TituloDePagina titulo={t.secciones.codigoAbierto} icono="lucide:package" />
   <p class="text-tenue mt-3 max-w-prose">{t.codigoAbierto.intro}</p>
 
-  <div class="mt-8 grid gap-6">
-    {paquetes.map((paquete) => (
-      <TarjetaPaquete paquete={paquete} />
+  <div class="mt-8">
+    {paquetes.map((paquete, indice) => (
+      <PaqueteDestacado paquete={paquete} numero={indice + 1} />
     ))}
   </div>
 </Base>

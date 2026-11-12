@@ -1,17 +1,16 @@
-caracteristicas:
-  es:
-    - Cloudflare Turnstile, reCAPTCHA v2 y reCAPTCHA v3 desde una sola API.
-    - Se usa como regla de validación, middleware o facade.
-    - Un interruptor apaga la validación en los entornos de prueba.
-  en:
-    - Cloudflare Turnstile, reCAPTCHA v2 and reCAPTCHA v3 through one API.
-    - Works as a validation rule, middleware or facade.
-    - A switch turns validation off in testing environments.
-compatibilidad:
-  es: [PHP 7.3+, Laravel 8 a 13]
-  en: [PHP 7.3+, Laravel 8 to 13]
+lema:
+  es: Protege tus formularios de bots con una sola regla.
+  en: Protect your forms from bots with a single rule.
 integra: [Cloudflare Turnstile, reCAPTCHA]
-licencia: MIT
+datos:
+  - valor: { es: "3", en: "3" }
+    etiqueta: { es: proveedores, en: providers }
+  - valor: { es: 7.3+, en: 7.3+ }
+    etiqueta: { es: PHP, en: PHP }
+  - valor: { es: 8 a 13, en: 8 to 13 }
+    etiqueta: { es: Laravel, en: Laravel }
+  - valor: { es: MIT, en: MIT }
+    etiqueta: { es: licencia, en: license }
 ejemplo:
   archivo: LoginController.php
   lenguaje: php

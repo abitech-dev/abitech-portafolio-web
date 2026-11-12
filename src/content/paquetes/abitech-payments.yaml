@@ -1,19 +1,16 @@
-caracteristicas:
-  es:
-    - Mercado Pago y Stripe con una sola interfaz, con Strategy y Factory.
-    - Montos como cadenas decimales, nunca como números de coma flotante.
-    - Webhooks con registro del contenido original antes de procesarlo.
-    - Cubierto por 199 pruebas automatizadas.
-  en:
-    - Mercado Pago and Stripe behind one interface, using Strategy and Factory.
-    - Amounts as decimal strings, never as floating point numbers.
-    - Webhooks that log the raw payload before processing it.
-    - Covered by 199 automated tests.
-compatibilidad:
-  es: [PHP 8.2+, Laravel 12 y 13]
-  en: [PHP 8.2+, Laravel 12 and 13]
+lema:
+  es: Cobra con Stripe o Mercado Pago desde una sola interfaz.
+  en: Charge with Stripe or Mercado Pago from a single interface.
 integra: [Stripe, Mercado Pago]
-licencia: MIT
+datos:
+  - valor: { es: "199", en: "199" }
+    etiqueta: { es: pruebas, en: tests }
+  - valor: { es: 8.2+, en: 8.2+ }
+    etiqueta: { es: PHP, en: PHP }
+  - valor: { es: 12 y 13, en: 12 and 13 }
+    etiqueta: { es: Laravel, en: Laravel }
+  - valor: { es: MIT, en: MIT }
+    etiqueta: { es: licencia, en: license }
 ejemplo:
   archivo: BillingController.php
   lenguaje: php

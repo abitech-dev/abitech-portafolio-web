@@ -16,20 +16,18 @@ const escritos = defineCollection({
   }),
 });
 
+const bilingue = z.object({ es: z.string(), en: z.string() });
+
 /** Lo que el sitio muestra de cada paquete, además de lo que trae resume.json. */
 const paquetes = defineCollection({
   loader: glob({ pattern: "*.yaml", base: "./src/content/paquetes" }),
   schema: z.object({
-    caracteristicas: z.object({
-      es: z.array(z.string()).min(2).max(5),
-      en: z.array(z.string()).min(2).max(5),
-    }),
-    compatibilidad: z.object({
-      es: z.array(z.string()).min(1),
-      en: z.array(z.string()).min(1),
-    }),
+    lema: z.object({ es: z.string().max(70), en: z.string().max(70) }),
     integra: z.array(z.string()).min(1),
-    licencia: z.string(),
+    datos: z
+      .array(z.object({ valor: bilingue, etiqueta: bilingue }))
+      .min(2)
+      .max(4),
     ejemplo: z.object({
       archivo: z.string(),
       lenguaje: z.string(),

@@ -111,9 +111,16 @@
 /* Las líneas largas se parten en vez de mostrar una barra horizontal. */
 .ejemplo-de-codigo .astro-code {
   margin: 0;
-  padding: 1rem 1.25rem;
-  font-size: 0.8125rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.6875rem;
   line-height: 1.7;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+@media (width >= 40rem) {
+  .ejemplo-de-codigo .astro-code {
+    padding: 1rem 1.25rem;
+    font-size: 0.8125rem;
+  }
 }

@@ -129,10 +129,8 @@ const es = {
   codigoAbierto: {
     descripcion: (nombre: string) =>
       `Paquetes de código abierto de ${nombre} para Laravel, con licencia MIT y listos para usar en tus proyectos.`,
-    intro:
-      "Paquetes que saqué de mis proyectos para que otros los usen. Cada uno tiene su guía de instalación en GitHub.",
+    intro: "Paquetes que saqué de mis proyectos para que otros los usen.",
     verEnGithub: "Ver en GitHub",
-    compatibilidad: "Compatibilidad y licencia",
     integra: "Integra",
   },
   aprende: {
@@ -313,10 +311,8 @@ const en: Textos = {
   codigoAbierto: {
     descripcion: (nombre) =>
       `Open source Laravel packages by ${nombre}, MIT licensed and ready to use in your projects.`,
-    intro:
-      "Packages I extracted from my projects so others can use them. Each one has its install guide on GitHub.",
+    intro: "Packages I extracted from my projects so others can use them.",
     verEnGithub: "View on GitHub",
-    compatibilidad: "Compatibility and license",
     integra: "Integrates",
   },
   aprende: {

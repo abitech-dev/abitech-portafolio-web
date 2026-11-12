@@ -1,0 +1,99 @@
+---
+import { Code } from "astro:components";
+import { getEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta } from "@/i18n/rutas";
+import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
+import type { Proyecto } from "@/lib/trayectoria";
+
+interface Props {
+  paquete: Proyecto;
+  numero: number;
+}
+
+const { paquete, numero } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { sitio, codigoAbierto } = textosDe(idioma);
+const nombre = "package" in paquete ? paquete.package : undefined;
+const repositorio = "repository" in paquete ? paquete.repository : undefined;
+const detalle = await getEntry("paquetes", paquete.id);
+if (!detalle) {
+  throw new Error(`Falta src/content/paquetes/${paquete.id}.yaml.`);
+}
+const { lema, integra, datos, ejemplo } = detalle.data;
+---
+
+<article class="revelar border-borde grid gap-10 border-t py-12 first:border-t-0 first:pt-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
+  <div class="flex flex-col">
+    <p class="text-acento font-mono text-sm" aria-hidden="true">
+      {String(numero).padStart(2, "0")}
+    </p>
+    <h2 class="font-display mt-2 text-2xl font-bold sm:text-3xl">
+      {paquete.name}
+    </h2>
+    {nombre && <p class="text-tenue mt-1 font-mono text-sm">{nombre}</p>}
+
+    <p class="mt-5 text-lg leading-snug sm:text-xl">{lema[idioma]}</p>
+
+    <ul
+      class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3"
+      aria-label={codigoAbierto.integra}
+    >
+      {integra.map((servicio) => {
+        const logo = logoDeTecnologia(servicio);
+        return (
+          <li class="inline-flex items-center gap-2 font-medium">
+            {logo && <Icon name={logo} class="size-7" aria-hidden="true" />}
+            {servicio}
+          </li>
+        );
+      })}
+    </ul>
+
+    <dl class="border-borde mt-8 grid grid-cols-2 gap-y-5 border-t pt-6 sm:grid-cols-4">
+      {datos.map((dato) => (
+        <div class="flex flex-col-reverse">
+          <dt class="text-tenue text-xs">{dato.etiqueta[idioma]}</dt>
+          <dd class="font-display text-xl font-bold">{dato.valor[idioma]}</dd>
+        </div>
+      ))}
+    </dl>
+
+    {repositorio && (
+      <a
+        href={repositorio}
+        data-umami-event="abrir-paquete"
+        data-umami-event-paquete={paquete.id}
+        target="_blank"
+        rel="noopener"
+        class="group text-acento mt-8 inline-flex w-fit items-center gap-2 font-semibold"
+      >
+        <Icon name="lucide:github" class="size-5" aria-hidden="true" />
+        {codigoAbierto.verEnGithub}
+        <Icon
+          name="lucide:arrow-up-right"
+          class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          aria-hidden="true"
+        />
+        <span class="sr-only">
+          {paquete.name} ({sitio.otraPestana})
+        </span>
+      </a>
+    )}
+  </div>
+
+  <figure class="bg-superficie min-w-0 self-center overflow-hidden rounded-lg shadow-sm">
+    <figcaption class="text-tenue border-borde border-b px-5 py-2.5 font-mono text-xs">
+      {ejemplo.archivo}
+    </figcaption>
+    <div class="ejemplo-de-codigo text-sm">
+      <Code
+        code={ejemplo.codigo}
+        lang={ejemplo.lenguaje as "php"}
+        themes={{ light: "github-light-high-contrast", dark: "github-dark" }}
+      />
+    </div>
+  </figure>
+</article>
