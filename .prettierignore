@@ -4,3 +4,7 @@ node_modules/
 package-lock.json
 playwright-report/
 test-results/
+
+# Los copia _claude con sync.py y se mantienen en ese repositorio.
+.claude/
+CLAUDE.md
