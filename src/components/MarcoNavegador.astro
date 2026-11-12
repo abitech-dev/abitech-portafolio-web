@@ -1,0 +1,40 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  url?: string | undefined;
+  isPrioritario?: boolean;
+}
+
+const { src, alt, url, isPrioritario = false } = Astro.props;
+const dominio = url ? new URL(url).hostname : undefined;
+---
+
+<figure class="border-borde bg-superficie overflow-hidden rounded-lg border shadow-sm">
+  <div class="border-borde flex items-center gap-3 border-b px-3 py-2">
+    <span class="flex gap-1.5" aria-hidden="true">
+      <span class="bg-borde size-2.5 rounded-full"></span>
+      <span class="bg-borde size-2.5 rounded-full"></span>
+      <span class="bg-borde size-2.5 rounded-full"></span>
+    </span>
+    {dominio && (
+      <span class="bg-fondo text-tenue truncate rounded px-2 py-0.5 font-mono text-xs">
+        {dominio}
+      </span>
+    )}
+  </div>
+  <div class="aspect-[16/10] overflow-hidden">
+    <Image
+      src={src}
+      alt={alt}
+      widths={[480, 800, 1200]}
+      sizes="(min-width: 1024px) 480px, 92vw"
+      loading={isPrioritario ? "eager" : "lazy"}
+      fetchpriority={isPrioritario ? "high" : "auto"}
+      class="desplazable size-full object-cover object-top"
+    />
+  </div>
+</figure>

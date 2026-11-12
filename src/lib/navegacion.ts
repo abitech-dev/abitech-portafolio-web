@@ -19,11 +19,11 @@ interface Seccion {
 /** Rutas sin prefijo de idioma, en el orden del menú. */
 export const SECCIONES: readonly Seccion[] = [
   { ruta: "/", clave: "inicio", icono: "lucide:house" },
-  { ruta: "/proyectos", clave: "proyectos", icono: "lucide:folder-code" },
-  { ruta: "/cv", clave: "cv", icono: "lucide:file-text" },
-  { ruta: "/codigo-abierto", clave: "codigoAbierto", icono: "lucide:package" },
-  { ruta: "/aprende", clave: "aprende", icono: "lucide:book-open" },
   { ruta: "/sobre-mi", clave: "sobreMi", icono: "lucide:user" },
+  { ruta: "/proyectos", clave: "proyectos", icono: "lucide:folder-code" },
+  { ruta: "/aprende", clave: "aprende", icono: "lucide:book-open" },
+  { ruta: "/codigo-abierto", clave: "codigoAbierto", icono: "lucide:package" },
+  { ruta: "/cv", clave: "cv", icono: "lucide:file-text" },
   {
     ruta: "/contacto",
     clave: "contacto",

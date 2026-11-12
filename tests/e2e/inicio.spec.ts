@@ -2,14 +2,18 @@ import { expect, test } from "@playwright/test";
 
 import { abrirMenuEnCelular } from "./ayudas";
 
-test("la portada saluda y muestra los proyectos destacados", async ({
+test("la portada saluda, dice la misión y muestra los destacados", async ({
   page,
 }) => {
   await page.goto("/");
 
+  await expect(page.getByText("Hola, soy Abimael")).toBeVisible();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Hola, soy Abimael",
+    /Construyo software/,
   );
+  await expect(
+    page.getByRole("heading", { name: "Mi recorrido" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Proyectos destacados" }),
   ).toBeVisible();

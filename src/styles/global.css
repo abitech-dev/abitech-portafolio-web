@@ -6,6 +6,7 @@
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-display: var(--font-sora), var(--font-inter), sans-serif;
 
   --color-fondo: oklch(0.985 0.003 250);
   --color-superficie: oklch(1 0 0);
@@ -19,6 +20,12 @@
 }
 
 @layer base {
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
   .dark {
     --color-fondo: oklch(0.16 0.02 255);
     --color-superficie: oklch(0.21 0.02 255);
@@ -55,5 +62,35 @@
     z-index: 50;
     overflow-y: auto;
     padding: 1rem 1.25rem 2rem;
+  }
+}
+
+/* Entradas y desplazamientos solo si el visitante acepta movimiento. */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .aparecer {
+    animation: aparecer 0.6s ease-out both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .revelar {
+      animation: aparecer linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+
+  .desplazable {
+    transition: object-position 4s ease-in-out;
+  }
+
+  :is(.grupo-proyecto, figure):hover .desplazable {
+    object-position: bottom;
   }
 }

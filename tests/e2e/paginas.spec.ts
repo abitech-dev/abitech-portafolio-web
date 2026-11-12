@@ -118,8 +118,8 @@ test("una ruta que no existe responde con la página 404", async ({ page }) => {
   );
 });
 
-test("el CV en PDF se descarga desde el inicio", async ({ page }) => {
-  await page.goto("/");
+test("el CV en PDF se descarga desde su página", async ({ page }) => {
+  await page.goto("/cv");
 
   const descarga = page.waitForEvent("download");
   await page.getByRole("link", { name: "Descargar CV en PDF" }).click();
@@ -177,7 +177,7 @@ test.describe("en el celular", () => {
     await page.goto("/");
 
     await expect(
-      page.getByRole("link", { name: "Descargar CV en PDF" }),
+      page.getByRole("link", { name: "Ver proyectos" }),
     ).toBeInViewport();
   });
 });

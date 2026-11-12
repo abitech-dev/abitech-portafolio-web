@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
 import { abrirMenuEnCelular } from "./ayudas";
 
 const PAGINAS = [
-  { ruta: "/en", titulo: "Abimael Fernandez Ventura", h1: /Hi, I'm/ },
+  { ruta: "/en", titulo: "Abimael Fernandez Ventura" },
   { ruta: "/en/proyectos", titulo: "Projects | Abimael Fernandez Ventura" },
   { ruta: "/en/cv", titulo: "Resume | Abimael Fernandez Ventura" },
   {
@@ -50,7 +50,12 @@ for (const { ruta, titulo } of PAGINAS) {
 test("la portada en inglés saluda en inglés", async ({ page }) => {
   await page.goto("/en");
 
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Hi, I'm/);
+  await expect(page.getByText("Hi, I'm Abimael")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    /I build software/,
+  );
+
+  await page.goto("/en/cv");
   await expect(
     page.getByRole("link", { name: "Download resume (PDF)" }),
   ).toHaveAttribute("href", /resume-abimael-fernandez-ventura\.pdf$/);

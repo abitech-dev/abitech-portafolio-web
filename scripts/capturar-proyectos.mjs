@@ -24,6 +24,18 @@ async function cerrarAvisos(pagina) {
   await pagina.waitForTimeout(500);
 }
 
+/** Baja por la página para que aparezca el contenido que carga al hacer scroll. */
+async function recorrer(pagina) {
+  await pagina.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += 400) {
+      scrollTo(0, y);
+      await new Promise((listo) => setTimeout(listo, 150));
+    }
+    scrollTo(0, 0);
+  });
+  await pagina.waitForTimeout(800);
+}
+
 await mkdir(destino, { recursive: true });
 const navegador = await chromium.launch();
 for (const { id, url } of proyectos) {
@@ -35,7 +47,13 @@ for (const { id, url } of proyectos) {
     await pagina.goto(url, { waitUntil: "networkidle", timeout: 45_000 });
     await pagina.waitForTimeout(1500);
     await cerrarAvisos(pagina);
-    const imagen = await pagina.screenshot();
+    await recorrer(pagina);
+    // Hasta 2700 px de alto, para que el marco pueda desplazar la portada.
+    const alto = await pagina.evaluate(() => document.body.scrollHeight);
+    const imagen = await pagina.screenshot({
+      fullPage: true,
+      clip: { x: 0, y: 0, width: 1440, height: Math.min(alto, 2700) },
+    });
     await sharp(imagen)
       .resize(1440)
       .jpeg({ quality: 82, mozjpeg: true })

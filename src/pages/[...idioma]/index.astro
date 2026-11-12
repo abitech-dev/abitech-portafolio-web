@@ -1,88 +1,155 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 import saludo from "@/assets/saludo.png";
-import DescargaDelCv from "@/components/DescargaDelCv.astro";
+import Insignia from "@/components/Insignia.astro";
+import ProyectoDestacado from "@/components/ProyectoDestacado.astro";
 import Seccion from "@/components/Seccion.astro";
-import TarjetaProyecto from "@/components/TarjetaProyecto.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
-import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
+import { idiomaDeLaRuta, rutaEn, rutasPorIdioma } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
-import { cifrasDestacadas } from "@/lib/cifras";
-import { periodo } from "@/lib/fechas";
-import { proyectosPorId } from "@/lib/trayectoria";
+import { esPaquete, proyectosPorId } from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
 }
 
+const DESTACADOS = ["tu-coach", "pilot-ssh", "cred-plus", "yachacuy"];
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const resume = datosDe(idioma);
-const t = textosDe(idioma);
-
-const DESTACADOS = ["tu-coach", "pilot-ssh", "cred-plus", "yachacuy"];
-const { basics, work, publications } = resume;
-const actual = work[0];
-const cifras = cifrasDestacadas(resume, idioma);
-const proyectos = proyectosPorId(resume, DESTACADOS);
-const libro = publications[0];
+const { inicio } = textosDe(idioma);
+const { basics, projects } = resume;
+const destacados = proyectosPorId(resume, DESTACADOS);
+const frentes = [
+  {
+    ...inicio.construyo,
+    icono: "lucide:code-xml",
+    ruta: "/proyectos",
+    enlace: inicio.construyo.enlace(
+      projects.filter((p) => !esPaquete(p)).length,
+    ),
+  },
+  {
+    ...inicio.enseno,
+    icono: "lucide:book-open",
+    ruta: "/aprende",
+    enlace: inicio.enseno.enlace(),
+  },
+  {
+    ...inicio.comparto,
+    icono: "lucide:package",
+    ruta: "/codigo-abierto",
+    enlace: inicio.comparto.enlace(projects.filter(esPaquete).length),
+  },
+];
+const flecha = "size-4 transition-transform group-hover:translate-x-1";
 ---
 
 <Base descripcion={basics.summary}>
-  <div class="flex items-center gap-3">
-    <Image
-      src={saludo}
-      alt=""
-      width={128}
-      height={128}
-      loading="eager"
-      class="size-12 shrink-0 sm:size-14"
-    />
-    <h1 class="text-3xl font-bold sm:text-4xl">
-      {t.inicio.saludo}{" "}
-      <span class="text-acento">{basics.name.split(" ")[0]}</span>
+  <section class="aparecer">
+    <p class="text-tenue flex items-center gap-2 text-lg">
+      <Image
+        src={saludo}
+        alt=""
+        width={64}
+        height={64}
+        loading="eager"
+        class="size-8"
+      />
+      {inicio.saludo}{" "}
+      <span class="text-acento font-semibold">{basics.name.split(" ")[0]}</span>
+    </p>
+    <h1 class="mt-4 max-w-3xl text-4xl leading-tight font-bold sm:text-5xl">
+      {inicio.mision}
     </h1>
-  </div>
-  <p class="mt-3 text-lg">{basics.label}.</p>
-  <p class="text-tenue mt-4 max-w-prose leading-relaxed">{basics.summary}</p>
-  <div class="mt-6">
-    <DescargaDelCv />
-  </div>
-  <dl class="border-borde bg-borde mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-md border sm:grid-cols-4">
-    {cifras.map((cifra) => (
-      <div class="bg-superficie flex flex-col-reverse gap-1 p-4">
-        <dt class="text-tenue text-sm leading-snug">{cifra.etiqueta}</dt>
-        <dd class="text-acento text-3xl font-bold tabular-nums">
-          {cifra.valor}
-        </dd>
-      </div>
-    ))}
-  </dl>
-
-  {actual && (
-    <Seccion titulo={t.inicio.hoy} id="hoy">
-      <p class="font-semibold">
-        {actual.position}, {actual.name}
-      </p>
-      <p class="text-tenue font-mono text-xs">
-        {periodo(actual.startDate, undefined, idioma)}
-      </p>
-      <p class="text-tenue mt-2">{actual.summary}</p>
-    </Seccion>
-  )}
-
-  <Seccion titulo={t.inicio.destacados} id="proyectos">
-    <div class="grid gap-4 sm:grid-cols-2">
-      {proyectos.map((proyecto) => (
-        <TarjetaProyecto proyecto={proyecto} hasCaptura />
-      ))}
+    <p class="text-tenue mt-6 max-w-2xl text-lg leading-relaxed">
+      {inicio.intro}
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href={rutaEn(idioma, "/proyectos")}
+        class="group bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-semibold"
+      >
+        {inicio.verProyectos}
+        <Icon name="lucide:arrow-right" class={flecha} aria-hidden="true" />
+      </a>
+      <a
+        href={rutaEn(idioma, "/sobre-mi")}
+        class="border-borde hover:border-acento inline-flex items-center gap-2 rounded-md border px-5 py-2.5 transition-colors"
+      >
+        {inicio.conoceme}
+      </a>
     </div>
+  </section>
+
+  <Seccion titulo={inicio.frentes} id="frentes">
+    <ul class="grid gap-4 sm:grid-cols-3">
+      {frentes.map((frente) => (
+        <li class="revelar">
+          <a
+            href={rutaEn(idioma, frente.ruta)}
+            class="group border-borde hover:border-acento flex h-full flex-col gap-3 rounded-lg border p-5 transition-colors"
+          >
+            <Insignia icono={frente.icono} class="size-10" />
+            <span class="font-display text-lg font-semibold">
+              {frente.titulo}
+            </span>
+            <span class="text-tenue text-sm leading-relaxed">
+              {frente.texto}
+            </span>
+            <span class="text-acento mt-auto inline-flex items-center gap-1 text-sm font-semibold">
+              {frente.enlace}
+              <Icon
+                name="lucide:arrow-right"
+                class={flecha}
+                aria-hidden="true"
+              />
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </Seccion>
 
-  {libro && (
-    <Seccion titulo={t.inicio.libro} id="libro">
-      <p class="font-semibold">{libro.name}</p>
-      <p class="text-tenue mt-2">{libro.summary}</p>
-    </Seccion>
-  )}
+  <Seccion titulo={inicio.destacados} id="proyectos">
+    <div class="space-y-16">
+      {destacados.map((proyecto, indice) => (
+        <ProyectoDestacado proyecto={proyecto} isInvertido={indice % 2 === 1} />
+      ))}
+    </div>
+    <a
+      href={rutaEn(idioma, "/proyectos")}
+      class="group text-acento mt-12 inline-flex items-center gap-2 font-semibold"
+    >
+      {inicio.verTodos}
+      <Icon name="lucide:arrow-right" class={flecha} aria-hidden="true" />
+    </a>
+  </Seccion>
+
+  <Seccion titulo={inicio.recorrido} id="recorrido">
+    <ol class="space-y-6">
+      {inicio.hitos.map((hito) => (
+        <li class="revelar grid grid-cols-[4rem_1fr] gap-4 sm:grid-cols-[5rem_1fr]">
+          <span class="text-tenue pt-0.5 font-mono text-sm">{hito.anio}</span>
+          <p class="leading-relaxed">
+            {hito.texto}{" "}
+            {hito.ruta && (
+              <a
+                href={rutaEn(idioma, hito.ruta)}
+                class="group text-acento inline-flex items-center gap-1 text-sm font-semibold"
+              >
+                {inicio.verMas}
+                <Icon
+                  name="lucide:arrow-right"
+                  class={flecha}
+                  aria-hidden="true"
+                />
+              </a>
+            )}
+          </p>
+        </li>
+      ))}
+    </ol>
+  </Seccion>
 </Base>

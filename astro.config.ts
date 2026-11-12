@@ -38,6 +38,13 @@ export default defineConfig({
     },
     {
       provider: fontProviders.fontsource(),
+      name: "Sora",
+      cssVariable: "--font-sora",
+      weights: [600, 700],
+      subsets: ["latin"],
+    },
+    {
+      provider: fontProviders.fontsource(),
       name: "JetBrains Mono",
       cssVariable: "--font-jetbrains",
       weights: [400],

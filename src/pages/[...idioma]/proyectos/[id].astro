@@ -1,8 +1,8 @@
 ---
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
 import ChipDeTecnologia from "@/components/ChipDeTecnologia.astro";
+import MarcoNavegador from "@/components/MarcoNavegador.astro";
 import LogoDeProyecto from "@/components/LogoDeProyecto.astro";
 import Seccion from "@/components/Seccion.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
@@ -73,15 +73,14 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
   <p class="mt-6 max-w-prose text-lg leading-relaxed">{proyecto.description}</p>
 
   {captura && (
-    <Image
-      src={captura}
-      alt={t.proyectos.portadaDe(proyecto.name)}
-      widths={[720, 1440]}
-      sizes="(min-width: 1024px) 760px, 90vw"
-      loading="eager"
-      fetchpriority="high"
-      class="border-borde mt-6 w-full rounded-md border"
-    />
+    <div class="mt-8">
+      <MarcoNavegador
+        src={captura}
+        alt={t.proyectos.portadaDe(proyecto.name)}
+        url={proyecto.url}
+        isPrioritario
+      />
+    </div>
   )}
 
   {proyecto.url && (

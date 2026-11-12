@@ -1,0 +1,93 @@
+---
+import { Icon } from "astro-icon/components";
+
+import ChipDeTecnologia from "@/components/ChipDeTecnologia.astro";
+import LogoDeProyecto from "@/components/LogoDeProyecto.astro";
+import MarcoNavegador from "@/components/MarcoNavegador.astro";
+import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import { capturaDelProyecto } from "@/lib/imagenes";
+import type { Proyecto } from "@/lib/trayectoria";
+
+interface Props {
+  proyecto: Proyecto;
+  isInvertido?: boolean;
+}
+
+const { proyecto, isInvertido = false } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { sitio, proyectos: t } = textosDe(idioma);
+const captura = capturaDelProyecto(proyecto.id);
+const [logro] = proyecto.highlights;
+---
+
+<article class="revelar grupo-proyecto grid items-center gap-6 md:grid-cols-2 md:gap-10">
+  {captura && (
+    <div class:list={[isInvertido && "md:order-last"]}>
+      <MarcoNavegador
+        src={captura}
+        alt={t.portadaDe(proyecto.name)}
+        url={proyecto.url}
+      />
+    </div>
+  )}
+  <div class="flex flex-col gap-4">
+    <div class="flex items-center gap-3">
+      <LogoDeProyecto id={proyecto.id} class="size-11" />
+      <h3 class="font-display text-xl font-semibold">
+        <a
+          href={rutaEn(idioma, `/proyectos/${proyecto.id}`)}
+          class="hover:text-acento"
+        >
+          {proyecto.name}
+        </a>
+      </h3>
+    </div>
+    <p class="text-tenue leading-relaxed">{proyecto.description}</p>
+    {logro && (
+      <p class="border-marca border-l-2 pl-4 text-sm leading-relaxed">
+        {logro}
+      </p>
+    )}
+    <ul class="flex flex-wrap gap-2" aria-label={t.tecnologias}>
+      {proyecto.keywords.slice(0, 4).map((tecnologia) => (
+        <ChipDeTecnologia
+          tecnologia={tecnologia}
+          class="px-2.5 py-0.5 text-xs"
+        />
+      ))}
+    </ul>
+    <div class="flex flex-wrap gap-5 text-sm font-semibold">
+      <a
+        href={rutaEn(idioma, `/proyectos/${proyecto.id}`)}
+        class="group text-acento inline-flex items-center gap-1"
+      >
+        {t.verCaso}
+        <span class="sr-only">{proyecto.name}</span>
+        <Icon
+          name="lucide:arrow-right"
+          class="size-4 transition-transform group-hover:translate-x-1"
+          aria-hidden="true"
+        />
+      </a>
+      {proyecto.url && (
+        <a
+          href={proyecto.url}
+          target="_blank"
+          rel="noopener"
+          class="group text-tenue hover:text-texto inline-flex items-center gap-1"
+        >
+          {t.verEnLinea}
+          <Icon
+            name="lucide:arrow-up-right"
+            class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
+          <span class="sr-only">
+            {proyecto.name} ({sitio.otraPestana})
+          </span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>

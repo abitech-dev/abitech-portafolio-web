@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import TarjetaProyecto from "@/components/TarjetaProyecto.astro";
+import FilaProyecto from "@/components/FilaProyecto.astro";
 import TituloDePagina from "@/components/TituloDePagina.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
@@ -65,14 +65,14 @@ const filtros = tecnologiasFrecuentes(projects, 3);
     {projects.length} {t.proyectos.unidad}
   </p>
 
-  <ul class="mt-4 grid gap-4 sm:grid-cols-2">
+  <ul class="divide-borde border-borde mt-4 divide-y border-y">
     {projects.map((proyecto) => (
       <li
         data-tecnologias={[
           ...new Set(proyecto.keywords.map(tecnologiaBase)),
         ].join("|")}
       >
-        <TarjetaProyecto proyecto={proyecto} encabezado="h2" />
+        <FilaProyecto proyecto={proyecto} />
       </li>
     ))}
   </ul>

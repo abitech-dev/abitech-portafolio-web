@@ -11,10 +11,6 @@ const { otraPestana } = sitio;
 const { name, email } = datosDe(idioma).basics;
 const hoy = new Date();
 const mes = `${hoy.getUTCFullYear()}-${String(hoy.getUTCMonth() + 1).padStart(2, "0")}`;
-const CV = {
-  es: "/descargas/cv-abimael-fernandez-ventura.pdf",
-  en: "/descargas/resume-abimael-fernandez-ventura.pdf",
-};
 ---
 
 <footer id="pie" class="max-w-5xl px-5 sm:px-8 lg:px-16">
@@ -32,16 +28,6 @@ const CV = {
         >
           <Icon name="lucide:mail" class="size-4" aria-hidden="true" />
           {pie.escribir}
-        </a>
-        <a
-          href={CV[idioma]}
-          download
-          data-umami-event="descargar-cv"
-          data-umami-event-idioma={idioma}
-          class="border-borde hover:border-acento inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm"
-        >
-          <Icon name="lucide:download" class="size-4" aria-hidden="true" />
-          {pie.cv}
         </a>
       </div>
     </div>

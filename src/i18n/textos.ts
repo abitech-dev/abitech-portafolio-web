@@ -14,10 +14,9 @@ const es = {
     locale: "es_PE",
   },
   pie: {
-    llamado: "¿Buscas un desarrollador full stack para tu equipo?",
-    detalle: "Escríbeme o descarga mi CV y conversemos.",
+    llamado: "¿Tienes una idea o un proyecto?",
+    detalle: "Escríbeme y conversemos.",
     escribir: "Escribir correo",
-    cv: "Descargar CV",
     fundador: "Fundador de ABItech Perú.",
     actualizado: "Actualizado en",
     codigo: "Este sitio en GitHub",
@@ -47,15 +46,66 @@ const es = {
   },
   inicio: {
     saludo: "Hola, soy",
-    hoy: "En qué trabajo hoy",
-    destacados: "Proyectos destacados",
-    libro: "Libro en curso",
-    cifras: {
-      anios: "años creando sistemas web",
-      usuarios: "usuarios en Tu Coach UDH",
-      integraciones: "flujos de integración para Interbank",
-      proyectos: "proyectos publicados",
+    mision:
+      "Construyo software que la gente usa todos los días, desde Huánuco para el mundo.",
+    intro:
+      "Soy desarrollador full stack. Trabajo con Laravel, Vue, .NET y AWS, fundé ABItech Perú y escribo para enseñar tecnología en español.",
+    verProyectos: "Ver proyectos",
+    conoceme: "Conóceme",
+    recorrido: "Mi recorrido",
+    hitos: [
+      {
+        anio: "2023",
+        texto:
+          "Hice mis prácticas en IT Corp y construí un sistema de horas para unos 50 consultores SAP.",
+      },
+      {
+        anio: "2023",
+        texto:
+          "Construí Tu Coach UDH como único desarrollador. Hoy tiene más de 8800 usuarios.",
+        ruta: "/proyectos/tu-coach",
+      },
+      {
+        anio: "2024",
+        texto:
+          "Dirigí el Laboratorio de Transformación Digital de la Universidad de Huánuco.",
+      },
+      {
+        anio: "2025",
+        texto:
+          "Desarrollé unos 10 flujos de integración para el sistema de tarjetas de Interbank.",
+      },
+      {
+        anio: "2025",
+        texto: "Fundé ABItech Perú y cofundé Arsy Innova.",
+      },
+      {
+        anio: "Hoy",
+        texto:
+          "Soy desarrollador full stack en Tecnovo y escribo un libro para aprender Docker.",
+        ruta: "/aprende",
+      },
+    ],
+    frentes: "Lo que hago",
+    construyo: {
+      titulo: "Construyo",
+      texto:
+        "Sistemas web, integraciones bancarias y plataformas de cursos en producción.",
+      enlace: (n: number) => `${n} proyectos`,
     },
+    enseno: {
+      titulo: "Enseño",
+      texto: "Escribo en español para que aprender tecnología cueste menos.",
+      enlace: () => "Ver libros",
+    },
+    comparto: {
+      titulo: "Comparto",
+      texto: "Paquetes de código abierto para Laravel, listos para usar.",
+      enlace: (n: number) => `${n} paquetes`,
+    },
+    destacados: "Proyectos destacados",
+    verTodos: "Ver todos los proyectos",
+    verMas: "Ver más",
   },
   proyectos: {
     descripcion: (nombre: string) =>
@@ -67,6 +117,7 @@ const es = {
     unidad: "proyectos",
     tecnologias: "Tecnologías",
     verEnLinea: "Ver en línea",
+    verCaso: "Ver el caso",
     volver: "Todos los proyectos",
     resultados: "Resultados",
     portadaDe: (nombre: string) => `Portada de ${nombre}`,
@@ -129,10 +180,9 @@ const en: Textos = {
     locale: "en_US",
   },
   pie: {
-    llamado: "Looking for a full stack developer for your team?",
-    detalle: "Write to me or download my resume and let's talk.",
+    llamado: "Have an idea or a project?",
+    detalle: "Write to me and let's talk.",
     escribir: "Send an email",
-    cv: "Download resume",
     fundador: "Founder of ABItech Perú.",
     actualizado: "Updated",
     codigo: "This site on GitHub",
@@ -162,15 +212,64 @@ const en: Textos = {
   },
   inicio: {
     saludo: "Hi, I'm",
-    hoy: "What I work on today",
-    destacados: "Featured projects",
-    libro: "Book in progress",
-    cifras: {
-      anios: "years building web systems",
-      usuarios: "users on Tu Coach UDH",
-      integraciones: "integration flows for Interbank",
-      proyectos: "published projects",
+    mision: "I build software people use every day, from Huánuco to the world.",
+    intro:
+      "I am a full stack developer. I work with Laravel, Vue, .NET and AWS, I founded ABItech Perú and I write to teach technology in Spanish.",
+    verProyectos: "See projects",
+    conoceme: "About me",
+    recorrido: "My journey",
+    hitos: [
+      {
+        anio: "2023",
+        texto:
+          "Interned at IT Corp and built a timesheet system for about 50 SAP consultants.",
+      },
+      {
+        anio: "2023",
+        texto:
+          "Built Tu Coach UDH as the sole developer. Today it has more than 8,800 users.",
+        ruta: "/proyectos/tu-coach",
+      },
+      {
+        anio: "2024",
+        texto:
+          "Led the Digital Transformation Lab at the University of Huánuco.",
+      },
+      {
+        anio: "2025",
+        texto: "Built about 10 integration flows for Interbank's card system.",
+      },
+      {
+        anio: "2025",
+        texto: "Founded ABItech Perú and co-founded Arsy Innova.",
+      },
+      {
+        anio: "Today",
+        texto:
+          "Full stack developer at Tecnovo, writing a book to learn Docker.",
+        ruta: "/aprende",
+      },
+    ],
+    frentes: "What I do",
+    construyo: {
+      titulo: "I build",
+      texto:
+        "Web systems, banking integrations and course platforms in production.",
+      enlace: (n) => `${n} projects`,
     },
+    enseno: {
+      titulo: "I teach",
+      texto: "I write in Spanish so learning technology is easier.",
+      enlace: () => "See books",
+    },
+    comparto: {
+      titulo: "I share",
+      texto: "Open source Laravel packages, ready to use.",
+      enlace: (n) => `${n} packages`,
+    },
+    destacados: "Featured projects",
+    verTodos: "See all projects",
+    verMas: "See more",
   },
   proyectos: {
     descripcion: (nombre) =>
@@ -182,6 +281,7 @@ const en: Textos = {
     unidad: "projects",
     tecnologias: "Technologies",
     verEnLinea: "Visit site",
+    verCaso: "Read the case",
     volver: "All projects",
     resultados: "Results",
     portadaDe: (nombre) => `Home page of ${nombre}`,
