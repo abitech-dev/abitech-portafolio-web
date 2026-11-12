@@ -1,9 +1,12 @@
 ---
+import { Icon } from "astro-icon/components";
+
 import TarjetaProyecto from "@/components/TarjetaProyecto.astro";
 import TituloDePagina from "@/components/TituloDePagina.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
+import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
 import {
   esPaquete,
   tecnologiaBase,
@@ -38,16 +41,20 @@ const filtros = tecnologiasFrecuentes(projects, 3);
     <button type="button" data-filtro="" aria-pressed="true" class="filtro">
       {t.proyectos.todos}
     </button>
-    {filtros.map((tecnologia) => (
-      <button
-        type="button"
-        data-filtro={tecnologia}
-        aria-pressed="false"
-        class="filtro"
-      >
-        {tecnologia}
-      </button>
-    ))}
+    {filtros.map((tecnologia) => {
+      const logo = logoDeTecnologia(tecnologia);
+      return (
+        <button
+          type="button"
+          data-filtro={tecnologia}
+          aria-pressed="false"
+          class="filtro"
+        >
+          {logo && <Icon name={logo} class="size-4" aria-hidden="true" />}
+          {tecnologia}
+        </button>
+      );
+    })}
   </div>
   <p
     class="text-tenue mt-3 text-sm"
@@ -73,6 +80,9 @@ const filtros = tecnologiasFrecuentes(projects, 3);
 
 <style>
   .filtro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
     border: 1px solid var(--color-borde);
     border-radius: 0.375rem;
     padding: 0.25rem 0.75rem;

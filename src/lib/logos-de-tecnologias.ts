@@ -1,6 +1,6 @@
 import { tecnologiaBase } from "@/lib/trayectoria";
 
-/** Los de «logos» van a color y los de «simple-icons» toman el del texto. */
+/** «logos» va a color; «simple-icons» y los de src/icons toman el del texto. */
 export const LOGOS: Record<string, string> = {
   ".NET": "logos:dotnet",
   ".NET Framework": "logos:dotnet",
@@ -37,7 +37,7 @@ export const LOGOS: Record<string, string> = {
   Django: "simple-icons:django",
   "Django REST Framework": "simple-icons:django",
   Celery: "simple-icons:celery",
-  MySQL: "simple-icons:mysql",
+  MySQL: "mysql",
   PostgreSQL: "logos:postgresql",
   Redis: "logos:redis",
   Docker: "logos:docker-icon",

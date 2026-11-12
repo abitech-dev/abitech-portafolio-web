@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
@@ -62,6 +62,10 @@ describe("logos e íconos", () => {
       ...Object.values(RUBRO_DEL_PROYECTO),
     ];
     for (const icono of iconos) {
+      if (!icono.includes(":")) {
+        expect(existsSync(`src/icons/${icono}.svg`), icono).toBe(true);
+        continue;
+      }
       const [set = "", nombre = ""] = icono.split(":");
       if (!sets.has(set)) sets.set(set, iconosDelSet(set));
       expect(sets.get(set)?.has(nombre), icono).toBe(true);
