@@ -35,6 +35,10 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Cambiado
 
+- Nombre corto «Abimael Fernandez» en el sitio; el completo queda en el
+  CV y en los datos estructurados.
+- Selector de idioma ES y EN y botón de tema en una fila propia, aparte
+  de las redes, con la barra lateral sin scroll en 1366 por 768.
 - Portada personal con una misión, tres frentes, proyectos destacados en
   bloques alternados con captura real y un recorrido por años.
 - Proyectos en lista de filas en lugar de tarjetas, títulos en Sora y

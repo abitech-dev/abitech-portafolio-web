@@ -10,7 +10,8 @@ const es = {
     fotoDe: (nombre: string) => `Foto de ${nombre}`,
     temaOscuro: "Tema oscuro",
     pais: "Perú",
-    otroIdioma: { etiqueta: "English", codigo: "en" },
+    idioma: "Idioma",
+    nombresDeIdioma: { es: "Español", en: "English" },
     locale: "es_PE",
   },
   pie: {
@@ -191,7 +192,8 @@ const en: Textos = {
     fotoDe: (nombre) => `Photo of ${nombre}`,
     temaOscuro: "Dark theme",
     pais: "Peru",
-    otroIdioma: { etiqueta: "Español", codigo: "es" },
+    idioma: "Language",
+    nombresDeIdioma: { es: "Español", en: "English" },
     locale: "en_US",
   },
   pie: {

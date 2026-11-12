@@ -4,19 +4,19 @@ import { expect, test } from "@playwright/test";
 import { abrirMenuEnCelular } from "./ayudas";
 
 const PAGINAS = [
-  { ruta: "/en", titulo: "Abimael Fernandez Ventura" },
-  { ruta: "/en/proyectos", titulo: "Projects | Abimael Fernandez Ventura" },
-  { ruta: "/en/cv", titulo: "Resume | Abimael Fernandez Ventura" },
+  { ruta: "/en", titulo: "Abimael Fernandez" },
+  { ruta: "/en/proyectos", titulo: "Projects | Abimael Fernandez" },
+  { ruta: "/en/cv", titulo: "Resume | Abimael Fernandez" },
   {
     ruta: "/en/codigo-abierto",
-    titulo: "Open source | Abimael Fernandez Ventura",
+    titulo: "Open source | Abimael Fernandez",
   },
-  { ruta: "/en/aprende", titulo: "Learn | Abimael Fernandez Ventura" },
-  { ruta: "/en/sobre-mi", titulo: "About | Abimael Fernandez Ventura" },
-  { ruta: "/en/contacto", titulo: "Contact | Abimael Fernandez Ventura" },
+  { ruta: "/en/aprende", titulo: "Learn | Abimael Fernandez" },
+  { ruta: "/en/sobre-mi", titulo: "About | Abimael Fernandez" },
+  { ruta: "/en/contacto", titulo: "Contact | Abimael Fernandez" },
   {
     ruta: "/en/proyectos/tu-coach",
-    titulo: "Tu Coach UDH | Abimael Fernandez Ventura",
+    titulo: "Tu Coach UDH | Abimael Fernandez",
   },
 ];
 
@@ -67,7 +67,7 @@ test("el enlace de idioma lleva a la misma página y sigue al navegar", async ({
   await page.goto("/cv");
   await abrirMenuEnCelular(page);
 
-  await page.getByRole("link", { name: "English", exact: true }).click();
+  await page.getByRole("link", { name: "EN (English)" }).click();
   await expect(page).toHaveURL(/\/en\/cv$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
 
@@ -79,7 +79,7 @@ test("el enlace de idioma lleva a la misma página y sigue al navegar", async ({
   await expect(page).toHaveURL(/\/en\/proyectos$/);
 
   await abrirMenuEnCelular(page);
-  await page.getByRole("link", { name: "Español", exact: true }).click();
+  await page.getByRole("link", { name: "ES (Español)" }).click();
   await expect(page).toHaveURL(/\/proyectos$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
 });

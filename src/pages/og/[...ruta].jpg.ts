@@ -5,6 +5,7 @@ import satori from "satori";
 import sharp from "sharp";
 
 import { datosDe } from "@/i18n/idioma";
+import { nombreCorto } from "@/lib/trayectoria";
 import {
   archivoDeLaImagen,
   paginasParaCompartir,
@@ -54,7 +55,8 @@ function nodo(
 }
 
 function tarjeta({ titulo, idioma }: PaginaParaCompartir): Nodo {
-  const { name, label } = datosDe(idioma).basics;
+  const { name: nombre, label } = datosDe(idioma).basics;
+  const name = nombreCorto(nombre);
   return nodo(
     "div",
     {

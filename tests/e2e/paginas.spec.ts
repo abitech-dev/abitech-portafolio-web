@@ -4,27 +4,27 @@ import { expect, test } from "@playwright/test";
 import { abrirMenuEnCelular } from "./ayudas";
 
 const PAGINAS = [
-  { ruta: "/", titulo: "Abimael Fernandez Ventura" },
+  { ruta: "/", titulo: "Abimael Fernandez" },
   {
     ruta: "/sobre-mi",
-    titulo: "Sobre mí | Abimael Fernandez Ventura",
+    titulo: "Sobre mí | Abimael Fernandez",
   },
-  { ruta: "/cv", titulo: "CV | Abimael Fernandez Ventura" },
+  { ruta: "/cv", titulo: "CV | Abimael Fernandez" },
   {
     ruta: "/contacto",
-    titulo: "Contacto | Abimael Fernandez Ventura",
+    titulo: "Contacto | Abimael Fernandez",
   },
   {
     ruta: "/proyectos",
-    titulo: "Proyectos | Abimael Fernandez Ventura",
+    titulo: "Proyectos | Abimael Fernandez",
   },
   {
     ruta: "/codigo-abierto",
-    titulo: "Código abierto | Abimael Fernandez Ventura",
+    titulo: "Código abierto | Abimael Fernandez",
   },
   {
     ruta: "/aprende",
-    titulo: "Aprende | Abimael Fernandez Ventura",
+    titulo: "Aprende | Abimael Fernandez",
   },
 ];
 
@@ -212,4 +212,19 @@ test("cada página tiene una imagen para compartir que existe", async ({
     "content",
     "summary_large_image",
   );
+});
+
+test.describe("en una laptop de 1366 por 768", () => {
+  test.use({ viewport: { width: 1366, height: 768 } });
+
+  test("la barra lateral entra sin scroll propio", async ({ page }) => {
+    await page.goto("/");
+    const barra = page.locator("aside");
+    const [total, visible] = await barra.evaluate((e) => [
+      e.scrollHeight,
+      e.clientHeight,
+    ]);
+
+    expect(total).toBeLessThanOrEqual(visible);
+  });
 });

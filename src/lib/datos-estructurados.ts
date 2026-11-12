@@ -1,5 +1,5 @@
 import type { Idioma } from "@/i18n/rutas";
-import type { Resume } from "@/lib/trayectoria";
+import { nombreCorto, type Resume } from "@/lib/trayectoria";
 
 export type Nodo = Record<string, unknown>;
 
@@ -28,7 +28,7 @@ export function grafo(
         "@type": "WebSite",
         "@id": idDelSitio(sitio),
         url: sitio.href,
-        name: basics.name,
+        name: nombreCorto(basics.name),
         inLanguage: idioma,
         publisher: { "@id": idDeLaPersona(sitio) },
       },
@@ -36,6 +36,7 @@ export function grafo(
         "@type": "Person",
         "@id": idDeLaPersona(sitio),
         name: basics.name,
+        alternateName: nombreCorto(basics.name),
         jobTitle: basics.label,
         description: basics.summary,
         email: `mailto:${basics.email}`,

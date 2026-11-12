@@ -10,6 +10,7 @@ import {
 import { estaActiva } from "../../src/lib/seccion-activa";
 import {
   esPaquete,
+  nombreCorto,
   habilidadesPorCategoria,
   proyectosPorId,
   tecnologiaBase,
@@ -25,6 +26,12 @@ describe("proyectosPorId", () => {
     ]);
 
     expect(proyectos.map((p) => p.id)).toEqual(["cred-plus", "tu-coach"]);
+  });
+});
+
+describe("nombreCorto", () => {
+  it("deja el nombre y el primer apellido", () => {
+    expect(nombreCorto("Abimael Fernandez Ventura")).toBe("Abimael Fernandez");
   });
 });
 

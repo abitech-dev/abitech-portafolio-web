@@ -13,6 +13,11 @@ export function proyectosPorId(
   return ids.flatMap((id) => porId.get(id) ?? []);
 }
 
+/** En el sitio va nombre y primer apellido; el completo queda en el CV. */
+export function nombreCorto(nombre: string): string {
+  return nombre.split(/\s+/).slice(0, 2).join(" ");
+}
+
 /** Los paquetes van en Código abierto y no se repiten en Proyectos. */
 export function esPaquete(proyecto: Proyecto): boolean {
   return proyecto.type === "library";

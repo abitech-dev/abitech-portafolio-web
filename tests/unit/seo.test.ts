@@ -6,14 +6,12 @@ const SITIO = new URL("https://abitech.dev");
 
 describe("metadatosDe", () => {
   it("deja solo el nombre en la portada", () => {
-    expect(metadatosDe("/", SITIO, "Resumen").titulo).toBe(
-      "Abimael Fernandez Ventura",
-    );
+    expect(metadatosDe("/", SITIO, "Resumen").titulo).toBe("Abimael Fernandez");
   });
 
   it("antepone el título de la página al nombre", () => {
     expect(metadatosDe("/cv", SITIO, "CV", "CV").titulo).toBe(
-      "CV | Abimael Fernandez Ventura",
+      "CV | Abimael Fernandez",
     );
   });
 

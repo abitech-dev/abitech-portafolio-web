@@ -4,7 +4,7 @@ export interface Metadatos {
   canonica: string;
 }
 
-const NOMBRE_DEL_SITIO = "Abimael Fernandez Ventura";
+const NOMBRE_DEL_SITIO = "Abimael Fernandez";
 
 /** La portada lleva solo el nombre; las demás páginas, «Página | Nombre». */
 export function metadatosDe(
