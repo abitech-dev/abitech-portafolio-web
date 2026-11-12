@@ -1,14 +1,21 @@
 ---
 import { textosDe } from "@/i18n/idioma";
-import { idDeEtiqueta, minutosDeLectura, type Escrito } from "@/lib/escritos";
+import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import {
+  idDeEtiqueta,
+  minutosDeLectura,
+  slugDelEscrito,
+  type Escrito,
+} from "@/lib/escritos";
 
 interface Props {
   escritos: Escrito[];
 }
 
 const { escritos } = Astro.props;
-const { escritos: t } = textosDe("es");
-const formato = new Intl.DateTimeFormat("es-PE", {
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { escritos: t, fechas } = textosDe(idioma);
+const formato = new Intl.DateTimeFormat(fechas.locale, {
   day: "numeric",
   month: "short",
   timeZone: "UTC",
@@ -35,7 +42,7 @@ const formato = new Intl.DateTimeFormat("es-PE", {
           </p>
           <h2 class="font-display group-hover:text-acento mt-1 text-xl font-semibold transition-colors">
             <a
-              href={`/blog/${escrito.id}`}
+              href={rutaEn(idioma, `/blog/${slugDelEscrito(escrito)}`)}
               class="after:absolute after:inset-0"
             >
               {escrito.data.titulo}
@@ -48,7 +55,10 @@ const formato = new Intl.DateTimeFormat("es-PE", {
             {escrito.data.etiquetas.map((etiqueta) => (
               <li>
                 <a
-                  href={`/blog/etiquetas/${idDeEtiqueta(etiqueta)}`}
+                  href={rutaEn(
+                    idioma,
+                    `/blog/etiquetas/${idDeEtiqueta(etiqueta)}`,
+                  )}
                   class="text-tenue hover:text-acento font-mono text-xs"
                 >
                   #{etiqueta}

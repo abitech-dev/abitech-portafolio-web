@@ -2,6 +2,7 @@ const es = {
   sitio: {
     saltar: "Saltar al contenido",
     navegacion: "Secciones",
+    blog: "Blog",
     otraPestana: "abre en otra pestaña",
     menu: "Menú",
     cerrar: "Cerrar",
@@ -184,6 +185,7 @@ const en: Textos = {
   sitio: {
     saltar: "Skip to content",
     navegacion: "Sections",
+    blog: "Blog",
     otraPestana: "opens in a new tab",
     menu: "Menu",
     cerrar: "Close",
@@ -339,7 +341,7 @@ const en: Textos = {
   escritos: {
     descripcion: (nombre) =>
       `Articles and notes by ${nombre} about web development, the cloud and what he learns along the way.`,
-    intro: "Long articles and short notes, written in Spanish.",
+    intro: "Long articles and short notes about what I build and what I learn.",
     vacio: "The first post is coming soon.",
     articulo: "Article",
     nota: "Note",

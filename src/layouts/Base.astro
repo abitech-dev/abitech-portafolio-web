@@ -67,8 +67,8 @@ const metadatos = metadatosDe(
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="Blog"
-      href="/blog/rss.xml"
+      title={sitio.blog}
+      href={rutaEn(idioma, "/blog/rss.xml")}
     />
     {alternas.map((alterna) => (
       <link rel="alternate" hreflang={alterna.idioma} href={alterna.href} />

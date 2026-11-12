@@ -3,8 +3,10 @@ import { describe, expect, it } from "vitest";
 import {
   etiquetasDe,
   idDeEtiqueta,
+  idiomaDelEscrito,
   minutosDeLectura,
   publicados,
+  slugDelEscrito,
   type Escrito,
 } from "@/lib/escritos";
 
@@ -58,5 +60,11 @@ describe("escritos", () => {
       ["Diseño", 1],
     ]);
     expect(idDeEtiqueta("Diseño web")).toBe("diseno-web");
+  });
+
+  it("lee el idioma y el nombre compartido desde la carpeta", () => {
+    expect(idiomaDelEscrito({ id: "en/mi-entrada" })).toBe("en");
+    expect(idiomaDelEscrito({ id: "es/mi-entrada" })).toBe("es");
+    expect(slugDelEscrito({ id: "en/mi-entrada" })).toBe("mi-entrada");
   });
 });

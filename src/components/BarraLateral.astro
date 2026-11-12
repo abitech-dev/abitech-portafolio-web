@@ -186,10 +186,18 @@ const boton =
   });
   document.addEventListener("astro:after-swap", () => abrirMenu(false));
 
-  // El enlace al otro idioma apunta a la versión de la página actual.
+  // El otro idioma usa la traducción que declara la página, si la hay.
   document.addEventListener("astro:page-load", () => {
-    document
-      .querySelector("[data-otro-idioma]")
-      ?.setAttribute("href", rutaEnOtroIdioma(location.pathname));
+    const enlace = document.querySelector("[data-otro-idioma]");
+    const idioma = enlace?.getAttribute("hreflang") ?? "";
+    const traduccion = document
+      .querySelector(`link[rel="alternate"][hreflang="${idioma}"]`)
+      ?.getAttribute("href");
+    enlace?.setAttribute(
+      "href",
+      traduccion
+        ? new URL(traduccion).pathname
+        : rutaEnOtroIdioma(location.pathname),
+    );
   });
 </script>

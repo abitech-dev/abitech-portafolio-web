@@ -13,9 +13,8 @@ describe("paginasParaCompartir", () => {
   it("incluye cada sección y cada caso en ambos idiomas, sin paquetes", () => {
     const rutas = paginasParaCompartir().map((p) => p.ruta);
 
-    for (const { ruta, isSoloEspanol } of SECCIONES) {
+    for (const { ruta } of SECCIONES) {
       expect(rutas).toContain(ruta);
-      if (isSoloEspanol) continue;
       expect(rutas).toContain(ruta === "/" ? "/en" : `/en${ruta}`);
     }
     expect(rutas).toContain("/en/proyectos/tu-coach");

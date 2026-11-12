@@ -1,0 +1,10 @@
+---
+import PaginaDelEscrito from "@/components/PaginaDelEscrito.astro";
+import { rutasDeEscritos } from "@/lib/coleccion-escritos";
+
+export const getStaticPaths = () => rutasDeEscritos("en");
+
+const { escrito, hasTraduccion } = Astro.props;
+---
+
+<PaginaDelEscrito escrito={escrito} hasTraduccion={hasTraduccion} />

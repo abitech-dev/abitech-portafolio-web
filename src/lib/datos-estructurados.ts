@@ -87,6 +87,7 @@ export function articulo(
   },
   sitio: URL,
   pagina: URL,
+  idioma: Idioma,
 ): Nodo {
   return {
     "@type": "BlogPosting",
@@ -96,7 +97,7 @@ export function articulo(
     datePublished: datos.fecha.toISOString(),
     dateModified: (datos.actualizado ?? datos.fecha).toISOString(),
     keywords: datos.etiquetas.join(", "),
-    inLanguage: "es",
+    inLanguage: idioma,
     url: pagina.href,
     author: { "@id": idDeLaPersona(sitio) },
     isPartOf: { "@id": new URL("/#sitio", sitio).href },

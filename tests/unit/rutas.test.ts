@@ -28,5 +28,9 @@ describe("rutas por idioma", () => {
     expect(rutaEnOtroIdioma("/en/cv")).toBe("/cv");
     expect(rutaEnOtroIdioma("/en")).toBe("/");
     expect(rutaEnOtroIdioma("/")).toBe("/en");
+    expect(rutaEnOtroIdioma("/blog")).toBe("/en/blog");
+    expect(rutaEnOtroIdioma("/blog/un-articulo")).toBe("/en/blog");
+    expect(rutaEnOtroIdioma("/en/blog")).toBe("/blog");
+    expect(rutaEnOtroIdioma("/en/blog/otra")).toBe("/blog");
   });
 });

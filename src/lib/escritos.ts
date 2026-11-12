@@ -1,3 +1,5 @@
+import type { Idioma } from "@/i18n/rutas";
+
 export interface Escrito {
   id: string;
   body?: string | undefined;
@@ -12,6 +14,16 @@ export interface Escrito {
 }
 
 const PALABRAS_POR_MINUTO = 200;
+
+/** Cada escrito vive en la carpeta de su idioma, como «es/mi-entrada». */
+export function idiomaDelEscrito(escrito: { id: string }): Idioma {
+  return escrito.id.startsWith("en/") ? "en" : "es";
+}
+
+/** La traducción comparte el nombre del archivo en la otra carpeta. */
+export function slugDelEscrito(escrito: { id: string }): string {
+  return escrito.id.replace(/^(es|en)\//, "");
+}
 
 export function minutosDeLectura(texto: string): number {
   const palabras = texto.split(/\s+/).filter(Boolean).length;

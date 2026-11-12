@@ -19,7 +19,11 @@ export function sinIdioma(ruta: string): string {
   return ruta.replace(/\/+$/, "").replace(/^\/en(?=\/|$)/, "") || "/";
 }
 
+/** Una entrada sin traducción declarada lleva al índice del otro idioma. */
+const SUBRUTA_DEL_BLOG = /^\/blog\/.+/;
+
 export function rutaEnOtroIdioma(ruta: string): string {
   const otro = idiomaDeLaRuta(ruta) === "es" ? "en" : "es";
-  return rutaEn(otro, sinIdioma(ruta));
+  const base = sinIdioma(ruta);
+  return rutaEn(otro, SUBRUTA_DEL_BLOG.test(base) ? "/blog" : base);
 }

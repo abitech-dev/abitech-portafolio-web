@@ -10,7 +10,10 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 - Blog con artículos y notas, etiquetas, tiempo de lectura, RSS y
   datos de artículo de schema.org. Aparece en el menú cuando hay algo
   publicado.
-- Primer artículo, sobre cómo está hecho el sitio.
+- Primer artículo, sobre cómo está hecho el sitio, en español y en
+  inglés.
+- Blog en los dos idiomas, con índice, etiquetas y RSS por idioma; el
+  selector lleva de cada entrada a su traducción.
 - Proyecto base con Astro 7, Vue 3.5, Tailwind 4.3 y TypeScript 6
   estricto.
 - Portada con el nombre, el titular y el resumen de `resume.json`.

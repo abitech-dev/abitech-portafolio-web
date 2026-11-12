@@ -9,7 +9,7 @@ import { estaActiva } from "@/lib/seccion-activa";
 
 const actual = Astro.url.pathname;
 const idioma = idiomaDeLaRuta(actual);
-const hayEscritos = (await escritosPublicados()).length > 0;
+const hayEscritos = (await escritosPublicados(idioma)).length > 0;
 const secciones = seccionesDe(idioma, hayEscritos);
 const { sitio } = textosDe(idioma);
 ---

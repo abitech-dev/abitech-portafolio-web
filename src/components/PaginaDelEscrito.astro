@@ -1,26 +1,24 @@
 ---
-import { render } from "astro:content";
+import { render, type CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
 import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
-import { escritosPublicados } from "@/lib/coleccion-escritos";
 import { articulo } from "@/lib/datos-estructurados";
 import { idDeEtiqueta, minutosDeLectura } from "@/lib/escritos";
 
-export async function getStaticPaths() {
-  return (await escritosPublicados()).map((escrito) => ({
-    params: { slug: escrito.id },
-    props: { escrito },
-  }));
+interface Props {
+  escrito: CollectionEntry<"escritos">;
+  hasTraduccion: boolean;
 }
 
-const { escrito } = Astro.props;
+const { escrito, hasTraduccion } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { escritos: t, fechas } = textosDe(idioma);
 const { Content } = await render(escrito);
-const { escritos: t } = textosDe("es");
-const { titulo, descripcion, fecha, actualizado, tipo, etiquetas } =
-  escrito.data;
-const formato = new Intl.DateTimeFormat("es-PE", {
+const { titulo, descripcion, fecha, tipo, etiquetas } = escrito.data;
+const formato = new Intl.DateTimeFormat(fechas.locale, {
   dateStyle: "long",
   timeZone: "UTC",
 });
@@ -29,11 +27,11 @@ const formato = new Intl.DateTimeFormat("es-PE", {
 <Base
   titulo={titulo}
   descripcion={descripcion}
-  hasVersionEnIngles={false}
-  nodos={[articulo(escrito.data, Astro.site ?? Astro.url, Astro.url)]}
+  hasVersionEnIngles={hasTraduccion}
+  nodos={[articulo(escrito.data, Astro.site ?? Astro.url, Astro.url, idioma)]}
 >
   <a
-    href="/blog"
+    href={rutaEn(idioma, "/blog")}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >
     <Icon name="lucide:arrow-left" class="size-4" aria-hidden="true" />
@@ -56,7 +54,7 @@ const formato = new Intl.DateTimeFormat("es-PE", {
       {etiquetas.map((etiqueta) => (
         <li>
           <a
-            href={`/blog/etiquetas/${idDeEtiqueta(etiqueta)}`}
+            href={rutaEn(idioma, `/blog/etiquetas/${idDeEtiqueta(etiqueta)}`)}
             class="text-tenue hover:text-acento font-mono text-xs"
           >
             #{etiqueta}
@@ -69,12 +67,4 @@ const formato = new Intl.DateTimeFormat("es-PE", {
   <div class="prose prose-lg dark:prose-invert prose-headings:font-display prose-a:text-acento prose-pre:rounded-md prose-pre:border prose-pre:border-borde prose-code:before:content-none prose-code:after:content-none prose-code:font-normal mt-10 max-w-3xl">
     <Content />
   </div>
-
-  {actualizado && (
-    <p class="text-tenue mt-10 text-sm">
-      <time datetime={actualizado.toISOString().slice(0, 10)}>
-        {formato.format(actualizado)}
-      </time>
-    </p>
-  )}
 </Base>
