@@ -23,7 +23,8 @@ no maneja usuarios ni pagos.
 
 ## Consecuencias
 
-- Lighthouse alto y una imagen pequeña: Caddy sirve `dist/` sin Node.
-- No hay panel propio. La edición desde el celular llega con Keystatic,
-  que guarda en el repositorio.
-- Se pierde la evidencia de Django en el portafolio.
+- Lighthouse alto y una imagen pequeña, porque Caddy sirve `dist/` sin
+  Node.
+- No hay panel propio. Si hace falta editar desde el celular, Keystatic
+  guarda en el mismo repositorio.
+- El sitio deja de servir como muestra de Django.

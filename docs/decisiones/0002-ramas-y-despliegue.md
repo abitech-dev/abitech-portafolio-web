@@ -39,7 +39,7 @@ mantiene una persona, pero el flujo debe aguantar colaboradores.
     días.
   - Secretos solo en GitHub Secrets.
   - Ramas `develop` y `main` protegidas.
-- **Imagen.** Node construye el sitio y su CSP; Caddy sirve `dist/` con
+- **Imagen.** Node construye el sitio y su CSP. Caddy sirve `dist/` con
   cabeceras de seguridad y caché. La imagen final no lleva Node.
 - **Sin cortes.** Swarm levanta el contenedor nuevo antes de apagar el
   anterior (`start-first`), guiado por el `HEALTHCHECK` de la imagen.
