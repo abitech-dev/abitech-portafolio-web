@@ -55,12 +55,12 @@ const formato = new Intl.DateTimeFormat(fechas.locale, {
       </time>
       <span>{t.minutos(minutosDeLectura(escrito.body ?? ""))}</span>
     </p>
-    <ul class="mt-3 flex flex-wrap gap-2" aria-label={t.etiquetas}>
+    <ul class="mt-4 flex flex-wrap gap-2" aria-label={t.etiquetas}>
       {etiquetas.map((etiqueta) => (
         <li>
           <a
             href={rutaEn(idioma, `/blog/etiquetas/${idDeEtiqueta(etiqueta)}`)}
-            class="text-tenue hover:text-acento font-mono text-xs"
+            class="border-borde text-tenue hover:border-acento hover:text-acento inline-flex min-h-7 items-center rounded-md border px-2.5 font-mono text-xs transition-colors"
           >
             #{etiqueta}
           </a>
