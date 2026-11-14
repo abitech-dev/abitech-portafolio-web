@@ -34,7 +34,9 @@ mantiene una persona, pero el flujo debe aguantar colaboradores.
     continua.
 - **Seguridad del flujo**, según el OWASP Top 10 de CI/CD.
   - Permisos mínimos por trabajo.
-  - Acciones de terceros fijadas por SHA.
+  - Acciones de terceros fijadas por SHA. Dependabot las actualiza junto
+    con los paquetes y las imágenes base, con versiones de al menos 14
+    días.
   - Secretos solo en GitHub Secrets.
   - Ramas `develop` y `main` protegidas.
 - **Imagen.** Node construye el sitio y su CSP; Caddy sirve `dist/` con
