@@ -33,21 +33,29 @@ los puertos de CloudPanel.
 1. En Dokploy crea una aplicación de tipo **Docker**, con la imagen
    `ghcr.io/abitech-dev/abitech-portafolio-web:produccion`.
 2. En **Advanced → Ports** publica el puerto `80` del contenedor en un
-   puerto libre del servidor, por ejemplo `8085`. No le asignes dominio
-   en Dokploy.
-3. Comprueba que el firewall de CloudPanel no abra ese puerto al público.
-   Solo debe recibir tráfico del proxy local.
-4. En CloudPanel crea un sitio de tipo **Reverse Proxy** para
+   puerto libre del servidor, por ejemplo `8085`, en modo **Ingress**. El
+   modo Host impide que el contenedor nuevo arranque junto al anterior.
+   No le asignes dominio en Dokploy.
+
+   ```bash
+   ss -ltn | grep ':8085 ' || echo "8085 libre"
+   ```
+
+3. Cierra ese puerto en el firewall del proveedor del VPS. Docker publica
+   sus puertos por encima del firewall de CloudPanel, que no lo bloquea.
+4. En **Advanced → Resources** limita la memoria a 128 MB. Caddy usa
+   menos de 20 MB, y durante un despliegue corren dos contenedores.
+5. En CloudPanel crea un sitio de tipo **Reverse Proxy** para
    `abitech.dev`, con la URL `http://127.0.0.1:8085`, y emite su
    certificado de Let's Encrypt.
-5. En Dokploy, en **Deployments**, copia la URL del **webhook** de
+6. En Dokploy, en **Deployments**, copia la URL del **webhook** de
    despliegue.
-6. En GitHub, en **Settings → Secrets and variables → Actions**, crea el
+7. En GitHub, en **Settings → Secrets and variables → Actions**, crea el
    secreto `DOKPLOY_WEBHOOK_URL` con esa URL.
-7. En la misma pantalla, en **Variables**, crea `URL_DEL_SITIO` con
+8. En la misma pantalla, en **Variables**, crea `URL_DEL_SITIO` con
    `https://abitech.dev`, sin barra final. Después de desplegar, el flujo
    espera a que `URL_DEL_SITIO/version.txt` muestre la versión nueva.
-8. En **Settings → Environments** crea el entorno `produccion`.
+9. En **Settings → Environments** crea el entorno `produccion`.
 
 ### Desplegar sin cortes
 
