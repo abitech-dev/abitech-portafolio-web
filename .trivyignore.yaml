@@ -1,0 +1,10 @@
+# Riesgos aceptados. Al vencer, Trivy vuelve a bloquear la imagen.
+vulnerabilities:
+  - id: CVE-2026-78661
+    paths:
+      - usr/bin/caddy
+    statement: >-
+      Falla en el analizador de HTML de golang.org/x/net. Caddy aquí solo
+      sirve archivos estáticos y no analiza HTML. Caddy 2.11.9 aún no trae
+      la versión corregida.
+    expired_at: 2026-12-31
