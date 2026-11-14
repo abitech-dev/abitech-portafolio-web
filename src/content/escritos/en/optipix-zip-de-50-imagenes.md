@@ -4,7 +4,7 @@ descripcion: Compressing hundreds of photos in the browser filled the tab's memo
 fecha: 2026-11-12
 tipo: nota
 etiquetas: [javascript, performance, browser]
-borrador: true
+borrador: false
 ---
 
 [OptiPix](https://optipix.abitech.com.pe) is my own version of Google's
@@ -51,5 +51,5 @@ ones asking for the most memory. And the thumbnails in the list are decoded
 three at a time, in a queue, so loading many photos does not freeze the
 screen.
 
-The lesson is simple. In the browser, memory is shared with everything else,
-and processing in parts is almost always safer than doing everything at once.
+In the browser, memory is shared with everything else. Processing in parts is
+usually safer than doing everything at once.
