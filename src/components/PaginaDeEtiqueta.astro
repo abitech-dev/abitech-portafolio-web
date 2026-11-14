@@ -28,7 +28,12 @@ const { basics } = datosDe(idioma);
     href={rutaEn(idioma, "/blog")}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >
-    <Icon name="lucide:arrow-left" class="size-4" aria-hidden="true" />
+    <Icon
+      is:inline
+      name="lucide:arrow-left"
+      class="size-4"
+      aria-hidden="true"
+    />
     {t.volver}
   </a>
   <div class="mt-4">

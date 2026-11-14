@@ -45,7 +45,9 @@ const { lema, integra, datos, ejemplo } = detalle.data;
         const logo = logoDeTecnologia(servicio);
         return (
           <li class="inline-flex items-center gap-2 font-medium">
-            {logo && <Icon name={logo} class="size-7" aria-hidden="true" />}
+            {logo && (
+              <Icon is:inline name={logo} class="size-7" aria-hidden="true" />
+            )}
             {servicio}
           </li>
         );
@@ -70,9 +72,15 @@ const { lema, integra, datos, ejemplo } = detalle.data;
         rel="noopener"
         class="group text-acento mt-8 inline-flex w-fit items-center gap-2 font-semibold"
       >
-        <Icon name="lucide:github" class="size-5" aria-hidden="true" />
+        <Icon
+          is:inline
+          name="lucide:github"
+          class="size-5"
+          aria-hidden="true"
+        />
         {codigoAbierto.verEnGithub}
         <Icon
+          is:inline
           name="lucide:arrow-up-right"
           class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           aria-hidden="true"

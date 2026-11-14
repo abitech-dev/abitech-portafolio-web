@@ -245,21 +245,23 @@ test("Aprende lleva al libro y muestra sus volúmenes", async ({ page }) => {
   ).toHaveCount(7);
 });
 
-test("al navegar, la barra conserva sus íconos", async ({ page }) => {
+test("al navegar, ningún ícono queda sin dibujo", async ({ page }) => {
   await page.goto("/");
-  await abrirMenuEnCelular(page);
-  await page
-    .getByRole("navigation")
-    .getByRole("link", { name: "Sobre mí" })
-    .click();
-  await expect(page).toHaveURL(/\/sobre-mi$/);
+  for (const nombre of ["Sobre mí", "Contacto", "Inicio", "CV", "Aprende"]) {
+    await abrirMenuEnCelular(page);
+    await page
+      .getByRole("navigation")
+      .getByRole("link", { name: nombre })
+      .click();
+    await page.waitForLoadState("networkidle");
 
-  const iconosRotos = await page.evaluate(() =>
-    [...document.querySelectorAll("nav svg use")]
-      .map((uso) => uso.getAttribute("href") ?? "")
-      .filter((destino) => !document.getElementById(destino.slice(1))),
-  );
-  expect(iconosRotos).toEqual([]);
+    const rotos = await page.evaluate(() =>
+      [...document.querySelectorAll("svg use")]
+        .map((uso) => uso.getAttribute("href") ?? "")
+        .filter((destino) => !document.getElementById(destino.slice(1))),
+    );
+    expect(rotos, nombre).toEqual([]);
+  }
 });
 
 // Un módulo en línea hace que el router de Astro inyecte un script data:,

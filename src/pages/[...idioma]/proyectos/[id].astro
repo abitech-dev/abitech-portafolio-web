@@ -48,7 +48,12 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
     href={rutaEn(idioma, "/proyectos")}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >
-    <Icon name="lucide:arrow-left" class="size-4" aria-hidden="true" />
+    <Icon
+      is:inline
+      name="lucide:arrow-left"
+      class="size-4"
+      aria-hidden="true"
+    />
     {t.proyectos.volver}
   </a>
 
@@ -59,13 +64,23 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
   <p class="text-tenue mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
     {proyecto.startDate && (
       <span class="inline-flex items-center gap-1">
-        <Icon name="lucide:calendar" class="size-4" aria-hidden="true" />
+        <Icon
+          is:inline
+          name="lucide:calendar"
+          class="size-4"
+          aria-hidden="true"
+        />
         {periodo(proyecto.startDate, fin, idioma)}
       </span>
     )}
     {entidad && (
       <span class="inline-flex items-center gap-1">
-        <Icon name="lucide:building-2" class="size-4" aria-hidden="true" />
+        <Icon
+          is:inline
+          name="lucide:building-2"
+          class="size-4"
+          aria-hidden="true"
+        />
         {entidad}
       </span>
     )}
@@ -90,7 +105,7 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
       rel="noopener"
       class="bg-acento text-fondo mt-6 inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
     >
-      <Icon name="lucide:globe" class="size-4" aria-hidden="true" />
+      <Icon is:inline name="lucide:globe" class="size-4" aria-hidden="true" />
       {t.proyectos.verEnLinea}
       <span class="sr-only">({t.sitio.otraPestana})</span>
     </a>
