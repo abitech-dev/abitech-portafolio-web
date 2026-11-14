@@ -3,6 +3,7 @@
     "name": "Abimael Fernandez Ventura",
     "label": "Desarrollador full stack con Laravel, Vue, .NET y AWS",
     "email": "abimaelfv@hotmail.com",
+    "url": "https://abitech.dev",
     "summary": "Desarrollador full stack titulado en Ingeniería de Sistemas e Informática, con más de 3 años en sistemas web e integraciones para Interbank y Scotiabank. Como único desarrollador construí Tu Coach UDH, una plataforma de cursos con más de 8800 usuarios.",
     "location": {
       "city": "Huánuco",
@@ -776,6 +777,6 @@
     }
   ],
   "meta": {
-    "version": "1.1.0"
+    "version": "1.2.0"
   }
 }
