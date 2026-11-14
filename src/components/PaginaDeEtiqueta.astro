@@ -7,6 +7,7 @@ import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
 import type { Escrito } from "@/lib/escritos";
+import { nombreCorto } from "@/lib/trayectoria";
 
 interface Props {
   etiqueta: string;
@@ -21,7 +22,7 @@ const { basics } = datosDe(idioma);
 
 <Base
   titulo={t.sobre(etiqueta)}
-  descripcion={`${t.sobre(etiqueta)}, ${basics.name}.`}
+  descripcion={`${t.sobre(etiqueta)}, ${nombreCorto(basics.name)}.`}
   hasVersionEnIngles={false}
 >
   <a

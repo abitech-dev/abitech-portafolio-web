@@ -8,6 +8,7 @@ import { idiomaDeLaRuta, rutaEn, rutasPorIdioma } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
 import { materialesDeAprende } from "@/lib/coleccion-aprende";
 import { libro } from "@/lib/datos-estructurados";
+import { nombreCorto } from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
@@ -22,7 +23,7 @@ const sitio = Astro.site ?? Astro.url;
 
 <Base
   titulo={t.secciones.aprende}
-  descripcion={t.aprende.descripcion(basics.name)}
+  descripcion={t.aprende.descripcion(nombreCorto(basics.name))}
   nodos={publications.map((publicacion) => libro(publicacion, sitio))}
 >
   <TituloDePagina titulo={t.secciones.aprende} icono="lucide:book-open" />

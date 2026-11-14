@@ -275,3 +275,22 @@ test("ninguna página trae módulos en línea", async ({ page }) => {
     expect(enLinea, ruta).toBe(0);
   }
 });
+
+// El nombre completo solo va en el CV en PDF y en los datos para buscadores.
+test("las páginas usan el nombre corto", async ({ page }) => {
+  for (const { ruta } of PAGINAS) {
+    await page.goto(ruta);
+    const descripcion = await page
+      .locator('meta[name="description"]')
+      .getAttribute("content");
+    const textoVisible = await page.locator("body").innerText();
+    const fotos = await page
+      .locator("img[alt]")
+      .evaluateAll((imagenes) =>
+        imagenes.map((imagen) => imagen.getAttribute("alt")).join(" "),
+      );
+    expect(`${descripcion} ${textoVisible} ${fotos}`, ruta).not.toContain(
+      "Fernandez Ventura",
+    );
+  }
+});

@@ -9,6 +9,7 @@ import TituloDePagina from "@/components/TituloDePagina.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { rutasPorIdioma, idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
+import { nombreCorto } from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
@@ -30,7 +31,7 @@ const libro = publications[0];
 
 <Base
   titulo={t.secciones.sobreMi}
-  descripcion={t.sobreMi.descripcion(basics.name)}
+  descripcion={t.sobreMi.descripcion(nombreCorto(basics.name))}
 >
   <TituloDePagina titulo={t.secciones.sobreMi} icono="lucide:user-round" />
 
