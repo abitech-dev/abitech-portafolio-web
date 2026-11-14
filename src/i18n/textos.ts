@@ -68,6 +68,7 @@ const es = {
         texto:
           "Construí Tu Coach UDH como único desarrollador. Hoy tiene más de 8800 usuarios.",
         ruta: "/proyectos/tu-coach",
+        enlace: "Ver el proyecto",
       },
       {
         anio: "2024",
@@ -88,6 +89,7 @@ const es = {
         texto:
           "Soy desarrollador full stack en Tecnovo y escribo un libro para aprender Docker.",
         ruta: "/aprende",
+        enlace: "Ver el libro",
       },
     ],
     frentes: "Lo que hago",
@@ -109,7 +111,6 @@ const es = {
     },
     destacados: "Proyectos destacados",
     verTodos: "Ver todos los proyectos",
-    verMas: "Ver más",
   },
   proyectos: {
     descripcion: (nombre: string) =>
@@ -257,6 +258,7 @@ const en: Textos = {
         texto:
           "Built Tu Coach UDH as the sole developer. Today it has more than 8,800 users.",
         ruta: "/proyectos/tu-coach",
+        enlace: "See the project",
       },
       {
         anio: "2024",
@@ -276,6 +278,7 @@ const en: Textos = {
         texto:
           "Full stack developer at Tecnovo, writing a book to learn Docker.",
         ruta: "/aprende",
+        enlace: "See the book",
       },
     ],
     frentes: "What I do",
@@ -297,7 +300,6 @@ const en: Textos = {
     },
     destacados: "Featured projects",
     verTodos: "See all projects",
-    verMas: "See more",
   },
   proyectos: {
     descripcion: (nombre) =>
