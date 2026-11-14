@@ -13,6 +13,7 @@ permissions:
 
 env:
   IMAGEN: ghcr.io/${{ github.repository }}
+  TRIVY: 0.76.1
 
 jobs:
   imagen:
@@ -54,6 +55,16 @@ jobs:
           curl -fsSI localhost:8080/ | grep -qi "^content-security-policy:"
           curl -fsSI localhost:8080/ | grep -qi "^strict-transport-security:"
           test "$(curl -s -o /dev/null -w '%{http_code}' localhost:8080/no-existe)" = 404
+
+      # Bloquea si hay una vulnerabilidad alta o crítica con corrección.
+      - name: Revisar vulnerabilidades (Trivy)
+        run: |
+          base=https://github.com/aquasecurity/trivy/releases/download/v$TRIVY
+          curl -fsSLO "$base/trivy_${TRIVY}_Linux-64bit.tar.gz"
+          curl -fsSL "$base/trivy_${TRIVY}_checksums.txt" | sha256sum -c --ignore-missing
+          tar -xzf "trivy_${TRIVY}_Linux-64bit.tar.gz" trivy
+          ./trivy image --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed \
+            --ignorefile .trivyignore.yaml --exit-code 1 "$IMAGEN:prueba"
 
       - name: Publicar
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
