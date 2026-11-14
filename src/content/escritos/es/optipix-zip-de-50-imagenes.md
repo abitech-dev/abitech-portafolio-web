@@ -4,7 +4,7 @@ descripcion: Comprimir cientos de fotos en el navegador llenaba la memoria de la
 fecha: 2026-11-12
 tipo: nota
 etiquetas: [javascript, rendimiento, navegador]
-borrador: true
+borrador: false
 ---
 
 [OptiPix](https://optipix.abitech.com.pe) es mi versión de Squoosh de Google.
@@ -50,6 +50,5 @@ Antes de comprimir, OptiPix reduce las imágenes demasiado grandes, que eran las
 que más memoria pedían. Y las miniaturas de la lista se decodifican de a tres a
 la vez, en una cola, para que cargar muchas fotos no congele la pantalla.
 
-La lección es simple. En el navegador, la memoria es un recurso que se reparte
-con todo lo demás, y procesar por partes casi siempre es más seguro que hacerlo
-todo de una vez.
+En el navegador, la memoria se comparte con todo lo demás. Procesar por
+partes suele ser más seguro que hacerlo todo de una vez.

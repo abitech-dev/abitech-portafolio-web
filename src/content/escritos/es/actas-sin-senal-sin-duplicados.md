@@ -4,7 +4,7 @@ descripcion: Cómo hice que una PWA guarde actas sin internet y las envíe una s
 fecha: 2026-11-12
 tipo: nota
 etiquetas: [pwa, offline, laravel]
-borrador: true
+borrador: false
 ---
 
 Para un cliente desarrollé una aplicación web instalable donde los técnicos
@@ -12,9 +12,9 @@ llenan y firman en el celular sus actas de mantenimiento eléctrico. Muchas
 veces trabajan sin señal, así que la aplicación tenía que guardar todo en el
 teléfono y enviarlo cuando volviera la conexión.
 
-Guardar sin internet es la parte fácil. Lo difícil es enviar una sola vez. Si
-el envío llega al servidor pero la respuesta se pierde, el teléfono cree que
-falló y lo vuelve a intentar. Sin cuidado, eso crea dos actas iguales.
+El riesgo está en el envío. Si una petición llega al servidor pero su
+respuesta se pierde, el teléfono cree que falló y la repite. Sin un control,
+eso crea dos actas iguales.
 
 ## El identificador nace en el teléfono
 
@@ -61,5 +61,5 @@ Las firmas quedan guardadas mientras no hay conexión, así que las cifré con
 AES-GCM usando la Web Crypto API. La llave se crea marcada como no exportable.
 Quien copie la base de datos del teléfono solo ve bytes cifrados.
 
-La idea que me llevo es que, en una aplicación sin conexión, la identidad de
-cada registro tiene que nacer donde se crea el registro, no en el servidor.
+En una aplicación sin conexión, la identidad de cada registro nace donde se
+crea el registro y no en el servidor.
