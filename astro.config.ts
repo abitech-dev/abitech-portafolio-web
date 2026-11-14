@@ -66,5 +66,11 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // Con módulos en línea, el router de Astro inyecta un script data:
+      // que la CSP bloquea. Los scripts salen como archivos aparte.
+      assetsInlineLimit: (ruta: string) =>
+        ruta.endsWith(".js") ? false : undefined,
+    },
   },
 });
