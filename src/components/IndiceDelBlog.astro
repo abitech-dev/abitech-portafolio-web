@@ -8,6 +8,7 @@ import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
 import { escritosPublicados } from "@/lib/coleccion-escritos";
 import { etiquetasDe, idDeEtiqueta } from "@/lib/escritos";
+import { nombreCorto } from "@/lib/trayectoria";
 
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const { escritos: t, secciones } = textosDe(idioma);
@@ -18,7 +19,7 @@ const etiquetas = etiquetasDe(escritos);
 
 <Base
   titulo={secciones.escritos}
-  descripcion={t.descripcion(basics.name)}
+  descripcion={t.descripcion(nombreCorto(basics.name))}
   isIndexable={escritos.length > 0}
 >
   <TituloDePagina titulo={secciones.escritos} icono="lucide:pen-line" />

@@ -9,6 +9,7 @@ import Base from "@/layouts/Base.astro";
 import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
 import {
   esPaquete,
+  nombreCorto,
   tecnologiaBase,
   tecnologiasFrecuentes,
 } from "@/lib/trayectoria";
@@ -28,7 +29,7 @@ const filtros = tecnologiasFrecuentes(projects, 3);
 
 <Base
   titulo={t.secciones.proyectos}
-  descripcion={t.proyectos.descripcion(basics.name)}
+  descripcion={t.proyectos.descripcion(nombreCorto(basics.name))}
 >
   <TituloDePagina titulo={t.secciones.proyectos} icono="lucide:rocket" />
   <p class="text-tenue mt-3 max-w-prose">{t.proyectos.intro}</p>
