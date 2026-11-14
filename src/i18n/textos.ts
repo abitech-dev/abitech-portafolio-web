@@ -51,7 +51,7 @@ const es = {
   inicio: {
     saludo: "Hola, soy",
     descripcion:
-      "Desarrollador full stack en Perú. Construyo sistemas web e integraciones bancarias para Interbank y Scotiabank con Laravel, Vue, .NET y AWS.",
+      "Desarrollador full stack en Perú. Hice integraciones bancarias para Interbank y Scotiabank, y trabajo con Laravel, Vue, .NET y AWS.",
     mision:
       "Construyo software que la gente usa todos los días, desde Huánuco para el mundo.",
     misionResaltada: "todos los días",
@@ -251,7 +251,7 @@ const en: Textos = {
   inicio: {
     saludo: "Hi, I'm",
     descripcion:
-      "Full stack developer in Peru. I build web systems and banking integrations for Interbank and Scotiabank with Laravel, Vue, .NET and AWS.",
+      "Full stack developer in Peru. I built banking integrations for Interbank and Scotiabank, and I work with Laravel, Vue, .NET and AWS.",
     mision: "I build software people use every day, from Huánuco to the world.",
     misionResaltada: "every day",
     intro:
