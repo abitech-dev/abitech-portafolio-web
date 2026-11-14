@@ -50,6 +50,8 @@ const es = {
   },
   inicio: {
     saludo: "Hola, soy",
+    descripcion:
+      "Desarrollador full stack en Perú. Hice integraciones bancarias para Interbank y Scotiabank, y trabajo con Laravel, Vue, .NET y AWS.",
     mision:
       "Construyo software que la gente usa todos los días, desde Huánuco para el mundo.",
     misionResaltada: "todos los días",
@@ -157,12 +159,11 @@ const es = {
   sobreMi: {
     descripcion: (nombre: string) =>
       `Quién es ${nombre}, desarrollador full stack de Huánuco, Perú.`,
-    vivo: (ciudad: string) =>
-      `Vivo en ${ciudad}, Perú, y trabajo en remoto. También puedo mudarme dentro o fuera del país.`,
+    vivo: (ciudad: string) => `Vivo en ${ciudad}, Perú, y trabajo en remoto.`,
     verCv: "Ver mi CV",
     altInterbank:
       "Abimael de pie frente a un muro verde con una pantalla que dice «Más de 2 millones de usuarios», en Interbank",
-    pieInterbank: "En Interbank, para quien desarrollé flujos de integración.",
+    pieInterbank: "En Interbank, donde desarrollé flujos de integración.",
     formacion: "Formación",
     altSustentacion:
       "Abimael con terno sostiene el acta de sustentación de su tesis, junto a las banderas del Perú, de la Universidad de Huánuco y de Huánuco",
@@ -190,7 +191,7 @@ const es = {
     descripcion: (nombre: string) =>
       `Cómo contactar a ${nombre} por correo, LinkedIn o GitHub.`,
     intro:
-      "Busco un puesto full stack, de nube o de DevOps, en remoto o con mudanza dentro o fuera del Perú.",
+      "Escríbeme por proyectos, colaboraciones o para conversar sobre tecnología.",
   },
 };
 
@@ -248,6 +249,8 @@ const en: Textos = {
   },
   inicio: {
     saludo: "Hi, I'm",
+    descripcion:
+      "Full stack developer in Peru. I built banking integrations for Interbank and Scotiabank, and I work with Laravel, Vue, .NET and AWS.",
     mision: "I build software people use every day, from Huánuco to the world.",
     misionResaltada: "every day",
     intro:
@@ -353,8 +356,7 @@ const en: Textos = {
   sobreMi: {
     descripcion: (nombre) =>
       `Who ${nombre} is, a full stack developer from Huánuco, Peru.`,
-    vivo: (ciudad) =>
-      `I live in ${ciudad}, Peru, and work remotely. I can also relocate within Peru or abroad.`,
+    vivo: (ciudad) => `I live in ${ciudad}, Peru, and work remotely.`,
     verCv: "View my resume",
     altInterbank:
       "Abimael standing in front of a green wall with a screen that reads «More than 2 million users», at Interbank",
@@ -386,7 +388,7 @@ const en: Textos = {
     descripcion: (nombre) =>
       `How to contact ${nombre} by email, LinkedIn or GitHub.`,
     intro:
-      "I am looking for a full stack, cloud or DevOps role, remote or with relocation within Peru or abroad.",
+      "Write to me about projects, collaborations or just to talk about technology.",
   },
 };
 
