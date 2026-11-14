@@ -41,16 +41,13 @@ los puertos de CloudPanel.
    ss -ltn | grep ':8085 ' || echo "8085 libre"
    ```
 
-3. Crea una red overlay propia y ponla en **Advanced → Swarm Settings →
-   Network**. Si `dokploy-network` es de tipo `bridge`, Swarm la rechaza
-   con un error 403. La red propia además aísla el sitio del resto.
+3. Crea una red overlay propia y escribe su nombre en **Advanced → Swarm
+   Settings → Network → Network Name**. Si `dokploy-network` es de tipo
+   `bridge`, Swarm la rechaza con un error 403. La red propia además aísla
+   el sitio del resto.
 
    ```bash
    docker network create --driver overlay abitechportafolio-red
-   ```
-
-   ```json
-   [{ "Target": "abitechportafolio-red" }]
    ```
 
 4. Cierra el puerto al público. Docker publica sus puertos por encima del
