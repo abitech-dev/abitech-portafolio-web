@@ -52,8 +52,15 @@ const es = {
     saludo: "Hola, soy",
     mision:
       "Construyo software que la gente usa todos los días, desde Huánuco para el mundo.",
+    misionResaltada: "todos los días",
     intro:
-      "Soy desarrollador full stack. Trabajo con Laravel, Vue, .NET y AWS, fundé ABItech Perú y escribo para enseñar tecnología en español.",
+      "Soy desarrollador full stack. Fundé ABItech Perú y escribo para enseñar tecnología en español.",
+    trabajoCon: "Trabajo con",
+    cifras: {
+      anios: "años de experiencia",
+      usuarios: "usuarios en Tu Coach",
+      proyectos: "proyectos",
+    },
     verProyectos: "Ver proyectos",
     conoceme: "Conóceme",
     recorrido: "Mi recorrido",
@@ -242,8 +249,15 @@ const en: Textos = {
   inicio: {
     saludo: "Hi, I'm",
     mision: "I build software people use every day, from Huánuco to the world.",
+    misionResaltada: "every day",
     intro:
-      "I am a full stack developer. I work with Laravel, Vue, .NET and AWS, I founded ABItech Perú and I write to teach technology in Spanish.",
+      "I am a full stack developer. I founded ABItech Perú and I write to teach technology in Spanish.",
+    trabajoCon: "I work with",
+    cifras: {
+      anios: "years of experience",
+      usuarios: "users on Tu Coach",
+      proyectos: "projects",
+    },
     verProyectos: "See projects",
     conoceme: "About me",
     recorrido: "My journey",
