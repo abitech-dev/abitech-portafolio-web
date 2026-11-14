@@ -118,11 +118,17 @@ construirla. El detalle está en la [documentación](docs/).
 Escríbeme desde [abitech.dev/contacto](https://abitech.dev/contacto) o
 por [LinkedIn](https://www.linkedin.com/in/abitechdev/).
 
-## Créditos y licencia
+## Licencia
 
-El emoji de saludo es de
+El código tiene [licencia MIT](LICENSE). Puedes usarlo como base para tu
+propio sitio.
+
+El contenido no entra en esa licencia y conserva todos sus derechos.
+Esto incluye los textos del blog y de Aprende en `src/content`, los datos
+del CV en `src/data`, las fotos en `src/assets` y los PDF en
+`public/descargas`. Si reutilizas el código, cambia esos archivos por los
+tuyos.
+
+Los logos pertenecen a cada proyecto. El emoji de saludo es de
 [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) de Microsoft,
-con licencia MIT ([texto](licencias/fluent-emoji.txt)). Los logos de los
-proyectos pertenecen a cada proyecto.
-
-© 2026 Abimael Fernandez. Todos los derechos reservados.
+con licencia MIT ([texto](licencias/fluent-emoji.txt)).
