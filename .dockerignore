@@ -1,0 +1,14 @@
+# Solo entra a la imagen lo necesario para construir el sitio.
+node_modules
+dist
+.astro
+.git
+.github
+.claude
+CLAUDE.md
+.lighthouseci
+playwright-report
+test-results
+src/assets/originales
+*.log
+.env*

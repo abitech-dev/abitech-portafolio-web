@@ -1,0 +1,116 @@
+# Despliegue a producción. Promueve la imagen ya probada en develop.
+name: Desplegar a producción
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Un despliegue nunca se cancela a medias; el siguiente espera su turno.
+concurrency:
+  group: produccion
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  IMAGEN: ghcr.io/abitech-dev/abitech-portafolio-web
+
+jobs:
+  buscar:
+    name: Buscar la imagen probada
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      packages: read
+    outputs:
+      arbol: ${{ steps.huella.outputs.arbol }}
+      encontrada: ${{ steps.inspeccion.outputs.encontrada }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Calcular la huella del código
+        id: huella
+        run: echo "arbol=$(git rev-parse 'HEAD^{tree}')" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Ver si develop ya publicó la imagen de este código
+        id: inspeccion
+        env:
+          ARBOL: ${{ steps.huella.outputs.arbol }}
+        run: |
+          if docker buildx imagetools inspect "$IMAGEN:arbol-$ARBOL" > /dev/null 2>&1; then
+            echo "encontrada=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "encontrada=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  # Código que no pasó por develop se prueba y se construye aquí.
+  calidad:
+    needs: buscar
+    if: needs.buscar.outputs.encontrada != 'true'
+    uses: ./.github/workflows/ci.yml
+
+  imagen:
+    needs: [buscar, calidad]
+    if: needs.buscar.outputs.encontrada != 'true'
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/build-image.yml
+    with:
+      etiqueta: main
+
+  desplegar:
+    name: Desplegar en Dokploy
+    needs: [buscar, imagen]
+    if: >-
+      always() &&
+      (needs.buscar.outputs.encontrada == 'true' || needs.imagen.result == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    environment:
+      name: produccion
+      url: https://abitech.dev
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Dokploy siempre despliega la etiqueta produccion; aquí solo se mueve.
+      - name: Marcar la imagen como la de producción
+        env:
+          ARBOL: ${{ needs.buscar.outputs.arbol }}
+        run: |
+          docker buildx imagetools create \
+            --tag "$IMAGEN:produccion" \
+            --tag "$IMAGEN:sha-$GITHUB_SHA" \
+            "$IMAGEN:arbol-$ARBOL"
+
+      - name: Pedir a Dokploy que despliegue
+        env:
+          WEBHOOK: ${{ secrets.DOKPLOY_WEBHOOK_URL }}
+        run: curl -fsS -X POST "$WEBHOOK"
+
+      # El despliegue solo cuenta como bueno si el sitio publicado responde.
+      - name: Comprobar el sitio publicado
+        run: |
+          for intento in $(seq 1 30); do
+            if curl -fsS -o /dev/null https://abitech.dev/; then break; fi
+            sleep 5
+          done
+          curl -fsS -o /dev/null https://abitech.dev/cv
+          curl -sI https://abitech.dev/ | grep -qi "^content-security-policy:"
+          curl -sI https://abitech.dev/ | grep -qi "^strict-transport-security:"

@@ -1,0 +1,97 @@
+# Integración continua. Valida cada PR y publica la imagen de develop.
+# El despliegue a producción también lo llama cuando necesita probar.
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop]
+  workflow_call:
+
+# Un push nuevo a la misma rama cancela la corrida anterior.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  IMAGEN: ghcr.io/abitech-dev/abitech-portafolio-web
+
+jobs:
+  # El PR de develop a main ya se probó en develop, así que no se repite.
+  calidad:
+    name: Calidad y pruebas
+    if: github.base_ref != 'main' || github.head_ref != 'develop'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Formato, estilo, tipos, pruebas unitarias y compilación
+        run: npm run verificar
+
+      - name: Instalar Chromium para las pruebas de navegador
+        run: npx playwright install --with-deps chromium
+
+      - name: Pruebas de navegador con revisión de accesibilidad
+        run: npm run e2e
+
+      # Rendimiento y LCP solo avisan, porque varían en servidores compartidos.
+      - name: Lighthouse sobre la compilación
+        run: npm run lighthouse
+
+      - name: Guardar los informes si algo falla
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: informes
+          path: |
+            playwright-report
+            .lighthouseci
+          retention-days: 7
+
+  imagen:
+    needs: calidad
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/build-image.yml
+    with:
+      etiqueta: develop
+
+  # Antes de unir develop a main, la imagen de ese mismo código debe existir.
+  imagen-probada:
+    name: Imagen probada en develop
+    if: github.base_ref == 'main' && github.head_ref == 'develop'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Buscar la imagen por la huella del código
+        run: |
+          arbol=$(git rev-parse 'HEAD^{tree}')
+          docker buildx imagetools inspect "$IMAGEN:arbol-$arbol" > /dev/null

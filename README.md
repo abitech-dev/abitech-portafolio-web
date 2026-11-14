@@ -36,6 +36,7 @@ Se miden tres eventos: `descargar-cv`, `escribir-correo` y `abrir-paquete`.
 
 ## Documentación
 
+- [Desplegar el sitio](docs/guias/desplegar.md)
 - [Decisiones de arquitectura](docs/decisiones/)
 - [Cambios por versión](CHANGELOG.md)
 
