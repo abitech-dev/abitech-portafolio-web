@@ -72,6 +72,9 @@ los puertos de CloudPanel.
    add_header Cache-Control no-transform;
    ```
 
+   Debajo de `http3 off;` agrega `ssl_buffer_size 4k;`. Con bloques TLS de
+   16 KB, cada archivo grande espera un viaje más antes de su primer byte.
+
 8. En Dokploy, en **Deployments**, copia la URL del **webhook** de
    despliegue.
 9. En GitHub, en **Settings → Environments**, crea el entorno
