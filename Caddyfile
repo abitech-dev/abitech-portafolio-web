@@ -1,0 +1,33 @@
+# CloudPanel pone el TLS delante de este contenedor.
+{
+	admin off
+	auto_https off
+}
+
+:80 {
+	root * /srv
+	encode zstd gzip
+	try_files {path} {path}/index.html
+	file_server
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+
+	# Lo genera scripts/csp.mjs al construir la imagen.
+	import csp.caddy
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	# Lo de /_astro lleva hash en el nombre y nunca cambia.
+	@inmutables path /_astro/*
+	header @inmutables Cache-Control "public, max-age=31536000, immutable"
+	header ?Cache-Control "public, max-age=0, must-revalidate"
+}

@@ -134,12 +134,12 @@ const flecha = "size-4 transition-transform group-hover:translate-x-1";
           <span class="text-tenue pt-0.5 font-mono text-sm">{hito.anio}</span>
           <p class="leading-relaxed">
             {hito.texto}{" "}
-            {hito.ruta && (
+            {hito.ruta && hito.enlace && (
               <a
                 href={rutaEn(idioma, hito.ruta)}
                 class="group text-acento inline-flex items-center gap-1 text-sm font-semibold"
               >
-                {inicio.verMas}
+                {hito.enlace}
                 <Icon
                   name="lucide:arrow-right"
                   class={flecha}

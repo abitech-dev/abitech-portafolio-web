@@ -12,7 +12,7 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
   publicado.
 - Primer artículo, sobre cómo está hecho el sitio, en español y en
   inglés.
-- Blog en los dos idiomas, con índice, etiquetas y RSS por idioma; el
+- Blog en los dos idiomas, con índice, etiquetas y RSS por idioma. El
   selector lleva de cada entrada a su traducción.
 - Proyecto base con Astro 7, Vue 3.5, Tailwind 4.3 y TypeScript 6
   estricto.
@@ -44,9 +44,9 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
   número, una frase, logos de lo que integra, datos en cifras y un ejemplo
   de uso real.
 - Habilidades por categoría con ícono, logo de cada tecnología y nivel en
-  puntos; idiomas en tarjetas. Las habilidades compuestas se separaron en
+  puntos, e idiomas en tarjetas. Las habilidades compuestas se separaron en
   los datos.
-- Nombre corto «Abimael Fernandez» en el sitio; el completo queda en el
+- Nombre corto «Abimael Fernandez» en el sitio. El completo queda en el
   CV y en los datos estructurados.
 - Selector de idioma ES y EN y botón de tema en una fila propia, aparte
   de las redes, con la barra lateral sin scroll en 1366 por 768.

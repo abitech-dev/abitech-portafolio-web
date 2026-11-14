@@ -1,0 +1,100 @@
+name: Desplegar a producción
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: produccion
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  IMAGEN: ghcr.io/${{ github.repository }}
+
+jobs:
+  buscar:
+    name: Buscar la imagen probada
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      packages: read
+    outputs:
+      arbol: ${{ steps.huella.outputs.arbol }}
+      encontrada: ${{ steps.huella.outputs.encontrada }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: huella
+        run: |
+          arbol=$(git rev-parse 'HEAD^{tree}')
+          echo "arbol=$arbol" >> "$GITHUB_OUTPUT"
+          if docker buildx imagetools inspect "$IMAGEN:arbol-$arbol" > /dev/null 2>&1; then
+            echo "encontrada=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  # Código que no pasó por develop se construye aquí. Su PR corre la CI.
+  imagen:
+    needs: buscar
+    if: needs.buscar.outputs.encontrada != 'true'
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/build-image.yml
+    with:
+      etiqueta: main
+
+  desplegar:
+    name: Desplegar en Dokploy
+    needs: [buscar, imagen]
+    if: >-
+      !cancelled() &&
+      (needs.buscar.outputs.encontrada == 'true' || needs.imagen.result == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    environment:
+      name: produccion
+      url: ${{ vars.URL_DEL_SITIO }}
+    permissions:
+      contents: read
+      packages: write
+    env:
+      ARBOL: ${{ needs.buscar.outputs.arbol }}
+      SITIO: ${{ vars.URL_DEL_SITIO }}
+    steps:
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Dokploy despliega siempre la etiqueta produccion.
+      - name: Promover la imagen
+        run: |
+          docker buildx imagetools create \
+            --tag "$IMAGEN:produccion" \
+            --tag "$IMAGEN:sha-$GITHUB_SHA" \
+            "$IMAGEN:arbol-$ARBOL"
+
+      - name: Avisar a Dokploy
+        env:
+          WEBHOOK: ${{ secrets.DOKPLOY_WEBHOOK_URL }}
+        run: curl -fsS -X POST "$WEBHOOK"
+
+      # Con start-first, el contenedor anterior responde hasta el cambio.
+      - name: Esperar la versión nueva
+        run: |
+          : "${SITIO:?Falta la variable URL_DEL_SITIO}"
+          until test "$(curl -fsS "$SITIO/version.txt")" = "$ARBOL"; do sleep 5; done
+          curl -fsSI "$SITIO/" | grep -qi "^content-security-policy:"
+          curl -fsSI "$SITIO/" | grep -qi "^strict-transport-security:"

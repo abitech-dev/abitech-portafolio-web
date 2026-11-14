@@ -3,7 +3,9 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/e2e",
   forbidOnly: !!process.env["CI"],
-  reporter: process.env["CI"] ? "github" : "list",
+  reporter: process.env["CI"]
+    ? [["github"], ["html", { open: "never" }]]
+    : "list",
   // Sin animaciones, axe mide el contraste final y no un fotograma intermedio.
   use: {
     baseURL: "http://localhost:4322",
