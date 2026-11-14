@@ -164,7 +164,7 @@ const es = {
     verCv: "Ver mi CV",
     altInterbank:
       "Abimael de pie frente a un muro verde con una pantalla que dice «Más de 2 millones de usuarios», en Interbank",
-    pieInterbank: "En Interbank, para quien desarrollé flujos de integración.",
+    pieInterbank: "En Interbank, donde desarrollé flujos de integración.",
     formacion: "Formación",
     altSustentacion:
       "Abimael con terno sostiene el acta de sustentación de su tesis, junto a las banderas del Perú, de la Universidad de Huánuco y de Huánuco",
