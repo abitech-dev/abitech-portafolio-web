@@ -161,8 +161,7 @@ const es = {
   escritos: {
     descripcion: (nombre: string) =>
       `Artículos y notas de ${nombre} sobre desarrollo web, nube y lo que aprende en el camino.`,
-    intro:
-      "Artículos largos y notas cortas sobre lo que construyo y lo que aprendo.",
+    intro: "Decisiones, errores y soluciones de lo que construyo.",
     vacio: "Pronto publicaré la primera entrada.",
     articulo: "Artículo",
     nota: "Nota",
@@ -343,7 +342,7 @@ const en: Textos = {
   escritos: {
     descripcion: (nombre) =>
       `Articles and notes by ${nombre} about web development, the cloud and what he learns along the way.`,
-    intro: "Long articles and short notes about what I build and what I learn.",
+    intro: "Decisions, mistakes and fixes from what I build.",
     vacio: "The first post is coming soon.",
     articulo: "Article",
     nota: "Note",
