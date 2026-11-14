@@ -20,15 +20,18 @@ mantiene una persona, pero el flujo debe aguantar colaboradores.
 - **Se construye una vez y se despliega muchas veces**, como plantean
   _Continuous Delivery_ (Humble y Farley) y el factor 5 de _The
   Twelve-Factor App_.
-  - Cada PR y cada push a `develop` corren las puertas de calidad, las
-    pruebas de navegador y Lighthouse.
+  - Cada PR y cada push a `develop` corren la integración continua por
+    etapas. Primero seguridad (Gitleaks y `npm audit`), luego el análisis
+    estático y las pruebas unitarias en paralelo, y al final Playwright y
+    Lighthouse. Una etapa que falla detiene las siguientes.
   - Al pasar, `develop` publica la imagen en GHCR con la huella del
     contenido (`arbol-<hash del árbol de git>`).
   - En `main`, el flujo de producción busca esa misma huella. Si existe,
     marca la imagen como `produccion` y avisa a Dokploy, sin compilar ni
     probar de nuevo.
-  - Si no existe, porque el código no pasó por `develop`, prueba y
-    construye antes de desplegar.
+  - Si no existe, porque el código no pasó por `develop`, la construye y
+    la prueba antes de desplegar. Su PR a `main` ya corrió la integración
+    continua.
 - **Seguridad del flujo**, según el OWASP Top 10 de CI/CD.
   - Permisos mínimos por trabajo.
   - Acciones de terceros fijadas por SHA.
@@ -36,11 +39,11 @@ mantiene una persona, pero el flujo debe aguantar colaboradores.
   - Ramas `develop` y `main` protegidas.
 - **Imagen.** Node construye el sitio y su CSP; Caddy sirve `dist/` con
   cabeceras de seguridad y caché. La imagen final no lleva Node.
-
 - **Sin cortes.** Swarm levanta el contenedor nuevo antes de apagar el
   anterior (`start-first`), guiado por el `HEALTHCHECK` de la imagen.
-- **Prueba de humo.** Después de desplegar, el flujo comprueba que
-  abitech.dev responda con sus cabeceras de seguridad.
+- **Prueba de humo.** Después de desplegar, el flujo espera a que
+  `/version.txt` del sitio publicado muestre la huella nueva y comprueba
+  sus cabeceras de seguridad.
 
 ## Consecuencias
 

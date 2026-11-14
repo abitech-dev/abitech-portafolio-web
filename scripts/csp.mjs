@@ -1,5 +1,4 @@
-// Arma la CSP con el hash de cada script en línea del sitio compilado.
-// Recibe la carpeta dist y el archivo de cabecera que importa Caddy.
+// node scripts/csp.mjs <dist> <salida.caddy>
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -14,7 +13,7 @@ function paginas(directorio) {
   });
 }
 
-// Los bloques JSON-LD son datos, no se ejecutan y la CSP no los evalúa.
+// La CSP no evalúa JSON-LD porque no se ejecuta.
 const SCRIPT_EN_LINEA =
   /<script(?![^>]*\bsrc=)(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/g;
 
@@ -36,7 +35,7 @@ const umami = process.env.PUBLIC_UMAMI_SRC
 const politica = [
   "default-src 'self'",
   `script-src 'self' ${[...hashes].sort().join(" ")} ${umami}`.trim(),
-  // Shiki y los componentes usan atributos style; no ejecutan código.
+  // Shiki usa atributos style, que no ejecutan código.
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",

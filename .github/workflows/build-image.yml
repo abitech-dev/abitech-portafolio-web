@@ -1,11 +1,9 @@
-# Construye la imagen, la prueba y la publica en GHCR con la huella del código.
 name: Construir imagen
 
 on:
   workflow_call:
     inputs:
       etiqueta:
-        description: Etiqueta extra para la imagen, como develop.
         type: string
         required: true
 
@@ -24,10 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      # El árbol de git identifica el contenido. Si develop pasa intacto a
-      # main, la huella coincide y producción reutiliza esta misma imagen.
-      - name: Calcular la huella del código
-        id: huella
+      # Con la huella del árbol, main reutiliza la imagen de develop.
+      - id: huella
         run: echo "arbol=$(git rev-parse 'HEAD^{tree}')" >> "$GITHUB_OUTPUT"
 
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
@@ -38,41 +34,33 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Construir la imagen sin publicarla
+      - name: Construir
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
-          context: .
           load: true
           tags: ${{ env.IMAGEN }}:prueba
-          build-args: |
+          build-args: &argumentos |
+            VERSION=${{ steps.huella.outputs.arbol }}
             PUBLIC_UMAMI_SRC=${{ vars.PUBLIC_UMAMI_SRC }}
             PUBLIC_UMAMI_ID=${{ vars.PUBLIC_UMAMI_ID }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # Una imagen que no sirve el sitio o pierde sus cabeceras no se publica.
-      - name: Probar la imagen
+      - name: Probar
         run: |
-          docker run -d --name sitio -p 8080:80 "$IMAGEN:prueba"
-          for intento in $(seq 1 20); do
-            curl -fsS -o /dev/null http://localhost:8080/ && break
-            sleep 1
-          done
-          curl -fsS -o /dev/null http://localhost:8080/cv
-          curl -sI http://localhost:8080/ | grep -qi "^content-security-policy:"
-          curl -sI http://localhost:8080/ | grep -qi "^strict-transport-security:"
-          codigo=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/no-existe)
-          test "$codigo" = "404"
+          docker run -d -p 8080:80 "$IMAGEN:prueba"
+          curl -fsS --retry 20 --retry-delay 1 --retry-all-errors -o /dev/null localhost:8080/
+          curl -fsS -o /dev/null localhost:8080/cv
+          curl -fsSI localhost:8080/ | grep -qi "^content-security-policy:"
+          curl -fsSI localhost:8080/ | grep -qi "^strict-transport-security:"
+          test "$(curl -s -o /dev/null -w '%{http_code}' localhost:8080/no-existe)" = 404
 
-      - name: Publicar la imagen probada
+      - name: Publicar
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
-          context: .
           push: true
           tags: |
             ${{ env.IMAGEN }}:arbol-${{ steps.huella.outputs.arbol }}
             ${{ env.IMAGEN }}:${{ inputs.etiqueta }}
-          build-args: |
-            PUBLIC_UMAMI_SRC=${{ vars.PUBLIC_UMAMI_SRC }}
-            PUBLIC_UMAMI_ID=${{ vars.PUBLIC_UMAMI_ID }}
+          build-args: *argumentos
           cache-from: type=gha

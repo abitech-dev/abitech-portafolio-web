@@ -1,4 +1,3 @@
-# Despliegue a producción. Promueve la imagen ya probada en develop.
 name: Desplegar a producción
 
 on:
@@ -6,7 +5,6 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Un despliegue nunca se cancela a medias; el siguiente espera su turno.
 concurrency:
   group: produccion
   cancel-in-progress: false
@@ -16,8 +14,6 @@ permissions:
 
 env:
   IMAGEN: ghcr.io/${{ github.repository }}
-  # El dominio vive en la variable de Actions URL_DEL_SITIO, sin barra final.
-  SITIO: ${{ vars.URL_DEL_SITIO }}
 
 jobs:
   buscar:
@@ -29,13 +25,9 @@ jobs:
       packages: read
     outputs:
       arbol: ${{ steps.huella.outputs.arbol }}
-      encontrada: ${{ steps.inspeccion.outputs.encontrada }}
+      encontrada: ${{ steps.huella.outputs.encontrada }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: Calcular la huella del código
-        id: huella
-        run: echo "arbol=$(git rev-parse 'HEAD^{tree}')" >> "$GITHUB_OUTPUT"
 
       - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
@@ -43,25 +35,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Ver si develop ya publicó la imagen de este código
-        id: inspeccion
-        env:
-          ARBOL: ${{ steps.huella.outputs.arbol }}
+      - id: huella
         run: |
-          if docker buildx imagetools inspect "$IMAGEN:arbol-$ARBOL" > /dev/null 2>&1; then
+          arbol=$(git rev-parse 'HEAD^{tree}')
+          echo "arbol=$arbol" >> "$GITHUB_OUTPUT"
+          if docker buildx imagetools inspect "$IMAGEN:arbol-$arbol" > /dev/null 2>&1; then
             echo "encontrada=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "encontrada=false" >> "$GITHUB_OUTPUT"
           fi
 
-  # Código que no pasó por develop se prueba y se construye aquí.
-  calidad:
-    needs: buscar
-    if: needs.buscar.outputs.encontrada != 'true'
-    uses: ./.github/workflows/ci.yml
-
+  # Código que no pasó por develop se construye aquí. Su PR corre la CI.
   imagen:
-    needs: [buscar, calidad]
+    needs: buscar
     if: needs.buscar.outputs.encontrada != 'true'
     permissions:
       contents: read
@@ -74,7 +58,7 @@ jobs:
     name: Desplegar en Dokploy
     needs: [buscar, imagen]
     if: >-
-      always() &&
+      !cancelled() &&
       (needs.buscar.outputs.encontrada == 'true' || needs.imagen.result == 'success')
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -84,6 +68,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    env:
+      ARBOL: ${{ needs.buscar.outputs.arbol }}
+      SITIO: ${{ vars.URL_DEL_SITIO }}
     steps:
       - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
@@ -91,29 +78,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Dokploy siempre despliega la etiqueta produccion; aquí solo se mueve.
-      - name: Marcar la imagen como la de producción
-        env:
-          ARBOL: ${{ needs.buscar.outputs.arbol }}
+      # Dokploy despliega siempre la etiqueta produccion.
+      - name: Promover la imagen
         run: |
           docker buildx imagetools create \
             --tag "$IMAGEN:produccion" \
             --tag "$IMAGEN:sha-$GITHUB_SHA" \
             "$IMAGEN:arbol-$ARBOL"
 
-      - name: Pedir a Dokploy que despliegue
+      - name: Avisar a Dokploy
         env:
           WEBHOOK: ${{ secrets.DOKPLOY_WEBHOOK_URL }}
         run: curl -fsS -X POST "$WEBHOOK"
 
-      # El despliegue solo cuenta como bueno si el sitio publicado responde.
-      - name: Comprobar el sitio publicado
+      # Con start-first, el contenedor anterior responde hasta el cambio.
+      - name: Esperar la versión nueva
         run: |
-          test -n "$SITIO" || { echo "Falta la variable URL_DEL_SITIO."; exit 1; }
-          for intento in $(seq 1 30); do
-            if curl -fsS -o /dev/null "$SITIO/"; then break; fi
-            sleep 5
-          done
-          curl -fsS -o /dev/null "$SITIO/cv"
-          curl -sI "$SITIO/" | grep -qi "^content-security-policy:"
-          curl -sI "$SITIO/" | grep -qi "^strict-transport-security:"
+          : "${SITIO:?Falta la variable URL_DEL_SITIO}"
+          until test "$(curl -fsS "$SITIO/version.txt")" = "$ARBOL"; do sleep 5; done
+          curl -fsSI "$SITIO/" | grep -qi "^content-security-policy:"
+          curl -fsSI "$SITIO/" | grep -qi "^strict-transport-security:"

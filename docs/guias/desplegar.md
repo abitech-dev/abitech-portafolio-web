@@ -13,9 +13,9 @@ Dokploy la primera vez. La decisión detrás está en
    git switch -c feature/nombre-del-cambio
    ```
 
-2. Abre un PR hacia `develop`. La CI corre las puertas de calidad, las
-   pruebas de navegador y Lighthouse.
-3. Con la CI en verde, une el PR. `develop` publica la imagen en GHCR.
+2. Abre un PR hacia `develop`. La integración continua corre seguridad,
+   análisis estático, pruebas unitarias, Playwright y Lighthouse.
+3. Con todo en verde, une el PR. `develop` publica la imagen en GHCR.
 4. Abre un PR de `develop` a `main`. Solo comprueba que la imagen de ese
    código exista, sin repetir las pruebas.
 5. Une el PR. El flujo **Desplegar a producción** marca la imagen como `produccion` y
@@ -45,8 +45,8 @@ los puertos de CloudPanel.
 6. En GitHub, en **Settings → Secrets and variables → Actions**, crea el
    secreto `DOKPLOY_WEBHOOK_URL` con esa URL.
 7. En la misma pantalla, en **Variables**, crea `URL_DEL_SITIO` con
-   `https://abitech.dev`, sin barra final. El flujo comprueba esa URL
-   después de desplegar.
+   `https://abitech.dev`, sin barra final. Después de desplegar, el flujo
+   espera a que `URL_DEL_SITIO/version.txt` muestre la versión nueva.
 8. En **Settings → Environments** crea el entorno `produccion`.
 
 ### Desplegar sin cortes
