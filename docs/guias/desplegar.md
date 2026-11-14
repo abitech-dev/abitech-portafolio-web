@@ -62,21 +62,30 @@ los puertos de CloudPanel.
    menos de 20 MB, y durante un despliegue corren dos contenedores.
 6. En CloudPanel crea un sitio de tipo **Reverse Proxy** para
    `abitech.dev`, con la URL `http://127.0.0.1:8085`, y emite su
-   certificado de Let's Encrypt.
-7. En Dokploy, en **Deployments**, copia la URL del **webhook** de
-   despliegue.
-8. En GitHub, en **Settings → Environments**, crea el entorno
-   `produccion` y limita sus ramas de despliegue a `main`.
-9. Guarda la URL del webhook como secreto de ese entorno. Así solo la
-   lee el trabajo que despliega desde `main`.
+   certificado de Let's Encrypt para `abitech.dev` y `www.abitech.dev`.
+7. En la pestaña **Vhost** del sitio borra estas dos líneas. Las
+   cabeceras de `global_settings` pisan las de Caddy, como
+   `Referrer-Policy`.
 
-   ```powershell
-   $env:GH_TOKEN = gh auth token -u abitech-dev
-   gh secret set DOKPLOY_WEBHOOK_URL --env produccion -R abitech-dev/abitech-portafolio-web
-   Remove-Item Env:GH_TOKEN
+   ```nginx
+   include /etc/nginx/global_settings;
+   add_header Cache-Control no-transform;
    ```
 
-10. En **Settings → Secrets and variables → Actions → Variables**, crea
+8. En Dokploy, en **Deployments**, copia la URL del **webhook** de
+   despliegue.
+9. En GitHub, en **Settings → Environments**, crea el entorno
+   `produccion` y limita sus ramas de despliegue a `main`.
+10. Guarda la URL del webhook como secreto de ese entorno. Así solo la
+    lee el trabajo que despliega desde `main`.
+
+```powershell
+$env:GH_TOKEN = gh auth token -u abitech-dev
+gh secret set DOKPLOY_WEBHOOK_URL --env produccion -R abitech-dev/abitech-portafolio-web
+Remove-Item Env:GH_TOKEN
+```
+
+11. En **Settings → Secrets and variables → Actions → Variables**, crea
     `URL_DEL_SITIO` con `https://abitech.dev`, sin barra final. Después de
     desplegar, el flujo espera a que `URL_DEL_SITIO/version.txt` muestre
     la versión nueva.
@@ -102,8 +111,8 @@ Si el nuevo no queda sano en 30 segundos, vuelve solo a la versión
 previa, también sin cortes. Health Check, Restart Policy y las demás
 secciones quedan vacías, porque la imagen ya trae su `HEALTHCHECK`.
 
-Las cabeceras de seguridad las pone Caddy dentro del contenedor y el
-proxy de CloudPanel las deja pasar. No hace falta repetirlas en Nginx.
+Las cabeceras de seguridad las pone solo Caddy, dentro del contenedor, y
+viajan con la imagen probada en la integración continua.
 
 La primera imagen se publica con el primer push a `develop`. GitHub crea
 el paquete como privado. En el perfil de abitech-dev, entra a
