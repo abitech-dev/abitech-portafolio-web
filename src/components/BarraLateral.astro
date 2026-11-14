@@ -53,10 +53,10 @@ const boton =
       data-menu-boton
       aria-expanded="false"
       aria-controls="menu-movil"
-      class="border-borde text-texto inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm lg:hidden"
+      aria-label={sitio.menu}
+      class="border-borde text-texto grid size-11 shrink-0 place-items-center rounded-md border lg:hidden"
     >
-      <Icon name="lucide:menu" class="size-4" aria-hidden="true" />
-      {sitio.menu}
+      <Icon is:inline name="lucide:menu" class="size-5" aria-hidden="true" />
     </button>
   </div>
 
@@ -69,10 +69,10 @@ const boton =
       <button
         type="button"
         data-menu-cerrar
-        class="border-borde inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm"
+        aria-label={sitio.cerrar}
+        class="border-borde grid size-11 place-items-center rounded-md border"
       >
-        <Icon name="lucide:x" class="size-4" aria-hidden="true" />
-        {sitio.cerrar}
+        <Icon is:inline name="lucide:x" class="size-5" aria-hidden="true" />
       </button>
     </div>
 
@@ -80,7 +80,13 @@ const boton =
 
     <div class="mt-auto space-y-4">
       <p class="text-tenue flex items-center gap-2 text-sm">
-        <Icon name="lucide:map-pin" class="size-4" aria-hidden="true" />
+        <Icon
+          is:inline
+          is:inline
+          name="lucide:map-pin"
+          class="size-4"
+          aria-hidden="true"
+        />
         {location.city}, {sitio.pais}
       </p>
       <ul class="flex flex-wrap gap-1.5" aria-label={sitio.perfiles}>
@@ -94,6 +100,9 @@ const boton =
               class={boton}
             >
               <Icon
+                is:inline
+                is:inline
+                is:inline
                 name={ICONOS[perfil.network] ?? "lucide:external-link"}
                 class="size-4"
               />
@@ -107,7 +116,7 @@ const boton =
             aria-label={sitio.correo}
             class={boton}
           >
-            <Icon name="lucide:mail" class="size-4" />
+            <Icon is:inline name="lucide:mail" class="size-4" />
           </a>
         </li>
       </ul>
@@ -141,8 +150,8 @@ const boton =
           )}
         </div>
         <BotonTema client:load etiqueta={sitio.temaOscuro}>
-          <Icon slot="claro" name="lucide:moon" class="size-4" />
-          <Icon slot="oscuro" name="lucide:sun" class="size-4" />
+          <Icon is:inline slot="claro" name="lucide:moon" class="size-4" />
+          <Icon is:inline slot="oscuro" name="lucide:sun" class="size-4" />
         </BotonTema>
       </div>
     </div>

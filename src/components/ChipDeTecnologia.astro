@@ -18,6 +18,8 @@ const logo = logoDeTecnologia(tecnologia);
     clase,
   ]}
 >
-  {logo && <Icon name={logo} class="size-[1.1em]" aria-hidden="true" />}
+  {logo && (
+    <Icon is:inline name={logo} class="size-[1.1em]" aria-hidden="true" />
+  )}
   {tecnologia}
 </li>

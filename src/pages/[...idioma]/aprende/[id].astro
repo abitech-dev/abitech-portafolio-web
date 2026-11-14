@@ -45,7 +45,12 @@ const { aprende, sitio } = textosDe(idioma);
     href={rutaEn(idioma, "/aprende")}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >
-    <Icon name="lucide:arrow-left" class="size-4" aria-hidden="true" />
+    <Icon
+      is:inline
+      name="lucide:arrow-left"
+      class="size-4"
+      aria-hidden="true"
+    />
     {aprende.volver}
   </a>
 
@@ -81,9 +86,15 @@ const { aprende, sitio } = textosDe(idioma);
                 rel="noopener"
                 class="group text-acento inline-flex items-center gap-2 font-semibold"
               >
-                <Icon name="lucide:github" class="size-5" aria-hidden="true" />
+                <Icon
+                  is:inline
+                  name="lucide:github"
+                  class="size-5"
+                  aria-hidden="true"
+                />
                 {recurso.etiqueta[idioma]}
                 <Icon
+                  is:inline
                   name="lucide:arrow-up-right"
                   class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   aria-hidden="true"

@@ -41,30 +41,54 @@ los puertos de CloudPanel.
    ss -ltn | grep ':8085 ' || echo "8085 libre"
    ```
 
-3. Cierra ese puerto en el firewall del proveedor del VPS. Docker publica
-   sus puertos por encima del firewall de CloudPanel, que no lo bloquea.
-4. En **Advanced → Resources** limita la memoria a 128 MB. Caddy usa
-   menos de 20 MB, y durante un despliegue corren dos contenedores.
-5. En CloudPanel crea un sitio de tipo **Reverse Proxy** para
-   `abitech.dev`, con la URL `http://127.0.0.1:8085`, y emite su
-   certificado de Let's Encrypt.
-6. En Dokploy, en **Deployments**, copia la URL del **webhook** de
-   despliegue.
-7. En GitHub, en **Settings → Environments**, crea el entorno
-   `produccion` y limita sus ramas de despliegue a `main`.
-8. Guarda la URL del webhook como secreto de ese entorno. Así solo la
-   lee el trabajo que despliega desde `main`.
+3. Crea una red overlay propia y escribe su nombre en **Advanced → Swarm
+   Settings → Network → Network Name**. Si `dokploy-network` es de tipo
+   `bridge`, Swarm la rechaza con un error 403. La red propia además aísla
+   el sitio del resto.
 
-   ```powershell
-   $env:GH_TOKEN = gh auth token -u abitech-dev
-   gh secret set DOKPLOY_WEBHOOK_URL --env produccion -R abitech-dev/abitech-portafolio-web
-   Remove-Item Env:GH_TOKEN
+   ```bash
+   docker network create --driver overlay abitechportafolio-red
    ```
 
-9. En **Settings → Secrets and variables → Actions → Variables**, crea
-   `URL_DEL_SITIO` con `https://abitech.dev`, sin barra final. Después de
-   desplegar, el flujo espera a que `URL_DEL_SITIO/version.txt` muestre
-   la versión nueva.
+4. Cierra el puerto al público. Docker publica sus puertos por encima del
+   firewall de CloudPanel, así que la regla va en la cadena `DOCKER-USER`.
+   CloudPanel sigue llegando por `127.0.0.1`.
+
+   ```bash
+   iptables -I DOCKER-USER -i eth0 -p tcp -m conntrack      --ctorigdstport 8085 --ctdir ORIGINAL -j DROP
+   ```
+
+5. En **Advanced → Resources** limita la memoria a 128 MB. Caddy usa
+   menos de 20 MB, y durante un despliegue corren dos contenedores.
+6. En CloudPanel crea un sitio de tipo **Reverse Proxy** para
+   `abitech.dev`, con la URL `http://127.0.0.1:8085`, y emite su
+   certificado de Let's Encrypt para `abitech.dev` y `www.abitech.dev`.
+7. En la pestaña **Vhost** del sitio borra estas dos líneas. Las
+   cabeceras de `global_settings` pisan las de Caddy, como
+   `Referrer-Policy`.
+
+   ```nginx
+   include /etc/nginx/global_settings;
+   add_header Cache-Control no-transform;
+   ```
+
+8. En Dokploy, en **Deployments**, copia la URL del **webhook** de
+   despliegue.
+9. En GitHub, en **Settings → Environments**, crea el entorno
+   `produccion` y limita sus ramas de despliegue a `main`.
+10. Guarda la URL del webhook como secreto de ese entorno. Así solo la
+    lee el trabajo que despliega desde `main`.
+
+```powershell
+$env:GH_TOKEN = gh auth token -u abitech-dev
+gh secret set DOKPLOY_WEBHOOK_URL --env produccion -R abitech-dev/abitech-portafolio-web
+Remove-Item Env:GH_TOKEN
+```
+
+11. En **Settings → Secrets and variables → Actions → Variables**, crea
+    `URL_DEL_SITIO` con `https://abitech.dev`, sin barra final. Después de
+    desplegar, el flujo espera a que `URL_DEL_SITIO/version.txt` muestre
+    la versión nueva.
 
 ### Desplegar sin cortes
 
@@ -87,8 +111,8 @@ Si el nuevo no queda sano en 30 segundos, vuelve solo a la versión
 previa, también sin cortes. Health Check, Restart Policy y las demás
 secciones quedan vacías, porque la imagen ya trae su `HEALTHCHECK`.
 
-Las cabeceras de seguridad las pone Caddy dentro del contenedor y el
-proxy de CloudPanel las deja pasar. No hace falta repetirlas en Nginx.
+Las cabeceras de seguridad las pone solo Caddy, dentro del contenedor, y
+viajan con la imagen probada en la integración continua.
 
 La primera imagen se publica con el primer push a `develop`. GitHub crea
 el paquete como privado. En el perfil de abitech-dev, entra a

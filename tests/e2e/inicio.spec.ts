@@ -11,6 +11,8 @@ test("la portada saluda, dice la misión y muestra los destacados", async ({
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     /Construyo software/,
   );
+  await expect(page.locator("h1 .text-acento")).toHaveText("todos los días");
+  await expect(page.getByText("usuarios en Tu Coach")).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Mi recorrido" }),
   ).toBeVisible();

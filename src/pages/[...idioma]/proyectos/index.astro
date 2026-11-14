@@ -50,7 +50,9 @@ const filtros = tecnologiasFrecuentes(projects, 3);
           aria-pressed="false"
           class="filtro"
         >
-          {logo && <Icon name={logo} class="size-4" aria-hidden="true" />}
+          {logo && (
+            <Icon is:inline name={logo} class="size-4" aria-hidden="true" />
+          )}
           {tecnologia}
         </button>
       );

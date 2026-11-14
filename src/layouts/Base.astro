@@ -134,6 +134,8 @@ const metadatos = metadatosDe(
       {sitio.saltar}
     </a>
     <div class="mx-auto max-w-[88rem] lg:grid lg:grid-cols-[18rem_minmax(0,1fr)]">
+      {/* El router cambia el contenido y deja la barra, así que ningún ícono
+      puede usar símbolos de otra parte. Todos van con is:inline. */}
       <div class="contents" transition:persist={`lateral-${idioma}`}>
         <BarraLateral />
       </div>

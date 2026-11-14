@@ -69,7 +69,9 @@ const ICONO_DE_CATEGORIA: Record<string, string> = {
           const nivel = nivelDe(habilidad.level);
           return (
             <li class="border-borde bg-superficie inline-flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm">
-              {logo && <Icon name={logo} class="size-4" aria-hidden="true" />}
+              {logo && (
+                <Icon is:inline name={logo} class="size-4" aria-hidden="true" />
+              )}
               <span>{conMayuscula(habilidad.name)}</span>
               <span class="flex gap-0.5" aria-hidden="true">
                 {[1, 2, 3].map((punto) => (

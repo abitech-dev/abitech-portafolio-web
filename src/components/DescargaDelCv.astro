@@ -25,7 +25,7 @@ const nombreDe = (codigo: "es" | "en") =>
     data-umami-event-idioma={idioma}
     class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
   >
-    <Icon name="lucide:download" class="size-4" aria-hidden="true" />
+    <Icon is:inline name="lucide:download" class="size-4" aria-hidden="true" />
     {cv.descargar}
   </a>
   <a
@@ -36,7 +36,7 @@ const nombreDe = (codigo: "es" | "en") =>
     hreflang={otro}
     class="border-borde hover:border-acento inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm"
   >
-    <Icon name="lucide:languages" class="size-4" aria-hidden="true" />
+    <Icon is:inline name="lucide:languages" class="size-4" aria-hidden="true" />
     <span lang={otro}>{cv.otraVersion}</span>
   </a>
 </div>

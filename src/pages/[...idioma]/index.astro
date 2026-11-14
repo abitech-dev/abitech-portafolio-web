@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
 import saludo from "@/assets/saludo.png";
+import ChipDeTecnologia from "@/components/ChipDeTecnologia.astro";
 import Insignia from "@/components/Insignia.astro";
 import ProyectoDestacado from "@/components/ProyectoDestacado.astro";
 import Seccion from "@/components/Seccion.astro";
@@ -16,19 +17,38 @@ export function getStaticPaths() {
 }
 
 const DESTACADOS = ["tu-coach", "pilot-ssh", "cred-plus", "yachacuy"];
+const TECNOLOGIAS = ["Laravel", "Vue", ".NET", "AWS"];
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const resume = datosDe(idioma);
 const { inicio } = textosDe(idioma);
 const { basics, projects } = resume;
 const destacados = proyectosPorId(resume, DESTACADOS);
+const totalProyectos = projects.filter((p) => !esPaquete(p)).length;
+const [antesDelResalte, despuesDelResalte] = inicio.mision.split(
+  inicio.misionResaltada,
+);
+const usuariosTuCoach = proyectosPorId(datosDe("es"), ["tu-coach"])[0]
+  ?.highlights?.join(" ")
+  .match(/(\d+) usuarios/)?.[1];
+const anioDeInicio = Math.min(
+  ...resume.work.map((trabajo) => Number(trabajo.startDate.slice(0, 4))),
+);
+const cifras = [
+  {
+    valor: `+${new Date().getFullYear() - anioDeInicio}`,
+    texto: inicio.cifras.anios,
+  },
+  ...(usuariosTuCoach
+    ? [{ valor: `+${usuariosTuCoach}`, texto: inicio.cifras.usuarios }]
+    : []),
+  { valor: String(totalProyectos), texto: inicio.cifras.proyectos },
+];
 const frentes = [
   {
     ...inicio.construyo,
     icono: "lucide:code-xml",
     ruta: "/proyectos",
-    enlace: inicio.construyo.enlace(
-      projects.filter((p) => !esPaquete(p)).length,
-    ),
+    enlace: inicio.construyo.enlace(totalProyectos),
   },
   {
     ...inicio.enseno,
@@ -60,27 +80,54 @@ const flecha = "size-4 transition-transform group-hover:translate-x-1";
       {inicio.saludo}{" "}
       <span class="text-acento font-semibold">{basics.name.split(" ")[0]}</span>
     </p>
-    <h1 class="mt-4 max-w-3xl text-4xl leading-tight font-bold sm:text-5xl">
-      {inicio.mision}
+    <h1 class="mt-4 max-w-3xl text-[2rem] leading-[1.15] font-bold text-balance sm:text-5xl sm:leading-tight">
+      {antesDelResalte}
+      <span class="text-acento">{inicio.misionResaltada}</span>
+      {despuesDelResalte}
     </h1>
-    <p class="text-tenue mt-6 max-w-2xl text-lg leading-relaxed">
+    <p class="text-tenue mt-5 max-w-2xl text-base leading-relaxed sm:mt-6 sm:text-lg">
       {inicio.intro}
     </p>
+    <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+      <span class="text-tenue text-sm">{inicio.trabajoCon}</span>
+      <ul class="flex flex-wrap gap-2">
+        {TECNOLOGIAS.map((tecnologia) => (
+          <ChipDeTecnologia tecnologia={tecnologia} class="px-2 py-1 text-sm" />
+        ))}
+      </ul>
+    </div>
     <div class="mt-8 flex flex-wrap gap-3">
       <a
         href={rutaEn(idioma, "/proyectos")}
-        class="group bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-semibold"
+        class="group bg-acento text-fondo inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-5 py-2.5 font-semibold"
       >
         {inicio.verProyectos}
-        <Icon name="lucide:arrow-right" class={flecha} aria-hidden="true" />
+        <Icon
+          is:inline
+          name="lucide:arrow-right"
+          class={flecha}
+          aria-hidden="true"
+        />
       </a>
       <a
         href={rutaEn(idioma, "/sobre-mi")}
-        class="border-borde hover:border-acento inline-flex items-center gap-2 rounded-md border px-5 py-2.5 transition-colors"
+        class="border-borde hover:border-acento inline-flex min-h-12 items-center justify-center gap-2 rounded-md border px-5 py-2.5 transition-colors"
       >
         {inicio.conoceme}
       </a>
     </div>
+    <dl class="border-borde divide-borde mt-10 grid max-w-2xl grid-cols-3 divide-x border-y">
+      {cifras.map((cifra) => (
+        <div class="flex flex-col gap-1 px-3 py-4 first:pl-0 sm:px-5">
+          <dt class="text-tenue order-2 text-xs leading-snug sm:text-sm">
+            {cifra.texto}
+          </dt>
+          <dd class="font-display order-1 text-2xl font-bold sm:text-3xl">
+            {cifra.valor}
+          </dd>
+        </div>
+      ))}
+    </dl>
   </section>
 
   <Seccion titulo={inicio.frentes} id="frentes">
@@ -89,9 +136,9 @@ const flecha = "size-4 transition-transform group-hover:translate-x-1";
         <li class="revelar">
           <a
             href={rutaEn(idioma, frente.ruta)}
-            class="group border-borde hover:border-acento flex h-full flex-col gap-3 rounded-lg border p-5 transition-colors"
+            class="group border-borde hover:border-acento grid h-full grid-cols-[2.5rem_1fr] content-start gap-x-4 gap-y-1.5 rounded-lg border p-4 transition-colors sm:flex sm:flex-col sm:gap-3 sm:p-5"
           >
-            <Insignia icono={frente.icono} class="size-10" />
+            <Insignia icono={frente.icono} class="row-span-3 size-10" />
             <span class="font-display text-lg font-semibold">
               {frente.titulo}
             </span>
@@ -101,6 +148,7 @@ const flecha = "size-4 transition-transform group-hover:translate-x-1";
             <span class="text-acento mt-auto inline-flex items-center gap-1 text-sm font-semibold">
               {frente.enlace}
               <Icon
+                is:inline
                 name="lucide:arrow-right"
                 class={flecha}
                 aria-hidden="true"
@@ -123,7 +171,12 @@ const flecha = "size-4 transition-transform group-hover:translate-x-1";
       class="group text-acento mt-12 inline-flex items-center gap-2 font-semibold"
     >
       {inicio.verTodos}
-      <Icon name="lucide:arrow-right" class={flecha} aria-hidden="true" />
+      <Icon
+        is:inline
+        name="lucide:arrow-right"
+        class={flecha}
+        aria-hidden="true"
+      />
     </a>
   </Seccion>
 
@@ -141,6 +194,7 @@ const flecha = "size-4 transition-transform group-hover:translate-x-1";
               >
                 {hito.enlace}
                 <Icon
+                  is:inline
                   name="lucide:arrow-right"
                   class={flecha}
                   aria-hidden="true"

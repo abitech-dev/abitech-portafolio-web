@@ -38,6 +38,16 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Cambiado
 
+- Inicio más claro en celular. La misión resalta «todos los días», las
+  tecnologías salen como logos y tres cifras resumen la trayectoria.
+- Botón del menú en celular solo con ícono, de 44 por 44 píxeles.
+- Barra de desplazamiento delgada, con los colores del tema.
+
+### Corregido
+
+- Los íconos ya no desaparecen al navegar entre páginas.
+- La CSP ya no bloquea un script del router de Astro.
+
 - Aprende con la portada del libro, cifras y una página de detalle con
   las portadas reales de sus 7 volúmenes.
 - Código abierto en formato editorial, sin tarjetas. Cada paquete tiene

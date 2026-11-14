@@ -42,7 +42,12 @@ const libro = publications[0];
         href={rutaEn(idioma, "/cv")}
         class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
       >
-        <Icon name="lucide:file-text" class="size-4" aria-hidden="true" />
+        <Icon
+          is:inline
+          name="lucide:file-text"
+          class="size-4"
+          aria-hidden="true"
+        />
         {t.sobreMi.verCv}
       </a>
     </div>

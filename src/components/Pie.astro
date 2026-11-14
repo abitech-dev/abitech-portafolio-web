@@ -27,7 +27,12 @@ const mes = `${hoy.getUTCFullYear()}-${String(hoy.getUTCMonth() + 1).padStart(2,
           data-umami-event="escribir-correo"
           class="bg-acento text-fondo inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold"
         >
-          <Icon name="lucide:mail" class="size-4" aria-hidden="true" />
+          <Icon
+            is:inline
+            name="lucide:mail"
+            class="size-4"
+            aria-hidden="true"
+          />
           {pie.escribir}
         </a>
       </div>
@@ -48,7 +53,12 @@ const mes = `${hoy.getUTCFullYear()}-${String(hoy.getUTCMonth() + 1).padStart(2,
           rel="noopener"
           class="border-borde hover:border-acento hover:text-acento inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 transition-colors"
         >
-          <Icon name="lucide:github" class="size-3.5" aria-hidden="true" />
+          <Icon
+            is:inline
+            name="lucide:github"
+            class="size-3.5"
+            aria-hidden="true"
+          />
           {pie.codigo}
           <span class="sr-only">({otraPestana})</span>
         </a>

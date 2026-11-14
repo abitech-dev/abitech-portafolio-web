@@ -244,3 +244,34 @@ test("Aprende lleva al libro y muestra sus volúmenes", async ({ page }) => {
       .locator("ol > li"),
   ).toHaveCount(7);
 });
+
+test("al navegar, ningún ícono queda sin dibujo", async ({ page }) => {
+  await page.goto("/");
+  for (const nombre of ["Sobre mí", "Contacto", "Inicio", "CV", "Aprende"]) {
+    await abrirMenuEnCelular(page);
+    await page
+      .getByRole("navigation")
+      .getByRole("link", { name: nombre })
+      .click();
+    await page.waitForLoadState("networkidle");
+
+    const rotos = await page.evaluate(() =>
+      [...document.querySelectorAll("svg use")]
+        .map((uso) => uso.getAttribute("href") ?? "")
+        .filter((destino) => !document.getElementById(destino.slice(1))),
+    );
+    expect(rotos, nombre).toEqual([]);
+  }
+});
+
+// Un módulo en línea hace que el router de Astro inyecte un script data:,
+// que la CSP de producción bloquea.
+test("ninguna página trae módulos en línea", async ({ page }) => {
+  for (const { ruta } of PAGINAS) {
+    await page.goto(ruta);
+    const enLinea = await page
+      .locator('script[type="module"]:not([src])')
+      .count();
+    expect(enLinea, ruta).toBe(0);
+  }
+});
