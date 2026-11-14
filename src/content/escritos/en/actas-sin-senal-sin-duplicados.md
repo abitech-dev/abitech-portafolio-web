@@ -4,7 +4,7 @@ descripcion: How I made a PWA save reports without internet and send them only o
 fecha: 2026-11-12
 tipo: nota
 etiquetas: [pwa, offline, laravel]
-borrador: true
+borrador: false
 ---
 
 For a client, I built an installable web app where technicians fill in and
@@ -12,9 +12,9 @@ sign their electrical maintenance reports on their phones. They often work
 without signal, so the app had to store everything on the phone and send it
 when the connection came back.
 
-Saving offline is the easy part. The hard part is sending only once. If the
-upload reaches the server but the response is lost, the phone thinks it failed
-and tries again. Without care, that creates two identical reports.
+The risk is in the upload. If a request reaches the server but its response
+is lost, the phone thinks it failed and repeats it. Without a control, that
+creates two identical reports.
 
 ## The identifier is born on the phone
 
@@ -60,5 +60,5 @@ Signatures stay stored while there is no connection, so I encrypted them with
 AES-GCM using the Web Crypto API. The key is created as non-extractable.
 Anyone who copies the phone's database only sees encrypted bytes.
 
-The lesson I take away is that in an offline app, the identity of each record
-has to be born where the record is created, not on the server.
+In an offline app, the identity of each record is born where the record is
+created, not on the server.
