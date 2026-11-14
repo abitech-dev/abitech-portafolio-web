@@ -136,8 +136,15 @@ const es = {
   aprende: {
     descripcion: (nombre: string) =>
       `Libros de ${nombre} para aprender tecnología en español, empezando por Docker.`,
-    intro: "Escribo para enseñar en español lo que uso en producción.",
-    libros: "Libros",
+    intro:
+      "Libros y cursos para aprender una tecnología de principio a fin, en español.",
+    tipos: { libro: "Libro", curso: "Curso" },
+    verTemario: (n: number) => `Ver los ${n} volúmenes`,
+    volumenes: "Volúmenes",
+    volumen: (n: number) => `Volumen ${n}`,
+    recursos: "Recursos",
+    volver: "Volver a Aprende",
+    portadaDe: (titulo: string) => `Portada de ${titulo}`,
   },
   sobreMi: {
     descripcion: (nombre: string) =>
@@ -317,8 +324,15 @@ const en: Textos = {
   aprende: {
     descripcion: (nombre) =>
       `Books by ${nombre} to learn technology in Spanish, starting with Docker.`,
-    intro: "I write to teach, in Spanish, what I use in production.",
-    libros: "Books",
+    intro:
+      "Books and courses to learn a technology from start to finish, in Spanish.",
+    tipos: { libro: "Book", curso: "Course" },
+    verTemario: (n) => `See all ${n} volumes`,
+    volumenes: "Volumes",
+    volumen: (n) => `Volume ${n}`,
+    recursos: "Resources",
+    volver: "Back to Learn",
+    portadaDe: (titulo) => `Cover of ${titulo}`,
   },
   sobreMi: {
     descripcion: (nombre) =>

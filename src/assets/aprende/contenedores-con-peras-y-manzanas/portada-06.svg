@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170mm" height="240mm" viewBox="0 0 170 240" role="img">
+<title>Contenedores con peras y manzanas. Volumen 6: Rumbo a producción</title>
+<style>
+@font-face { font-family: "Big Shoulders Stencil"; src: url("../fuentes/BigShouldersStencil.ttf"); }
+@font-face { font-family: "Atkinson Hyperlegible Next"; src: url("../fuentes/AtkinsonHyperlegibleNext.ttf"); }
+.rotulo { font-family: "Big Shoulders Stencil", "Arial Narrow", sans-serif; font-weight: 800; }
+.texto { font-family: "Atkinson Hyperlegible Next", Arial, sans-serif; }
+</style>
+<rect width="170" height="240" fill="#2C7C78"/>
+<rect x="10" y="16" width="21" height="208" rx="1" fill="#276D6A"/>
+<rect x="10" y="16" width="1.2" height="208" fill="#529490"/>
+<rect x="35" y="16" width="21" height="208" rx="1" fill="#276D6A"/>
+<rect x="35" y="16" width="1.2" height="208" fill="#529490"/>
+<rect x="60" y="16" width="21" height="208" rx="1" fill="#276D6A"/>
+<rect x="60" y="16" width="1.2" height="208" fill="#529490"/>
+<rect x="88.5" y="16" width="21" height="208" rx="1" fill="#276D6A"/>
+<rect x="88.5" y="16" width="1.2" height="208" fill="#529490"/>
+<rect x="113.5" y="16" width="21" height="208" rx="1" fill="#276D6A"/>
+<rect x="113.5" y="16" width="1.2" height="208" fill="#529490"/>
+<rect x="138.5" y="16" width="21" height="208" rx="1" fill="#276D6A"/>
+<rect x="138.5" y="16" width="1.2" height="208" fill="#529490"/>
+<rect width="170" height="12" fill="#205956"/>
+<rect y="228" width="170" height="12" fill="#205956"/>
+<rect width="7" height="240" fill="#205956"/>
+<rect x="163" width="7" height="240" fill="#205956"/>
+<rect x="84.5" y="12" width="1" height="216" fill="#205956"/>
+<rect x="0" y="0" width="10" height="11" fill="#184442"/>
+<rect x="3" y="3" width="4" height="5" rx="1.5" fill="#1A1A1A"/>
+<rect x="160" y="0" width="10" height="11" fill="#184442"/>
+<rect x="163" y="3" width="4" height="5" rx="1.5" fill="#1A1A1A"/>
+<rect x="0" y="229" width="10" height="11" fill="#184442"/>
+<rect x="3" y="232" width="4" height="5" rx="1.5" fill="#1A1A1A"/>
+<rect x="160" y="229" width="10" height="11" fill="#184442"/>
+<rect x="163" y="232" width="4" height="5" rx="1.5" fill="#1A1A1A"/>
+<rect x="2" y="30" width="7" height="9" fill="#1A4A48"/>
+<rect x="161" y="30" width="7" height="9" fill="#1A4A48"/>
+<rect x="2" y="85" width="7" height="9" fill="#1A4A48"/>
+<rect x="161" y="85" width="7" height="9" fill="#1A4A48"/>
+<rect x="2" y="150" width="7" height="9" fill="#1A4A48"/>
+<rect x="161" y="150" width="7" height="9" fill="#1A4A48"/>
+<rect x="2" y="205" width="7" height="9" fill="#1A4A48"/>
+<rect x="161" y="205" width="7" height="9" fill="#1A4A48"/>
+<rect x="23.8" y="15" width="2.4" height="210" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="22" y="14" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="22" y="220" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="25" y="186" width="12" height="2.6" rx="1" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="64.8" y="15" width="2.4" height="210" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="63" y="14" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="63" y="220" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="54" y="186" width="12" height="2.6" rx="1" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="102.8" y="15" width="2.4" height="210" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="101" y="14" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="101" y="220" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="104" y="186" width="12" height="2.6" rx="1" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="143.8" y="15" width="2.4" height="210" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="142" y="14" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="142" y="220" width="6" height="6" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<rect x="133" y="186" width="12" height="2.6" rx="1" fill="#B9C3C9" stroke="#6E7B84" stroke-width="0.3"/>
+<text class="rotulo" x="14" y="58" font-size="40" fill="#FFFFFF">06</text>
+<text class="rotulo" x="144" y="26" font-size="7" letter-spacing="0.6" text-anchor="end" fill="#FFFFFF">PYMU 000006</text>
+<rect x="146.5" y="19.6" width="7" height="8" fill="none" stroke="#FFFFFF" stroke-width="0.5"/>
+<text class="rotulo" x="150" y="26" font-size="7" text-anchor="middle" fill="#FFFFFF">5</text>
+<text class="rotulo" x="153.5" y="37" font-size="7" letter-spacing="0.6" text-anchor="end" fill="#FFFFFF">22G1</text>
+<rect x="20" y="70" width="130" height="96" rx="2" fill="#FFFFFF"/>
+<rect x="20" y="70" width="130" height="6" rx="2" fill="#2C7C78"/>
+<text class="rotulo" x="29" y="90" font-size="7" letter-spacing="1.4" fill="#4A5A65">VOLUMEN 6</text>
+<text class="texto" x="29" y="111" font-size="11.1" font-weight="700" fill="#13212B">Rumbo a producción</text>
+<text class="texto" x="29" y="124" font-size="5" fill="#4A5A65">Un servidor real, con todo lo que pide</text>
+<rect x="29" y="143" width="112" height="0.4" fill="#C8D2D6"/>
+<text class="texto" x="29" y="151" font-size="4.2" fill="#4A5A65">Contenedores con peras y manzanas</text>
+<text class="texto" x="29" y="159" font-size="4.2" font-weight="700" fill="#13212B">Abimael Epifanio Fernandez Ventura</text>
+</svg>

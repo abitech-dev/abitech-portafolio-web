@@ -1,4 +1,4 @@
-import { esPaquete, type Resume } from "@/lib/trayectoria";
+import { esPaquete, slugDe, type Resume } from "@/lib/trayectoria";
 
 /** Formato de https://llmstxt.org, con título, resumen y listas de enlaces. */
 export interface EscritoParaLlms {
@@ -74,7 +74,7 @@ export function llmsTxt(
     "## Libros",
     "",
     ...publications.map((libro) =>
-      enlace(libro.name, url("/aprende"), libro.summary),
+      enlace(libro.name, url(`/aprende/${slugDe(libro.name)}`), libro.summary),
     ),
     "",
     "## Optional",

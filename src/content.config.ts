@@ -36,4 +36,31 @@ const paquetes = defineCollection({
   }),
 });
 
-export const collections = { escritos, paquetes };
+/** Libros y cursos, cada uno con su temario de módulos o volúmenes. */
+const aprende = defineCollection({
+  loader: glob({ pattern: "*.yaml", base: "./src/content/aprende" }),
+  schema: ({ image }) =>
+    z.object({
+      tipo: z.enum(["libro", "curso"]),
+      estado: bilingue,
+      lema: z.object({ es: z.string().max(80), en: z.string().max(80) }),
+      portada: image(),
+      datos: z
+        .array(z.object({ valor: bilingue, etiqueta: bilingue }))
+        .min(2)
+        .max(4),
+      modulos: z
+        .array(
+          z.object({
+            numero: z.string(),
+            titulo: z.string(),
+            subtitulo: z.string(),
+            portada: image(),
+          }),
+        )
+        .min(1),
+      recursos: z.array(z.object({ etiqueta: bilingue, url: z.url() })),
+    }),
+});
+
+export const collections = { escritos, paquetes, aprende };

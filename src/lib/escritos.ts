@@ -1,4 +1,5 @@
 import type { Idioma } from "@/i18n/rutas";
+import { slugDe } from "@/lib/trayectoria";
 
 export interface Escrito {
   id: string;
@@ -52,10 +53,5 @@ export function etiquetasDe(escritos: readonly Escrito[]): [string, number][] {
 }
 
 export function idDeEtiqueta(etiqueta: string): string {
-  return etiqueta
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+  return slugDe(etiqueta);
 }

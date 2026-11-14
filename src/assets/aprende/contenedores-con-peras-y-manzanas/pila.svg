@@ -1,0 +1,515 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="138.6mm" height="240mm" viewBox="0 0 138.6 240" role="img">
+<title>Los lomos de la colección, juntos, forman la pila del barco</title>
+<style>
+@font-face { font-family: "Big Shoulders Stencil"; src: url("../fuentes/BigShouldersStencil.ttf"); }
+@font-face { font-family: "Atkinson Hyperlegible Next"; src: url("../fuentes/AtkinsonHyperlegibleNext.ttf"); }
+.rotulo { font-family: "Big Shoulders Stencil", "Arial Narrow", sans-serif; font-weight: 800; }
+.texto { font-family: "Atkinson Hyperlegible Next", Arial, sans-serif; }
+</style>
+<g id="lomo-00" transform="translate(0 0)">
+<rect width="12" height="186" fill="#66737B"/>
+<rect y="4" width="12" height="1.6" fill="#5A656C"/>
+<rect y="9" width="12" height="1.6" fill="#5A656C"/>
+<rect y="14" width="12" height="1.6" fill="#5A656C"/>
+<rect y="19" width="12" height="1.6" fill="#5A656C"/>
+<rect y="24" width="12" height="1.6" fill="#5A656C"/>
+<rect y="29" width="12" height="1.6" fill="#5A656C"/>
+<rect y="34" width="12" height="1.6" fill="#5A656C"/>
+<rect y="39" width="12" height="1.6" fill="#5A656C"/>
+<rect y="44" width="12" height="1.6" fill="#5A656C"/>
+<rect y="49" width="12" height="1.6" fill="#5A656C"/>
+<rect y="54" width="12" height="1.6" fill="#5A656C"/>
+<rect y="59" width="12" height="1.6" fill="#5A656C"/>
+<rect y="64" width="12" height="1.6" fill="#5A656C"/>
+<rect y="69" width="12" height="1.6" fill="#5A656C"/>
+<rect y="74" width="12" height="1.6" fill="#5A656C"/>
+<rect y="79" width="12" height="1.6" fill="#5A656C"/>
+<rect y="84" width="12" height="1.6" fill="#5A656C"/>
+<rect y="89" width="12" height="1.6" fill="#5A656C"/>
+<rect y="94" width="12" height="1.6" fill="#5A656C"/>
+<rect y="99" width="12" height="1.6" fill="#5A656C"/>
+<rect y="104" width="12" height="1.6" fill="#5A656C"/>
+<rect y="109" width="12" height="1.6" fill="#5A656C"/>
+<rect y="114" width="12" height="1.6" fill="#5A656C"/>
+<rect y="119" width="12" height="1.6" fill="#5A656C"/>
+<rect y="124" width="12" height="1.6" fill="#5A656C"/>
+<rect y="129" width="12" height="1.6" fill="#5A656C"/>
+<rect y="134" width="12" height="1.6" fill="#5A656C"/>
+<rect y="139" width="12" height="1.6" fill="#5A656C"/>
+<rect y="144" width="12" height="1.6" fill="#5A656C"/>
+<rect y="149" width="12" height="1.6" fill="#5A656C"/>
+<rect y="154" width="12" height="1.6" fill="#5A656C"/>
+<rect y="159" width="12" height="1.6" fill="#5A656C"/>
+<rect y="164" width="12" height="1.6" fill="#5A656C"/>
+<rect y="169" width="12" height="1.6" fill="#5A656C"/>
+<rect y="174" width="12" height="1.6" fill="#5A656C"/>
+<rect y="179" width="12" height="1.6" fill="#5A656C"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">00</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">Antes de zarpar</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000000 2</text>
+<path d="M0 186 H12 V240 H4 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-0"><path d="M0 186 H12 V240 H4 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-0)"/>
+</g>
+<g id="lomo-01" transform="translate(12.6 0)">
+<rect width="12" height="186" fill="#2A6F9E"/>
+<rect y="4" width="12" height="1.6" fill="#25628B"/>
+<rect y="9" width="12" height="1.6" fill="#25628B"/>
+<rect y="14" width="12" height="1.6" fill="#25628B"/>
+<rect y="19" width="12" height="1.6" fill="#25628B"/>
+<rect y="24" width="12" height="1.6" fill="#25628B"/>
+<rect y="29" width="12" height="1.6" fill="#25628B"/>
+<rect y="34" width="12" height="1.6" fill="#25628B"/>
+<rect y="39" width="12" height="1.6" fill="#25628B"/>
+<rect y="44" width="12" height="1.6" fill="#25628B"/>
+<rect y="49" width="12" height="1.6" fill="#25628B"/>
+<rect y="54" width="12" height="1.6" fill="#25628B"/>
+<rect y="59" width="12" height="1.6" fill="#25628B"/>
+<rect y="64" width="12" height="1.6" fill="#25628B"/>
+<rect y="69" width="12" height="1.6" fill="#25628B"/>
+<rect y="74" width="12" height="1.6" fill="#25628B"/>
+<rect y="79" width="12" height="1.6" fill="#25628B"/>
+<rect y="84" width="12" height="1.6" fill="#25628B"/>
+<rect y="89" width="12" height="1.6" fill="#25628B"/>
+<rect y="94" width="12" height="1.6" fill="#25628B"/>
+<rect y="99" width="12" height="1.6" fill="#25628B"/>
+<rect y="104" width="12" height="1.6" fill="#25628B"/>
+<rect y="109" width="12" height="1.6" fill="#25628B"/>
+<rect y="114" width="12" height="1.6" fill="#25628B"/>
+<rect y="119" width="12" height="1.6" fill="#25628B"/>
+<rect y="124" width="12" height="1.6" fill="#25628B"/>
+<rect y="129" width="12" height="1.6" fill="#25628B"/>
+<rect y="134" width="12" height="1.6" fill="#25628B"/>
+<rect y="139" width="12" height="1.6" fill="#25628B"/>
+<rect y="144" width="12" height="1.6" fill="#25628B"/>
+<rect y="149" width="12" height="1.6" fill="#25628B"/>
+<rect y="154" width="12" height="1.6" fill="#25628B"/>
+<rect y="159" width="12" height="1.6" fill="#25628B"/>
+<rect y="164" width="12" height="1.6" fill="#25628B"/>
+<rect y="169" width="12" height="1.6" fill="#25628B"/>
+<rect y="174" width="12" height="1.6" fill="#25628B"/>
+<rect y="179" width="12" height="1.6" fill="#25628B"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">01</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">La caja mágica</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000001 8</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-1"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-1)"/>
+</g>
+<g id="lomo-02" transform="translate(25.2 0)">
+<rect width="12" height="186" fill="#A3402F"/>
+<rect y="4" width="12" height="1.6" fill="#8F3829"/>
+<rect y="9" width="12" height="1.6" fill="#8F3829"/>
+<rect y="14" width="12" height="1.6" fill="#8F3829"/>
+<rect y="19" width="12" height="1.6" fill="#8F3829"/>
+<rect y="24" width="12" height="1.6" fill="#8F3829"/>
+<rect y="29" width="12" height="1.6" fill="#8F3829"/>
+<rect y="34" width="12" height="1.6" fill="#8F3829"/>
+<rect y="39" width="12" height="1.6" fill="#8F3829"/>
+<rect y="44" width="12" height="1.6" fill="#8F3829"/>
+<rect y="49" width="12" height="1.6" fill="#8F3829"/>
+<rect y="54" width="12" height="1.6" fill="#8F3829"/>
+<rect y="59" width="12" height="1.6" fill="#8F3829"/>
+<rect y="64" width="12" height="1.6" fill="#8F3829"/>
+<rect y="69" width="12" height="1.6" fill="#8F3829"/>
+<rect y="74" width="12" height="1.6" fill="#8F3829"/>
+<rect y="79" width="12" height="1.6" fill="#8F3829"/>
+<rect y="84" width="12" height="1.6" fill="#8F3829"/>
+<rect y="89" width="12" height="1.6" fill="#8F3829"/>
+<rect y="94" width="12" height="1.6" fill="#8F3829"/>
+<rect y="99" width="12" height="1.6" fill="#8F3829"/>
+<rect y="104" width="12" height="1.6" fill="#8F3829"/>
+<rect y="109" width="12" height="1.6" fill="#8F3829"/>
+<rect y="114" width="12" height="1.6" fill="#8F3829"/>
+<rect y="119" width="12" height="1.6" fill="#8F3829"/>
+<rect y="124" width="12" height="1.6" fill="#8F3829"/>
+<rect y="129" width="12" height="1.6" fill="#8F3829"/>
+<rect y="134" width="12" height="1.6" fill="#8F3829"/>
+<rect y="139" width="12" height="1.6" fill="#8F3829"/>
+<rect y="144" width="12" height="1.6" fill="#8F3829"/>
+<rect y="149" width="12" height="1.6" fill="#8F3829"/>
+<rect y="154" width="12" height="1.6" fill="#8F3829"/>
+<rect y="159" width="12" height="1.6" fill="#8F3829"/>
+<rect y="164" width="12" height="1.6" fill="#8F3829"/>
+<rect y="169" width="12" height="1.6" fill="#8F3829"/>
+<rect y="174" width="12" height="1.6" fill="#8F3829"/>
+<rect y="179" width="12" height="1.6" fill="#8F3829"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">02</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">La ficha de empaque</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000002 3</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-2"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-2)"/>
+</g>
+<g id="lomo-03" transform="translate(37.8 0)">
+<rect width="12" height="186" fill="#557F2A"/>
+<rect y="4" width="12" height="1.6" fill="#4B7025"/>
+<rect y="9" width="12" height="1.6" fill="#4B7025"/>
+<rect y="14" width="12" height="1.6" fill="#4B7025"/>
+<rect y="19" width="12" height="1.6" fill="#4B7025"/>
+<rect y="24" width="12" height="1.6" fill="#4B7025"/>
+<rect y="29" width="12" height="1.6" fill="#4B7025"/>
+<rect y="34" width="12" height="1.6" fill="#4B7025"/>
+<rect y="39" width="12" height="1.6" fill="#4B7025"/>
+<rect y="44" width="12" height="1.6" fill="#4B7025"/>
+<rect y="49" width="12" height="1.6" fill="#4B7025"/>
+<rect y="54" width="12" height="1.6" fill="#4B7025"/>
+<rect y="59" width="12" height="1.6" fill="#4B7025"/>
+<rect y="64" width="12" height="1.6" fill="#4B7025"/>
+<rect y="69" width="12" height="1.6" fill="#4B7025"/>
+<rect y="74" width="12" height="1.6" fill="#4B7025"/>
+<rect y="79" width="12" height="1.6" fill="#4B7025"/>
+<rect y="84" width="12" height="1.6" fill="#4B7025"/>
+<rect y="89" width="12" height="1.6" fill="#4B7025"/>
+<rect y="94" width="12" height="1.6" fill="#4B7025"/>
+<rect y="99" width="12" height="1.6" fill="#4B7025"/>
+<rect y="104" width="12" height="1.6" fill="#4B7025"/>
+<rect y="109" width="12" height="1.6" fill="#4B7025"/>
+<rect y="114" width="12" height="1.6" fill="#4B7025"/>
+<rect y="119" width="12" height="1.6" fill="#4B7025"/>
+<rect y="124" width="12" height="1.6" fill="#4B7025"/>
+<rect y="129" width="12" height="1.6" fill="#4B7025"/>
+<rect y="134" width="12" height="1.6" fill="#4B7025"/>
+<rect y="139" width="12" height="1.6" fill="#4B7025"/>
+<rect y="144" width="12" height="1.6" fill="#4B7025"/>
+<rect y="149" width="12" height="1.6" fill="#4B7025"/>
+<rect y="154" width="12" height="1.6" fill="#4B7025"/>
+<rect y="159" width="12" height="1.6" fill="#4B7025"/>
+<rect y="164" width="12" height="1.6" fill="#4B7025"/>
+<rect y="169" width="12" height="1.6" fill="#4B7025"/>
+<rect y="174" width="12" height="1.6" fill="#4B7025"/>
+<rect y="179" width="12" height="1.6" fill="#4B7025"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">03</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">Bodegas y caminos</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000003 9</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-3"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-3)"/>
+</g>
+<g id="lomo-04" transform="translate(50.4 0)">
+<rect width="12" height="186" fill="#D49B17"/>
+<rect y="4" width="12" height="1.6" fill="#BB8814"/>
+<rect y="9" width="12" height="1.6" fill="#BB8814"/>
+<rect y="14" width="12" height="1.6" fill="#BB8814"/>
+<rect y="19" width="12" height="1.6" fill="#BB8814"/>
+<rect y="24" width="12" height="1.6" fill="#BB8814"/>
+<rect y="29" width="12" height="1.6" fill="#BB8814"/>
+<rect y="34" width="12" height="1.6" fill="#BB8814"/>
+<rect y="39" width="12" height="1.6" fill="#BB8814"/>
+<rect y="44" width="12" height="1.6" fill="#BB8814"/>
+<rect y="49" width="12" height="1.6" fill="#BB8814"/>
+<rect y="54" width="12" height="1.6" fill="#BB8814"/>
+<rect y="59" width="12" height="1.6" fill="#BB8814"/>
+<rect y="64" width="12" height="1.6" fill="#BB8814"/>
+<rect y="69" width="12" height="1.6" fill="#BB8814"/>
+<rect y="74" width="12" height="1.6" fill="#BB8814"/>
+<rect y="79" width="12" height="1.6" fill="#BB8814"/>
+<rect y="84" width="12" height="1.6" fill="#BB8814"/>
+<rect y="89" width="12" height="1.6" fill="#BB8814"/>
+<rect y="94" width="12" height="1.6" fill="#BB8814"/>
+<rect y="99" width="12" height="1.6" fill="#BB8814"/>
+<rect y="104" width="12" height="1.6" fill="#BB8814"/>
+<rect y="109" width="12" height="1.6" fill="#BB8814"/>
+<rect y="114" width="12" height="1.6" fill="#BB8814"/>
+<rect y="119" width="12" height="1.6" fill="#BB8814"/>
+<rect y="124" width="12" height="1.6" fill="#BB8814"/>
+<rect y="129" width="12" height="1.6" fill="#BB8814"/>
+<rect y="134" width="12" height="1.6" fill="#BB8814"/>
+<rect y="139" width="12" height="1.6" fill="#BB8814"/>
+<rect y="144" width="12" height="1.6" fill="#BB8814"/>
+<rect y="149" width="12" height="1.6" fill="#BB8814"/>
+<rect y="154" width="12" height="1.6" fill="#BB8814"/>
+<rect y="159" width="12" height="1.6" fill="#BB8814"/>
+<rect y="164" width="12" height="1.6" fill="#BB8814"/>
+<rect y="169" width="12" height="1.6" fill="#BB8814"/>
+<rect y="174" width="12" height="1.6" fill="#BB8814"/>
+<rect y="179" width="12" height="1.6" fill="#BB8814"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#13212B">04</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#13212B">El plan de estiba</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#13212B">PYMU 000004 4</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-4"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-4)"/>
+</g>
+<g id="lomo-05" transform="translate(63 0)">
+<rect width="12" height="186" fill="#B4501A"/>
+<rect y="4" width="12" height="1.6" fill="#9E4617"/>
+<rect y="9" width="12" height="1.6" fill="#9E4617"/>
+<rect y="14" width="12" height="1.6" fill="#9E4617"/>
+<rect y="19" width="12" height="1.6" fill="#9E4617"/>
+<rect y="24" width="12" height="1.6" fill="#9E4617"/>
+<rect y="29" width="12" height="1.6" fill="#9E4617"/>
+<rect y="34" width="12" height="1.6" fill="#9E4617"/>
+<rect y="39" width="12" height="1.6" fill="#9E4617"/>
+<rect y="44" width="12" height="1.6" fill="#9E4617"/>
+<rect y="49" width="12" height="1.6" fill="#9E4617"/>
+<rect y="54" width="12" height="1.6" fill="#9E4617"/>
+<rect y="59" width="12" height="1.6" fill="#9E4617"/>
+<rect y="64" width="12" height="1.6" fill="#9E4617"/>
+<rect y="69" width="12" height="1.6" fill="#9E4617"/>
+<rect y="74" width="12" height="1.6" fill="#9E4617"/>
+<rect y="79" width="12" height="1.6" fill="#9E4617"/>
+<rect y="84" width="12" height="1.6" fill="#9E4617"/>
+<rect y="89" width="12" height="1.6" fill="#9E4617"/>
+<rect y="94" width="12" height="1.6" fill="#9E4617"/>
+<rect y="99" width="12" height="1.6" fill="#9E4617"/>
+<rect y="104" width="12" height="1.6" fill="#9E4617"/>
+<rect y="109" width="12" height="1.6" fill="#9E4617"/>
+<rect y="114" width="12" height="1.6" fill="#9E4617"/>
+<rect y="119" width="12" height="1.6" fill="#9E4617"/>
+<rect y="124" width="12" height="1.6" fill="#9E4617"/>
+<rect y="129" width="12" height="1.6" fill="#9E4617"/>
+<rect y="134" width="12" height="1.6" fill="#9E4617"/>
+<rect y="139" width="12" height="1.6" fill="#9E4617"/>
+<rect y="144" width="12" height="1.6" fill="#9E4617"/>
+<rect y="149" width="12" height="1.6" fill="#9E4617"/>
+<rect y="154" width="12" height="1.6" fill="#9E4617"/>
+<rect y="159" width="12" height="1.6" fill="#9E4617"/>
+<rect y="164" width="12" height="1.6" fill="#9E4617"/>
+<rect y="169" width="12" height="1.6" fill="#9E4617"/>
+<rect y="174" width="12" height="1.6" fill="#9E4617"/>
+<rect y="179" width="12" height="1.6" fill="#9E4617"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">05</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">La aduana</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000005 0</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-5"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-5)"/>
+</g>
+<g id="lomo-06" transform="translate(75.6 0)">
+<rect width="12" height="186" fill="#2C7C78"/>
+<rect y="4" width="12" height="1.6" fill="#276D6A"/>
+<rect y="9" width="12" height="1.6" fill="#276D6A"/>
+<rect y="14" width="12" height="1.6" fill="#276D6A"/>
+<rect y="19" width="12" height="1.6" fill="#276D6A"/>
+<rect y="24" width="12" height="1.6" fill="#276D6A"/>
+<rect y="29" width="12" height="1.6" fill="#276D6A"/>
+<rect y="34" width="12" height="1.6" fill="#276D6A"/>
+<rect y="39" width="12" height="1.6" fill="#276D6A"/>
+<rect y="44" width="12" height="1.6" fill="#276D6A"/>
+<rect y="49" width="12" height="1.6" fill="#276D6A"/>
+<rect y="54" width="12" height="1.6" fill="#276D6A"/>
+<rect y="59" width="12" height="1.6" fill="#276D6A"/>
+<rect y="64" width="12" height="1.6" fill="#276D6A"/>
+<rect y="69" width="12" height="1.6" fill="#276D6A"/>
+<rect y="74" width="12" height="1.6" fill="#276D6A"/>
+<rect y="79" width="12" height="1.6" fill="#276D6A"/>
+<rect y="84" width="12" height="1.6" fill="#276D6A"/>
+<rect y="89" width="12" height="1.6" fill="#276D6A"/>
+<rect y="94" width="12" height="1.6" fill="#276D6A"/>
+<rect y="99" width="12" height="1.6" fill="#276D6A"/>
+<rect y="104" width="12" height="1.6" fill="#276D6A"/>
+<rect y="109" width="12" height="1.6" fill="#276D6A"/>
+<rect y="114" width="12" height="1.6" fill="#276D6A"/>
+<rect y="119" width="12" height="1.6" fill="#276D6A"/>
+<rect y="124" width="12" height="1.6" fill="#276D6A"/>
+<rect y="129" width="12" height="1.6" fill="#276D6A"/>
+<rect y="134" width="12" height="1.6" fill="#276D6A"/>
+<rect y="139" width="12" height="1.6" fill="#276D6A"/>
+<rect y="144" width="12" height="1.6" fill="#276D6A"/>
+<rect y="149" width="12" height="1.6" fill="#276D6A"/>
+<rect y="154" width="12" height="1.6" fill="#276D6A"/>
+<rect y="159" width="12" height="1.6" fill="#276D6A"/>
+<rect y="164" width="12" height="1.6" fill="#276D6A"/>
+<rect y="169" width="12" height="1.6" fill="#276D6A"/>
+<rect y="174" width="12" height="1.6" fill="#276D6A"/>
+<rect y="179" width="12" height="1.6" fill="#276D6A"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">06</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">Rumbo a producción</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000006 5</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-6"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-6)"/>
+</g>
+<g id="lomo-07" transform="translate(88.2 0)">
+<rect width="12" height="186" fill="#3B4C82"/>
+<rect y="4" width="12" height="1.6" fill="#344372"/>
+<rect y="9" width="12" height="1.6" fill="#344372"/>
+<rect y="14" width="12" height="1.6" fill="#344372"/>
+<rect y="19" width="12" height="1.6" fill="#344372"/>
+<rect y="24" width="12" height="1.6" fill="#344372"/>
+<rect y="29" width="12" height="1.6" fill="#344372"/>
+<rect y="34" width="12" height="1.6" fill="#344372"/>
+<rect y="39" width="12" height="1.6" fill="#344372"/>
+<rect y="44" width="12" height="1.6" fill="#344372"/>
+<rect y="49" width="12" height="1.6" fill="#344372"/>
+<rect y="54" width="12" height="1.6" fill="#344372"/>
+<rect y="59" width="12" height="1.6" fill="#344372"/>
+<rect y="64" width="12" height="1.6" fill="#344372"/>
+<rect y="69" width="12" height="1.6" fill="#344372"/>
+<rect y="74" width="12" height="1.6" fill="#344372"/>
+<rect y="79" width="12" height="1.6" fill="#344372"/>
+<rect y="84" width="12" height="1.6" fill="#344372"/>
+<rect y="89" width="12" height="1.6" fill="#344372"/>
+<rect y="94" width="12" height="1.6" fill="#344372"/>
+<rect y="99" width="12" height="1.6" fill="#344372"/>
+<rect y="104" width="12" height="1.6" fill="#344372"/>
+<rect y="109" width="12" height="1.6" fill="#344372"/>
+<rect y="114" width="12" height="1.6" fill="#344372"/>
+<rect y="119" width="12" height="1.6" fill="#344372"/>
+<rect y="124" width="12" height="1.6" fill="#344372"/>
+<rect y="129" width="12" height="1.6" fill="#344372"/>
+<rect y="134" width="12" height="1.6" fill="#344372"/>
+<rect y="139" width="12" height="1.6" fill="#344372"/>
+<rect y="144" width="12" height="1.6" fill="#344372"/>
+<rect y="149" width="12" height="1.6" fill="#344372"/>
+<rect y="154" width="12" height="1.6" fill="#344372"/>
+<rect y="159" width="12" height="1.6" fill="#344372"/>
+<rect y="164" width="12" height="1.6" fill="#344372"/>
+<rect y="169" width="12" height="1.6" fill="#344372"/>
+<rect y="174" width="12" height="1.6" fill="#344372"/>
+<rect y="179" width="12" height="1.6" fill="#344372"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">07</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">La flota</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000007 0</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-7"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-7)"/>
+</g>
+<g id="lomo-08" transform="translate(100.8 0)">
+<rect width="12" height="186" fill="#6A3F7A"/>
+<rect y="4" width="12" height="1.6" fill="#5D376B"/>
+<rect y="9" width="12" height="1.6" fill="#5D376B"/>
+<rect y="14" width="12" height="1.6" fill="#5D376B"/>
+<rect y="19" width="12" height="1.6" fill="#5D376B"/>
+<rect y="24" width="12" height="1.6" fill="#5D376B"/>
+<rect y="29" width="12" height="1.6" fill="#5D376B"/>
+<rect y="34" width="12" height="1.6" fill="#5D376B"/>
+<rect y="39" width="12" height="1.6" fill="#5D376B"/>
+<rect y="44" width="12" height="1.6" fill="#5D376B"/>
+<rect y="49" width="12" height="1.6" fill="#5D376B"/>
+<rect y="54" width="12" height="1.6" fill="#5D376B"/>
+<rect y="59" width="12" height="1.6" fill="#5D376B"/>
+<rect y="64" width="12" height="1.6" fill="#5D376B"/>
+<rect y="69" width="12" height="1.6" fill="#5D376B"/>
+<rect y="74" width="12" height="1.6" fill="#5D376B"/>
+<rect y="79" width="12" height="1.6" fill="#5D376B"/>
+<rect y="84" width="12" height="1.6" fill="#5D376B"/>
+<rect y="89" width="12" height="1.6" fill="#5D376B"/>
+<rect y="94" width="12" height="1.6" fill="#5D376B"/>
+<rect y="99" width="12" height="1.6" fill="#5D376B"/>
+<rect y="104" width="12" height="1.6" fill="#5D376B"/>
+<rect y="109" width="12" height="1.6" fill="#5D376B"/>
+<rect y="114" width="12" height="1.6" fill="#5D376B"/>
+<rect y="119" width="12" height="1.6" fill="#5D376B"/>
+<rect y="124" width="12" height="1.6" fill="#5D376B"/>
+<rect y="129" width="12" height="1.6" fill="#5D376B"/>
+<rect y="134" width="12" height="1.6" fill="#5D376B"/>
+<rect y="139" width="12" height="1.6" fill="#5D376B"/>
+<rect y="144" width="12" height="1.6" fill="#5D376B"/>
+<rect y="149" width="12" height="1.6" fill="#5D376B"/>
+<rect y="154" width="12" height="1.6" fill="#5D376B"/>
+<rect y="159" width="12" height="1.6" fill="#5D376B"/>
+<rect y="164" width="12" height="1.6" fill="#5D376B"/>
+<rect y="169" width="12" height="1.6" fill="#5D376B"/>
+<rect y="174" width="12" height="1.6" fill="#5D376B"/>
+<rect y="179" width="12" height="1.6" fill="#5D376B"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">08</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">El timonel</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000008 6</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-8"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-8)"/>
+</g>
+<g id="lomo-09" transform="translate(113.39999999999999 0)">
+<rect width="12" height="186" fill="#7B2D3B"/>
+<rect y="4" width="12" height="1.6" fill="#6C2834"/>
+<rect y="9" width="12" height="1.6" fill="#6C2834"/>
+<rect y="14" width="12" height="1.6" fill="#6C2834"/>
+<rect y="19" width="12" height="1.6" fill="#6C2834"/>
+<rect y="24" width="12" height="1.6" fill="#6C2834"/>
+<rect y="29" width="12" height="1.6" fill="#6C2834"/>
+<rect y="34" width="12" height="1.6" fill="#6C2834"/>
+<rect y="39" width="12" height="1.6" fill="#6C2834"/>
+<rect y="44" width="12" height="1.6" fill="#6C2834"/>
+<rect y="49" width="12" height="1.6" fill="#6C2834"/>
+<rect y="54" width="12" height="1.6" fill="#6C2834"/>
+<rect y="59" width="12" height="1.6" fill="#6C2834"/>
+<rect y="64" width="12" height="1.6" fill="#6C2834"/>
+<rect y="69" width="12" height="1.6" fill="#6C2834"/>
+<rect y="74" width="12" height="1.6" fill="#6C2834"/>
+<rect y="79" width="12" height="1.6" fill="#6C2834"/>
+<rect y="84" width="12" height="1.6" fill="#6C2834"/>
+<rect y="89" width="12" height="1.6" fill="#6C2834"/>
+<rect y="94" width="12" height="1.6" fill="#6C2834"/>
+<rect y="99" width="12" height="1.6" fill="#6C2834"/>
+<rect y="104" width="12" height="1.6" fill="#6C2834"/>
+<rect y="109" width="12" height="1.6" fill="#6C2834"/>
+<rect y="114" width="12" height="1.6" fill="#6C2834"/>
+<rect y="119" width="12" height="1.6" fill="#6C2834"/>
+<rect y="124" width="12" height="1.6" fill="#6C2834"/>
+<rect y="129" width="12" height="1.6" fill="#6C2834"/>
+<rect y="134" width="12" height="1.6" fill="#6C2834"/>
+<rect y="139" width="12" height="1.6" fill="#6C2834"/>
+<rect y="144" width="12" height="1.6" fill="#6C2834"/>
+<rect y="149" width="12" height="1.6" fill="#6C2834"/>
+<rect y="154" width="12" height="1.6" fill="#6C2834"/>
+<rect y="159" width="12" height="1.6" fill="#6C2834"/>
+<rect y="164" width="12" height="1.6" fill="#6C2834"/>
+<rect y="169" width="12" height="1.6" fill="#6C2834"/>
+<rect y="174" width="12" height="1.6" fill="#6C2834"/>
+<rect y="179" width="12" height="1.6" fill="#6C2834"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">09</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">La autoridad portuaria</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000009 1</text>
+<path d="M0 186 H12 V240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-9"><path d="M0 186 H12 V240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-9)"/>
+</g>
+<g id="lomo-10" transform="translate(126 0)">
+<rect width="12" height="186" fill="#2A2F35"/>
+<rect y="4" width="12" height="1.6" fill="#25292F"/>
+<rect y="9" width="12" height="1.6" fill="#25292F"/>
+<rect y="14" width="12" height="1.6" fill="#25292F"/>
+<rect y="19" width="12" height="1.6" fill="#25292F"/>
+<rect y="24" width="12" height="1.6" fill="#25292F"/>
+<rect y="29" width="12" height="1.6" fill="#25292F"/>
+<rect y="34" width="12" height="1.6" fill="#25292F"/>
+<rect y="39" width="12" height="1.6" fill="#25292F"/>
+<rect y="44" width="12" height="1.6" fill="#25292F"/>
+<rect y="49" width="12" height="1.6" fill="#25292F"/>
+<rect y="54" width="12" height="1.6" fill="#25292F"/>
+<rect y="59" width="12" height="1.6" fill="#25292F"/>
+<rect y="64" width="12" height="1.6" fill="#25292F"/>
+<rect y="69" width="12" height="1.6" fill="#25292F"/>
+<rect y="74" width="12" height="1.6" fill="#25292F"/>
+<rect y="79" width="12" height="1.6" fill="#25292F"/>
+<rect y="84" width="12" height="1.6" fill="#25292F"/>
+<rect y="89" width="12" height="1.6" fill="#25292F"/>
+<rect y="94" width="12" height="1.6" fill="#25292F"/>
+<rect y="99" width="12" height="1.6" fill="#25292F"/>
+<rect y="104" width="12" height="1.6" fill="#25292F"/>
+<rect y="109" width="12" height="1.6" fill="#25292F"/>
+<rect y="114" width="12" height="1.6" fill="#25292F"/>
+<rect y="119" width="12" height="1.6" fill="#25292F"/>
+<rect y="124" width="12" height="1.6" fill="#25292F"/>
+<rect y="129" width="12" height="1.6" fill="#25292F"/>
+<rect y="134" width="12" height="1.6" fill="#25292F"/>
+<rect y="139" width="12" height="1.6" fill="#25292F"/>
+<rect y="144" width="12" height="1.6" fill="#25292F"/>
+<rect y="149" width="12" height="1.6" fill="#25292F"/>
+<rect y="154" width="12" height="1.6" fill="#25292F"/>
+<rect y="159" width="12" height="1.6" fill="#25292F"/>
+<rect y="164" width="12" height="1.6" fill="#25292F"/>
+<rect y="169" width="12" height="1.6" fill="#25292F"/>
+<rect y="174" width="12" height="1.6" fill="#25292F"/>
+<rect y="179" width="12" height="1.6" fill="#25292F"/>
+<text class="rotulo" x="6" y="13" font-size="7" text-anchor="middle" fill="#FFFFFF">10</text>
+<text class="texto" transform="translate(4.02 24) rotate(90)" font-size="5.5" font-weight="700" fill="#FFFFFF">La sala de máquinas</text>
+<text class="rotulo" transform="translate(5 157) rotate(90)" font-size="2.8" letter-spacing="0.3" fill="#FFFFFF">PYMU 000010 5</text>
+<path d="M0 186 H12 L8 240 H0 Z" fill="#22323E"/>
+<path d="M0 186 H12" stroke="#E6EDF0" stroke-width="0.5"/>
+<clipPath id="casco-10"><path d="M0 186 H12 L8 240 H0 Z"/></clipPath>
+<rect y="226" width="12" height="14" fill="#9E2F3B" clip-path="url(#casco-10)"/>
+</g>
+</svg>

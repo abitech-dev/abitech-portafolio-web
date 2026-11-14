@@ -13,6 +13,16 @@ export function proyectosPorId(
   return ids.flatMap((id) => porId.get(id) ?? []);
 }
 
+/** En minúsculas, sin tildes y con guiones, apto para una URL. */
+export function slugDe(texto: string): string {
+  return texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 /** Avanzado vale 3, intermedio 2 y lo demás 1, en español o en inglés. */
 export function nivelDe(nivel: string): 1 | 2 | 3 {
   const texto = nivel.toLowerCase();

@@ -228,3 +228,19 @@ test.describe("en una laptop de 1366 por 768", () => {
     expect(total).toBeLessThanOrEqual(visible);
   });
 });
+
+test("Aprende lleva al libro y muestra sus volúmenes", async ({ page }) => {
+  await page.goto("/aprende");
+  await page.getByRole("link", { name: /Ver los 7 volúmenes/ }).click();
+
+  await expect(page).toHaveURL(/\/aprende\/contenedores-con-peras-y-manzanas$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Contenedores con peras y manzanas",
+  );
+  await expect(
+    page
+      .getByRole("heading", { name: "Volúmenes" })
+      .locator("xpath=..")
+      .locator("ol > li"),
+  ).toHaveCount(7);
+});

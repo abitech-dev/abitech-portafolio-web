@@ -38,6 +38,8 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Cambiado
 
+- Aprende con la portada del libro, cifras y una página de detalle con
+  las portadas reales de sus 7 volúmenes.
 - Código abierto en formato editorial, sin tarjetas. Cada paquete tiene
   número, una frase, logos de lo que integra, datos en cifras y un ejemplo
   de uso real.
