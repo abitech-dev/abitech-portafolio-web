@@ -50,12 +50,21 @@ los puertos de CloudPanel.
    certificado de Let's Encrypt.
 6. En Dokploy, en **Deployments**, copia la URL del **webhook** de
    despliegue.
-7. En GitHub, en **Settings → Secrets and variables → Actions**, crea el
-   secreto `DOKPLOY_WEBHOOK_URL` con esa URL.
-8. En la misma pantalla, en **Variables**, crea `URL_DEL_SITIO` con
-   `https://abitech.dev`, sin barra final. Después de desplegar, el flujo
-   espera a que `URL_DEL_SITIO/version.txt` muestre la versión nueva.
-9. En **Settings → Environments** crea el entorno `produccion`.
+7. En GitHub, en **Settings → Environments**, crea el entorno
+   `produccion` y limita sus ramas de despliegue a `main`.
+8. Guarda la URL del webhook como secreto de ese entorno. Así solo la
+   lee el trabajo que despliega desde `main`.
+
+   ```powershell
+   $env:GH_TOKEN = gh auth token -u abitech-dev
+   gh secret set DOKPLOY_WEBHOOK_URL --env produccion -R abitech-dev/abitech-portafolio-web
+   Remove-Item Env:GH_TOKEN
+   ```
+
+9. En **Settings → Secrets and variables → Actions → Variables**, crea
+   `URL_DEL_SITIO` con `https://abitech.dev`, sin barra final. Después de
+   desplegar, el flujo espera a que `URL_DEL_SITIO/version.txt` muestre
+   la versión nueva.
 
 ### Desplegar sin cortes
 
