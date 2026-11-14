@@ -1,38 +1,61 @@
-import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-test("la portada muestra el nombre y declara el español", async ({ page }) => {
-  await page.goto("/");
+import { abrirMenuEnCelular } from "./ayudas";
 
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Abimael Fernandez Ventura",
-  );
-  await expect(page.locator("html")).toHaveAttribute("lang", "es");
-});
-
-test("la portada trae canónica y descripción para buscadores", async ({
+test("la portada saluda, dice la misión y muestra los destacados", async ({
   page,
 }) => {
   await page.goto("/");
 
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    "https://abitech.dev/",
+  await expect(page.getByText("Hola, soy Abimael")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    /Construyo software/,
   );
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
-    "content",
-    /Desarrollador full stack/,
+  await expect(page.locator("h1 .text-acento")).toHaveText("todos los días");
+  await expect(page.getByText("usuarios en Tu Coach")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Mi recorrido" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Proyectos destacados" }),
+  ).toBeVisible();
+  await expect(page.getByRole("article")).toHaveCount(4);
+});
+
+test("la portada declara la persona en el grafo para buscadores", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const jsonLd = await page
+    .locator('script[type="application/ld+json"]')
+    .textContent();
+
+  const { "@graph": grafo } = JSON.parse(jsonLd ?? "{}") as {
+    "@graph": Record<string, unknown>[];
+  };
+
+  expect(grafo).toContainEqual(
+    expect.objectContaining({
+      "@type": "Person",
+      "@id": "https://abitech.dev/#persona",
+      name: "Abimael Fernandez Ventura",
+    }),
   );
 });
 
-test("la portada no tiene violaciones de accesibilidad", async ({ page }) => {
+test("el botón de tema cambia y recuerda el modo", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
+  await abrirMenuEnCelular(page);
+  const boton = page.getByRole("button", { name: "Tema oscuro" });
+  await expect(
+    page.locator("astro-island", { has: boton }),
+  ).not.toHaveAttribute("ssr");
 
-  const { violations } = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
-    .analyze();
+  await boton.click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+  await page.reload();
 
-  expect(
-    violations.filter((v) => ["serious", "critical"].includes(v.impact ?? "")),
-  ).toEqual([]);
+  await expect(page.locator("html")).toHaveClass(/dark/);
 });

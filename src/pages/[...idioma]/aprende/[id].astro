@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import Seccion from "@/components/Seccion.astro";
+import { textosDe } from "@/i18n/idioma";
+import { IDIOMAS, idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { materialesDeAprende } from "@/lib/coleccion-aprende";
+import { libro } from "@/lib/datos-estructurados";
+
+export async function getStaticPaths() {
+  const rutas = await Promise.all(
+    IDIOMAS.map(async (idioma) =>
+      (await materialesDeAprende(idioma)).map((material) => ({
+        params: {
+          idioma: idioma === "es" ? undefined : idioma,
+          id: material.id,
+        },
+        props: { material },
+      })),
+    ),
+  );
+  return rutas.flat();
+}
+
+type Material = Awaited<ReturnType<typeof materialesDeAprende>>[number];
+
+interface Props {
+  material: Material;
+}
+
+const { material } = Astro.props;
+const { publicacion, detalle } = material;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { aprende, sitio } = textosDe(idioma);
+---
+
+<Base
+  titulo={publicacion.name}
+  descripcion={publicacion.summary}
+  nodos={[libro(publicacion, Astro.site ?? Astro.url)]}
+>
+  <a
+    href={rutaEn(idioma, "/aprende")}
+    class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
+  >
+    <Icon
+      is:inline
+      name="lucide:arrow-left"
+      class="size-4"
+      aria-hidden="true"
+    />
+    {aprende.volver}
+  </a>
+
+  <header class="aparecer mt-6 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)]">
+    <div>
+      <p class="flex flex-wrap items-center gap-2 text-xs font-semibold tracking-wide uppercase">
+        <span class="text-acento">{aprende.tipos[detalle.tipo]}</span>
+        <span class="border-marca text-tenue rounded-full border px-2 py-0.5 normal-case">
+          {detalle.estado[idioma]}
+        </span>
+      </p>
+      <h1 class="mt-3 text-4xl leading-tight font-bold sm:text-5xl" lang="es">
+        {publicacion.name}
+      </h1>
+      <p class="mt-5 text-xl leading-snug">{detalle.lema[idioma]}</p>
+      <dl class="border-borde mt-6 grid max-w-md grid-cols-3 gap-4 border-t pt-5">
+        {detalle.datos.map((dato) => (
+          <div class="flex flex-col-reverse">
+            <dt class="text-tenue text-xs">{dato.etiqueta[idioma]}</dt>
+            <dd class="font-display text-2xl font-bold">
+              {dato.valor[idioma]}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      {detalle.recursos.length > 0 && (
+        <ul class="mt-6 space-y-2">
+          {detalle.recursos.map((recurso) => (
+            <li>
+              <a
+                href={recurso.url}
+                target="_blank"
+                rel="noopener"
+                class="group text-acento inline-flex items-center gap-2 font-semibold"
+              >
+                <Icon
+                  is:inline
+                  name="lucide:github"
+                  class="size-5"
+                  aria-hidden="true"
+                />
+                {recurso.etiqueta[idioma]}
+                <Icon
+                  is:inline
+                  name="lucide:arrow-up-right"
+                  class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+                <span class="sr-only">({sitio.otraPestana})</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+    <Image
+      src={detalle.portada}
+      alt={aprende.portadaDe(publicacion.name)}
+      widths={[480, 800]}
+      sizes="(min-width: 1024px) 380px, 90vw"
+      loading="eager"
+      fetchpriority="high"
+      class="w-full drop-shadow-xl"
+    />
+  </header>
+
+  <Seccion titulo={aprende.volumenes} id="volumenes">
+    <ol
+      class="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 xl:grid-cols-4"
+      lang="es"
+    >
+      {detalle.modulos.map((modulo) => (
+        <li class="revelar group">
+          <Image
+            src={modulo.portada}
+            alt={aprende.portadaDe(modulo.titulo)}
+            widths={[240, 480]}
+            sizes="(min-width: 1280px) 200px, (min-width: 640px) 30vw, 45vw"
+            class="w-full rounded-sm shadow-md transition-transform duration-300 group-hover:-translate-y-1"
+          />
+          <p class="text-acento mt-4 font-mono text-xs">
+            {aprende.volumen(Number(modulo.numero))}
+          </p>
+          <h3 class="font-display mt-1 font-semibold">{modulo.titulo}</h3>
+          <p class="text-tenue mt-1 text-sm leading-snug">{modulo.subtitulo}</p>
+        </li>
+      ))}
+    </ol>
+  </Seccion>
+</Base>

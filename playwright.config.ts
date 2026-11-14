@@ -3,8 +3,14 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/e2e",
   forbidOnly: !!process.env["CI"],
-  reporter: process.env["CI"] ? "github" : "list",
-  use: { baseURL: "http://localhost:4321" },
+  reporter: process.env["CI"]
+    ? [["github"], ["html", { open: "never" }]]
+    : "list",
+  // Sin animaciones, axe mide el contraste final y no un fotograma intermedio.
+  use: {
+    baseURL: "http://localhost:4322",
+    contextOptions: { reducedMotion: "reduce" },
+  },
   projects: [
     {
       name: "celular",
@@ -19,8 +25,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run preview",
-    url: "http://localhost:4321",
+    command: "npm run preview -- --port 4322",
+    url: "http://localhost:4322",
     reuseExistingServer: !process.env["CI"],
   },
 });

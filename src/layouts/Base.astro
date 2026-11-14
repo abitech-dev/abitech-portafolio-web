@@ -1,16 +1,53 @@
 ---
-import "@/styles/global.css";
+import { Font } from "astro:assets";
+import { PUBLIC_UMAMI_ID, PUBLIC_UMAMI_SRC } from "astro:env/client";
+import { ClientRouter } from "astro:transitions";
+
+import BarraLateral from "@/components/BarraLateral.astro";
+import Pie from "@/components/Pie.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn, sinIdioma } from "@/i18n/rutas";
+import { imagenParaCompartir } from "@/lib/compartir";
+import { grafo, type Nodo } from "@/lib/datos-estructurados";
 import { metadatosDe } from "@/lib/seo";
+import "@/styles/global.css";
 
 interface Props {
   descripcion: string;
   titulo?: string;
+  nodos?: Nodo[];
+  hasVersionEnIngles?: boolean;
+  isIndexable?: boolean;
 }
 
-const { descripcion, titulo } = Astro.props;
+const {
+  descripcion,
+  titulo,
+  nodos = [],
+  hasVersionEnIngles = true,
+  isIndexable = true,
+} = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { sitio } = textosDe(idioma);
+const datosEstructurados = grafo(
+  datosDe(idioma),
+  Astro.site ?? Astro.url,
+  idioma,
+  nodos,
+);
 if (!Astro.site) {
   throw new Error("Falta `site` en astro.config.ts.");
 }
+const imagen = new URL(imagenParaCompartir(Astro.url.pathname), Astro.site)
+  .href;
+const base = sinIdioma(Astro.url.pathname);
+const alternas = hasVersionEnIngles
+  ? [
+      { idioma: "es", href: new URL(rutaEn("es", base), Astro.site).href },
+      { idioma: "en", href: new URL(rutaEn("en", base), Astro.site).href },
+      { idioma: "x-default", href: new URL(base, Astro.site).href },
+    ]
+  : [];
 const metadatos = metadatosDe(
   Astro.url.pathname,
   Astro.site,
@@ -19,20 +56,99 @@ const metadatos = metadatosDe(
 );
 ---
 
-<html lang="es">
+<html lang={idioma}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{metadatos.titulo}</title>
     <meta name="description" content={metadatos.descripcion} />
     <link rel="canonical" href={metadatos.canonica} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {!isIndexable && <meta name="robots" content="noindex" />}
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={sitio.blog}
+      href={rutaEn(idioma, "/blog/rss.xml")}
+    />
+    {alternas.map((alterna) => (
+      <link rel="alternate" hreflang={alterna.idioma} href={alterna.href} />
+    ))}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:title" content={metadatos.titulo} />
     <meta property="og:description" content={metadatos.descripcion} />
     <meta property="og:url" content={metadatos.canonica} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={sitio.locale} />
+    <meta property="og:image" content={imagen} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={metadatos.titulo} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-sora" preload />
+    <Font cssVariable="--font-jetbrains" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(datosEstructurados)}
+    />
+    <script is:inline>
+      // Corre antes de pintar para que el tema no parpadee.
+      const aplicarTema = () => {
+        let guardado = null;
+        try {
+          guardado = localStorage.getItem("tema");
+        } catch {
+          // Sin almacenamiento, manda la preferencia del sistema.
+        }
+        const oscuro = guardado
+          ? guardado === "oscuro"
+          : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", oscuro);
+      };
+      const marcarJavascript = () =>
+        document.documentElement.classList.add("js");
+      aplicarTema();
+      marcarJavascript();
+      document.addEventListener("astro:after-swap", aplicarTema);
+      document.addEventListener("astro:after-swap", marcarJavascript);
+    </script>
+    {PUBLIC_UMAMI_SRC && PUBLIC_UMAMI_ID && (
+      <script
+        is:inline
+        defer
+        src={PUBLIC_UMAMI_SRC}
+        data-website-id={PUBLIC_UMAMI_ID}
+        data-domains="abitech.dev"
+      />
+    )}
+    <ClientRouter />
   </head>
-  <body class="bg-fondo text-texto antialiased">
-    <slot />
+  <body class="bg-fondo text-texto font-sans antialiased">
+    <a
+      href="#contenido"
+      class="bg-acento text-fondo sr-only rounded-md px-4 py-2 focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+    >
+      {sitio.saltar}
+    </a>
+    <div class="mx-auto max-w-[88rem] lg:grid lg:grid-cols-[18rem_minmax(0,1fr)]">
+      {/* El router cambia el contenido y deja la barra, así que ningún ícono
+      puede usar símbolos de otra parte. Todos van con is:inline. */}
+      <div class="contents" transition:persist={`lateral-${idioma}`}>
+        <BarraLateral />
+      </div>
+      <div class="min-w-0">
+        <main
+          id="contenido"
+          class="max-w-5xl px-5 py-10 sm:px-8 lg:px-16 lg:py-16"
+          transition:animate="fade"
+        >
+          <slot />
+        </main>
+        <Pie />
+      </div>
+    </div>
   </body>
 </html>

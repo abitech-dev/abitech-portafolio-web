@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn, rutasPorIdioma } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { materialesDeAprende } from "@/lib/coleccion-aprende";
+import { libro } from "@/lib/datos-estructurados";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const t = textosDe(idioma);
+const { basics, publications } = datosDe(idioma);
+const materiales = await materialesDeAprende(idioma);
+const sitio = Astro.site ?? Astro.url;
+---
+
+<Base
+  titulo={t.secciones.aprende}
+  descripcion={t.aprende.descripcion(basics.name)}
+  nodos={publications.map((publicacion) => libro(publicacion, sitio))}
+>
+  <TituloDePagina titulo={t.secciones.aprende} icono="lucide:book-open" />
+  <p class="text-tenue mt-3 max-w-prose">{t.aprende.intro}</p>
+
+  <div class="mt-12 space-y-20">
+    {materiales.map(({ id, publicacion, detalle }) => {
+      const ruta = rutaEn(idioma, `/aprende/${id}`);
+      return (
+        <article class="revelar grid items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-14">
+          <a href={ruta} class="group block" tabindex="-1" aria-hidden="true">
+            <Image
+              src={detalle.portada}
+              alt=""
+              widths={[480, 800]}
+              sizes="(min-width: 1024px) 420px, 90vw"
+              loading="eager"
+              class="w-full drop-shadow-xl transition-transform duration-500 group-hover:-translate-y-1.5 group-hover:-rotate-1"
+            />
+          </a>
+          <div>
+            <p class="flex flex-wrap items-center gap-2 text-xs font-semibold tracking-wide uppercase">
+              <span class="text-acento">{t.aprende.tipos[detalle.tipo]}</span>
+              <span class="border-marca text-tenue rounded-full border px-2 py-0.5 normal-case">
+                {detalle.estado[idioma]}
+              </span>
+            </p>
+            <h2 class="font-display mt-3 text-3xl font-bold" lang="es">
+              <a href={ruta} class="hover:text-acento transition-colors">
+                {publicacion.name}
+              </a>
+            </h2>
+            <p class="mt-4 text-xl leading-snug">{detalle.lema[idioma]}</p>
+
+            <dl class="border-borde mt-8 grid grid-cols-3 gap-4 border-t pt-6">
+              {detalle.datos.map((dato) => (
+                <div class="flex flex-col-reverse">
+                  <dt class="text-tenue text-xs">{dato.etiqueta[idioma]}</dt>
+                  <dd class="font-display text-2xl font-bold">
+                    {dato.valor[idioma]}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <a
+              href={ruta}
+              class="group bg-acento text-fondo mt-8 inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-semibold"
+            >
+              {t.aprende.verTemario(detalle.modulos.length)}
+              <Icon
+                is:inline
+                name="lucide:arrow-right"
+                class="size-4 transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</Base>

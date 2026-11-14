@@ -1,0 +1,33 @@
+---
+import PaqueteDestacado from "@/components/PaqueteDestacado.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { esPaquete } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+
+const { basics } = resume;
+const paquetes = resume.projects.filter(esPaquete);
+---
+
+<Base
+  titulo={t.secciones.codigoAbierto}
+  descripcion={t.codigoAbierto.descripcion(basics.name)}
+>
+  <TituloDePagina titulo={t.secciones.codigoAbierto} icono="lucide:package" />
+  <p class="text-tenue mt-3 max-w-prose">{t.codigoAbierto.intro}</p>
+
+  <div class="mt-8">
+    {paquetes.map((paquete, indice) => (
+      <PaqueteDestacado paquete={paquete} numero={indice + 1} />
+    ))}
+  </div>
+</Base>

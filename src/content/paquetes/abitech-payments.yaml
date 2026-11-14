@@ -1,0 +1,29 @@
+lema:
+  es: Cobra con Stripe o Mercado Pago desde una sola interfaz.
+  en: Charge with Stripe or Mercado Pago from a single interface.
+integra: [Stripe, Mercado Pago]
+datos:
+  - valor: { es: "199", en: "199" }
+    etiqueta: { es: pruebas, en: tests }
+  - valor: { es: 8.2+, en: 8.2+ }
+    etiqueta: { es: PHP, en: PHP }
+  - valor: { es: 12 y 13, en: 12 and 13 }
+    etiqueta: { es: Laravel, en: Laravel }
+  - valor: { es: MIT, en: MIT }
+    etiqueta: { es: licencia, en: license }
+ejemplo:
+  archivo: BillingController.php
+  lenguaje: php
+  codigo: |-
+    $response = $manager
+        ->driver('mercadopago_checkout')
+        ->purchase(new PaymentRequest(
+            amount: '100.00',
+            currency: 'PEN',
+            email: 'cliente@email.com',
+            description: 'Suscripcion mensual',
+            idempotencyKey: $idempotencyKey,
+            metadata: $urlsDeRetorno,
+        ));
+
+    return redirect($response->redirectUrl);

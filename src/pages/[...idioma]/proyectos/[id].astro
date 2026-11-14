@@ -1,0 +1,131 @@
+---
+import { Icon } from "astro-icon/components";
+
+import ChipDeTecnologia from "@/components/ChipDeTecnologia.astro";
+import MarcoNavegador from "@/components/MarcoNavegador.astro";
+import LogoDeProyecto from "@/components/LogoDeProyecto.astro";
+import Seccion from "@/components/Seccion.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { IDIOMAS, idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { proyecto as datosDelProyecto } from "@/lib/datos-estructurados";
+import { periodo } from "@/lib/fechas";
+import { capturaDelProyecto } from "@/lib/imagenes";
+import { esPaquete, type Proyecto } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return IDIOMAS.flatMap((idioma) =>
+    datosDe(idioma)
+      .projects.filter((proyecto) => !esPaquete(proyecto))
+      .map((proyecto) => ({
+        params: {
+          idioma: idioma === "es" ? undefined : idioma,
+          id: proyecto.id,
+        },
+        props: { proyecto },
+      })),
+  );
+}
+
+interface Props {
+  proyecto: Proyecto;
+}
+
+const { proyecto } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const t = textosDe(idioma);
+const captura = capturaDelProyecto(proyecto.id);
+const fin = "endDate" in proyecto ? proyecto.endDate : undefined;
+const entidad = "entity" in proyecto ? proyecto.entity : undefined;
+---
+
+<Base
+  titulo={proyecto.name}
+  descripcion={proyecto.description}
+  nodos={[datosDelProyecto(proyecto, Astro.site ?? Astro.url, Astro.url)]}
+>
+  <a
+    href={rutaEn(idioma, "/proyectos")}
+    class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
+  >
+    <Icon
+      is:inline
+      name="lucide:arrow-left"
+      class="size-4"
+      aria-hidden="true"
+    />
+    {t.proyectos.volver}
+  </a>
+
+  <div class="mt-4 flex items-center gap-4">
+    <LogoDeProyecto id={proyecto.id} class="size-16" />
+    <h1 class="text-3xl font-bold">{proyecto.name}</h1>
+  </div>
+  <p class="text-tenue mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+    {proyecto.startDate && (
+      <span class="inline-flex items-center gap-1">
+        <Icon
+          is:inline
+          name="lucide:calendar"
+          class="size-4"
+          aria-hidden="true"
+        />
+        {periodo(proyecto.startDate, fin, idioma)}
+      </span>
+    )}
+    {entidad && (
+      <span class="inline-flex items-center gap-1">
+        <Icon
+          is:inline
+          name="lucide:building-2"
+          class="size-4"
+          aria-hidden="true"
+        />
+        {entidad}
+      </span>
+    )}
+  </p>
+  <p class="mt-6 max-w-prose text-lg leading-relaxed">{proyecto.description}</p>
+
+  {captura && (
+    <div class="mt-8">
+      <MarcoNavegador
+        src={captura}
+        alt={t.proyectos.portadaDe(proyecto.name)}
+        url={proyecto.url}
+        isPrioritario
+      />
+    </div>
+  )}
+
+  {proyecto.url && (
+    <a
+      href={proyecto.url}
+      target="_blank"
+      rel="noopener"
+      class="bg-acento text-fondo mt-6 inline-flex items-center gap-2 rounded-md px-4 py-2 font-semibold"
+    >
+      <Icon is:inline name="lucide:globe" class="size-4" aria-hidden="true" />
+      {t.proyectos.verEnLinea}
+      <span class="sr-only">({t.sitio.otraPestana})</span>
+    </a>
+  )}
+
+  {proyecto.highlights.length > 0 && (
+    <Seccion titulo={t.proyectos.resultados} id="resultados">
+      <ul class="text-tenue list-disc space-y-2 pl-5">
+        {proyecto.highlights.map((logro) => (
+          <li>{logro}</li>
+        ))}
+      </ul>
+    </Seccion>
+  )}
+
+  <Seccion titulo={t.proyectos.tecnologias} id="tecnologias">
+    <ul class="flex flex-wrap gap-2">
+      {proyecto.keywords.map((tecnologia) => (
+        <ChipDeTecnologia tecnologia={tecnologia} class="px-3 py-1 text-sm" />
+      ))}
+    </ul>
+  </Seccion>
+</Base>

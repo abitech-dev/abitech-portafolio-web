@@ -1,0 +1,112 @@
+---
+import { Icon } from "astro-icon/components";
+
+import DescargaDelCv from "@/components/DescargaDelCv.astro";
+import Habilidades from "@/components/Habilidades.astro";
+import Insignia from "@/components/Insignia.astro";
+import LineaDeTiempo from "@/components/LineaDeTiempo.astro";
+import Seccion from "@/components/Seccion.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { mesYAnio, periodo } from "@/lib/fechas";
+import { habilidadesPorCategoria } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+
+const { basics, work, education, certificates, skills, languages } = resume;
+
+const experiencia = work.map((empleo) => ({
+  titulo: empleo.position,
+  lugar: empleo.name,
+  periodo: periodo(
+    empleo.startDate,
+    "endDate" in empleo ? empleo.endDate : undefined,
+    idioma,
+  ),
+  resumen: empleo.summary,
+  logros: empleo.highlights,
+}));
+
+const formacion = education.map((estudio) => ({
+  titulo: estudio.area,
+  lugar: `${estudio.institution}, ${estudio.studyType}`,
+  periodo: estudio.startDate
+    ? periodo(estudio.startDate, estudio.endDate, idioma)
+    : mesYAnio(estudio.endDate, idioma),
+}));
+
+const habilidades = habilidadesPorCategoria(skills);
+---
+
+<Base titulo={t.secciones.cv} descripcion={t.cv.descripcion(basics.name)}>
+  <TituloDePagina titulo={t.cv.titulo} icono="lucide:file-text" />
+  <div class="mt-5">
+    <DescargaDelCv />
+  </div>
+
+  <Seccion titulo={t.cv.experiencia} id="experiencia">
+    <LineaDeTiempo hitos={experiencia} />
+  </Seccion>
+
+  <Seccion titulo={t.cv.formacion} id="formacion">
+    <LineaDeTiempo hitos={formacion} />
+  </Seccion>
+
+  <Seccion titulo={t.cv.certificaciones} id="certificaciones">
+    <ul class="grid gap-3 sm:grid-cols-2">
+      {certificates.map((certificado) => (
+        <li class="border-borde rounded-md border p-4">
+          <p class="font-semibold">{certificado.name}</p>
+          <p class="text-tenue text-sm">
+            {certificado.issuer}, {mesYAnio(certificado.date, idioma)}
+          </p>
+          {"url" in certificado && certificado.url && (
+            <a
+              href={certificado.url}
+              target="_blank"
+              rel="noopener"
+              class="text-acento mt-1 inline-flex items-center gap-1 text-sm"
+            >
+              {t.cv.verificar}
+              <Icon
+                is:inline
+                name="lucide:external-link"
+                class="size-3.5"
+                aria-hidden="true"
+              />
+              <span class="sr-only">
+                {certificado.name} ({t.sitio.otraPestana})
+              </span>
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </Seccion>
+
+  <Seccion titulo={t.cv.habilidades} id="habilidades">
+    <Habilidades grupos={habilidades} />
+  </Seccion>
+
+  <Seccion titulo={t.cv.idiomas} id="idiomas">
+    <ul class="grid gap-4 sm:grid-cols-2">
+      {languages.map((idioma) => (
+        <li class="border-borde flex items-center gap-4 rounded-lg border p-5">
+          <Insignia icono="lucide:languages" class="size-10" />
+          <div>
+            <p class="font-display text-lg font-semibold">{idioma.language}</p>
+            <p class="text-tenue text-sm">{idioma.fluency}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Seccion>
+</Base>

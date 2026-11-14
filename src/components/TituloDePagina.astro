@@ -1,0 +1,15 @@
+---
+import Insignia from "@/components/Insignia.astro";
+
+interface Props {
+  titulo: string;
+  icono: string;
+}
+
+const { titulo, icono } = Astro.props;
+---
+
+<div class="flex items-center gap-3">
+  <Insignia icono={icono} class="size-11" />
+  <h1 class="text-3xl font-bold">{titulo}</h1>
+</div>

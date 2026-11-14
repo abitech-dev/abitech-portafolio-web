@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon/components";
+
+import ListaDeEscritos from "@/components/ListaDeEscritos.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { escritosPublicados } from "@/lib/coleccion-escritos";
+import { etiquetasDe, idDeEtiqueta } from "@/lib/escritos";
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { escritos: t, secciones } = textosDe(idioma);
+const { basics } = datosDe(idioma);
+const escritos = await escritosPublicados(idioma);
+const etiquetas = etiquetasDe(escritos);
+---
+
+<Base
+  titulo={secciones.escritos}
+  descripcion={t.descripcion(basics.name)}
+  isIndexable={escritos.length > 0}
+>
+  <TituloDePagina titulo={secciones.escritos} icono="lucide:pen-line" />
+  <p class="text-tenue mt-3 max-w-prose">{t.intro}</p>
+  <a
+    href={rutaEn(idioma, "/blog/rss.xml")}
+    class="text-tenue hover:text-acento mt-3 inline-flex items-center gap-1.5 text-sm"
+  >
+    <Icon is:inline name="lucide:rss" class="size-4" aria-hidden="true" />
+    {t.suscribirse}
+  </a>
+
+  {etiquetas.length > 0 && (
+    <nav aria-label={t.etiquetas} class="mt-8">
+      <ul class="flex flex-wrap gap-2">
+        {etiquetas.map(([etiqueta, veces]) => (
+          <li>
+            <a
+              href={rutaEn(idioma, `/blog/etiquetas/${idDeEtiqueta(etiqueta)}`)}
+              class="border-borde text-tenue hover:border-acento hover:text-acento inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-xs transition-colors"
+            >
+              #{etiqueta}
+              <span class="opacity-70">{veces}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+
+  <div class="mt-8">
+    {escritos.length > 0 ? (
+      <ListaDeEscritos escritos={escritos} />
+    ) : (
+      <p class="text-tenue">{t.vacio}</p>
+    )}
+  </div>
+</Base>

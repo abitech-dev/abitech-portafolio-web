@@ -1,0 +1,10 @@
+---
+import PaginaDeEtiqueta from "@/components/PaginaDeEtiqueta.astro";
+import { rutasDeEtiquetas } from "@/lib/coleccion-escritos";
+
+export const getStaticPaths = () => rutasDeEtiquetas("es");
+
+const { etiqueta, escritos } = Astro.props;
+---
+
+<PaginaDeEtiqueta etiqueta={etiqueta} escritos={escritos} />

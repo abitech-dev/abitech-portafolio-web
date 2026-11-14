@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components";
+
+import ListaDeEscritos from "@/components/ListaDeEscritos.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import type { Escrito } from "@/lib/escritos";
+
+interface Props {
+  etiqueta: string;
+  escritos: Escrito[];
+}
+
+const { etiqueta, escritos } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { escritos: t } = textosDe(idioma);
+const { basics } = datosDe(idioma);
+---
+
+<Base
+  titulo={t.sobre(etiqueta)}
+  descripcion={`${t.sobre(etiqueta)}, ${basics.name}.`}
+  hasVersionEnIngles={false}
+>
+  <a
+    href={rutaEn(idioma, "/blog")}
+    class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
+  >
+    <Icon
+      is:inline
+      name="lucide:arrow-left"
+      class="size-4"
+      aria-hidden="true"
+    />
+    {t.volver}
+  </a>
+  <div class="mt-4">
+    <TituloDePagina titulo={`#${etiqueta}`} icono="lucide:hash" />
+  </div>
+  <div class="mt-8">
+    <ListaDeEscritos escritos={escritos} />
+  </div>
+</Base>

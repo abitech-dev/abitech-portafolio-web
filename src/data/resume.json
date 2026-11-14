@@ -185,12 +185,22 @@
       "keywords": ["Backend"]
     },
     {
-      "name": "C# y .NET",
+      "name": "C#",
       "level": "Avanzado",
       "keywords": ["Backend"]
     },
     {
-      "name": "Python y Django",
+      "name": ".NET",
+      "level": "Avanzado",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Python",
+      "level": "Intermedio",
+      "keywords": ["Backend"]
+    },
+    {
+      "name": "Django",
       "level": "Intermedio",
       "keywords": ["Backend"]
     },
@@ -205,12 +215,22 @@
       "keywords": ["Frontend"]
     },
     {
-      "name": "jQuery y Ajax",
+      "name": "jQuery",
       "level": "Avanzado",
       "keywords": ["Frontend"]
     },
     {
-      "name": "HTML y CSS",
+      "name": "Ajax",
+      "level": "Avanzado",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "HTML",
+      "level": "Avanzado",
+      "keywords": ["Frontend"]
+    },
+    {
+      "name": "CSS",
       "level": "Avanzado",
       "keywords": ["Frontend"]
     },
@@ -240,7 +260,12 @@
       "keywords": ["Frontend"]
     },
     {
-      "name": "MySQL y MariaDB",
+      "name": "MySQL",
+      "level": "Avanzado",
+      "keywords": ["Datos"]
+    },
+    {
+      "name": "MariaDB",
       "level": "Avanzado",
       "keywords": ["Datos"]
     },
@@ -300,7 +325,12 @@
       "keywords": ["Nube y DevOps"]
     },
     {
-      "name": "PHPUnit y Pest",
+      "name": "PHPUnit",
+      "level": "Avanzado",
+      "keywords": ["Calidad"]
+    },
+    {
+      "name": "Pest",
       "level": "Avanzado",
       "keywords": ["Calidad"]
     },
@@ -315,17 +345,27 @@
       "keywords": ["Dominio"]
     },
     {
-      "name": "pasarelas de pago (Culqi, Mercado Pago)",
-      "level": "Avanzado",
-      "keywords": ["Dominio"]
-    },
-    {
       "name": "cumplimiento antilavado (UIF-SBS, LAFT)",
       "level": "Intermedio",
       "keywords": ["Dominio"]
     },
     {
-      "name": "API REST y SOAP",
+      "name": "API REST",
+      "level": "Avanzado",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "SOAP",
+      "level": "Avanzado",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "Culqi",
+      "level": "Avanzado",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "Mercado Pago",
       "level": "Avanzado",
       "keywords": ["Integración"]
     },
@@ -335,7 +375,12 @@
       "keywords": ["Integración"]
     },
     {
-      "name": "LLM (Claude, Gemini)",
+      "name": "Gemini",
+      "level": "Intermedio",
+      "keywords": ["IA"]
+    },
+    {
+      "name": "Claude",
       "level": "Intermedio",
       "keywords": ["IA"]
     },
@@ -377,7 +422,8 @@
         "GitHub Actions"
       ],
       "startDate": "2026-01",
-      "endDate": "2026-10"
+      "endDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "sistema-de-empeno-y-compraventa-de-oro",
@@ -399,7 +445,8 @@
         "Playwright",
         "axe"
       ],
-      "startDate": "2025-11"
+      "startDate": "2025-11",
+      "type": "application"
     },
     {
       "id": "pwa-offline-de-actas-de-mantenimiento",
@@ -422,7 +469,8 @@
         "Vitest",
         "PHPStan"
       ],
-      "startDate": "2026-08"
+      "startDate": "2026-08",
+      "type": "application"
     },
     {
       "id": "plataforma-de-una-casa-de-cambio-digital",
@@ -453,7 +501,8 @@
         "IIS",
         "SSMS"
       ],
-      "startDate": "2026-08"
+      "startDate": "2026-08",
+      "type": "application"
     },
     {
       "id": "pilot-ssh",
@@ -476,7 +525,8 @@
         "Docker Swarm"
       ],
       "startDate": "2026-09",
-      "url": "https://uat-pilotssh.abitech.com.pe/"
+      "url": "https://uat-pilotssh.abitech.com.pe/",
+      "type": "application"
     },
     {
       "id": "recaudacion-scotiabank",
@@ -496,7 +546,8 @@
         "procedimientos almacenados"
       ],
       "startDate": "2026-09",
-      "endDate": "2026-10"
+      "endDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "cred-plus",
@@ -519,7 +570,8 @@
         "Larastan"
       ],
       "startDate": "2026-10",
-      "url": "https://cred.abitech.dev/"
+      "url": "https://cred.abitech.dev/",
+      "type": "application"
     },
     {
       "id": "yachacuy",
@@ -539,7 +591,8 @@
       ],
       "startDate": "2025-01",
       "url": "https://yachacuy.com/",
-      "entity": "Yachakuy Perú"
+      "entity": "Yachakuy Perú",
+      "type": "application"
     },
     {
       "id": "la-fruteria",
@@ -563,7 +616,8 @@
         "cosign",
         "OpenVEX"
       ],
-      "startDate": "2026-10"
+      "startDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "claude-config",
@@ -573,24 +627,30 @@
         "Unifiqué mi forma de trabajar con IA en 10 repositorios, con validadores cubiertos por 19 pruebas automatizadas."
       ],
       "keywords": ["Claude Code", "Python"],
-      "startDate": "2026-10"
+      "startDate": "2026-10",
+      "type": "application"
     },
     {
       "id": "optipix",
       "name": "OptiPix",
-      "description": "Versión propia de Squoosh de Google, una aplicación web que reduce el peso de las imágenes en el navegador, sin subirlas a internet.",
+      "description": "Versión propia de Squoosh de Google, en español y con un modo por lotes que optimiza muchas imágenes a la vez. Todo ocurre en el navegador, sin subir las imágenes a internet.",
       "highlights": [
-        "Agregué la compresión por lotes, para optimizar muchas imágenes a la vez y descargarlas en archivos ZIP."
+        "Agregué la compresión por lotes, para optimizar muchas imágenes a la vez y descargarlas en archivos ZIP.",
+        "Evité que el navegador se quede sin memoria con fotos grandes, al reducirlas antes de comprimir y repartir la descarga en ZIP de hasta 50 imágenes.",
+        "Conservé los metadatos EXIF de las fotos JPEG y dejé el modo por lotes disponible sin conexión.",
+        "Automaticé el despliegue con GitHub Actions en dos entornos, pruebas y producción."
       ],
       "keywords": [
         "TypeScript",
         "Preact",
         "WebAssembly",
         "Web Workers",
-        "Service Worker"
+        "Service Worker",
+        "GitHub Actions"
       ],
       "startDate": "2025-12",
-      "url": "https://optipix.abitech.com.pe/"
+      "url": "https://optipix.abitech.com.pe/",
+      "type": "application"
     },
     {
       "id": "tu-coach",
@@ -603,7 +663,8 @@
       "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],
       "startDate": "2023-05",
       "url": "https://tucoach.udh.edu.pe/",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "hackathon-udh",
@@ -615,7 +676,8 @@
       "keywords": ["Laravel 11", "Inertia", "Vue 3", "PhpSpreadsheet"],
       "startDate": "2024-11",
       "endDate": "2024-12",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "sigep",
@@ -626,7 +688,8 @@
       ],
       "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
       "url": "https://sigep.udh.edu.pe/",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "portal-investigacion",
@@ -637,7 +700,8 @@
       ],
       "keywords": ["Laravel 10", "Livewire 3", "Bootstrap 5"],
       "url": "https://investigacion.udh.edu.pe/",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "banco-necesidades",
@@ -647,7 +711,8 @@
       "keywords": ["Laravel 11", "Livewire 3", "Jetstream", "Tailwind CSS"],
       "startDate": "2024-07",
       "endDate": "2024-12",
-      "entity": "Universidad de Huánuco"
+      "entity": "Universidad de Huánuco",
+      "type": "application"
     },
     {
       "id": "historias-clinicas-psicologicas",
@@ -662,7 +727,8 @@
         "Tailwind CSS"
       ],
       "startDate": "2025-02",
-      "endDate": "2025-11"
+      "endDate": "2025-11",
+      "type": "application"
     },
     {
       "id": "abitech-payments",
@@ -678,7 +744,23 @@
         "Stripe",
         "Mercado Pago"
       ],
-      "startDate": "2026-06"
+      "startDate": "2026-06",
+      "type": "library",
+      "package": "abitech/payments-laravel",
+      "repository": "https://github.com/abitech-dev/abitech-payments-laravel"
+    },
+    {
+      "id": "antibot-laravel",
+      "name": "abitech-antibot-laravel",
+      "description": "Paquete de código abierto para Laravel que valida formularios contra bots con Cloudflare Turnstile, reCAPTCHA v2 o reCAPTCHA v3 desde una sola API.",
+      "highlights": [
+        "Funciona desde Laravel 8 hasta Laravel 13 y se usa como regla de validación, middleware o facade."
+      ],
+      "keywords": ["PHP", "Laravel", "Cloudflare Turnstile", "reCAPTCHA"],
+      "startDate": "2026-06",
+      "type": "library",
+      "package": "abitech/antibot-laravel",
+      "repository": "https://github.com/abitech-dev/abitech-antibot-laravel"
     },
     {
       "id": "hostal-pacifico",
@@ -689,10 +771,11 @@
       "startDate": "2025-03",
       "endDate": "2026-05",
       "url": "https://hostalpacifico.com/",
-      "entity": "Hostal Pacífico"
+      "entity": "Hostal Pacífico",
+      "type": "application"
     }
   ],
   "meta": {
-    "version": "1.0.0"
+    "version": "1.1.0"
   }
 }

@@ -1,0 +1,73 @@
+---
+import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import {
+  idDeEtiqueta,
+  minutosDeLectura,
+  slugDelEscrito,
+  type Escrito,
+} from "@/lib/escritos";
+
+interface Props {
+  escritos: Escrito[];
+}
+
+const { escritos } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { escritos: t, fechas } = textosDe(idioma);
+const formato = new Intl.DateTimeFormat(fechas.locale, {
+  day: "numeric",
+  month: "short",
+  timeZone: "UTC",
+});
+---
+
+<ul class="divide-borde border-borde divide-y border-y">
+  {escritos.map((escrito) => (
+    <li class="revelar">
+      <article class="group relative grid gap-2 py-6 sm:grid-cols-[7rem_1fr] sm:gap-6">
+        <p class="text-tenue font-mono text-xs sm:pt-1.5">
+          <time datetime={escrito.data.fecha.toISOString().slice(0, 10)}>
+            {formato.format(escrito.data.fecha)}{" "}
+            {escrito.data.fecha.getUTCFullYear()}
+          </time>
+        </p>
+        <div>
+          <p class="text-acento text-xs font-semibold tracking-wide uppercase">
+            {escrito.data.tipo === "articulo" ? t.articulo : t.nota}
+            <span class="text-tenue font-normal normal-case">
+              {" "}
+              {t.minutos(minutosDeLectura(escrito.body ?? ""))}
+            </span>
+          </p>
+          <h2 class="font-display group-hover:text-acento mt-1 text-xl font-semibold transition-colors">
+            <a
+              href={rutaEn(idioma, `/blog/${slugDelEscrito(escrito)}`)}
+              class="after:absolute after:inset-0"
+            >
+              {escrito.data.titulo}
+            </a>
+          </h2>
+          <p class="text-tenue mt-2 leading-relaxed">
+            {escrito.data.descripcion}
+          </p>
+          <ul class="relative z-10 mt-3 flex flex-wrap gap-2">
+            {escrito.data.etiquetas.map((etiqueta) => (
+              <li>
+                <a
+                  href={rutaEn(
+                    idioma,
+                    `/blog/etiquetas/${idDeEtiqueta(etiqueta)}`,
+                  )}
+                  class="text-tenue hover:text-acento font-mono text-xs"
+                >
+                  #{etiqueta}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    </li>
+  ))}
+</ul>

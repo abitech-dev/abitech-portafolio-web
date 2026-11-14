@@ -1,0 +1,212 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import foto from "@/assets/foto-perfil.jpg";
+import BotonTema from "@/components/islands/BotonTema.vue";
+import Navegacion from "@/components/Navegacion.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import {
+  IDIOMAS,
+  idiomaDeLaRuta,
+  rutaEn,
+  rutaEnOtroIdioma,
+} from "@/i18n/rutas";
+import { nombreCorto } from "@/lib/trayectoria";
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { sitio } = textosDe(idioma);
+const { name, label, email, location, profiles } = datosDe(idioma).basics;
+const ICONOS: Record<string, string> = {
+  LinkedIn: "lucide:linkedin",
+  GitHub: "lucide:github",
+};
+const boton =
+  "border-borde text-tenue hover:text-acento inline-flex size-9 items-center justify-center rounded-md border transition-colors";
+---
+
+<aside class="border-borde bg-fondo sticky top-0 z-40 border-b lg:flex lg:h-dvh lg:self-start lg:flex-col lg:overflow-y-auto lg:border-r lg:border-b-0 lg:px-6 lg:py-8">
+  <div class="flex items-center gap-3 px-4 py-3 lg:flex-col lg:items-start lg:gap-4 lg:p-0">
+    <a
+      href={rutaEn(idioma, "/")}
+      class="flex min-w-0 flex-1 items-center gap-3 lg:flex-col lg:items-start lg:gap-4"
+    >
+      <Image
+        src={foto}
+        alt={sitio.fotoDe(name)}
+        width={240}
+        height={240}
+        loading="eager"
+        class="border-borde size-10 shrink-0 rounded-md border object-cover lg:size-20 lg:rounded-lg"
+      />
+      <span class="min-w-0">
+        <span class="block truncate font-bold lg:text-lg lg:whitespace-normal">
+          {nombreCorto(name)}
+        </span>
+        <span class="text-tenue block truncate text-xs lg:mt-1 lg:text-sm lg:whitespace-normal">
+          {label}
+        </span>
+      </span>
+    </a>
+    <button
+      type="button"
+      data-menu-boton
+      aria-expanded="false"
+      aria-controls="menu-movil"
+      aria-label={sitio.menu}
+      class="border-borde text-texto grid size-11 shrink-0 place-items-center rounded-md border lg:hidden"
+    >
+      <Icon is:inline name="lucide:menu" class="size-5" aria-hidden="true" />
+    </button>
+  </div>
+
+  <div
+    id="menu-movil"
+    class="menu-movil bg-fondo flex flex-col gap-8 px-4 pb-6 lg:mt-8 lg:gap-6 lg:flex-1 lg:bg-transparent lg:p-0"
+  >
+    <div class="flex items-center justify-between lg:hidden">
+      <span class="text-tenue text-sm">{sitio.menu}</span>
+      <button
+        type="button"
+        data-menu-cerrar
+        aria-label={sitio.cerrar}
+        class="border-borde grid size-11 place-items-center rounded-md border"
+      >
+        <Icon is:inline name="lucide:x" class="size-5" aria-hidden="true" />
+      </button>
+    </div>
+
+    <Navegacion />
+
+    <div class="mt-auto space-y-4">
+      <p class="text-tenue flex items-center gap-2 text-sm">
+        <Icon
+          is:inline
+          is:inline
+          name="lucide:map-pin"
+          class="size-4"
+          aria-hidden="true"
+        />
+        {location.city}, {sitio.pais}
+      </p>
+      <ul class="flex flex-wrap gap-1.5" aria-label={sitio.perfiles}>
+        {profiles.map((perfil) => (
+          <li>
+            <a
+              href={perfil.url}
+              rel="me noopener"
+              target="_blank"
+              aria-label={perfil.network}
+              class={boton}
+            >
+              <Icon
+                is:inline
+                is:inline
+                is:inline
+                name={ICONOS[perfil.network] ?? "lucide:external-link"}
+                class="size-4"
+              />
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href={`mailto:${email}`}
+            data-umami-event="escribir-correo"
+            aria-label={sitio.correo}
+            class={boton}
+          >
+            <Icon is:inline name="lucide:mail" class="size-4" />
+          </a>
+        </li>
+      </ul>
+      <div class="border-borde flex items-center justify-between gap-3 border-t pt-4">
+        <div
+          role="group"
+          aria-label={sitio.idioma}
+          class="border-borde inline-flex rounded-md border p-0.5 text-xs font-semibold"
+        >
+          {IDIOMAS.map((codigo) =>
+            codigo === idioma ? (
+              <span
+                aria-current="true"
+                class="bg-acento-suave text-acento rounded px-2.5 py-1.5"
+              >
+                {codigo.toUpperCase()}
+                <span class="sr-only"> ({sitio.nombresDeIdioma[codigo]})</span>
+              </span>
+            ) : (
+              <a
+                href={rutaEnOtroIdioma(Astro.url.pathname)}
+                data-otro-idioma
+                hreflang={codigo}
+                lang={codigo}
+                class="text-tenue hover:text-texto rounded px-2.5 py-1.5 transition-colors"
+              >
+                {codigo.toUpperCase()}
+                <span class="sr-only"> ({sitio.nombresDeIdioma[codigo]})</span>
+              </a>
+            ),
+          )}
+        </div>
+        <BotonTema client:load etiqueta={sitio.temaOscuro}>
+          <Icon is:inline slot="claro" name="lucide:moon" class="size-4" />
+          <Icon is:inline slot="oscuro" name="lucide:sun" class="size-4" />
+        </BotonTema>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+  import { rutaEnOtroIdioma } from "@/i18n/rutas";
+
+  // La barra cambia al cambiar de idioma, así que se busca en cada evento.
+  const elementos = () => ({
+    boton: document.querySelector<HTMLButtonElement>("[data-menu-boton]"),
+    cerrar: document.querySelector<HTMLButtonElement>("[data-menu-cerrar]"),
+    menu: document.getElementById("menu-movil"),
+  });
+
+  function abrirMenu(isAbierto: boolean): void {
+    const { boton, cerrar, menu } = elementos();
+    boton?.setAttribute("aria-expanded", String(isAbierto));
+    menu?.toggleAttribute("data-abierto", isAbierto);
+    document.documentElement.style.overflow = isAbierto ? "hidden" : "";
+    for (const id of ["contenido", "pie"]) {
+      document.getElementById(id)?.toggleAttribute("inert", isAbierto);
+    }
+    if (isAbierto) cerrar?.focus();
+  }
+
+  function cerrarMenu(): void {
+    if (!elementos().menu?.hasAttribute("data-abierto")) return;
+    abrirMenu(false);
+    elementos().boton?.focus();
+  }
+
+  document.addEventListener("click", (evento) => {
+    const objetivo = evento.target as Element;
+    if (objetivo.closest("[data-menu-boton]")) abrirMenu(true);
+    if (objetivo.closest("[data-menu-cerrar]")) cerrarMenu();
+  });
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape") cerrarMenu();
+  });
+  document.addEventListener("astro:after-swap", () => abrirMenu(false));
+
+  // El otro idioma usa la traducción que declara la página, si la hay.
+  document.addEventListener("astro:page-load", () => {
+    const enlace = document.querySelector("[data-otro-idioma]");
+    const idioma = enlace?.getAttribute("hreflang") ?? "";
+    const traduccion = document
+      .querySelector(`link[rel="alternate"][hreflang="${idioma}"]`)
+      ?.getAttribute("href");
+    enlace?.setAttribute(
+      "href",
+      traduccion
+        ? new URL(traduccion).pathname
+        : rutaEnOtroIdioma(location.pathname),
+    );
+  });
+</script>

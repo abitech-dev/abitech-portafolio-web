@@ -1,0 +1,49 @@
+tipo: libro
+estado:
+  es: En escritura
+  en: In progress
+lema:
+  es: Docker desde cero en español, con una tienda de frutas como ejemplo.
+  en: Docker from scratch in Spanish, with a fruit store as the running example.
+portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/pila.svg
+datos:
+  - valor: { es: "7", en: "7" }
+    etiqueta: { es: volúmenes en borrador, en: draft volumes }
+  - valor: { es: "140 000", en: "140,000" }
+    etiqueta: { es: palabras aproximadas, en: "words, approx." }
+  - valor: { es: CI, en: CI }
+    etiqueta: { es: prueba cada comando, en: tests every command }
+modulos:
+  - numero: "00"
+    titulo: Antes de zarpar
+    subtitulo: "Terminal, Linux, redes y YAML: lo justo para empezar"
+    portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/portada-00.svg
+  - numero: "01"
+    titulo: La caja mágica
+    subtitulo: "Qué es un contenedor y tus primeros pasos"
+    portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/portada-01.svg
+  - numero: "02"
+    titulo: La ficha de empaque
+    subtitulo: "Imágenes y Dockerfile"
+    portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/portada-02.svg
+  - numero: "03"
+    titulo: Bodegas y caminos
+    subtitulo: "Datos que sobreviven y redes"
+    portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/portada-03.svg
+  - numero: "04"
+    titulo: El plan de estiba
+    subtitulo: "Docker Compose"
+    portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/portada-04.svg
+  - numero: "05"
+    titulo: La aduana
+    subtitulo: "Seguridad de punta a punta"
+    portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/portada-05.svg
+  - numero: "06"
+    titulo: Rumbo a producción
+    subtitulo: "Un servidor real, con todo lo que pide"
+    portada: ../../assets/aprende/contenedores-con-peras-y-manzanas/portada-06.svg
+recursos:
+  - etiqueta:
+      es: La Frutería, la tienda de ejemplo del libro
+      en: La Frutería, the book's example store
+    url: https://github.com/abitech-dev/la-fruteria

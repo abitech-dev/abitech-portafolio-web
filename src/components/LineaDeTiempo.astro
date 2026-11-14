@@ -1,0 +1,37 @@
+---
+interface Hito {
+  titulo: string;
+  lugar: string;
+  periodo: string;
+  resumen?: string;
+  logros?: readonly string[];
+}
+
+interface Props {
+  hitos: readonly Hito[];
+}
+
+const { hitos } = Astro.props;
+---
+
+<ol class="border-borde relative ml-2 border-l">
+  {hitos.map((hito) => (
+    <li class="mb-8 ml-6 last:mb-0">
+      <span
+        class="bg-acento ring-fondo absolute -left-1.5 mt-1.5 size-3 rounded-full ring-4"
+        aria-hidden="true"
+      />
+      <p class="text-tenue font-mono text-xs">{hito.periodo}</p>
+      <h3 class="mt-1 font-semibold">{hito.titulo}</h3>
+      <p class="text-acento text-sm">{hito.lugar}</p>
+      {hito.resumen && <p class="text-tenue mt-2 text-sm">{hito.resumen}</p>}
+      {hito.logros && hito.logros.length > 0 && (
+        <ul class="text-tenue mt-2 list-disc space-y-1 pl-5 text-sm">
+          {hito.logros.map((logro) => (
+            <li>{logro}</li>
+          ))}
+        </ul>
+      )}
+    </li>
+  ))}
+</ol>

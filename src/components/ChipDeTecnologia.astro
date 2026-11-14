@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
+
+interface Props {
+  tecnologia: string;
+  class?: string | undefined;
+}
+
+const { tecnologia, class: clase } = Astro.props;
+const logo = logoDeTecnologia(tecnologia);
+---
+
+<li
+  class:list={[
+    "bg-acento-suave text-acento inline-flex items-center gap-1.5 rounded font-mono",
+    clase,
+  ]}
+>
+  {logo && (
+    <Icon is:inline name={logo} class="size-[1.1em]" aria-hidden="true" />
+  )}
+  {tecnologia}
+</li>

@@ -1,0 +1,26 @@
+lema:
+  es: Protege tus formularios de bots con una sola regla.
+  en: Protect your forms from bots with a single rule.
+integra: [Cloudflare Turnstile, reCAPTCHA]
+datos:
+  - valor: { es: "3", en: "3" }
+    etiqueta: { es: proveedores, en: providers }
+  - valor: { es: 7.3+, en: 7.3+ }
+    etiqueta: { es: PHP, en: PHP }
+  - valor: { es: 8 a 13, en: 8 to 13 }
+    etiqueta: { es: Laravel, en: Laravel }
+  - valor: { es: MIT, en: MIT }
+    etiqueta: { es: licencia, en: license }
+ejemplo:
+  archivo: LoginController.php
+  lenguaje: php
+  codigo: |-
+    use Abitech\AntiBot\Rules\AntiBotRule;
+
+    $request->validate([
+        'email' => 'required|email',
+        'cf-turnstile-response' => [
+            'required',
+            new AntiBotRule(),
+        ],
+    ]);

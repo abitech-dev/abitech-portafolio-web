@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+
+import Insignia from "@/components/Insignia.astro";
+import { imagenDelProyecto } from "@/lib/imagenes";
+
+interface Props {
+  id: string;
+  class?: string | undefined;
+}
+
+const { id, class: clase } = Astro.props;
+const imagen = imagenDelProyecto(id);
+---
+
+{imagen.esLogo ? (
+  <div
+    class:list={[
+      "border-borde grid shrink-0 place-items-center rounded-md border bg-white p-2",
+      clase,
+    ]}
+  >
+    <Image
+      src={imagen.logo}
+      alt=""
+      width={128}
+      height={128}
+      class="size-full object-contain"
+    />
+  </div>
+) : (
+  <Insignia icono={imagen.icono} class={clase} />
+)}

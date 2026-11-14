@@ -1,0 +1,134 @@
+---
+import { Icon } from "astro-icon/components";
+
+import FilaProyecto from "@/components/FilaProyecto.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
+import {
+  esPaquete,
+  tecnologiaBase,
+  tecnologiasFrecuentes,
+} from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+
+const { basics } = resume;
+const projects = resume.projects.filter((proyecto) => !esPaquete(proyecto));
+const filtros = tecnologiasFrecuentes(projects, 3);
+---
+
+<Base
+  titulo={t.secciones.proyectos}
+  descripcion={t.proyectos.descripcion(basics.name)}
+>
+  <TituloDePagina titulo={t.secciones.proyectos} icono="lucide:rocket" />
+  <p class="text-tenue mt-3 max-w-prose">{t.proyectos.intro}</p>
+
+  <div
+    class="mt-6 flex flex-wrap gap-2"
+    role="group"
+    aria-label={t.proyectos.filtrar}
+  >
+    <button type="button" data-filtro="" aria-pressed="true" class="filtro">
+      {t.proyectos.todos}
+    </button>
+    {filtros.map((tecnologia) => {
+      const logo = logoDeTecnologia(tecnologia);
+      return (
+        <button
+          type="button"
+          data-filtro={tecnologia}
+          aria-pressed="false"
+          class="filtro"
+        >
+          {logo && (
+            <Icon is:inline name={logo} class="size-4" aria-hidden="true" />
+          )}
+          {tecnologia}
+        </button>
+      );
+    })}
+  </div>
+  <p
+    class="text-tenue mt-3 text-sm"
+    aria-live="polite"
+    data-contador
+    data-unidad={t.proyectos.unidad}
+  >
+    {projects.length} {t.proyectos.unidad}
+  </p>
+
+  <ul class="divide-borde border-borde mt-4 divide-y border-y">
+    {projects.map((proyecto) => (
+      <li
+        data-tecnologias={[
+          ...new Set(proyecto.keywords.map(tecnologiaBase)),
+        ].join("|")}
+      >
+        <FilaProyecto proyecto={proyecto} />
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .filtro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-tenue);
+  }
+
+  .filtro[aria-pressed="true"] {
+    border-color: var(--color-acento);
+    background: var(--color-acento-suave);
+    color: var(--color-acento);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  function iniciarFiltro(): void {
+    const botones = [
+      ...document.querySelectorAll<HTMLButtonElement>("[data-filtro]"),
+    ];
+    const proyectos = [
+      ...document.querySelectorAll<HTMLElement>("[data-tecnologias]"),
+    ];
+    const contador = document.querySelector("[data-contador]");
+    for (const boton of botones) {
+      boton.addEventListener("click", () => {
+        const elegida = boton.dataset["filtro"] ?? "";
+        for (const otro of botones) {
+          otro.setAttribute("aria-pressed", String(otro === boton));
+        }
+        let visibles = 0;
+        for (const proyecto of proyectos) {
+          const tecnologias = (proyecto.dataset["tecnologias"] ?? "").split(
+            "|",
+          );
+          proyecto.hidden = elegida !== "" && !tecnologias.includes(elegida);
+          visibles += proyecto.hidden ? 0 : 1;
+        }
+        if (contador instanceof HTMLElement) {
+          contador.textContent = `${visibles} ${contador.dataset["unidad"] ?? ""}`;
+        }
+      });
+    }
+  }
+
+  document.addEventListener("astro:page-load", iniciarFiltro);
+</script>

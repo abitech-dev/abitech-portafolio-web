@@ -1,0 +1,93 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Insignia from "@/components/Insignia.astro";
+import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta } from "@/i18n/rutas";
+import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
+import { conMayuscula, nivelDe, type Habilidad } from "@/lib/trayectoria";
+
+interface Props {
+  grupos: Map<string, Habilidad[]>;
+}
+
+const { grupos } = Astro.props;
+const { cv } = textosDe(idiomaDeLaRuta(Astro.url.pathname));
+const NIVELES = [3, 2] as const;
+const ICONO_DE_CATEGORIA: Record<string, string> = {
+  Backend: "lucide:server",
+  Frontend: "lucide:layout-template",
+  Datos: "lucide:database",
+  Data: "lucide:database",
+  "Nube y DevOps": "lucide:cloud",
+  "Cloud and DevOps": "lucide:cloud",
+  Calidad: "lucide:badge-check",
+  Quality: "lucide:badge-check",
+  Dominio: "lucide:briefcase-business",
+  Domain: "lucide:briefcase-business",
+  Integración: "lucide:plug",
+  Integration: "lucide:plug",
+  IA: "lucide:sparkles",
+  AI: "lucide:sparkles",
+};
+---
+
+<p
+  class="text-tenue mb-6 flex flex-wrap gap-x-5 gap-y-1 text-xs"
+  aria-hidden="true"
+>
+  {NIVELES.map((nivel) => (
+    <span class="inline-flex items-center gap-1.5">
+      <span class="flex gap-0.5">
+        {[1, 2, 3].map((punto) => (
+          <span
+            class:list={[
+              "size-1.5 rounded-full",
+              punto <= nivel ? "bg-acento" : "bg-borde",
+            ]}
+          />
+        ))}
+      </span>
+      {cv.niveles[nivel]}
+    </span>
+  ))}
+</p>
+
+<div class="grid gap-4 sm:grid-cols-2">
+  {[...grupos].map(([categoria, lista]) => (
+    <section class="revelar border-borde rounded-lg border p-5">
+      <div class="flex items-center gap-3">
+        <Insignia
+          icono={ICONO_DE_CATEGORIA[categoria] ?? "lucide:circle-dot"}
+          class="size-9"
+        />
+        <h3 class="font-display font-semibold">{categoria}</h3>
+      </div>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {lista.map((habilidad) => {
+          const logo = logoDeTecnologia(habilidad.name);
+          const nivel = nivelDe(habilidad.level);
+          return (
+            <li class="border-borde bg-superficie inline-flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm">
+              {logo && (
+                <Icon is:inline name={logo} class="size-4" aria-hidden="true" />
+              )}
+              <span>{conMayuscula(habilidad.name)}</span>
+              <span class="flex gap-0.5" aria-hidden="true">
+                {[1, 2, 3].map((punto) => (
+                  <span
+                    class:list={[
+                      "size-1.5 rounded-full",
+                      punto <= nivel ? "bg-acento" : "bg-borde",
+                    ]}
+                  />
+                ))}
+              </span>
+              <span class="sr-only">, {habilidad.level}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ))}
+</div>

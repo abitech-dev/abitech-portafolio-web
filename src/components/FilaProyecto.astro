@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+
+import LogoDeProyecto from "@/components/LogoDeProyecto.astro";
+import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import { tecnologiaBase, type Proyecto } from "@/lib/trayectoria";
+
+interface Props {
+  proyecto: Proyecto;
+}
+
+const { proyecto } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const anio = proyecto.startDate?.slice(0, 4);
+const tecnologias = [...new Set(proyecto.keywords.map(tecnologiaBase))].slice(
+  0,
+  3,
+);
+---
+
+<article class="group relative flex items-start gap-4 py-5">
+  <LogoDeProyecto id={proyecto.id} class="size-11" />
+  <div class="min-w-0 flex-1">
+    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <h2 class="font-display group-hover:text-acento text-lg font-semibold transition-colors">
+        <a
+          href={rutaEn(idioma, `/proyectos/${proyecto.id}`)}
+          class="after:absolute after:inset-0"
+        >
+          {proyecto.name}
+        </a>
+      </h2>
+      {anio && <span class="text-tenue font-mono text-xs">{anio}</span>}
+    </div>
+    <p class="text-tenue mt-1 line-clamp-2 text-sm leading-relaxed">
+      {proyecto.description}
+    </p>
+    <p class="text-tenue mt-2 font-mono text-xs">{tecnologias.join(" / ")}</p>
+  </div>
+  <Icon
+    is:inline
+    name="lucide:arrow-right"
+    class="text-tenue group-hover:text-acento mt-1.5 size-5 shrink-0 transition-transform group-hover:translate-x-1"
+    aria-hidden="true"
+  />
+</article>

@@ -1,0 +1,68 @@
+---
+import { Icon } from "astro-icon/components";
+
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+
+const { basics } = resume;
+const ICONOS: Record<string, string> = {
+  LinkedIn: "lucide:linkedin",
+  GitHub: "lucide:github",
+};
+const medios = [
+  {
+    etiqueta: t.sitio.correo,
+    valor: basics.email,
+    url: `mailto:${basics.email}`,
+    icono: "lucide:mail",
+  },
+  ...basics.profiles.map((perfil) => ({
+    etiqueta: perfil.network,
+    valor: perfil.url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, ""),
+    url: perfil.url,
+    icono: ICONOS[perfil.network] ?? "lucide:external-link",
+  })),
+];
+---
+
+<Base
+  titulo={t.secciones.contacto}
+  descripcion={t.contacto.descripcion(basics.name)}
+>
+  <TituloDePagina titulo={t.secciones.contacto} icono="lucide:mail" />
+  <p class="text-tenue mt-3 max-w-prose leading-relaxed">{t.contacto.intro}</p>
+
+  <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+    {medios.map((medio) => (
+      <li>
+        <a
+          href={medio.url}
+          target={medio.url.startsWith("mailto:") ? undefined : "_blank"}
+          rel={medio.url.startsWith("mailto:") ? undefined : "me noopener"}
+          class="border-borde hover:border-acento flex items-center gap-4 rounded-md border p-5 transition-colors"
+        >
+          <Icon
+            is:inline
+            name={medio.icono}
+            class="text-acento size-6"
+            aria-hidden="true"
+          />
+          <span>
+            <span class="block font-semibold">{medio.etiqueta}</span>
+            <span class="text-tenue text-sm break-all">{medio.valor}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>
