@@ -70,20 +70,22 @@ los puertos de CloudPanel.
 
 Dokploy corre la aplicación como servicio de Docker Swarm. Para que un
 despliegue no corte el sitio a quien lo está navegando, en **Advanced →
-Swarm Settings → Update Config** usa esta configuración.
+Swarm Settings** llena estas dos secciones.
 
-```json
-{
-  "Parallelism": 1,
-  "Delay": 10000000000,
-  "FailureAction": "rollback",
-  "Order": "start-first"
-}
-```
+| Campo                 | Update Config | Rollback Config |
+| --------------------- | ------------- | --------------- |
+| Parallelism           | `1`           | `1`             |
+| Delay (nanoseconds)   | `10000000000` | `0`             |
+| Failure Action        | `rollback`    | `pause`         |
+| Monitor (nanoseconds) | `30000000000` | `30000000000`   |
+| Max Failure Ratio     | `0`           | `0`             |
+| Order                 | `start-first` | `start-first`   |
 
 Con `start-first`, Swarm levanta el contenedor nuevo, espera a que el
 `HEALTHCHECK` de la imagen responda y recién entonces apaga el anterior.
-Si el nuevo no queda sano, vuelve solo a la versión previa.
+Si el nuevo no queda sano en 30 segundos, vuelve solo a la versión
+previa, también sin cortes. Health Check, Restart Policy y las demás
+secciones quedan vacías, porque la imagen ya trae su `HEALTHCHECK`.
 
 Las cabeceras de seguridad las pone Caddy dentro del contenedor y el
 proxy de CloudPanel las deja pasar. No hace falta repetirlas en Nginx.
