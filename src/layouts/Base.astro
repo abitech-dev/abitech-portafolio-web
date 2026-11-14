@@ -87,8 +87,10 @@ const metadatos = metadatosDe(
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={metadatos.titulo} />
     <meta name="twitter:card" content="summary_large_image" />
-    <Font cssVariable="--font-inter" preload />
-    <Font cssVariable="--font-sora" preload />
+    {/* Solo se precargan el texto y los títulos. El resto llega cuando se usa,
+    sin quitarle prioridad a la foto. */}
+    <Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-sora" preload={[{ weight: 700 }]} />
     <Font cssVariable="--font-jetbrains" />
     <script
       type="application/ld+json"
