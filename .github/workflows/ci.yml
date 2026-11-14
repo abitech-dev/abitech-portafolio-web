@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 env:
-  IMAGEN: ghcr.io/abitech-dev/abitech-portafolio-web
+  IMAGEN: ghcr.io/${{ github.repository }}
 
 jobs:
   # El PR de develop a main ya se probó en develop, así que no se repite.

@@ -15,7 +15,9 @@ permissions:
   contents: read
 
 env:
-  IMAGEN: ghcr.io/abitech-dev/abitech-portafolio-web
+  IMAGEN: ghcr.io/${{ github.repository }}
+  # El dominio vive en la variable de Actions URL_DEL_SITIO, sin barra final.
+  SITIO: ${{ vars.URL_DEL_SITIO }}
 
 jobs:
   buscar:
@@ -78,7 +80,7 @@ jobs:
     timeout-minutes: 5
     environment:
       name: produccion
-      url: https://abitech.dev
+      url: ${{ vars.URL_DEL_SITIO }}
     permissions:
       contents: read
       packages: write
@@ -107,10 +109,11 @@ jobs:
       # El despliegue solo cuenta como bueno si el sitio publicado responde.
       - name: Comprobar el sitio publicado
         run: |
+          test -n "$SITIO" || { echo "Falta la variable URL_DEL_SITIO."; exit 1; }
           for intento in $(seq 1 30); do
-            if curl -fsS -o /dev/null https://abitech.dev/; then break; fi
+            if curl -fsS -o /dev/null "$SITIO/"; then break; fi
             sleep 5
           done
-          curl -fsS -o /dev/null https://abitech.dev/cv
-          curl -sI https://abitech.dev/ | grep -qi "^content-security-policy:"
-          curl -sI https://abitech.dev/ | grep -qi "^strict-transport-security:"
+          curl -fsS -o /dev/null "$SITIO/cv"
+          curl -sI "$SITIO/" | grep -qi "^content-security-policy:"
+          curl -sI "$SITIO/" | grep -qi "^strict-transport-security:"

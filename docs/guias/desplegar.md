@@ -44,7 +44,10 @@ los puertos de CloudPanel.
    despliegue.
 6. En GitHub, en **Settings → Secrets and variables → Actions**, crea el
    secreto `DOKPLOY_WEBHOOK_URL` con esa URL.
-7. En **Settings → Environments** crea el entorno `produccion`.
+7. En la misma pantalla, en **Variables**, crea `URL_DEL_SITIO` con
+   `https://abitech.dev`, sin barra final. El flujo comprueba esa URL
+   después de desplegar.
+8. En **Settings → Environments** crea el entorno `produccion`.
 
 ### Desplegar sin cortes
 
