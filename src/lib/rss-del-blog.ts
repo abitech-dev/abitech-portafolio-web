@@ -11,7 +11,7 @@ export async function rssDelBlog(idioma: Idioma, sitio: URL | undefined) {
   const { secciones, escritos: t } = textosDe(idioma);
   return rss({
     title: `${secciones.escritos} | ${nombreCorto(basics.name)}`,
-    description: t.descripcion(basics.name),
+    description: t.descripcion(nombreCorto(basics.name)),
     site: sitio ?? "https://abitech.dev",
     customData: `<language>${idioma === "es" ? "es-pe" : "en-us"}</language>`,
     items: (await escritosPublicados(idioma)).map((escrito) => ({

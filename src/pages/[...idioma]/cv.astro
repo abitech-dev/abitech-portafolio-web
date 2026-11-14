@@ -11,7 +11,7 @@ import { datosDe, textosDe } from "@/i18n/idioma";
 import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
 import { mesYAnio, periodo } from "@/lib/fechas";
-import { habilidadesPorCategoria } from "@/lib/trayectoria";
+import { habilidadesPorCategoria, nombreCorto } from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
@@ -46,7 +46,10 @@ const formacion = education.map((estudio) => ({
 const habilidades = habilidadesPorCategoria(skills);
 ---
 
-<Base titulo={t.secciones.cv} descripcion={t.cv.descripcion(basics.name)}>
+<Base
+  titulo={t.secciones.cv}
+  descripcion={t.cv.descripcion(nombreCorto(basics.name))}
+>
   <TituloDePagina titulo={t.cv.titulo} icono="lucide:file-text" />
   <div class="mt-5">
     <DescargaDelCv />

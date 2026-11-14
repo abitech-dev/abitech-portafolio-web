@@ -4,7 +4,7 @@ import TituloDePagina from "@/components/TituloDePagina.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
-import { esPaquete } from "@/lib/trayectoria";
+import { esPaquete, nombreCorto } from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
@@ -20,7 +20,7 @@ const paquetes = resume.projects.filter(esPaquete);
 
 <Base
   titulo={t.secciones.codigoAbierto}
-  descripcion={t.codigoAbierto.descripcion(basics.name)}
+  descripcion={t.codigoAbierto.descripcion(nombreCorto(basics.name))}
 >
   <TituloDePagina titulo={t.secciones.codigoAbierto} icono="lucide:package" />
   <p class="text-tenue mt-3 max-w-prose">{t.codigoAbierto.intro}</p>

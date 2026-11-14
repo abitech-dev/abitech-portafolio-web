@@ -5,6 +5,7 @@ import TituloDePagina from "@/components/TituloDePagina.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { rutasPorIdioma, idiomaDeLaRuta } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
+import { nombreCorto } from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
@@ -37,7 +38,7 @@ const medios = [
 
 <Base
   titulo={t.secciones.contacto}
-  descripcion={t.contacto.descripcion(basics.name)}
+  descripcion={t.contacto.descripcion(nombreCorto(basics.name))}
 >
   <TituloDePagina titulo={t.secciones.contacto} icono="lucide:mail" />
   <p class="text-tenue mt-3 max-w-prose leading-relaxed">{t.contacto.intro}</p>
