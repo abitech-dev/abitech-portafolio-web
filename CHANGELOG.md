@@ -7,6 +7,9 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Agregado
 
+- Buscador del sitio con Pagefind, en español e inglés, desde la lupa de
+  la barra lateral. Busca en el blog, los proyectos, Aprende, Código
+  abierto, Sobre mí y el CV.
 - Blog con artículos y notas, etiquetas, tiempo de lectura, RSS y
   datos de artículo de schema.org. Aparece en el menú cuando hay algo
   publicado.

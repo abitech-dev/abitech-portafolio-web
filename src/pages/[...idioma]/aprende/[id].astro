@@ -40,8 +40,10 @@ const { aprende, sitio } = textosDe(idioma);
   titulo={publicacion.name}
   descripcion={publicacion.summary}
   nodos={[libro(publicacion, Astro.site ?? Astro.url)]}
+  isBuscable
 >
   <a
+    data-pagefind-ignore
     href={rutaEn(idioma, "/aprende")}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >

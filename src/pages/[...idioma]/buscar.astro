@@ -1,0 +1,28 @@
+---
+import BuscadorDelSitio from "@/components/islands/BuscadorDelSitio.vue";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutasPorIdioma } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { nombreCorto } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const t = textosDe(idioma);
+const { basics } = datosDe(idioma);
+---
+
+<Base
+  titulo={t.secciones.buscar}
+  descripcion={t.buscador.descripcion(nombreCorto(basics.name))}
+  isIndexable={false}
+>
+  <TituloDePagina titulo={t.secciones.buscar} icono="lucide:search" />
+  <p class="text-tenue mt-3 max-w-prose">{t.buscador.intro}</p>
+  <div class="mt-8 max-w-3xl">
+    <BuscadorDelSitio client:load {...t.buscador.isla} />
+  </div>
+</Base>
