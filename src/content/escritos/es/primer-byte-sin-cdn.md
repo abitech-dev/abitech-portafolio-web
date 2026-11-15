@@ -1,6 +1,6 @@
 ---
 titulo: Cómo aceleré mi sitio sin CDN con el servidor en Europa
-descripcion: Desde Perú, la primera visita a mi sitio tardaba. Con tres ajustes, el HTML pasó de 0,87 a 0,64 s y la foto de 1,45 a 1,07 s.
+descripcion: Desde Perú, la primera visita a mi sitio tardaba. Con tres ajustes, el HTML pasó de 0,87 a 0,64 s y la foto de 1,45 a 1,14 s.
 fecha: 2026-11-14
 tipo: nota
 etiquetas: [rendimiento, nginx, redes]
@@ -20,7 +20,7 @@ del sitio cerca de cada visitante. Así que medí dónde se iba el tiempo.
 | ------------------------------------- | ---------- | ---------- |
 | Espera hasta que empieza la respuesta | 390 ms     | 200 ms     |
 | HTML completo                         | 0,87 s     | 0,64 s     |
-| Foto visible                          | 1,45 s     | 1,07 s     |
+| Foto visible                          | 1,45 s     | 1,14 s     |
 | Fuentes pedidas con prioridad         | 8 archivos | 2 archivos |
 
 Son tres ajustes, uno en el servidor web, otro en la red del servidor y otro

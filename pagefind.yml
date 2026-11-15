@@ -1,0 +1,4 @@
+# El código y los textos para lectores de pantalla ensucian los extractos.
+exclude_selectors:
+  - pre
+  - .sr-only

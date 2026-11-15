@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint .",
@@ -18,7 +18,6 @@
     "e2e": "playwright test",
     "lighthouse": "npx --yes @lhci/cli@0.16.0 autorun",
     "capturas": "node scripts/capturar-proyectos.mjs",
-    "datos": "node scripts/copiar-datos.mjs && prettier --write src/data",
     "verificar": "npm run format:check && npm run lint && npm run check && npm run test && npm run build"
   },
   "dependencies": {
@@ -58,6 +57,7 @@
     "globals": "17.14.0",
     "happy-dom": "21.0.4",
     "lefthook": "2.2.2",
+    "pagefind": "1.5.2",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.2",
     "prettier-plugin-tailwindcss": "0.8.1",

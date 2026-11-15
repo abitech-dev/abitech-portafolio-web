@@ -60,6 +60,8 @@ export default defineConfig({
     icon(),
     sitemap({
       i18n: { defaultLocale: "es", locales: { es: "es-PE", en: "en-US" } },
+      // El buscador lleva noindex, así que tampoco va al sitemap.
+      filter: (pagina) => !/\/buscar\/?$/.test(pagina),
     }),
   ],
   markdown: {
