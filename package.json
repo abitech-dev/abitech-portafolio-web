@@ -18,7 +18,6 @@
     "e2e": "playwright test",
     "lighthouse": "npx --yes @lhci/cli@0.16.0 autorun",
     "capturas": "node scripts/capturar-proyectos.mjs",
-    "datos": "node scripts/copiar-datos.mjs && prettier --write src/data",
     "verificar": "npm run format:check && npm run lint && npm run check && npm run test && npm run build"
   },
   "dependencies": {
