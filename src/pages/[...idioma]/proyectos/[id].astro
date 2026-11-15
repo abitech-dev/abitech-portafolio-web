@@ -43,7 +43,7 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
   titulo={proyecto.name}
   descripcion={proyecto.description}
   nodos={[datosDelProyecto(proyecto, Astro.site ?? Astro.url, Astro.url)]}
-  isBuscable
+  tipoEnBuscador={t.proyectos.tipo}
 >
   <a
     data-pagefind-ignore
@@ -72,7 +72,7 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
           class="size-4"
           aria-hidden="true"
         />
-        {periodo(proyecto.startDate, fin, idioma)}
+        {periodo(proyecto.startDate, fin, idioma)}{" "}
       </span>
     )}
     {entidad && (

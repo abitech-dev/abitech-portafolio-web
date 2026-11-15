@@ -21,7 +21,7 @@ const paquetes = resume.projects.filter(esPaquete);
 <Base
   titulo={t.secciones.codigoAbierto}
   descripcion={t.codigoAbierto.descripcion(nombreCorto(basics.name))}
-  isBuscable
+  tipoEnBuscador={t.secciones.codigoAbierto}
 >
   <TituloDePagina titulo={t.secciones.codigoAbierto} icono="lucide:package" />
   <p class="text-tenue mt-3 max-w-prose">{t.codigoAbierto.intro}</p>
