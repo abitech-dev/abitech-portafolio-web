@@ -29,8 +29,10 @@ const formato = new Intl.DateTimeFormat(fechas.locale, {
   descripcion={descripcion}
   hasVersionEnIngles={hasTraduccion}
   nodos={[articulo(escrito.data, Astro.site ?? Astro.url, Astro.url, idioma)]}
+  isBuscable
 >
   <a
+    data-pagefind-ignore
     href={rutaEn(idioma, "/blog")}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >

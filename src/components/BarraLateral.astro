@@ -15,7 +15,7 @@ import {
 import { nombreCorto } from "@/lib/trayectoria";
 
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
-const { sitio } = textosDe(idioma);
+const { sitio, secciones } = textosDe(idioma);
 const { name, label, email, location, profiles } = datosDe(idioma).basics;
 const ICONOS: Record<string, string> = {
   LinkedIn: "lucide:linkedin",
@@ -150,10 +150,24 @@ const boton =
             ),
           )}
         </div>
-        <BotonTema client:load etiqueta={sitio.temaOscuro}>
-          <Icon is:inline slot="claro" name="lucide:moon" class="size-4" />
-          <Icon is:inline slot="oscuro" name="lucide:sun" class="size-4" />
-        </BotonTema>
+        <div class="flex items-center gap-2">
+          <a
+            href={rutaEn(idioma, "/buscar")}
+            aria-label={secciones.buscar}
+            class={boton}
+          >
+            <Icon
+              is:inline
+              name="lucide:search"
+              class="size-4"
+              aria-hidden="true"
+            />
+          </a>
+          <BotonTema client:load etiqueta={sitio.temaOscuro}>
+            <Icon is:inline slot="claro" name="lucide:moon" class="size-4" />
+            <Icon is:inline slot="oscuro" name="lucide:sun" class="size-4" />
+          </BotonTema>
+        </div>
       </div>
     </div>
   </div>

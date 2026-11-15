@@ -43,8 +43,10 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
   titulo={proyecto.name}
   descripcion={proyecto.description}
   nodos={[datosDelProyecto(proyecto, Astro.site ?? Astro.url, Astro.url)]}
+  isBuscable
 >
   <a
+    data-pagefind-ignore
     href={rutaEn(idioma, "/proyectos")}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >

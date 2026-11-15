@@ -34,7 +34,8 @@ const umami = process.env.PUBLIC_UMAMI_SRC
 
 const politica = [
   "default-src 'self'",
-  `script-src 'self' ${[...hashes].sort().join(" ")} ${umami}`.trim(),
+  // Pagefind busca con WebAssembly.
+  `script-src 'self' 'wasm-unsafe-eval' ${[...hashes].sort().join(" ")} ${umami}`.trim(),
   // Shiki usa atributos style, que no ejecutan código.
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",

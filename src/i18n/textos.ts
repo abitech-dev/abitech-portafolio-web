@@ -31,6 +31,7 @@ const es = {
     codigoAbierto: "Código abierto",
     aprende: "Aprende",
     sobreMi: "Sobre mí",
+    buscar: "Buscar",
     contacto: "Contacto",
   },
   fechas: { locale: "es-PE", actualidad: "actualidad" },
@@ -136,6 +137,19 @@ const es = {
     resultados: "Resultados",
     portadaDe: (nombre: string) => `Portada de ${nombre}`,
   },
+  buscador: {
+    descripcion: (nombre: string) =>
+      `Busca en los artículos, notas, proyectos y libros de ${nombre}.`,
+    intro: "Artículos, notas, proyectos, libros y paquetes de código abierto.",
+    isla: {
+      etiqueta: "Buscar en el sitio",
+      marcador: "Escribe una tecnología, un proyecto o un tema",
+      sinResultados: "No encontré nada con esas palabras.",
+      unResultado: "1 resultado",
+      variosResultados: "{n} resultados",
+      sinIndice: "El buscador no está disponible en este momento.",
+    },
+  },
   codigoAbierto: {
     descripcion: (nombre: string) =>
       `Paquetes de código abierto de ${nombre} para Laravel, con licencia MIT y listos para usar en tus proyectos.`,
@@ -230,6 +244,7 @@ const en: Textos = {
     codigoAbierto: "Open source",
     aprende: "Learn",
     sobreMi: "About",
+    buscar: "Search",
     contacto: "Contact",
   },
   fechas: { locale: "en-US", actualidad: "present" },
@@ -332,6 +347,19 @@ const en: Textos = {
     volver: "All projects",
     resultados: "Results",
     portadaDe: (nombre) => `Home page of ${nombre}`,
+  },
+  buscador: {
+    descripcion: (nombre) =>
+      `Search the articles, notes, projects and books of ${nombre}.`,
+    intro: "Articles, notes, projects, books and open source packages.",
+    isla: {
+      etiqueta: "Search the site",
+      marcador: "Type a technology, a project or a topic",
+      sinResultados: "Nothing matched those words.",
+      unResultado: "1 result",
+      variosResultados: "{n} results",
+      sinIndice: "Search is not available right now.",
+    },
   },
   codigoAbierto: {
     descripcion: (nombre) =>
