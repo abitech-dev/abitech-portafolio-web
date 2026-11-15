@@ -33,14 +33,14 @@ export default defineConfig({
       provider: fontProviders.fontsource(),
       name: "Inter",
       cssVariable: "--font-inter",
-      weights: [400, 600, 700],
+      weights: ["400 700"],
       subsets: ["latin"],
     },
     {
       provider: fontProviders.fontsource(),
       name: "Sora",
       cssVariable: "--font-sora",
-      weights: [600, 700],
+      weights: ["600 700"],
       subsets: ["latin"],
     },
     {
@@ -48,7 +48,10 @@ export default defineConfig({
       name: "JetBrains Mono",
       cssVariable: "--font-jetbrains",
       weights: [400],
+      styles: ["normal"],
       subsets: ["latin"],
+      // Con Arial de reemplazo, las etiquetas cambian de ancho al cargar.
+      fallbacks: ["monospace"],
     },
   ],
   integrations: [
