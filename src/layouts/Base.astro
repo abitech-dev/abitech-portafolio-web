@@ -7,7 +7,7 @@ import BarraLateral from "@/components/BarraLateral.astro";
 import Pie from "@/components/Pie.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn, sinIdioma } from "@/i18n/rutas";
-import { imagenParaCompartir } from "@/lib/compartir";
+import { archivoDeLaImagen, imagenParaCompartir } from "@/lib/compartir";
 import { grafo, type Nodo } from "@/lib/datos-estructurados";
 import { metadatosDe } from "@/lib/seo";
 import "@/styles/global.css";
@@ -20,6 +20,8 @@ interface Props {
   isIndexable?: boolean;
   /** Etiqueta del resultado en el buscador. Sin ella no se indexa. */
   tipoEnBuscador?: string;
+  /** La página tiene su propia imagen en /og, como cada escrito. */
+  hasImagenPropia?: boolean;
 }
 
 const {
@@ -29,6 +31,7 @@ const {
   hasVersionEnIngles = true,
   isIndexable = true,
   tipoEnBuscador,
+  hasImagenPropia = false,
 } = Astro.props;
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const { sitio } = textosDe(idioma);
@@ -41,8 +44,12 @@ const datosEstructurados = grafo(
 if (!Astro.site) {
   throw new Error("Falta `site` en astro.config.ts.");
 }
-const imagen = new URL(imagenParaCompartir(Astro.url.pathname), Astro.site)
-  .href;
+const imagen = new URL(
+  hasImagenPropia
+    ? archivoDeLaImagen(Astro.url.pathname)
+    : imagenParaCompartir(Astro.url.pathname),
+  Astro.site,
+).href;
 const base = sinIdioma(Astro.url.pathname);
 const alternas = hasVersionEnIngles
   ? [

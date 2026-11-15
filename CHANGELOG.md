@@ -7,6 +7,9 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Agregado
 
+- Fila para compartir en LinkedIn, WhatsApp, X y Facebook, con copiar
+  enlace, al final de cada nota, proyecto, libro y de Código abierto.
+- Imagen propia para redes en cada nota, con su título y sus etiquetas.
 - Buscador del sitio con Pagefind, en español e inglés, desde la lupa de
   la barra lateral. Busca en el blog, los proyectos, Aprende, Código
   abierto, Sobre mí y el CV.
@@ -50,6 +53,7 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Corregido
 
+- Los botones muestran la mano al pasar el cursor, como los enlaces.
 - El buscador no pierde lo escrito antes de que cargue la página, y una
   respuesta lenta ya no pisa la de lo último que se escribió.
 - Los extractos del buscador ya no pegan palabras como «2024Universidad»

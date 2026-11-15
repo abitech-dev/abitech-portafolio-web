@@ -4,7 +4,9 @@ import resumeEn from "@/data/resume.en.json";
 import resume from "@/data/resume.json";
 import {
   archivoDeLaImagen,
+  enlacesParaCompartir,
   imagenParaCompartir,
+  paginaDelEscrito,
   paginasParaCompartir,
 } from "@/lib/compartir";
 import { SECCIONES } from "@/lib/navegacion";
@@ -49,5 +51,65 @@ describe("imagenParaCompartir", () => {
   it("cae a la portada de su idioma si la página no tiene imagen", () => {
     expect(imagenParaCompartir("/no-existe")).toBe("/og/inicio.jpg");
     expect(imagenParaCompartir("/en/no-existe")).toBe("/og/en.jpg");
+  });
+});
+
+describe("paginaDelEscrito", () => {
+  const escrito = (id: string) => ({
+    id,
+    data: {
+      titulo: "Por qué OptiPix descarga en ZIP",
+      descripcion: "",
+      fecha: new Date("2026-11-12"),
+      tipo: "nota" as const,
+      etiquetas: ["javascript", "rendimiento"],
+      borrador: false,
+    },
+  });
+
+  it("da a cada escrito su ruta, su título y sus etiquetas", () => {
+    expect(paginaDelEscrito(escrito("es/optipix"))).toEqual({
+      ruta: "/blog/optipix",
+      titulo: "Por qué OptiPix descarga en ZIP",
+      idioma: "es",
+      etiquetas: ["javascript", "rendimiento"],
+    });
+    expect(paginaDelEscrito(escrito("en/optipix")).ruta).toBe(
+      "/en/blog/optipix",
+    );
+  });
+});
+
+describe("enlacesParaCompartir", () => {
+  it("arma un enlace por red con la URL y el título codificados", () => {
+    const enlaces = enlacesParaCompartir(
+      "https://abitech.dev/blog/a b",
+      "Título & más",
+    );
+    const url = encodeURIComponent("https://abitech.dev/blog/a b");
+    const titulo = encodeURIComponent("Título & más");
+
+    expect(enlaces).toEqual([
+      {
+        red: "LinkedIn",
+        icono: "simple-icons:linkedin",
+        href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+      },
+      {
+        red: "WhatsApp",
+        icono: "simple-icons:whatsapp",
+        href: `https://wa.me/?text=${encodeURIComponent("Título & más https://abitech.dev/blog/a b")}`,
+      },
+      {
+        red: "X",
+        icono: "simple-icons:x",
+        href: `https://x.com/intent/post?text=${titulo}&url=${url}`,
+      },
+      {
+        red: "Facebook",
+        icono: "simple-icons:facebook",
+        href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      },
+    ]);
   });
 });

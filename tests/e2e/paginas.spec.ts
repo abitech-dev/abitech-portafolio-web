@@ -306,3 +306,20 @@ test("las listas no dejan una línea doble sobre el pie", async ({ page }) => {
     expect(bordeInferior, ruta).toBe("0px");
   }
 });
+
+// Tailwind 4 deja los botones con la flecha. El sitio usa la mano.
+test("los botones muestran la mano al pasar el cursor", async ({ page }) => {
+  await page.goto("/proyectos");
+  await expect(
+    page
+      .getByRole("group", { name: "Filtrar por tecnología" })
+      .getByRole("button")
+      .first(),
+  ).toHaveCSS("cursor", "pointer");
+
+  await page.goto("/blog/optipix-zip-de-50-imagenes");
+  await expect(page.getByRole("button", { name: "Copiar enlace" })).toHaveCSS(
+    "cursor",
+    "pointer",
+  );
+});

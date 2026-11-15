@@ -1,4 +1,5 @@
 ---
+import Compartir from "@/components/Compartir.astro";
 import { Icon } from "astro-icon/components";
 
 import ChipDeTecnologia from "@/components/ChipDeTecnologia.astro";
@@ -130,4 +131,6 @@ const entidad = "entity" in proyecto ? proyecto.entity : undefined;
       ))}
     </ul>
   </Seccion>
+
+  <Compartir titulo={proyecto.name} />
 </Base>
