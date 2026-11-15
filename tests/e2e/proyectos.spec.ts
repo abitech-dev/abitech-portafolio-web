@@ -70,12 +70,9 @@ test("los paquetes van en Código abierto y no en Proyectos", async ({
   ).toHaveCount(0);
 
   await page.goto("/codigo-abierto");
-  const paquetes = page.getByRole("article");
+  await expect(page.getByRole("article")).toHaveCount(2);
 
-  await expect(paquetes).toHaveCount(2);
-  await expect(page.locator("article pre.astro-code")).toHaveCount(2);
-  await expect(paquetes.first()).toContainText("MIT");
-  await expect(
-    paquetes.first().getByRole("link", { name: /Ver en GitHub/ }),
-  ).toHaveAttribute("href", /^https:\/\/github\.com\/abitech-dev\//);
+  await page.goto("/codigo-abierto/payments-laravel");
+  await expect(page.locator("pre.astro-code")).toHaveCount(1);
+  await expect(page.getByRole("main")).toContainText("MIT");
 });

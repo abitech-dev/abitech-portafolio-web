@@ -10,6 +10,7 @@ import {
 import { estaActiva } from "../../src/lib/seccion-activa";
 import {
   esPaquete,
+  slugDelPaquete,
   conMayuscula,
   nivelDe,
   nombreCorto,
@@ -52,6 +53,14 @@ describe("nivelDe", () => {
 describe("nombreCorto", () => {
   it("deja el nombre y el primer apellido", () => {
     expect(nombreCorto("Abimael Fernandez Ventura")).toBe("Abimael Fernandez");
+  });
+});
+
+describe("slugDelPaquete", () => {
+  it("usa el nombre del paquete sin el vendor", () => {
+    expect(
+      slugDelPaquete({ package: "abitechdev/payments-laravel" } as never),
+    ).toBe("payments-laravel");
   });
 });
 

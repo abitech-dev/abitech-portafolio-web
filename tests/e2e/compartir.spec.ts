@@ -20,7 +20,7 @@ test("cada nota tiene su propia imagen para compartir", async ({
 for (const ruta of [
   NOTA,
   "/proyectos/tu-coach",
-  "/codigo-abierto",
+  "/codigo-abierto/payments-laravel",
   "/aprende/contenedores-con-peras-y-manzanas",
   "/en/blog/optipix-zip-de-50-imagenes",
 ]) {
@@ -65,7 +65,14 @@ test("copiar enlace deja la dirección de la página", async ({
 test("las listas y las páginas de perfil no llevan la fila", async ({
   page,
 }) => {
-  for (const ruta of ["/blog", "/proyectos", "/aprende", "/cv", "/sobre-mi"]) {
+  for (const ruta of [
+    "/blog",
+    "/proyectos",
+    "/aprende",
+    "/codigo-abierto",
+    "/cv",
+    "/sobre-mi",
+  ]) {
     await page.goto(ruta);
     await expect(
       page.getByRole("list", { name: "Compartir en redes" }),
