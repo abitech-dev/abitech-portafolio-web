@@ -7,15 +7,20 @@ import { tecnologiaBase, type Proyecto } from "@/lib/trayectoria";
 
 interface Props {
   proyecto: Proyecto;
+  /** Por defecto la página del caso y sus tres tecnologías principales. */
+  ruta?: string;
+  detalle?: string | undefined;
 }
 
-const { proyecto } = Astro.props;
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const {
+  proyecto,
+  ruta = rutaEn(idioma, `/proyectos/${Astro.props.proyecto.id}`),
+  detalle = [...new Set(Astro.props.proyecto.keywords.map(tecnologiaBase))]
+    .slice(0, 3)
+    .join(" / "),
+} = Astro.props;
 const anio = proyecto.startDate?.slice(0, 4);
-const tecnologias = [...new Set(proyecto.keywords.map(tecnologiaBase))].slice(
-  0,
-  3,
-);
 ---
 
 <article class="group relative flex items-start gap-4 py-5">
@@ -23,10 +28,7 @@ const tecnologias = [...new Set(proyecto.keywords.map(tecnologiaBase))].slice(
   <div class="min-w-0 flex-1">
     <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
       <h2 class="font-display group-hover:text-acento text-lg font-semibold transition-colors">
-        <a
-          href={rutaEn(idioma, `/proyectos/${proyecto.id}`)}
-          class="after:absolute after:inset-0"
-        >
+        <a href={ruta} class="after:absolute after:inset-0">
           {proyecto.name}
         </a>
       </h2>
@@ -35,7 +37,7 @@ const tecnologias = [...new Set(proyecto.keywords.map(tecnologiaBase))].slice(
     <p class="text-tenue mt-1 line-clamp-2 text-sm leading-relaxed">
       {proyecto.description}
     </p>
-    <p class="text-tenue mt-2 font-mono text-xs">{tecnologias.join(" / ")}</p>
+    <p class="text-tenue mt-2 font-mono text-xs">{detalle}</p>
   </div>
   <Icon
     is:inline

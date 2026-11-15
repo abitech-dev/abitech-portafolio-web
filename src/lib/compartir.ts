@@ -2,7 +2,7 @@ import { datosDe } from "@/i18n/idioma";
 import { IDIOMAS, idiomaDeLaRuta, rutaEn, type Idioma } from "@/i18n/rutas";
 import { idiomaDelEscrito, slugDelEscrito, type Escrito } from "@/lib/escritos";
 import { SECCIONES, seccionesDe } from "@/lib/navegacion";
-import { esPaquete } from "@/lib/trayectoria";
+import { esPaquete, slugDelPaquete } from "@/lib/trayectoria";
 
 export type PaginaParaCompartir = {
   ruta: string;
@@ -37,7 +37,12 @@ function paginasDelIdioma(idioma: Idioma): PaginaParaCompartir[] {
       titulo: proyecto.name,
       idioma,
     }));
-  return [...secciones, ...proyectos];
+  const paquetes = datos.projects.filter(esPaquete).map((paquete) => ({
+    ruta: rutaEn(idioma, `/codigo-abierto/${slugDelPaquete(paquete)}`),
+    titulo: paquete.name,
+    idioma,
+  }));
+  return [...secciones, ...proyectos, ...paquetes];
 }
 
 /** Cada sección del menú y cada caso tiene su imagen, en ambos idiomas. */

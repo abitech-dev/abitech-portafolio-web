@@ -3,6 +3,7 @@ import { Code } from "astro:components";
 import { getEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
+import BotonCopiar from "@/components/islands/BotonCopiar.vue";
 import { textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta } from "@/i18n/rutas";
 import { logoDeTecnologia } from "@/lib/logos-de-tecnologias";
@@ -10,10 +11,9 @@ import type { Proyecto } from "@/lib/trayectoria";
 
 interface Props {
   paquete: Proyecto;
-  numero: number;
 }
 
-const { paquete, numero } = Astro.props;
+const { paquete } = Astro.props;
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const { sitio, codigoAbierto } = textosDe(idioma);
 const nombre = "package" in paquete ? paquete.package : undefined;
@@ -25,14 +25,9 @@ if (!detalle) {
 const { lema, integra, datos, ejemplo } = detalle.data;
 ---
 
-<article class="revelar border-borde grid gap-10 border-t py-12 first:border-t-0 first:pt-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
-  <div class="flex flex-col">
-    <p class="text-acento font-mono text-sm" aria-hidden="true">
-      {String(numero).padStart(2, "0")}
-    </p>
-    <h2 class="font-display mt-2 text-2xl font-bold sm:text-3xl">
-      {paquete.name}
-    </h2>
+<article class="aparecer mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
+  <div class="flex min-w-0 flex-col">
+    <h1 class="font-display text-3xl font-bold sm:text-4xl">{paquete.name}</h1>
     {nombre && <p class="text-tenue mt-1 font-mono text-sm">{nombre}</p>}
 
     <p class="mt-5 text-lg leading-snug sm:text-xl">{lema[idioma]}</p>
@@ -54,6 +49,46 @@ const { lema, integra, datos, ejemplo } = detalle.data;
       })}
     </ul>
 
+    {nombre && (
+      <div class="mt-8">
+        <p class="text-tenue text-xs font-semibold tracking-wide uppercase">
+          {codigoAbierto.instalacion}
+        </p>
+        <div class="bg-superficie border-borde mt-2 flex items-center gap-3 rounded-lg border py-2 pr-2 pl-4">
+          <p class="min-w-0 flex-1 overflow-x-auto font-mono text-sm whitespace-nowrap">
+            <span class="text-tenue select-none" aria-hidden="true">
+              ${" "}
+            </span>
+            composer require {nombre}
+          </p>
+          <BotonCopiar
+            client:idle
+            texto={`composer require ${nombre}`}
+            copiar={codigoAbierto.copiar}
+            copiado={codigoAbierto.copiado}
+            isCompacto
+            data-umami-event="copiar-instalacion"
+            data-umami-event-paquete={paquete.id}
+          >
+            <Icon
+              is:inline
+              slot="copiar"
+              name="lucide:copy"
+              class="size-4"
+              aria-hidden="true"
+            />
+            <Icon
+              is:inline
+              slot="copiado"
+              name="lucide:check"
+              class="size-4"
+              aria-hidden="true"
+            />
+          </BotonCopiar>
+        </div>
+      </div>
+    )}
+
     <dl class="border-borde mt-8 grid grid-cols-2 gap-y-5 border-t pt-6 sm:grid-cols-4">
       {datos.map((dato) => (
         <div class="flex flex-col-reverse">
@@ -63,33 +98,58 @@ const { lema, integra, datos, ejemplo } = detalle.data;
       ))}
     </dl>
 
-    {repositorio && (
-      <a
-        href={repositorio}
-        data-umami-event="abrir-paquete"
-        data-umami-event-paquete={paquete.id}
-        target="_blank"
-        rel="noopener"
-        class="group text-acento mt-8 inline-flex w-fit items-center gap-2 font-semibold"
-      >
-        <Icon
-          is:inline
-          name="lucide:github"
-          class="size-5"
-          aria-hidden="true"
-        />
-        {codigoAbierto.verEnGithub}
-        <Icon
-          is:inline
-          name="lucide:arrow-up-right"
-          class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          aria-hidden="true"
-        />
-        <span class="sr-only">
-          {paquete.name} ({sitio.otraPestana})
-        </span>
-      </a>
-    )}
+    <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+      {repositorio && (
+        <a
+          href={repositorio}
+          data-umami-event="abrir-paquete"
+          data-umami-event-paquete={paquete.id}
+          target="_blank"
+          rel="noopener"
+          class="group text-acento inline-flex w-fit items-center gap-2 font-semibold"
+        >
+          <Icon
+            is:inline
+            name="lucide:github"
+            class="size-5"
+            aria-hidden="true"
+          />
+          {codigoAbierto.verEnGithub}
+          <Icon
+            is:inline
+            name="lucide:arrow-up-right"
+            class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
+          <span class="sr-only">({sitio.otraPestana})</span>
+        </a>
+      )}
+      {nombre && (
+        <a
+          href={`https://packagist.org/packages/${nombre}`}
+          data-umami-event="abrir-packagist"
+          data-umami-event-paquete={paquete.id}
+          target="_blank"
+          rel="noopener"
+          class="group text-acento inline-flex w-fit items-center gap-2 font-semibold"
+        >
+          <Icon
+            is:inline
+            name="simple-icons:packagist"
+            class="size-5"
+            aria-hidden="true"
+          />
+          {codigoAbierto.verEnPackagist}
+          <Icon
+            is:inline
+            name="lucide:arrow-up-right"
+            class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
+          <span class="sr-only">({sitio.otraPestana})</span>
+        </a>
+      )}
+    </div>
   </div>
 
   <figure class="bg-superficie min-w-0 self-center overflow-hidden rounded-lg shadow-sm">

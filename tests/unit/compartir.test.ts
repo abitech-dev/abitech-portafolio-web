@@ -12,7 +12,7 @@ import {
 import { SECCIONES } from "@/lib/navegacion";
 
 describe("paginasParaCompartir", () => {
-  it("incluye cada sección y cada caso en ambos idiomas, sin paquetes", () => {
+  it("incluye cada sección, cada caso y cada paquete en ambos idiomas", () => {
     const rutas = paginasParaCompartir().map((p) => p.ruta);
 
     for (const { ruta } of SECCIONES) {
@@ -21,6 +21,8 @@ describe("paginasParaCompartir", () => {
     }
     expect(rutas).toContain("/en/proyectos/tu-coach");
     expect(rutas).not.toContain("/proyectos/abitech-payments");
+    expect(rutas).toContain("/codigo-abierto/payments-laravel");
+    expect(rutas).toContain("/en/codigo-abierto/antibot-laravel");
   });
 
   it("titula cada portada con el cargo en su idioma", () => {

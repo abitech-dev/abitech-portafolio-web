@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Compartir from "@/components/Compartir.astro";
+import PaqueteDestacado from "@/components/PaqueteDestacado.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { IDIOMAS, idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { esPaquete, slugDelPaquete, type Proyecto } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return IDIOMAS.flatMap((idioma) =>
+    datosDe(idioma)
+      .projects.filter(esPaquete)
+      .map((paquete) => ({
+        params: {
+          idioma: idioma === "es" ? undefined : idioma,
+          paquete: slugDelPaquete(paquete),
+        },
+        props: { paquete },
+      })),
+  );
+}
+
+interface Props {
+  paquete: Proyecto;
+}
+
+const { paquete } = Astro.props;
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const { codigoAbierto: t } = textosDe(idioma);
+---
+
+<Base
+  titulo={paquete.name}
+  descripcion={paquete.description}
+  tipoEnBuscador={t.tipo}
+  hasImagenPropia
+>
+  <a
+    data-pagefind-ignore
+    href={rutaEn(idioma, "/codigo-abierto")}
+    class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
+  >
+    <Icon
+      is:inline
+      name="lucide:arrow-left"
+      class="size-4"
+      aria-hidden="true"
+    />
+    {t.volver}
+  </a>
+
+  <PaqueteDestacado paquete={paquete} />
+
+  <Compartir titulo={paquete.name} />
+</Base>

@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import BotonCopiarEnlace from "@/components/islands/BotonCopiarEnlace.vue";
+import BotonCopiar from "@/components/islands/BotonCopiar.vue";
 import { textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta } from "@/i18n/rutas";
 import { enlacesParaCompartir } from "@/lib/compartir";
@@ -58,9 +58,11 @@ const { canonica } = metadatosDe(
         </li>
       ))}
     </ul>
-    <BotonCopiarEnlace
+    <BotonCopiar
       client:idle
-      url={canonica}
+      texto={canonica}
+      data-umami-event="compartir"
+      data-umami-event-red="enlace"
       copiar={t.copiar}
       copiado={t.copiado}
     >
@@ -78,6 +80,6 @@ const { canonica } = metadatosDe(
         class="size-4"
         aria-hidden="true"
       />
-    </BotonCopiarEnlace>
+    </BotonCopiar>
   </div>
 </aside>

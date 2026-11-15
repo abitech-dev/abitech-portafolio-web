@@ -160,7 +160,13 @@ const es = {
       `Paquetes de código abierto de ${nombre} para Laravel, con licencia MIT y listos para usar en tus proyectos.`,
     intro: "Paquetes que saqué de mis proyectos para que otros los usen.",
     verEnGithub: "Ver en GitHub",
+    verEnPackagist: "Ver en Packagist",
     integra: "Integra",
+    instalacion: "Instalación",
+    copiar: "Copiar el comando",
+    copiado: "Comando copiado",
+    volver: "Todo el código abierto",
+    tipo: "Paquete",
   },
   aprende: {
     descripcion: (nombre: string) =>
@@ -383,7 +389,13 @@ const en: Textos = {
       `Open source Laravel packages by ${nombre}, MIT licensed and ready to use in your projects.`,
     intro: "Packages I extracted from my projects so others can use them.",
     verEnGithub: "View on GitHub",
+    verEnPackagist: "View on Packagist",
     integra: "Integrates",
+    instalacion: "Installation",
+    copiar: "Copy the command",
+    copiado: "Command copied",
+    volver: "All open source",
+    tipo: "Package",
   },
   aprende: {
     descripcion: (nombre) =>

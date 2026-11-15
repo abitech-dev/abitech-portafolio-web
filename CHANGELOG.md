@@ -7,6 +7,9 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Agregado
 
+- Página propia para cada paquete de código abierto, con su instalación
+  y un botón para copiar el comando, enlaces a Packagist y GitHub, imagen
+  para redes y fila para compartir.
 - Fila para compartir en LinkedIn, WhatsApp, X y Facebook, con copiar
   enlace, al final de cada nota, proyecto, libro y de Código abierto.
 - Imagen propia para redes en cada nota, con su título y sus etiquetas.
@@ -53,6 +56,7 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Corregido
 
+- La página de un paquete ya no se desborda a lo ancho en el celular.
 - Los botones muestran la mano al pasar el cursor, como los enlaces.
 - El buscador no pierde lo escrito antes de que cargue la página, y una
   respuesta lenta ya no pisa la de lo último que se escribió.
