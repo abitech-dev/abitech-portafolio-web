@@ -72,7 +72,8 @@ npm run dev
 ```
 
 El sitio queda en `http://localhost:4321`. Los datos del CV y de los
-proyectos ya vienen en `src/data`.
+proyectos vienen en `src/data` y los PDF en `public/descargas`. No se editan
+a mano: los actualiza un PR automático desde el repositorio privado del autor.
 
 | Comando              | Qué hace                                                |
 | -------------------- | ------------------------------------------------------- |
@@ -82,7 +83,6 @@ proyectos ya vienen en `src/data`.
 | `npm run e2e`        | Prueba en el navegador, con revisión de accesibilidad   |
 | `npm run lighthouse` | Mide rendimiento, accesibilidad, buenas prácticas y SEO |
 | `npm run capturas`   | Actualiza la captura de cada proyecto en línea          |
-| `npm run datos`      | Copia el CV desde el repositorio privado del autor      |
 
 ## Estructura
 
