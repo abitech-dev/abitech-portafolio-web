@@ -1,6 +1,6 @@
 ---
 titulo: How I sped up my site without a CDN, with the server in Europe
-descripcion: From Peru, the first visit to my site was slow. With three changes, the HTML went from 0.87 to 0.64 s and the photo from 1.45 to 1.07 s.
+descripcion: From Peru, the first visit to my site was slow. With three changes, the HTML went from 0.87 to 0.64 s and the photo from 1.45 to 1.14 s.
 fecha: 2026-11-14
 tipo: nota
 etiquetas: [performance, nginx, networking]
@@ -20,7 +20,7 @@ copies of a site close to each visitor. So I measured where the time went.
 | ---------------------------------- | ------- | ------- |
 | Wait until the response starts     | 390 ms  | 200 ms  |
 | Full HTML                          | 0.87 s  | 0.64 s  |
-| Photo visible                      | 1.45 s  | 1.07 s  |
+| Photo visible                      | 1.45 s  | 1.14 s  |
 | Fonts requested with high priority | 8 files | 2 files |
 
 There are three changes, one in the web server, one in the server's network
