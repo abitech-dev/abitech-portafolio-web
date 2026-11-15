@@ -10,6 +10,8 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 - Buscador del sitio con Pagefind, en español e inglés, desde la lupa de
   la barra lateral. Busca en el blog, los proyectos, Aprende, Código
   abierto, Sobre mí y el CV.
+  Cada resultado dice si es nota, artículo, proyecto, libro u otra
+  sección. Sin resultados, propone los temas más frecuentes.
 - Blog con artículos y notas, etiquetas, tiempo de lectura, RSS y
   datos de artículo de schema.org. Aparece en el menú cuando hay algo
   publicado.
@@ -48,6 +50,12 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Corregido
 
+- El buscador no pierde lo escrito antes de que cargue la página, y una
+  respuesta lenta ya no pisa la de lo último que se escribió.
+- Los extractos del buscador ya no pegan palabras como «2024Universidad»
+  o «pruebas199».
+- Las listas de proyectos y del blog ya no dejan una línea doble sobre el
+  pie.
 - Los íconos ya no desaparecen al navegar entre páginas.
 - La CSP ya no bloquea un script del router de Astro.
 

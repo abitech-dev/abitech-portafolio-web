@@ -294,3 +294,15 @@ test("las páginas usan el nombre corto", async ({ page }) => {
     );
   }
 });
+
+// La línea del pie separa el contenido; una lista no cierra con otra encima.
+test("las listas no dejan una línea doble sobre el pie", async ({ page }) => {
+  for (const ruta of ["/proyectos", "/blog", "/en/proyectos", "/en/blog"]) {
+    await page.goto(ruta);
+    const bordeInferior = await page
+      .locator("main ul.divide-y")
+      .last()
+      .evaluate((lista) => getComputedStyle(lista).borderBottomWidth);
+    expect(bordeInferior, ruta).toBe("0px");
+  }
+});

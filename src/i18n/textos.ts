@@ -130,6 +130,7 @@ const es = {
     filtrar: "Filtrar por tecnología",
     todos: "Todos",
     unidad: "proyectos",
+    tipo: "Proyecto",
     tecnologias: "Tecnologías",
     verEnLinea: "Ver en línea",
     verCaso: "Ver el caso",
@@ -144,10 +145,14 @@ const es = {
     isla: {
       etiqueta: "Buscar en el sitio",
       marcador: "Escribe una tecnología, un proyecto o un tema",
-      sinResultados: "No encontré nada con esas palabras.",
+      sinResultados: "No encontré nada para «{termino}»",
+      ayudaSinResultados:
+        "Revisa cómo lo escribiste o prueba con uno de estos temas.",
       unResultado: "1 resultado",
       variosResultados: "{n} resultados",
       sinIndice: "El buscador no está disponible en este momento.",
+      limpiar: "Borrar la búsqueda",
+      temasFrecuentes: "Temas frecuentes",
     },
   },
   codigoAbierto: {
@@ -341,6 +346,7 @@ const en: Textos = {
     filtrar: "Filter by technology",
     todos: "All",
     unidad: "projects",
+    tipo: "Project",
     tecnologias: "Technologies",
     verEnLinea: "Visit site",
     verCaso: "Read the case",
@@ -355,10 +361,13 @@ const en: Textos = {
     isla: {
       etiqueta: "Search the site",
       marcador: "Type a technology, a project or a topic",
-      sinResultados: "Nothing matched those words.",
+      sinResultados: "Nothing found for “{termino}”",
+      ayudaSinResultados: "Check the spelling or try one of these topics.",
       unResultado: "1 result",
       variosResultados: "{n} results",
       sinIndice: "Search is not available right now.",
+      limpiar: "Clear search",
+      temasFrecuentes: "Popular topics",
     },
   },
   codigoAbierto: {

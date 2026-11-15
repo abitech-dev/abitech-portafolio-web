@@ -17,7 +17,8 @@ es estático, servido por Caddy sin Node, según el ADR 0001.
   con PR a `develop`. Keystatic queda descartado.
 - **Búsqueda.** Pagefind indexa el sitio al compilar y busca en el
   navegador, sin servidor. Cada idioma tiene su índice.
-  - Entran las páginas con contenido propio, marcadas con `isBuscable`.
+  - Entran las páginas con contenido propio, marcadas con `tipoEnBuscador`.
+    Esa etiqueta sale en cada resultado (Nota, Proyecto, Libro).
   - Quedan fuera los bloques de código, los textos para lectores de
     pantalla y los enlaces de volver (`pagefind.yml`).
 

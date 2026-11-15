@@ -4,7 +4,7 @@ import TituloDePagina from "@/components/TituloDePagina.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutasPorIdioma } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
-import { nombreCorto } from "@/lib/trayectoria";
+import { nombreCorto, tecnologiasFrecuentes } from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
@@ -12,7 +12,8 @@ export function getStaticPaths() {
 
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const t = textosDe(idioma);
-const { basics } = datosDe(idioma);
+const { basics, projects } = datosDe(idioma);
+const temas = tecnologiasFrecuentes(projects, 3).slice(0, 8);
 ---
 
 <Base
@@ -23,6 +24,6 @@ const { basics } = datosDe(idioma);
   <TituloDePagina titulo={t.secciones.buscar} icono="lucide:search" />
   <p class="text-tenue mt-3 max-w-prose">{t.buscador.intro}</p>
   <div class="mt-8 max-w-3xl">
-    <BuscadorDelSitio client:load {...t.buscador.isla} />
+    <BuscadorDelSitio client:load {...t.buscador.isla} temas={temas} />
   </div>
 </Base>

@@ -22,6 +22,7 @@ const formato = new Intl.DateTimeFormat(fechas.locale, {
   dateStyle: "long",
   timeZone: "UTC",
 });
+const etiquetaDelTipo = tipo === "articulo" ? t.articulo : t.nota;
 ---
 
 <Base
@@ -29,7 +30,7 @@ const formato = new Intl.DateTimeFormat(fechas.locale, {
   descripcion={descripcion}
   hasVersionEnIngles={hasTraduccion}
   nodos={[articulo(escrito.data, Astro.site ?? Astro.url, Astro.url, idioma)]}
-  isBuscable
+  tipoEnBuscador={etiquetaDelTipo}
 >
   <a
     data-pagefind-ignore
@@ -47,14 +48,14 @@ const formato = new Intl.DateTimeFormat(fechas.locale, {
 
   <header class="aparecer mt-6 max-w-3xl">
     <p class="text-acento text-xs font-semibold tracking-wide uppercase">
-      {tipo === "articulo" ? t.articulo : t.nota}
+      {etiquetaDelTipo}
     </p>
     <h1 class="mt-2 text-3xl leading-tight font-bold sm:text-4xl">{titulo}</h1>
     <p class="text-tenue mt-4 text-lg leading-relaxed">{descripcion}</p>
     <p class="text-tenue mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
       <time datetime={fecha.toISOString().slice(0, 10)}>
         {formato.format(fecha)}
-      </time>
+      </time>{" "}
       <span>{t.minutos(minutosDeLectura(escrito.body ?? ""))}</span>
     </p>
     <ul class="mt-4 flex flex-wrap gap-2" aria-label={t.etiquetas}>
