@@ -21,7 +21,7 @@ del sitio cerca de cada visitante. Así que medí dónde se iba el tiempo.
 | Espera hasta que empieza la respuesta | 390 ms     | 200 ms     |
 | HTML completo                         | 0,87 s     | 0,64 s     |
 | Foto visible                          | 1,45 s     | 1,07 s     |
-| Fuentes pedidas con prioridad         | 8 archivos | 3 archivos |
+| Fuentes pedidas con prioridad         | 8 archivos | 2 archivos |
 
 Son tres ajustes, uno en el servidor web, otro en la red del servidor y otro
 en el sitio.
@@ -80,18 +80,22 @@ un solo viaje. También activé BBR, un método de Google que ajusta la
 velocidad de envío según el estado de la red. El HTML completo pasó de 0,87 a
 0,64 s.
 
-## Tercer ajuste. Menos fuentes con prioridad
+## Tercer ajuste. Fuentes variables
 
-El sitio pedía 8 archivos de fuente con prioridad alta antes de que la página
-los usara, y la foto, de apenas 7 KB, esperaba detrás de ellos. Ahora solo se
-piden así las fuentes del texto y de los títulos.
+El sitio pedía 8 archivos de fuente con prioridad alta, uno por cada grosor de
+letra, y la foto, de apenas 7 KB, esperaba detrás de ellos. Los cambié por
+fuentes variables, en las que un solo archivo trae todos los grosores. Ahora se
+piden con prioridad 2 archivos, uno de Inter y uno de Sora, y la foto también
+va con prioridad alta.
 
 ```astro
-<Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
-<Font cssVariable="--font-sora" preload={[{ weight: 700 }]} />
+<Font cssVariable="--font-inter" preload={[{ style: "normal" }]} />
+<Font cssVariable="--font-sora" preload={[{ style: "normal" }]} />
 ```
 
-Las demás llegan cuando la página las necesita. La foto pasó de 1,45 a 1,07 s.
+Como ningún grosor llega tarde, el texto ya no cambia de lugar mientras carga
+la página. Con la latencia de Perú simulada en Chrome, la foto pasó de 1,14 a
+0,50 s.
 
 ## Lo que queda
 

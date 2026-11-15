@@ -21,7 +21,7 @@ copies of a site close to each visitor. So I measured where the time went.
 | Wait until the response starts     | 390 ms  | 200 ms  |
 | Full HTML                          | 0.87 s  | 0.64 s  |
 | Photo visible                      | 1.45 s  | 1.07 s  |
-| Fonts requested with high priority | 8 files | 3 files |
+| Fonts requested with high priority | 8 files | 2 files |
 
 There are three changes, one in the web server, one in the server's network
 and one in the site.
@@ -80,18 +80,21 @@ arrives in a single trip. I also enabled BBR, a method from Google that
 adjusts the sending speed to the state of the network. The full HTML went from
 0.87 to 0.64 s.
 
-## Third change. Fewer high-priority fonts
+## Third change. Variable fonts
 
-The site requested 8 font files with high priority before the page used them,
-and the photo, only 7 KB, waited behind them. Now only the body and heading
-fonts are requested that way.
+The site requested 8 font files with high priority, one per font weight, and
+the photo, only 7 KB, waited behind them. I replaced them with variable fonts,
+where a single file carries every weight. Now 2 files are requested with
+priority, one for Inter and one for Sora, and the photo also gets high
+priority.
 
 ```astro
-<Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
-<Font cssVariable="--font-sora" preload={[{ weight: 700 }]} />
+<Font cssVariable="--font-inter" preload={[{ style: "normal" }]} />
+<Font cssVariable="--font-sora" preload={[{ style: "normal" }]} />
 ```
 
-The rest arrive when the page needs them. The photo went from 1.45 to 1.07 s.
+Since no weight arrives late, the text no longer moves while the page loads.
+With Peru's latency simulated in Chrome, the photo went from 1.14 to 0.50 s.
 
 ## What remains
 
