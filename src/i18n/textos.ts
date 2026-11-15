@@ -193,6 +193,14 @@ const es = {
       `Me titulé como ingeniero de sistemas e informática en la ${universidad}, con una tesis que evaluó Tu Coach UDH con 60 tesistas. También egresé de la ${maestria} de la ${escuela}.`,
     escribo: "Lo que escribo",
   },
+  compartir: {
+    pregunta: "¿Te pareció interesante?",
+    invitacion: "Compártelo con alguien a quien le pueda servir.",
+    titulo: "Compartir en redes",
+    en: "Compartir en",
+    copiar: "Copiar enlace",
+    copiado: "Enlace copiado",
+  },
   escritos: {
     descripcion: (nombre: string) =>
       `Artículos y notas de ${nombre} sobre desarrollo web, nube y lo que aprende en el camino.`,
@@ -407,6 +415,14 @@ const en: Textos = {
     estudios: (universidad, maestria, escuela) =>
       `I earned my professional degree in Systems and Computer Engineering at the ${universidad}, with a thesis that evaluated Tu Coach UDH with 60 thesis students. I also completed the coursework of the ${maestria} at ${escuela}.`,
     escribo: "What I write",
+  },
+  compartir: {
+    pregunta: "Found this interesting?",
+    invitacion: "Share it with someone it could help.",
+    titulo: "Share on social media",
+    en: "Share on",
+    copiar: "Copy link",
+    copiado: "Link copied",
   },
   escritos: {
     descripcion: (nombre) =>

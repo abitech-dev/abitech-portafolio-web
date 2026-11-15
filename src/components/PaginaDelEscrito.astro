@@ -2,6 +2,7 @@
 import { render, type CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
+import Compartir from "@/components/Compartir.astro";
 import { textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
@@ -31,6 +32,7 @@ const etiquetaDelTipo = tipo === "articulo" ? t.articulo : t.nota;
   hasVersionEnIngles={hasTraduccion}
   nodos={[articulo(escrito.data, Astro.site ?? Astro.url, Astro.url, idioma)]}
   tipoEnBuscador={etiquetaDelTipo}
+  hasImagenPropia
 >
   <a
     data-pagefind-ignore
@@ -75,4 +77,6 @@ const etiquetaDelTipo = tipo === "articulo" ? t.articulo : t.nota;
   <div class="prose prose-lg dark:prose-invert prose-headings:font-display prose-a:text-acento prose-pre:rounded-md prose-pre:border prose-pre:border-borde prose-code:before:content-none prose-code:after:content-none prose-code:font-normal mt-10 max-w-3xl">
     <Content />
   </div>
+
+  <Compartir titulo={titulo} />
 </Base>

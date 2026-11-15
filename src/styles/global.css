@@ -55,6 +55,12 @@
     outline: 2px solid var(--color-acento);
     outline-offset: 3px;
   }
+
+  /* Tailwind 4 deja la flecha en los botones. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
 }
 
 /* Safari sin scrollbar-color usa los seudoelementos de WebKit. */

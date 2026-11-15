@@ -1,4 +1,5 @@
 ---
+import Compartir from "@/components/Compartir.astro";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
@@ -142,4 +143,6 @@ const { aprende, sitio } = textosDe(idioma);
       ))}
     </ol>
   </Seccion>
+
+  <Compartir titulo={publicacion.name} />
 </Base>
