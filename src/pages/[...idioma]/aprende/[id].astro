@@ -42,6 +42,7 @@ const { aprende, sitio } = textosDe(idioma);
   descripcion={publicacion.summary}
   nodos={[libro(publicacion, Astro.site ?? Astro.url)]}
   tipoEnBuscador={aprende.tipos[detalle.tipo]}
+  hasImagenPropia
 >
   <a
     data-pagefind-ignore

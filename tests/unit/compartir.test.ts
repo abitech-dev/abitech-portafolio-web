@@ -7,6 +7,7 @@ import {
   enlacesParaCompartir,
   imagenParaCompartir,
   paginaDelEscrito,
+  paginaDelMaterial,
   paginasParaCompartir,
 } from "@/lib/compartir";
 import { SECCIONES } from "@/lib/navegacion";
@@ -113,5 +114,19 @@ describe("enlacesParaCompartir", () => {
         href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
       },
     ]);
+  });
+});
+
+describe("paginaDelMaterial", () => {
+  it("da a cada libro su ruta y su título en su idioma", () => {
+    const material = {
+      id: "docker",
+      publicacion: { name: "Docker paso a paso" },
+    };
+    expect(paginaDelMaterial(material, "en")).toEqual({
+      ruta: "/en/aprende/docker",
+      titulo: "Docker paso a paso",
+      idioma: "en",
+    });
   });
 });

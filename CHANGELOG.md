@@ -7,6 +7,9 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Agregado
 
+- Cada proyecto enlaza las notas del blog que cuentan cómo se resolvió, y
+  cada nota enlaza su proyecto.
+- Imagen propia para redes en cada libro de Aprende.
 - Página propia para cada paquete de código abierto, con su instalación
   y un botón para copiar el comando, enlaces a Packagist y GitHub, imagen
   para redes y fila para compartir.

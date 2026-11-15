@@ -80,6 +80,17 @@ export function paginaDelEscrito(escrito: Escrito): PaginaParaCompartir {
   };
 }
 
+export function paginaDelMaterial(
+  material: { id: string; publicacion: { name: string } },
+  idioma: Idioma,
+): PaginaParaCompartir {
+  return {
+    ruta: rutaEn(idioma, `/aprende/${material.id}`),
+    titulo: material.publicacion.name,
+    idioma,
+  };
+}
+
 /** Enlaces directos de cada red, sin sus scripts ni su rastreo. */
 export function enlacesParaCompartir(
   url: string,
