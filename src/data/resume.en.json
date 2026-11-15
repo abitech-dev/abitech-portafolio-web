@@ -408,7 +408,7 @@
       "description": "Subscription-based language learning platform (LMS), with payments through the Culqi payment gateway, SUNAT e-invoicing and AI grading.",
       "highlights": [
         "Automated releases with CI/CD in GitHub Actions, with about 6 production releases a week.",
-        "Built AI grading (Gemini) for text, audio and video answers. It assessed 1,812 answers in 5 months.",
+        "Built AI grading (Gemini) for recorded audio and video answers. It assessed 1,812 answers in 5 months.",
         "Took the legacy system from 3 to 140 automated test files, so each new change would not break what already worked.",
         "Rebuilt the billing history of 573 subscriptions inherited from the previous system, with no differences in the amounts."
       ],
@@ -452,10 +452,10 @@
     {
       "id": "pwa-offline-de-actas-de-mantenimiento",
       "name": "Offline maintenance reports PWA",
-      "description": "Installable web app (PWA), now in client testing, that lets technicians fill out and sign electrical maintenance reports on their phones, even without signal.",
+      "description": "Installable web app (PWA) that lets technicians fill out and sign electrical maintenance reports on their phones, even without signal.",
       "highlights": [
         "Built the offline mode, so technicians can work without signal and their reports, with encrypted signatures, sync without duplicates once back online.",
-        "Connected the app to the client's ERP so no data is lost or duplicated when a request fails.",
+        "Prepared the integration with the client's ERP so no data is lost or duplicated when a request fails. It turns on once the client publishes its API.",
         "Backed the app with over 1,800 automated tests, including 35 that walk through the full flow in the browser (E2E)."
       ],
       "keywords": [
@@ -508,9 +508,9 @@
     {
       "id": "pilot-ssh",
       "name": "Pilot SSH",
-      "description": "Cloud service (SaaS), now in testing, that controls who accesses each server and records what they do, with an in-browser terminal.",
+      "description": "Cloud service (SaaS), now in testing, that controls who accesses each server and logs every connection, with an in-browser terminal.",
       "highlights": [
-        "Designed the REST API and the web terminal. Credentials are stored encrypted and the activity log cannot be altered."
+        "Designed the REST API and the web terminal. Credentials are stored encrypted and the audit log is read-only."
       ],
       "keywords": [
         "Python",
@@ -525,7 +525,7 @@
         "Tailwind CSS",
         "Docker Swarm"
       ],
-      "startDate": "2026-09",
+      "startDate": "2026-03",
       "url": "https://uat-pilotssh.abitech.com.pe/",
       "type": "application"
     },
@@ -579,7 +579,7 @@
       "name": "Yachakuy",
       "description": "Online course store (LMS) with the Mercado Pago payment gateway and QR-verifiable certificates.",
       "highlights": [
-        "Led 4 developers, with whom I took the platform to production and shipped about 3 releases a month, with a 96% success rate."
+        "Led 4 developers and merged the team's 314 pull requests. Of 53 production deployments, 51 succeeded. The platform now has 498 students."
       ],
       "keywords": [
         "Laravel 11",
@@ -639,7 +639,7 @@
         "Added batch compression, to optimize many images at once and download them as ZIP files.",
         "Kept the browser from running out of memory with large photos, by resizing them before compressing and splitting the download into ZIP files of up to 50 images.",
         "Kept the EXIF metadata of JPEG photos and made batch mode available offline.",
-        "Automated deployment with GitHub Actions to two environments, staging and production."
+        "Automated deployment to production with GitHub Actions."
       ],
       "keywords": [
         "TypeScript",
@@ -685,7 +685,7 @@
       "name": "SIGEP UDH",
       "description": "Universidad de Huánuco system for calling for research projects and receiving applications.",
       "highlights": [
-        "I was its sole developer, and the university has run more than 10 grant calls on it, with over 150 applications and nearly 300 participants."
+        "I was its sole developer, and the university has run 11 grant calls on it between 2024 and 2026."
       ],
       "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
       "url": "https://sigep.udh.edu.pe/",
@@ -697,7 +697,7 @@
       "name": "Portal de Investigación UDH",
       "description": "Research procedures portal for Universidad de Huánuco, with certificates, Turnitin, RENACYT and the university press.",
       "highlights": [
-        "I was its sole developer and kept maintaining it after leaving the role."
+        "I built it, coordinated 2 collaborators on the originality module and kept maintaining it after leaving the role."
       ],
       "keywords": ["Laravel 10", "Livewire 3", "Bootstrap 5"],
       "url": "https://investigacion.udh.edu.pe/",
@@ -716,27 +716,11 @@
       "type": "application"
     },
     {
-      "id": "historias-clinicas-psicologicas",
-      "name": "Psychological clinical records",
-      "description": "Clinical records system for a psychological trauma treatment service, with roles and two-factor authentication (2FA).",
-      "highlights": [],
-      "keywords": [
-        "Laravel 11",
-        "Jetstream",
-        "Inertia 2",
-        "Vue 3",
-        "Tailwind CSS"
-      ],
-      "startDate": "2025-02",
-      "endDate": "2025-11",
-      "type": "application"
-    },
-    {
       "id": "abitech-payments",
       "name": "abitech-payments-laravel",
       "description": "Open-source Laravel package that integrates the Stripe and Mercado Pago payment gateways behind a single interface.",
       "highlights": [
-        "Designed it with the Strategy and Factory patterns so a new gateway can be added without touching the app, covered by 199 automated tests."
+        "Designed it with the Strategy and Factory patterns so a new gateway can be added without touching the app, covered by 276 automated tests."
       ],
       "keywords": [
         "PHP 8.2",
@@ -746,8 +730,9 @@
         "Mercado Pago"
       ],
       "startDate": "2026-06",
+      "url": "https://packagist.org/packages/abitechdev/payments-laravel",
       "type": "library",
-      "package": "abitech/payments-laravel",
+      "package": "abitechdev/payments-laravel",
       "repository": "https://github.com/abitech-dev/abitech-payments-laravel"
     },
     {
@@ -755,12 +740,13 @@
       "name": "abitech-antibot-laravel",
       "description": "Open-source Laravel package that protects forms from bots with Cloudflare Turnstile, reCAPTCHA v2 or reCAPTCHA v3 through a single API.",
       "highlights": [
-        "Works from Laravel 8 to Laravel 13 and can be used as a validation rule, middleware or facade."
+        "Tested it in continuous integration from Laravel 8 on PHP 7.3 to Laravel 13 on PHP 8.5, and it works as a validation rule, middleware or facade."
       ],
       "keywords": ["PHP", "Laravel", "Cloudflare Turnstile", "reCAPTCHA"],
       "startDate": "2026-06",
+      "url": "https://packagist.org/packages/abitechdev/antibot-laravel",
       "type": "library",
-      "package": "abitech/antibot-laravel",
+      "package": "abitechdev/antibot-laravel",
       "repository": "https://github.com/abitech-dev/abitech-antibot-laravel"
     },
     {

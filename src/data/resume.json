@@ -408,7 +408,7 @@
       "description": "Plataforma de cursos de idiomas (LMS) con cobros por la pasarela de pagos Culqi, facturación electrónica SUNAT y calificación con IA.",
       "highlights": [
         "Automaticé la publicación de versiones con CI/CD en GitHub Actions, con unas 6 salidas a producción por semana.",
-        "Implementé la calificación con IA (Gemini) de las respuestas en texto, audio y video. En 5 meses evaluó 1812 respuestas.",
+        "Implementé la calificación con IA (Gemini) de las respuestas grabadas en audio y video. En 5 meses evaluó 1812 respuestas.",
         "Llevé el sistema heredado de 3 a 140 archivos de pruebas automatizadas, para que cada cambio nuevo no rompiera lo que ya funcionaba.",
         "Reconstruí el historial de cobros de 573 suscripciones que venía del sistema anterior, sin dejar diferencias en los montos."
       ],
@@ -452,10 +452,10 @@
     {
       "id": "pwa-offline-de-actas-de-mantenimiento",
       "name": "PWA offline de actas de mantenimiento",
-      "description": "Aplicación web instalable (PWA), hoy en pruebas con el cliente, para que los técnicos llenen y firmen en el celular sus actas de mantenimiento eléctrico, incluso sin señal.",
+      "description": "Aplicación web instalable (PWA) para que los técnicos llenen y firmen en el celular sus actas de mantenimiento eléctrico, incluso sin señal.",
       "highlights": [
         "Desarrollé el modo sin conexión (offline), para que los técnicos trabajen sin señal y sus actas, con firmas cifradas, se envíen sin duplicarse al volver la conexión.",
-        "Conecté la aplicación con el ERP del cliente de forma que ningún dato se pierda ni se repita si un envío falla.",
+        "Dejé lista la integración con el ERP del cliente, para que ningún dato se pierda ni se repita si un envío falla. Se activa cuando el cliente publique su API.",
         "Respaldé la aplicación con más de 1800 pruebas automatizadas, incluidas 35 que recorren el flujo completo en el navegador (E2E)."
       ],
       "keywords": [
@@ -508,9 +508,9 @@
     {
       "id": "pilot-ssh",
       "name": "Pilot SSH",
-      "description": "Servicio en la nube (SaaS), hoy en fase de pruebas, que controla quién ingresa a cada servidor y registra lo que hace, con una terminal en el navegador.",
+      "description": "Servicio en la nube (SaaS), hoy en fase de pruebas, que controla quién ingresa a cada servidor y registra cada conexión, con una terminal en el navegador.",
       "highlights": [
-        "Diseñé la API REST y la terminal web. Las claves se guardan cifradas y el registro de actividad no se puede alterar."
+        "Diseñé la API REST y la terminal web. Las claves se guardan cifradas y la auditoría es de solo lectura."
       ],
       "keywords": [
         "Python",
@@ -525,7 +525,7 @@
         "Tailwind CSS",
         "Docker Swarm"
       ],
-      "startDate": "2026-09",
+      "startDate": "2026-03",
       "url": "https://uat-pilotssh.abitech.com.pe/",
       "type": "application"
     },
@@ -579,7 +579,7 @@
       "name": "Yachakuy",
       "description": "Plataforma de venta de cursos en línea (LMS), con la pasarela de pagos Mercado Pago y certificados verificables con QR.",
       "highlights": [
-        "Lideré a 4 desarrolladores, con quienes puse la plataforma en producción y publiqué unas 3 versiones al mes, con un 96 % de éxito."
+        "Lideré a 4 desarrolladores e integré los 314 cambios del equipo. De 53 despliegues a producción, 51 salieron sin fallas. Hoy la plataforma suma 498 alumnos."
       ],
       "keywords": [
         "Laravel 11",
@@ -639,7 +639,7 @@
         "Agregué la compresión por lotes, para optimizar muchas imágenes a la vez y descargarlas en archivos ZIP.",
         "Evité que el navegador se quede sin memoria con fotos grandes, al reducirlas antes de comprimir y repartir la descarga en ZIP de hasta 50 imágenes.",
         "Conservé los metadatos EXIF de las fotos JPEG y dejé el modo por lotes disponible sin conexión.",
-        "Automaticé el despliegue con GitHub Actions en dos entornos, pruebas y producción."
+        "Automaticé el despliegue a producción con GitHub Actions."
       ],
       "keywords": [
         "TypeScript",
@@ -685,7 +685,7 @@
       "name": "SIGEP UDH",
       "description": "Sistema de la Universidad de Huánuco para convocar proyectos de investigación y recibir sus postulaciones.",
       "highlights": [
-        "Fui su único desarrollador, y la universidad ya lanzó en él más de 10 concursos, con más de 150 postulaciones y casi 300 participantes."
+        "Fui su único desarrollador, y la universidad ya lanzó en él 11 concursos entre 2024 y 2026."
       ],
       "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
       "url": "https://sigep.udh.edu.pe/",
@@ -697,7 +697,7 @@
       "name": "Portal de Investigación UDH",
       "description": "Portal de trámites de investigación de la Universidad de Huánuco, con constancias, Turnitin, RENACYT y fondo editorial.",
       "highlights": [
-        "Fui su único desarrollador y lo seguí manteniendo después de dejar el cargo."
+        "Lo desarrollé, coordiné a 2 colaboradores en el módulo de originalidad y lo seguí manteniendo después de dejar el cargo."
       ],
       "keywords": ["Laravel 10", "Livewire 3", "Bootstrap 5"],
       "url": "https://investigacion.udh.edu.pe/",
@@ -716,27 +716,11 @@
       "type": "application"
     },
     {
-      "id": "historias-clinicas-psicologicas",
-      "name": "Historias clínicas psicológicas",
-      "description": "Sistema de historias clínicas para un servicio de tratamiento psicológico de traumas, con roles y acceso con doble factor de autenticación (2FA).",
-      "highlights": [],
-      "keywords": [
-        "Laravel 11",
-        "Jetstream",
-        "Inertia 2",
-        "Vue 3",
-        "Tailwind CSS"
-      ],
-      "startDate": "2025-02",
-      "endDate": "2025-11",
-      "type": "application"
-    },
-    {
       "id": "abitech-payments",
       "name": "abitech-payments-laravel",
       "description": "Paquete de código abierto para Laravel que integra las pasarelas de pago Stripe y Mercado Pago con una sola interfaz.",
       "highlights": [
-        "Lo diseñé con los patrones Strategy y Factory para sumar una pasarela nueva sin tocar la aplicación, y lo cubren 199 pruebas automatizadas."
+        "Lo diseñé con los patrones Strategy y Factory para sumar una pasarela nueva sin tocar la aplicación, y lo cubren 276 pruebas automatizadas."
       ],
       "keywords": [
         "PHP 8.2",
@@ -746,8 +730,9 @@
         "Mercado Pago"
       ],
       "startDate": "2026-06",
+      "url": "https://packagist.org/packages/abitechdev/payments-laravel",
       "type": "library",
-      "package": "abitech/payments-laravel",
+      "package": "abitechdev/payments-laravel",
       "repository": "https://github.com/abitech-dev/abitech-payments-laravel"
     },
     {
@@ -755,12 +740,13 @@
       "name": "abitech-antibot-laravel",
       "description": "Paquete de código abierto para Laravel que valida formularios contra bots con Cloudflare Turnstile, reCAPTCHA v2 o reCAPTCHA v3 desde una sola API.",
       "highlights": [
-        "Funciona desde Laravel 8 hasta Laravel 13 y se usa como regla de validación, middleware o facade."
+        "Lo probé en la integración continua desde Laravel 8 con PHP 7.3 hasta Laravel 13 con PHP 8.5, y se usa como regla de validación, middleware o facade."
       ],
       "keywords": ["PHP", "Laravel", "Cloudflare Turnstile", "reCAPTCHA"],
       "startDate": "2026-06",
+      "url": "https://packagist.org/packages/abitechdev/antibot-laravel",
       "type": "library",
-      "package": "abitech/antibot-laravel",
+      "package": "abitechdev/antibot-laravel",
       "repository": "https://github.com/abitech-dev/abitech-antibot-laravel"
     },
     {
