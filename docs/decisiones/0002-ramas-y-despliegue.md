@@ -38,6 +38,8 @@ mantiene una persona, pero el flujo debe aguantar colaboradores.
     con los paquetes y las imágenes base, con versiones de al menos 14
     días.
   - Secretos solo en GitHub Secrets.
+  - Trivy revisa cada imagen antes de publicarla. Un riesgo aceptado va en
+    `.trivyignore.yaml` con su motivo y fecha de vencimiento.
   - Ramas `develop` y `main` protegidas.
 - **Imagen.** Node construye el sitio y su CSP. Caddy sirve `dist/` con
   cabeceras de seguridad y caché. La imagen final no lleva Node.
