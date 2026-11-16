@@ -130,3 +130,36 @@ describe("paginaDelMaterial", () => {
     });
   });
 });
+
+describe("visual de cada imagen para compartir", () => {
+  const porRuta = (ruta: string) =>
+    paginasParaCompartir().find((pagina) => pagina.ruta === ruta);
+
+  it("un proyecto y un paquete muestran su logo o su ícono, no la foto", () => {
+    expect(porRuta("/proyectos/tu-coach")).toMatchObject({
+      etiqueta: "Proyecto",
+      visual: { tipo: "proyecto", id: "tu-coach" },
+    });
+    expect(porRuta("/en/codigo-abierto/antibot-laravel")).toMatchObject({
+      etiqueta: "Package",
+      visual: { tipo: "proyecto", id: "antibot-laravel" },
+    });
+  });
+
+  it("las secciones siguen con la foto", () => {
+    expect(porRuta("/cv")?.visual).toBeUndefined();
+  });
+
+  it("un libro muestra su portada", () => {
+    const material = {
+      id: "docker",
+      publicacion: { name: "Docker paso a paso" },
+    };
+    expect(
+      paginaDelMaterial(material, "es", "Libro", "src/assets/portada.svg"),
+    ).toMatchObject({
+      etiqueta: "Libro",
+      visual: { tipo: "portada", archivo: "src/assets/portada.svg" },
+    });
+  });
+});

@@ -34,7 +34,7 @@ const es = {
     buscar: "Buscar",
     contacto: "Contacto",
   },
-  fechas: { locale: "es-PE", actualidad: "actualidad" },
+  fechas: { locale: "es-PE", desde: "desde", hasta: "a" },
   cv: {
     descargar: "Descargar CV en PDF",
     otraVersion: "English version",
@@ -135,6 +135,7 @@ const es = {
     verEnLinea: "Ver en línea",
     verCaso: "Ver el caso",
     volver: "Todos los proyectos",
+    reto: "El reto",
     resultados: "Resultados",
     enElBlog: "Lo conté en el blog",
     portadaDe: (nombre: string) => `Portada de ${nombre}`,
@@ -268,7 +269,7 @@ const en: Textos = {
     buscar: "Search",
     contacto: "Contact",
   },
-  fechas: { locale: "en-US", actualidad: "present" },
+  fechas: { locale: "en-US", desde: "since", hasta: "to" },
   cv: {
     descargar: "Download resume (PDF)",
     otraVersion: "Versión en español",
@@ -367,6 +368,7 @@ const en: Textos = {
     verEnLinea: "Visit site",
     verCaso: "Read the case",
     volver: "All projects",
+    reto: "The challenge",
     resultados: "Results",
     enElBlog: "On the blog",
     portadaDe: (nombre) => `Home page of ${nombre}`,

@@ -25,7 +25,7 @@ const paquetes = resume.projects.filter(esPaquete);
 
   <ul class="divide-borde border-borde mt-8 divide-y border-t">
     {paquetes.map((paquete) => (
-      <li>
+      <li id={slugDelPaquete(paquete)}>
         <FilaProyecto
           proyecto={paquete}
           ruta={rutaEn(idioma, `/codigo-abierto/${slugDelPaquete(paquete)}`)}

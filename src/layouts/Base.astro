@@ -166,5 +166,24 @@ const metadatos = metadatosDe(
         <Pie />
       </div>
     </div>
+
+    <script>
+      // Astro restaura la altura antes de cambiar la página y una página corta
+      // la recorta. Al ir atrás o adelante se vuelve a aplicar la guardada.
+      let alturaGuardada: number | undefined;
+
+      document.addEventListener("astro:before-preparation", (evento) => {
+        alturaGuardada =
+          evento.navigationType === "traverse"
+            ? (history.state as { scrollY?: number } | null)?.scrollY
+            : undefined;
+      });
+
+      document.addEventListener("astro:after-swap", () => {
+        if (alturaGuardada !== undefined) {
+          window.scrollTo({ top: alturaGuardada, behavior: "instant" });
+        }
+      });
+    </script>
   </body>
 </html>
