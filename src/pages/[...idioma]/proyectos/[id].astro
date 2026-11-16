@@ -40,6 +40,7 @@ const t = textosDe(idioma);
 const captura = capturaDelProyecto(proyecto.id);
 const fin = "endDate" in proyecto ? proyecto.endDate : undefined;
 const entidad = "entity" in proyecto ? proyecto.entity : undefined;
+const rol = "roles" in proyecto ? proyecto.roles[0] : undefined;
 const notas = (await escritosPublicados(idioma)).filter(
   (escrito) => escrito.data.proyecto === proyecto.id,
 );
@@ -89,7 +90,18 @@ const notas = (await escritosPublicados(idioma)).filter(
           class="size-4"
           aria-hidden="true"
         />
-        {entidad}
+        {entidad}{" "}
+      </span>
+    )}
+    {rol && (
+      <span class="inline-flex items-center gap-1">
+        <Icon
+          is:inline
+          name="lucide:user-round"
+          class="size-4"
+          aria-hidden="true"
+        />
+        {rol}
       </span>
     )}
   </p>
