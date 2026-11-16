@@ -41,6 +41,7 @@ const captura = capturaDelProyecto(proyecto.id);
 const fin = "endDate" in proyecto ? proyecto.endDate : undefined;
 const entidad = "entity" in proyecto ? proyecto.entity : undefined;
 const rol = "roles" in proyecto ? proyecto.roles[0] : undefined;
+const reto = "challenge" in proyecto ? proyecto.challenge : undefined;
 const notas = (await escritosPublicados(idioma)).filter(
   (escrito) => escrito.data.proyecto === proyecto.id,
 );
@@ -129,6 +130,12 @@ const notas = (await escritosPublicados(idioma)).filter(
       {t.proyectos.verEnLinea}
       <span class="sr-only">({t.sitio.otraPestana})</span>
     </a>
+  )}
+
+  {reto && (
+    <Seccion titulo={t.proyectos.reto} id="reto">
+      <p class="max-w-prose text-lg leading-relaxed">{reto}</p>
+    </Seccion>
   )}
 
   {proyecto.highlights.length > 0 && (
