@@ -33,7 +33,10 @@ const sitio = Astro.site ?? Astro.url;
     {materiales.map(({ id, publicacion, detalle }) => {
       const ruta = rutaEn(idioma, `/aprende/${id}`);
       return (
-        <article class="revelar grid items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-14">
+        <article
+          id={id}
+          class="revelar grid items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-14"
+        >
           <a href={ruta} class="group block" tabindex="-1" aria-hidden="true">
             <Image
               src={detalle.portada}

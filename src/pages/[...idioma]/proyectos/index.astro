@@ -71,6 +71,7 @@ const filtros = tecnologiasFrecuentes(projects, 3);
   <ul class="divide-borde border-borde mt-4 divide-y border-t">
     {projects.map((proyecto) => (
       <li
+        id={proyecto.id}
         data-tecnologias={[
           ...new Set(proyecto.keywords.map(tecnologiaBase)),
         ].join("|")}
