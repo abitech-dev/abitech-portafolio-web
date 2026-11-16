@@ -111,7 +111,7 @@ jobs:
     name: Imagen probada en develop
     if: github.base_ref == 'main' && github.head_ref == 'develop'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions:
       contents: read
       packages: read
@@ -126,4 +126,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: docker buildx imagetools inspect "$IMAGEN:arbol-$(git rev-parse 'HEAD^{tree}')"
+      # Espera la imagen que construye la CI de develop tras cada unión.
+      - name: Esperar la imagen de este árbol
+        run: |
+          imagen="$IMAGEN:arbol-$(git rev-parse 'HEAD^{tree}')"
+          for _ in $(seq 1 24); do
+            docker buildx imagetools inspect "$imagen" > /dev/null 2>&1 && exit 0
+            sleep 30
+          done
+          docker buildx imagetools inspect "$imagen"
