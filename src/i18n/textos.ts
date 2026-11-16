@@ -34,7 +34,7 @@ const es = {
     buscar: "Buscar",
     contacto: "Contacto",
   },
-  fechas: { locale: "es-PE", actualidad: "actualidad" },
+  fechas: { locale: "es-PE", desde: "desde", hasta: "a" },
   cv: {
     descargar: "Descargar CV en PDF",
     otraVersion: "English version",
@@ -268,7 +268,7 @@ const en: Textos = {
     buscar: "Search",
     contacto: "Contact",
   },
-  fechas: { locale: "en-US", actualidad: "present" },
+  fechas: { locale: "en-US", desde: "since", hasta: "to" },
   cv: {
     descargar: "Download resume (PDF)",
     otraVersion: "Versión en español",
