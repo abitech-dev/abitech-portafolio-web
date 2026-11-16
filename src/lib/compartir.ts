@@ -1,14 +1,20 @@
-import { datosDe } from "@/i18n/idioma";
+import { datosDe, textosDe } from "@/i18n/idioma";
 import { IDIOMAS, idiomaDeLaRuta, rutaEn, type Idioma } from "@/i18n/rutas";
 import { idiomaDelEscrito, slugDelEscrito, type Escrito } from "@/lib/escritos";
 import { SECCIONES, seccionesDe } from "@/lib/navegacion";
 import { esPaquete, slugDelPaquete } from "@/lib/trayectoria";
+
+/** Lo que la imagen muestra en lugar de la foto del autor. */
+export type Visual =
+  { tipo: "proyecto"; id: string } | { tipo: "portada"; archivo: string };
 
 export type PaginaParaCompartir = {
   ruta: string;
   titulo: string;
   idioma: Idioma;
   etiquetas?: string[];
+  etiqueta?: string;
+  visual?: Visual;
 };
 
 export type EnlaceParaCompartir = {
@@ -25,6 +31,7 @@ function sinBarraFinal(ruta: string): string {
 
 function paginasDelIdioma(idioma: Idioma): PaginaParaCompartir[] {
   const datos = datosDe(idioma);
+  const t = textosDe(idioma);
   const secciones = seccionesDe(idioma).map(({ ruta, etiqueta }, i) => ({
     ruta,
     titulo: SECCIONES[i]?.ruta === "/" ? datos.basics.label : etiqueta,
@@ -36,11 +43,15 @@ function paginasDelIdioma(idioma: Idioma): PaginaParaCompartir[] {
       ruta: rutaEn(idioma, `/proyectos/${proyecto.id}`),
       titulo: proyecto.name,
       idioma,
+      etiqueta: t.proyectos.tipo,
+      visual: { tipo: "proyecto" as const, id: proyecto.id },
     }));
   const paquetes = datos.projects.filter(esPaquete).map((paquete) => ({
     ruta: rutaEn(idioma, `/codigo-abierto/${slugDelPaquete(paquete)}`),
     titulo: paquete.name,
     idioma,
+    etiqueta: t.codigoAbierto.tipo,
+    visual: { tipo: "proyecto" as const, id: paquete.id },
   }));
   return [...secciones, ...proyectos, ...paquetes];
 }
@@ -83,11 +94,15 @@ export function paginaDelEscrito(escrito: Escrito): PaginaParaCompartir {
 export function paginaDelMaterial(
   material: { id: string; publicacion: { name: string } },
   idioma: Idioma,
+  etiqueta?: string,
+  portada?: string,
 ): PaginaParaCompartir {
   return {
     ruta: rutaEn(idioma, `/aprende/${material.id}`),
     titulo: material.publicacion.name,
     idioma,
+    ...(etiqueta && { etiqueta }),
+    ...(portada && { visual: { tipo: "portada", archivo: portada } }),
   };
 }
 
