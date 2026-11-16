@@ -81,6 +81,11 @@ export const LOGOS: Record<string, string> = {
   "cumplimiento antilavado": "lucide:shield-check",
   "anti-money laundering compliance": "lucide:shield-check",
   "IBM App Connect Enterprise": "simple-icons:ibm",
+  "IBM API Connect": "simple-icons:ibm",
+  "IBM Integration Bus": "simple-icons:ibm",
+  DFDL: "simple-icons:ibm",
+  OpenShift: "logos:openshift",
+  Kubernetes: "logos:kubernetes",
 };
 
 export function logoDeTecnologia(tecnologia: string): string | undefined {

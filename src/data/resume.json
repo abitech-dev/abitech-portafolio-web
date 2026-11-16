@@ -57,8 +57,11 @@
       "endDate": "2025-10",
       "summary": "Empresa proveedora de tecnología de Interbank.",
       "highlights": [
-        "Desarrollé para Interbank, uno de los cuatro bancos más grandes del Perú, unos 10 flujos de integración en IBM App Connect Enterprise, hoy en producción, para su sistema de tarjetas.",
-        "Llevé cada integración del desarrollo al monitoreo, con ESQL, CI/CD en Azure DevOps, contenedores Docker, pruebas en Postman y Bruno y seguimiento en New Relic."
+        "Desarrollé para Interbank, uno de los cuatro bancos más grandes del Perú, unos 10 servicios de integración para su sistema de tarjetas, que pasaron a producción, en IBM App Connect Enterprise (ACE).",
+        "Publiqué en IBM API Connect las APIs REST de cada servicio, con su documentación y sus reglas de acceso, e integré servicios SOAP de otros sistemas.",
+        "Conecté el sistema central de tarjetas, escrito en COBOL, para que otros sistemas del banco lo usen como APIs REST, con el número de tarjeta enmascarado hasta el último paso (DFDL, ESQL y copybooks).",
+        "Migré servicios de IBM Integration Bus (IIB) a App Connect Enterprise, la plataforma que lo reemplaza.",
+        "Acompañé cada integración del desarrollo al soporte, con despliegues automáticos a OpenShift desde Azure DevOps, pruebas en Postman, Bruno y SoapUI y monitoreo en New Relic."
       ]
     },
     {
@@ -306,6 +309,16 @@
       "keywords": ["Nube y DevOps"]
     },
     {
+      "name": "OpenShift",
+      "level": "Básico",
+      "keywords": ["Nube y DevOps"]
+    },
+    {
+      "name": "Kubernetes",
+      "level": "Básico",
+      "keywords": ["Nube y DevOps"]
+    },
+    {
       "name": "Nginx",
       "level": "Intermedio",
       "keywords": ["Nube y DevOps"]
@@ -373,6 +386,21 @@
     {
       "name": "IBM App Connect Enterprise",
       "level": "Intermedio",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "IBM API Connect",
+      "level": "Intermedio",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "IBM Integration Bus",
+      "level": "Intermedio",
+      "keywords": ["Integración"]
+    },
+    {
+      "name": "DFDL",
+      "level": "Básico",
       "keywords": ["Integración"]
     },
     {
