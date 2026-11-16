@@ -424,7 +424,8 @@
       ],
       "startDate": "2026-01",
       "endDate": "2026-10",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador principal del backend"]
     },
     {
       "id": "sistema-de-empeno-y-compraventa-de-oro",
@@ -447,7 +448,8 @@
         "axe"
       ],
       "startDate": "2025-11",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador principal"]
     },
     {
       "id": "pwa-offline-de-actas-de-mantenimiento",
@@ -471,7 +473,8 @@
         "PHPStan"
       ],
       "startDate": "2026-08",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador principal"]
     },
     {
       "id": "plataforma-de-una-casa-de-cambio-digital",
@@ -503,7 +506,8 @@
         "SSMS"
       ],
       "startDate": "2026-08",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador principal"]
     },
     {
       "id": "pilot-ssh",
@@ -527,7 +531,8 @@
       ],
       "startDate": "2026-03",
       "url": "https://uat-pilotssh.abitech.com.pe/",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador único"]
     },
     {
       "id": "recaudacion-scotiabank",
@@ -548,7 +553,8 @@
       ],
       "startDate": "2026-09",
       "endDate": "2026-10",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador principal"]
     },
     {
       "id": "cred-plus",
@@ -572,7 +578,8 @@
       ],
       "startDate": "2026-10",
       "url": "https://cred.abitech.dev/",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador único"]
     },
     {
       "id": "yachacuy",
@@ -593,7 +600,8 @@
       "startDate": "2025-01",
       "url": "https://yachacuy.com/",
       "entity": "Yachakuy Perú",
-      "type": "application"
+      "type": "application",
+      "roles": ["Líder de un equipo de 5"]
     },
     {
       "id": "la-fruteria",
@@ -618,7 +626,8 @@
         "OpenVEX"
       ],
       "startDate": "2026-10",
-      "type": "application"
+      "type": "application",
+      "roles": []
     },
     {
       "id": "claude-config",
@@ -629,7 +638,8 @@
       ],
       "keywords": ["Claude Code", "Python"],
       "startDate": "2026-10",
-      "type": "application"
+      "type": "application",
+      "roles": []
     },
     {
       "id": "optipix",
@@ -651,7 +661,8 @@
       ],
       "startDate": "2025-12",
       "url": "https://optipix.abitech.com.pe/",
-      "type": "application"
+      "type": "application",
+      "roles": []
     },
     {
       "id": "tu-coach",
@@ -665,7 +676,8 @@
       "startDate": "2023-05",
       "url": "https://tucoach.udh.edu.pe/",
       "entity": "Universidad de Huánuco",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador único"]
     },
     {
       "id": "hackathon-udh",
@@ -678,7 +690,8 @@
       "startDate": "2024-11",
       "endDate": "2024-12",
       "entity": "Universidad de Huánuco",
-      "type": "application"
+      "type": "application",
+      "roles": ["Líder de un equipo de 4"]
     },
     {
       "id": "sigep",
@@ -690,7 +703,8 @@
       "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
       "url": "https://sigep.udh.edu.pe/",
       "entity": "Universidad de Huánuco",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador único"]
     },
     {
       "id": "portal-investigacion",
@@ -702,7 +716,8 @@
       "keywords": ["Laravel 10", "Livewire 3", "Bootstrap 5"],
       "url": "https://investigacion.udh.edu.pe/",
       "entity": "Universidad de Huánuco",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador principal"]
     },
     {
       "id": "banco-necesidades",
@@ -713,7 +728,8 @@
       "startDate": "2024-07",
       "endDate": "2024-12",
       "entity": "Universidad de Huánuco",
-      "type": "application"
+      "type": "application",
+      "roles": ["Líder de un equipo de 8"]
     },
     {
       "id": "abitech-payments",
@@ -733,7 +749,8 @@
       "url": "https://packagist.org/packages/abitechdev/payments-laravel",
       "type": "library",
       "package": "abitechdev/payments-laravel",
-      "repository": "https://github.com/abitech-dev/abitech-payments-laravel"
+      "repository": "https://github.com/abitech-dev/abitech-payments-laravel",
+      "roles": []
     },
     {
       "id": "antibot-laravel",
@@ -747,7 +764,8 @@
       "url": "https://packagist.org/packages/abitechdev/antibot-laravel",
       "type": "library",
       "package": "abitechdev/antibot-laravel",
-      "repository": "https://github.com/abitech-dev/abitech-antibot-laravel"
+      "repository": "https://github.com/abitech-dev/abitech-antibot-laravel",
+      "roles": []
     },
     {
       "id": "hostal-pacifico",
@@ -759,10 +777,11 @@
       "endDate": "2026-05",
       "url": "https://hostalpacifico.com/",
       "entity": "Hostal Pacífico",
-      "type": "application"
+      "type": "application",
+      "roles": ["Desarrollador principal"]
     }
   ],
   "meta": {
-    "version": "1.2.0"
+    "version": "1.3.0"
   }
 }
