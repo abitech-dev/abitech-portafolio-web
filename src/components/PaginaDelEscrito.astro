@@ -7,7 +7,7 @@ import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
 import { articulo } from "@/lib/datos-estructurados";
-import { idDeEtiqueta, minutosDeLectura } from "@/lib/escritos";
+import { idDeEtiqueta, minutosDeLectura, slugDelEscrito } from "@/lib/escritos";
 
 interface Props {
   escrito: CollectionEntry<"escritos">;
@@ -37,7 +37,7 @@ const etiquetaDelTipo = tipo === "articulo" ? t.articulo : t.nota;
 >
   <a
     data-pagefind-ignore
-    href={rutaEn(idioma, "/blog")}
+    href={rutaEn(idioma, `/blog#${slugDelEscrito(escrito)}`)}
     class="text-tenue hover:text-acento inline-flex items-center gap-1 text-sm"
   >
     <Icon

@@ -56,6 +56,17 @@
     outline-offset: 3px;
   }
 
+  /* Al volver atrás la página cambia sin fundido, para que nada se mueva. */
+  html[data-astro-transition="back"]::view-transition-old(*),
+  html[data-astro-transition="back"]::view-transition-new(*) {
+    animation: none;
+  }
+
+  /* La barra fija del celular no tapa el elemento al que se vuelve. */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+
   /* Tailwind 4 deja la flecha en los botones. */
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]) {
