@@ -91,3 +91,13 @@ export function tecnologiasFrecuentes(
     .sort(([a, x], [b, y]) => y - x || a.localeCompare(b, "es"))
     .map(([tecnologia]) => tecnologia);
 }
+
+/** La cifra de usuarios que dicen los logros, con espacio de miles fijo. */
+export function usuariosDelProyecto(proyecto: {
+  highlights?: string[];
+}): string | undefined {
+  return proyecto.highlights
+    ?.join(" ")
+    .match(/(\d{1,3}(?:[ \u00a0\u202f]\d{3})+|\d+) usuarios/)?.[1]
+    ?.replace(/[ \u202f]/g, "\u00a0");
+}

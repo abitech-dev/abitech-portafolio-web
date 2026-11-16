@@ -7,7 +7,7 @@ import type { APIRoute, GetStaticPaths } from "astro";
 import satori from "satori";
 import sharp from "sharp";
 
-import { datosDe, textosDe } from "@/i18n/idioma";
+import { textosDe } from "@/i18n/idioma";
 import { IDIOMAS } from "@/i18n/rutas";
 import { materialesDeAprende } from "@/lib/coleccion-aprende";
 import { escritosPublicados } from "@/lib/coleccion-escritos";
@@ -20,10 +20,10 @@ import {
   type Visual,
 } from "@/lib/compartir";
 import { RUBRO_DEL_PROYECTO } from "@/lib/imagenes";
-import { nombreCorto } from "@/lib/trayectoria";
 
 const ANCHO = 1200;
 const ALTO = 630;
+const ZONA_SEGURA = 540;
 const COLORES = {
   fondo: "#f8fafc",
   borde: "#dbe1e8",
@@ -40,7 +40,7 @@ const fuente = (peso: number): Buffer =>
   );
 
 const foto = await sharp("src/assets/foto-perfil.jpg")
-  .resize(560, 560)
+  .resize(400, 400)
   .jpeg({ quality: 85 })
   .toBuffer();
 const fotoEnLinea = `data:image/jpeg;base64,${foto.toString("base64")}`;
@@ -76,32 +76,14 @@ function portadaDe(id: string): string | undefined {
   return relativa ? join("src/content/aprende", relativa) : undefined;
 }
 
-type ImagenDelVisual = { src: string; esLogo: boolean; esPortada: boolean };
+type Marco = "foto" | "logo" | "icono" | "portada";
+type ImagenDelVisual = { src: string; marco: Marco };
 
 const enLinea = (png: Buffer): string =>
   `data:image/png;base64,${png.toString("base64")}`;
 
-/** El logo del proyecto, su ícono de rubro o la portada del libro. */
-async function imagenDe(visual: Visual): Promise<ImagenDelVisual> {
-  if (visual.tipo === "portada") {
-    const png = await sharp(visual.archivo, { density: 300 })
-      .resize({ height: 400 })
-      .png()
-      .toBuffer();
-    return { src: enLinea(png), esLogo: false, esPortada: true };
-  }
-  const logo = join("src/assets/logos", `${visual.id}.png`);
-  if (existsSync(logo)) {
-    return {
-      src: enLinea(readFileSync(logo)),
-      esLogo: true,
-      esPortada: false,
-    };
-  }
-  const nombre = (RUBRO_DEL_PROYECTO[visual.id] ?? "lucide:folder").replace(
-    "lucide:",
-    "",
-  );
+async function iconoEnPng(icono: string): Promise<string> {
+  const nombre = icono.replace("lucide:", "");
   const cuerpo = (iconos.icons as Record<string, { body: string }>)[nombre]
     ?.body;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" color="${COLORES.acento}">${cuerpo ?? ""}</svg>`;
@@ -109,7 +91,28 @@ async function imagenDe(visual: Visual): Promise<ImagenDelVisual> {
     .resize(256, 256)
     .png()
     .toBuffer();
-  return { src: enLinea(png), esLogo: false, esPortada: false };
+  return enLinea(png);
+}
+
+/** La foto del autor, el logo, el ícono o la portada del libro. */
+async function imagenDe(visual?: Visual): Promise<ImagenDelVisual> {
+  if (!visual) return { src: fotoEnLinea, marco: "foto" };
+  if (visual.tipo === "icono") {
+    return { src: await iconoEnPng(visual.nombre), marco: "icono" };
+  }
+  if (visual.tipo === "portada") {
+    const png = await sharp(visual.archivo, { density: 300 })
+      .resize({ height: 400 })
+      .png()
+      .toBuffer();
+    return { src: enLinea(png), marco: "portada" };
+  }
+  const logo = join("src/assets/logos", `${visual.id}.png`);
+  if (existsSync(logo)) {
+    return { src: enLinea(readFileSync(logo)), marco: "logo" };
+  }
+  const rubro = RUBRO_DEL_PROYECTO[visual.id] ?? "lucide:folder";
+  return { src: await iconoEnPng(rubro), marco: "icono" };
 }
 
 type Nodo = {
@@ -126,120 +129,49 @@ function nodo(
   return { type, props: { style, children, ...extra } };
 }
 
-function chips(etiquetas: string[]): Nodo {
-  return nodo(
-    "div",
-    { display: "flex", flexWrap: "wrap", gap: 12 },
-    etiquetas.map((etiqueta) =>
-      nodo(
-        "div",
-        {
-          fontSize: 24,
-          color: COLORES.acento,
-          background: COLORES.acentoSuave,
-          borderRadius: 8,
-          padding: "6px 14px",
-        },
-        etiqueta,
-      ),
-    ),
-  );
-}
-
-function tarjeta({ titulo, idioma, etiquetas }: PaginaParaCompartir): Nodo {
-  const { name: nombre, label } = datosDe(idioma).basics;
-  const name = nombreCorto(nombre);
+function marcoDe({ src, marco }: ImagenDelVisual): Nodo {
+  if (marco === "portada") {
+    return nodo("img", { borderRadius: 12 }, undefined, { src, height: 240 });
+  }
+  if (marco === "foto") {
+    return nodo(
+      "img",
+      { borderRadius: 100, border: `4px solid #ffffff` },
+      undefined,
+      { src, width: 200, height: 200 },
+    );
+  }
+  const isLogo = marco === "logo";
   return nodo(
     "div",
     {
-      width: ANCHO,
-      height: ALTO,
       display: "flex",
       alignItems: "center",
-      gap: 64,
-      padding: "0 80px",
-      position: "relative",
-      background: COLORES.fondo,
-      fontFamily: "Inter",
+      justifyContent: "center",
+      width: 200,
+      height: 200,
+      borderRadius: 40,
+      background: isLogo ? "#ffffff" : COLORES.acentoSuave,
+      border: `2px solid ${COLORES.borde}`,
     },
-    [
-      nodo(
-        "img",
-        { borderRadius: 16, border: `2px solid ${COLORES.borde}` },
-        undefined,
-        {
-          src: fotoEnLinea,
-          width: 280,
-          height: 280,
-        },
-      ),
-      nodo(
-        "div",
-        { display: "flex", flexDirection: "column", gap: 20, width: 696 },
-        [
-          nodo(
-            "div",
-            { fontSize: 28, fontWeight: 700, color: COLORES.acento },
-            name,
-          ),
-          nodo(
-            "div",
-            {
-              fontSize: titulo.length > 45 ? 48 : 56,
-              fontWeight: 700,
-              color: COLORES.texto,
-              lineHeight: 1.1,
-            },
-            titulo,
-          ),
-          ...(etiquetas
-            ? [chips(etiquetas)]
-            : titulo === label
-              ? []
-              : [nodo("div", { fontSize: 26, color: COLORES.tenue }, label)]),
-          nodo("div", { fontSize: 24, color: COLORES.tenue }, "abitech.dev"),
-        ],
-      ),
-      nodo("div", {
-        position: "absolute",
-        left: 0,
-        bottom: 0,
-        width: ANCHO,
-        height: 12,
-        background: COLORES.marca,
-      }),
-    ],
+    nodo("img", {}, undefined, {
+      src,
+      width: isLogo ? 150 : 120,
+      height: isLogo ? 150 : 120,
+    }),
   );
 }
 
-/** Centrada, para que el recorte cuadrado de WhatsApp muestre logo y título. */
-function tarjetaConVisual(
+function tamanoDelTitulo(titulo: string): number {
+  if (titulo.length <= 18) return 56;
+  return titulo.length <= 44 ? 48 : 42;
+}
+
+/** Todo cabe en el cuadrado central, que es lo que WhatsApp recorta. */
+function tarjeta(
   { titulo, etiqueta }: PaginaParaCompartir,
   imagen: ImagenDelVisual,
 ): Nodo {
-  const marco = imagen.esPortada
-    ? nodo("img", { borderRadius: 12 }, undefined, {
-        src: imagen.src,
-        height: 300,
-      })
-    : nodo(
-        "div",
-        {
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 220,
-          height: 220,
-          borderRadius: 40,
-          background: imagen.esLogo ? "#ffffff" : COLORES.acentoSuave,
-          border: `2px solid ${COLORES.borde}`,
-        },
-        nodo("img", {}, undefined, {
-          src: imagen.src,
-          width: imagen.esLogo ? 160 : 132,
-          height: imagen.esLogo ? 160 : 132,
-        }),
-      );
   return nodo(
     "div",
     {
@@ -249,20 +181,20 @@ function tarjetaConVisual(
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      gap: 22,
+      gap: 18,
       position: "relative",
       background: COLORES.fondo,
       fontFamily: "Inter",
       textAlign: "center",
     },
     [
-      marco,
+      marcoDe(imagen),
       ...(etiqueta
         ? [
             nodo(
               "div",
               {
-                fontSize: 26,
+                fontSize: 24,
                 fontWeight: 700,
                 letterSpacing: 2,
                 color: COLORES.acento,
@@ -275,11 +207,11 @@ function tarjetaConVisual(
       nodo(
         "div",
         {
-          fontSize: titulo.length > 40 ? 50 : 60,
+          fontSize: tamanoDelTitulo(titulo),
           fontWeight: 700,
           color: COLORES.texto,
           lineHeight: 1.1,
-          maxWidth: 1000,
+          maxWidth: ZONA_SEGURA,
         },
         titulo,
       ),
@@ -298,9 +230,7 @@ function tarjetaConVisual(
 
 export const GET: APIRoute = async ({ props }) => {
   const pagina = props as PaginaParaCompartir;
-  const diseno = pagina.visual
-    ? tarjetaConVisual(pagina, await imagenDe(pagina.visual))
-    : tarjeta(pagina);
+  const diseno = tarjeta(pagina, await imagenDe(pagina.visual));
   const svg = await satori(diseno as never, {
     width: ANCHO,
     height: ALTO,

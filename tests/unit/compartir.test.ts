@@ -70,16 +70,29 @@ describe("paginaDelEscrito", () => {
     },
   });
 
-  it("da a cada escrito su ruta, su título y sus etiquetas", () => {
+  it("da a cada escrito su ruta, su título, su tipo y su ícono", () => {
     expect(paginaDelEscrito(escrito("es/optipix"))).toEqual({
       ruta: "/blog/optipix",
       titulo: "Por qué OptiPix descarga en ZIP",
       idioma: "es",
-      etiquetas: ["javascript", "rendimiento"],
+      etiqueta: "Nota",
+      visual: { tipo: "icono", nombre: "lucide:notebook-pen" },
     });
     expect(paginaDelEscrito(escrito("en/optipix")).ruta).toBe(
       "/en/blog/optipix",
     );
+  });
+
+  it("un escrito de un proyecto muestra el logo del proyecto", () => {
+    const base = escrito("en/optipix");
+    const delProyecto = {
+      ...base,
+      data: { ...base.data, tipo: "articulo" as const, proyecto: "optipix" },
+    };
+    expect(paginaDelEscrito(delProyecto)).toMatchObject({
+      etiqueta: "Article",
+      visual: { tipo: "proyecto", id: "optipix" },
+    });
   });
 });
 
@@ -90,7 +103,6 @@ describe("enlacesParaCompartir", () => {
       "Título & más",
     );
     const url = encodeURIComponent("https://abitech.dev/blog/a b");
-    const titulo = encodeURIComponent("Título & más");
 
     expect(enlaces).toEqual([
       {
@@ -101,12 +113,12 @@ describe("enlacesParaCompartir", () => {
       {
         red: "WhatsApp",
         icono: "simple-icons:whatsapp",
-        href: `https://wa.me/?text=${encodeURIComponent("Título & más https://abitech.dev/blog/a b")}`,
+        href: `https://wa.me/?text=${encodeURIComponent("*Título & más*\nhttps://abitech.dev/blog/a b")}`,
       },
       {
         red: "X",
         icono: "simple-icons:x",
-        href: `https://x.com/intent/post?text=${titulo}&url=${url}`,
+        href: `https://x.com/intent/post?text=${encodeURIComponent("Título & más\nhttps://abitech.dev/blog/a b")}`,
       },
       {
         red: "Facebook",
@@ -146,8 +158,9 @@ describe("visual de cada imagen para compartir", () => {
     });
   });
 
-  it("las secciones siguen con la foto", () => {
+  it("las secciones siguen con la foto y el nombre del autor", () => {
     expect(porRuta("/cv")?.visual).toBeUndefined();
+    expect(porRuta("/cv")?.etiqueta).toBe("Abimael Fernandez");
   });
 
   it("un libro muestra su portada", () => {
