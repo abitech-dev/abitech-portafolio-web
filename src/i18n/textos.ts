@@ -136,6 +136,7 @@ const es = {
     verCaso: "Ver el caso",
     volver: "Todos los proyectos",
     resultados: "Resultados",
+    enElBlog: "Lo conté en el blog",
     portadaDe: (nombre: string) => `Portada de ${nombre}`,
   },
   buscador: {
@@ -216,6 +217,7 @@ const es = {
     nota: "Nota",
     minutos: (n: number) => `${n} min de lectura`,
     volver: "Volver al blog",
+    delProyecto: "Del proyecto",
     etiquetas: "Etiquetas",
     sobre: (etiqueta: string) => `Publicaciones sobre ${etiqueta}`,
     suscribirse: "Suscribirse por RSS",
@@ -366,6 +368,7 @@ const en: Textos = {
     verCaso: "Read the case",
     volver: "All projects",
     resultados: "Results",
+    enElBlog: "On the blog",
     portadaDe: (nombre) => `Home page of ${nombre}`,
   },
   buscador: {
@@ -445,6 +448,7 @@ const en: Textos = {
     nota: "Note",
     minutos: (n) => `${n} min read`,
     volver: "Back to the blog",
+    delProyecto: "From the project",
     etiquetas: "Tags",
     sobre: (etiqueta) => `Posts about ${etiqueta}`,
     suscribirse: "Subscribe via RSS",

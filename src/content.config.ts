@@ -13,6 +13,8 @@ const escritos = defineCollection({
     tipo: z.enum(["articulo", "nota"]),
     etiquetas: z.array(z.string()).min(1).max(5),
     borrador: z.boolean().default(false),
+    /** Id del proyecto de resume.json del que trata la entrada. */
+    proyecto: z.string().optional(),
   }),
 });
 

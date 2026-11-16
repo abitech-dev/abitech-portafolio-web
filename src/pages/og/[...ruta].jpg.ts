@@ -6,10 +6,12 @@ import sharp from "sharp";
 
 import { datosDe } from "@/i18n/idioma";
 import { IDIOMAS } from "@/i18n/rutas";
+import { materialesDeAprende } from "@/lib/coleccion-aprende";
 import { escritosPublicados } from "@/lib/coleccion-escritos";
 import {
   archivoDeLaImagen,
   paginaDelEscrito,
+  paginaDelMaterial,
   paginasParaCompartir,
   type PaginaParaCompartir,
 } from "@/lib/compartir";
@@ -40,12 +42,21 @@ const fotoEnLinea = `data:image/jpeg;base64,${foto.toString("base64")}`;
 
 export const getStaticPaths = (async () => {
   const escritos = (await Promise.all(IDIOMAS.map(escritosPublicados))).flat();
-  return [...paginasParaCompartir(), ...escritos.map(paginaDelEscrito)].map(
-    (pagina) => ({
-      params: { ruta: archivoDeLaImagen(pagina.ruta).slice(4, -4) },
-      props: pagina,
-    }),
+  const libros = await Promise.all(
+    IDIOMAS.map(async (idioma) =>
+      (await materialesDeAprende(idioma)).map((material) =>
+        paginaDelMaterial(material, idioma),
+      ),
+    ),
   );
+  return [
+    ...paginasParaCompartir(),
+    ...escritos.map(paginaDelEscrito),
+    ...libros.flat(),
+  ].map((pagina) => ({
+    params: { ruta: archivoDeLaImagen(pagina.ruta).slice(4, -4) },
+    props: pagina,
+  }));
 }) satisfies GetStaticPaths;
 
 type Nodo = {

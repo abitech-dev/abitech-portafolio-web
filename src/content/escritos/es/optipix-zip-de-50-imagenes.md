@@ -5,6 +5,7 @@ fecha: 2026-11-12
 tipo: nota
 etiquetas: [javascript, rendimiento, navegador]
 borrador: false
+proyecto: optipix
 ---
 
 [OptiPix](https://optipix.abitech.com.pe) es mi versión de Squoosh de Google.

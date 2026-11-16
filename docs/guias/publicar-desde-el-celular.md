@@ -27,6 +27,7 @@ fecha: 2026-11-15
 tipo: nota
 etiquetas: [tema, otro-tema]
 borrador: true
+proyecto: id-del-proyecto
 ---
 
 Primer párrafo.

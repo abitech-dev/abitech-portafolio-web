@@ -5,6 +5,7 @@ fecha: 2026-11-12
 tipo: nota
 etiquetas: [javascript, performance, browser]
 borrador: false
+proyecto: optipix
 ---
 
 [OptiPix](https://optipix.abitech.com.pe) is my own version of Google's

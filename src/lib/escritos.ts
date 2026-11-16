@@ -11,6 +11,7 @@ export interface Escrito {
     tipo: "articulo" | "nota";
     etiquetas: string[];
     borrador: boolean;
+    proyecto?: string | undefined;
   };
 }
 
