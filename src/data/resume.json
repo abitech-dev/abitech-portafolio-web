@@ -679,7 +679,7 @@
       "name": "Tu Coach UDH",
       "description": "Plataforma de cursos en línea (LMS) de la Universidad de Huánuco sobre investigación y redacción de tesis.",
       "highlights": [
-        "Desarrollé la plataforma con lecciones en video, evaluaciones de intentos limitados y certificados con código de verificación. Supera los 8 900 usuarios y los 7 900 certificados en 4 cursos.",
+        "Desarrollé la plataforma con lecciones en video, evaluaciones de intentos limitados y certificados con código de verificación. Supera los 8900 usuarios y los 7900 certificados en 4 cursos.",
         "Los tesistas que la usaron mejoraron su redacción académica, según una medición con 60 de ellos."
       ],
       "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],

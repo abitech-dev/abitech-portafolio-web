@@ -18,6 +18,7 @@ import {
   proyectosPorId,
   tecnologiaBase,
   tecnologiasFrecuentes,
+  usuariosDelProyecto,
 } from "../../src/lib/trayectoria";
 
 describe("proyectosPorId", () => {
@@ -161,5 +162,27 @@ describe("libro y proyecto", () => {
 
     expect(datos["keywords"]).toContain("Laravel 10");
     expect(datos["sameAs"]).toBe("https://tucoach.udh.edu.pe/");
+  });
+});
+
+describe("usuariosDelProyecto", () => {
+  const conLogros = (...highlights: string[]) => ({ highlights });
+
+  it("toma la cifra entera, con o sin espacio de miles", () => {
+    const nbsp = " ";
+    expect(
+      usuariosDelProyecto(conLogros("Supera los 8 900 usuarios y otros.")),
+    ).toBe(`8${nbsp}900`);
+    expect(usuariosDelProyecto(conLogros("Más de 8900 usuarios."))).toBe(
+      "8900",
+    );
+    expect(usuariosDelProyecto(conLogros("12 500 usuarios"))).toBe(
+      `12${nbsp}500`,
+    );
+  });
+
+  it("no inventa una cifra si los logros no la dicen", () => {
+    expect(usuariosDelProyecto(conLogros("Sin cifras."))).toBeUndefined();
+    expect(usuariosDelProyecto({})).toBeUndefined();
   });
 });

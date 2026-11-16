@@ -10,7 +10,11 @@ import Seccion from "@/components/Seccion.astro";
 import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn, rutasPorIdioma } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
-import { esPaquete, proyectosPorId } from "@/lib/trayectoria";
+import {
+  esPaquete,
+  proyectosPorId,
+  usuariosDelProyecto,
+} from "@/lib/trayectoria";
 
 export function getStaticPaths() {
   return rutasPorIdioma();
@@ -27,9 +31,8 @@ const totalProyectos = projects.filter((p) => !esPaquete(p)).length;
 const [antesDelResalte, despuesDelResalte] = inicio.mision.split(
   inicio.misionResaltada,
 );
-const usuariosTuCoach = proyectosPorId(datosDe("es"), ["tu-coach"])[0]
-  ?.highlights?.join(" ")
-  .match(/(\d+) usuarios/)?.[1];
+const tuCoach = proyectosPorId(datosDe("es"), ["tu-coach"])[0];
+const usuariosTuCoach = tuCoach && usuariosDelProyecto(tuCoach);
 const anioDeInicio = Math.min(
   ...resume.work.map((trabajo) => Number(trabajo.startDate.slice(0, 4))),
 );
