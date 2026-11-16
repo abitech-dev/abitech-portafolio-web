@@ -44,7 +44,7 @@ test("cada proyecto tiene su página con resultados y tecnologías", async ({
     "Tu Coach UDH",
   );
   await expect(page.getByRole("heading", { name: "Resultados" })).toBeVisible();
-  await expect(page.getByText(/8 900 usuarios/)).toBeVisible();
+  await expect(page.getByText(/8 ?900 usuarios/)).toBeVisible();
 });
 
 test("la página de un proyecto no tiene violaciones de accesibilidad", async ({
