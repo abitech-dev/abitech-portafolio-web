@@ -537,7 +537,7 @@
       "startDate": "2026-03",
       "url": "https://uat-pilotssh.abitech.com.pe/",
       "type": "application",
-      "roles": ["Sole developer"]
+      "roles": ["Developer"]
     },
     {
       "id": "recaudacion-scotiabank",
@@ -584,7 +584,7 @@
       "startDate": "2026-10",
       "url": "https://cred.abitech.dev/",
       "type": "application",
-      "roles": ["Sole developer"],
+      "roles": ["Developer"],
       "challenge": "Let a mother track her family's growth checkups (CRED), vaccines and family planning on her phone, with timely reminders, and keep the system on time with thousands of mothers."
     },
     {
@@ -687,7 +687,7 @@
       "url": "https://tucoach.udh.edu.pe/",
       "entity": "Universidad de Huánuco",
       "type": "application",
-      "roles": ["Sole developer"],
+      "roles": ["Developer"],
       "challenge": "Students and thesis writers at Universidad de Huánuco needed to learn research and thesis writing at their own pace, with a certificate anyone could verify."
     },
     {
@@ -717,7 +717,7 @@
       "url": "https://sigep.udh.edu.pe/",
       "entity": "Universidad de Huánuco",
       "type": "application",
-      "roles": ["Sole developer"]
+      "roles": ["Developer"]
     },
     {
       "id": "portal-investigacion",
