@@ -62,6 +62,8 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Corregido
 
+- Los periodos se leen mejor: «ene. a oct. 2026», «nov. 2024 a feb. 2025»
+  y «desde may. 2023».
 - La página de un paquete ya no se desborda a lo ancho en el celular.
 - Los botones muestran la mano al pasar el cursor, como los enlaces.
 - El buscador no pierde lo escrito antes de que cargue la página, y una
