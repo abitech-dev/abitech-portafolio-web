@@ -2,17 +2,18 @@ import { datosDe, textosDe } from "@/i18n/idioma";
 import { IDIOMAS, idiomaDeLaRuta, rutaEn, type Idioma } from "@/i18n/rutas";
 import { idiomaDelEscrito, slugDelEscrito, type Escrito } from "@/lib/escritos";
 import { SECCIONES, seccionesDe } from "@/lib/navegacion";
-import { esPaquete, slugDelPaquete } from "@/lib/trayectoria";
+import { esPaquete, nombreCorto, slugDelPaquete } from "@/lib/trayectoria";
 
 /** Lo que la imagen muestra en lugar de la foto del autor. */
 export type Visual =
-  { tipo: "proyecto"; id: string } | { tipo: "portada"; archivo: string };
+  | { tipo: "proyecto"; id: string }
+  | { tipo: "portada"; archivo: string }
+  | { tipo: "icono"; nombre: string };
 
 export type PaginaParaCompartir = {
   ruta: string;
   titulo: string;
   idioma: Idioma;
-  etiquetas?: string[];
   etiqueta?: string;
   visual?: Visual;
 };
@@ -24,6 +25,10 @@ export type EnlaceParaCompartir = {
 };
 
 const RUTA_DE_INICIO = "/og/inicio.jpg";
+const ICONO_DEL_ESCRITO = {
+  articulo: "lucide:file-text",
+  nota: "lucide:notebook-pen",
+} as const;
 
 function sinBarraFinal(ruta: string): string {
   return ruta.replace(/\/+$/, "") || "/";
@@ -36,6 +41,7 @@ function paginasDelIdioma(idioma: Idioma): PaginaParaCompartir[] {
     ruta,
     titulo: SECCIONES[i]?.ruta === "/" ? datos.basics.label : etiqueta,
     idioma,
+    etiqueta: nombreCorto(datos.basics.name),
   }));
   const proyectos = datos.projects
     .filter((proyecto) => !esPaquete(proyecto))
@@ -81,13 +87,18 @@ export function imagenParaCompartir(ruta: string): string {
   return archivoDeLaImagen(ancestro ?? portada);
 }
 
+/** Un escrito de un proyecto muestra su logo; los demás, el ícono del tipo. */
 export function paginaDelEscrito(escrito: Escrito): PaginaParaCompartir {
   const idioma = idiomaDelEscrito(escrito);
+  const { titulo, tipo, proyecto } = escrito.data;
   return {
     ruta: rutaEn(idioma, `/blog/${slugDelEscrito(escrito)}`),
-    titulo: escrito.data.titulo,
+    titulo,
     idioma,
-    etiquetas: escrito.data.etiquetas,
+    etiqueta: textosDe(idioma).escritos[tipo],
+    visual: proyecto
+      ? { tipo: "proyecto", id: proyecto }
+      : { tipo: "icono", nombre: ICONO_DEL_ESCRITO[tipo] },
   };
 }
 
@@ -121,12 +132,12 @@ export function enlacesParaCompartir(
     {
       red: "WhatsApp",
       icono: "simple-icons:whatsapp",
-      href: `https://wa.me/?text=${encodeURIComponent(`${titulo} ${url}`)}`,
+      href: `https://wa.me/?text=${encodeURIComponent(`*${titulo}*\n${url}`)}`,
     },
     {
       red: "X",
       icono: "simple-icons:x",
-      href: `https://x.com/intent/post?text=${encodeURIComponent(titulo)}&url=${direccion}`,
+      href: `https://x.com/intent/post?text=${encodeURIComponent(`${titulo}\n${url}`)}`,
     },
     {
       red: "Facebook",
