@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+
+import BotonCopiar from "@/components/islands/BotonCopiar.vue";
+import { textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta } from "@/i18n/rutas";
+import { enlacesParaCompartir } from "@/lib/compartir";
+import { metadatosDe } from "@/lib/seo";
+
+interface Props {
+  titulo: string;
+}
+
+// Colores de marca al pasar el cursor. X usa el color del texto.
+const COLOR_DE_LA_RED: Record<string, string> = {
+  LinkedIn: "#0a66c2",
+  WhatsApp: "#1da851",
+  Facebook: "#1877f2",
+};
+
+const { titulo } = Astro.props;
+const { compartir: t } = textosDe(idiomaDeLaRuta(Astro.url.pathname));
+const { canonica } = metadatosDe(
+  Astro.url.pathname,
+  Astro.site ?? Astro.url,
+  "",
+);
+---
+
+<aside
+  class="border-borde bg-superficie mt-14 flex flex-col gap-5 rounded-xl border p-6 sm:flex-row sm:items-center sm:justify-between"
+  aria-labelledby="compartir-pregunta"
+  data-pagefind-ignore
+>
+  <div>
+    <p id="compartir-pregunta" class="font-display text-lg font-semibold">
+      {t.pregunta}
+    </p>
+    <p class="text-tenue mt-1 text-sm">{t.invitacion}</p>
+  </div>
+  <div class="flex flex-wrap items-center gap-2">
+    <ul class="flex gap-2" aria-label={t.titulo}>
+      {enlacesParaCompartir(canonica, titulo).map(({ red, icono, href }) => (
+        <li>
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${t.en} ${red}`}
+            title={`${t.en} ${red}`}
+            data-umami-event="compartir"
+            data-umami-event-red={red}
+            style={`--color-red: ${COLOR_DE_LA_RED[red] ?? "var(--color-texto)"}`}
+            class="border-borde text-tenue hover:border-(--color-red) hover:text-(--color-red) focus-visible:text-(--color-red) grid size-11 place-items-center rounded-full border transition-colors"
+          >
+            <Icon is:inline name={icono} class="size-5" aria-hidden="true" />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <BotonCopiar
+      client:idle
+      texto={canonica}
+      data-umami-event="compartir"
+      data-umami-event-red="enlace"
+      copiar={t.copiar}
+      copiado={t.copiado}
+    >
+      <Icon
+        is:inline
+        slot="copiar"
+        name="lucide:link"
+        class="size-4"
+        aria-hidden="true"
+      />
+      <Icon
+        is:inline
+        slot="copiado"
+        name="lucide:check"
+        class="size-4"
+        aria-hidden="true"
+      />
+    </BotonCopiar>
+  </div>
+</aside>

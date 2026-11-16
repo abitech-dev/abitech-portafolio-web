@@ -3,7 +3,7 @@ lema:
   en: Charge with Stripe or Mercado Pago from a single interface.
 integra: [Stripe, Mercado Pago]
 datos:
-  - valor: { es: "199", en: "199" }
+  - valor: { es: "276", en: "276" }
     etiqueta: { es: pruebas, en: tests }
   - valor: { es: 8.2+, en: 8.2+ }
     etiqueta: { es: PHP, en: PHP }

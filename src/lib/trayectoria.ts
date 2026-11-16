@@ -47,6 +47,12 @@ export function esPaquete(proyecto: Proyecto): boolean {
   return proyecto.type === "library";
 }
 
+/** «abitechdev/payments-laravel» se publica en /codigo-abierto/payments-laravel. */
+export function slugDelPaquete(paquete: Proyecto): string {
+  const nombre = "package" in paquete ? paquete.package : paquete.id;
+  return nombre.split("/").pop() ?? nombre;
+}
+
 /** Agrupa por la primera palabra clave, que es la categoría del CV. */
 export function habilidadesPorCategoria(
   habilidades: readonly Habilidad[],

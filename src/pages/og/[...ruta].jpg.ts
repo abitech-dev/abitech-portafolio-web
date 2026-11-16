@@ -5,12 +5,17 @@ import satori from "satori";
 import sharp from "sharp";
 
 import { datosDe } from "@/i18n/idioma";
-import { nombreCorto } from "@/lib/trayectoria";
+import { IDIOMAS } from "@/i18n/rutas";
+import { materialesDeAprende } from "@/lib/coleccion-aprende";
+import { escritosPublicados } from "@/lib/coleccion-escritos";
 import {
   archivoDeLaImagen,
+  paginaDelEscrito,
+  paginaDelMaterial,
   paginasParaCompartir,
   type PaginaParaCompartir,
 } from "@/lib/compartir";
+import { nombreCorto } from "@/lib/trayectoria";
 
 const ANCHO = 1200;
 const ALTO = 630;
@@ -20,6 +25,7 @@ const COLORES = {
   texto: "#1b2430",
   tenue: "#566170",
   acento: "#1c6ccc",
+  acentoSuave: "#eef5fd",
   marca: "#fbbd1b",
 };
 
@@ -34,11 +40,24 @@ const foto = await sharp("src/assets/foto-perfil.jpg")
   .toBuffer();
 const fotoEnLinea = `data:image/jpeg;base64,${foto.toString("base64")}`;
 
-export const getStaticPaths = (() =>
-  paginasParaCompartir().map((pagina) => ({
+export const getStaticPaths = (async () => {
+  const escritos = (await Promise.all(IDIOMAS.map(escritosPublicados))).flat();
+  const libros = await Promise.all(
+    IDIOMAS.map(async (idioma) =>
+      (await materialesDeAprende(idioma)).map((material) =>
+        paginaDelMaterial(material, idioma),
+      ),
+    ),
+  );
+  return [
+    ...paginasParaCompartir(),
+    ...escritos.map(paginaDelEscrito),
+    ...libros.flat(),
+  ].map((pagina) => ({
     params: { ruta: archivoDeLaImagen(pagina.ruta).slice(4, -4) },
     props: pagina,
-  }))) satisfies GetStaticPaths;
+  }));
+}) satisfies GetStaticPaths;
 
 type Nodo = {
   type: string;
@@ -54,7 +73,27 @@ function nodo(
   return { type, props: { style, children, ...extra } };
 }
 
-function tarjeta({ titulo, idioma }: PaginaParaCompartir): Nodo {
+function chips(etiquetas: string[]): Nodo {
+  return nodo(
+    "div",
+    { display: "flex", flexWrap: "wrap", gap: 12 },
+    etiquetas.map((etiqueta) =>
+      nodo(
+        "div",
+        {
+          fontSize: 24,
+          color: COLORES.acento,
+          background: COLORES.acentoSuave,
+          borderRadius: 8,
+          padding: "6px 14px",
+        },
+        etiqueta,
+      ),
+    ),
+  );
+}
+
+function tarjeta({ titulo, idioma, etiquetas }: PaginaParaCompartir): Nodo {
   const { name: nombre, label } = datosDe(idioma).basics;
   const name = nombreCorto(nombre);
   return nodo(
@@ -93,16 +132,18 @@ function tarjeta({ titulo, idioma }: PaginaParaCompartir): Nodo {
           nodo(
             "div",
             {
-              fontSize: 56,
+              fontSize: titulo.length > 45 ? 48 : 56,
               fontWeight: 700,
               color: COLORES.texto,
               lineHeight: 1.1,
             },
             titulo,
           ),
-          ...(titulo === label
-            ? []
-            : [nodo("div", { fontSize: 26, color: COLORES.tenue }, label)]),
+          ...(etiquetas
+            ? [chips(etiquetas)]
+            : titulo === label
+              ? []
+              : [nodo("div", { fontSize: 26, color: COLORES.tenue }, label)]),
           nodo("div", { fontSize: 24, color: COLORES.tenue }, "abitech.dev"),
         ],
       ),

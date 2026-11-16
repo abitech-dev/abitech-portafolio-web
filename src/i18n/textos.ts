@@ -136,6 +136,7 @@ const es = {
     verCaso: "Ver el caso",
     volver: "Todos los proyectos",
     resultados: "Resultados",
+    enElBlog: "Lo conté en el blog",
     portadaDe: (nombre: string) => `Portada de ${nombre}`,
   },
   buscador: {
@@ -160,7 +161,13 @@ const es = {
       `Paquetes de código abierto de ${nombre} para Laravel, con licencia MIT y listos para usar en tus proyectos.`,
     intro: "Paquetes que saqué de mis proyectos para que otros los usen.",
     verEnGithub: "Ver en GitHub",
+    verEnPackagist: "Ver en Packagist",
     integra: "Integra",
+    instalacion: "Instalación",
+    copiar: "Copiar el comando",
+    copiado: "Comando copiado",
+    volver: "Todo el código abierto",
+    tipo: "Paquete",
   },
   aprende: {
     descripcion: (nombre: string) =>
@@ -193,6 +200,14 @@ const es = {
       `Me titulé como ingeniero de sistemas e informática en la ${universidad}, con una tesis que evaluó Tu Coach UDH con 60 tesistas. También egresé de la ${maestria} de la ${escuela}.`,
     escribo: "Lo que escribo",
   },
+  compartir: {
+    pregunta: "¿Te pareció interesante?",
+    invitacion: "Compártelo con alguien a quien le pueda servir.",
+    titulo: "Compartir en redes",
+    en: "Compartir en",
+    copiar: "Copiar enlace",
+    copiado: "Enlace copiado",
+  },
   escritos: {
     descripcion: (nombre: string) =>
       `Artículos y notas de ${nombre} sobre desarrollo web, nube y lo que aprende en el camino.`,
@@ -202,6 +217,7 @@ const es = {
     nota: "Nota",
     minutos: (n: number) => `${n} min de lectura`,
     volver: "Volver al blog",
+    delProyecto: "Del proyecto",
     etiquetas: "Etiquetas",
     sobre: (etiqueta: string) => `Publicaciones sobre ${etiqueta}`,
     suscribirse: "Suscribirse por RSS",
@@ -352,6 +368,7 @@ const en: Textos = {
     verCaso: "Read the case",
     volver: "All projects",
     resultados: "Results",
+    enElBlog: "On the blog",
     portadaDe: (nombre) => `Home page of ${nombre}`,
   },
   buscador: {
@@ -375,7 +392,13 @@ const en: Textos = {
       `Open source Laravel packages by ${nombre}, MIT licensed and ready to use in your projects.`,
     intro: "Packages I extracted from my projects so others can use them.",
     verEnGithub: "View on GitHub",
+    verEnPackagist: "View on Packagist",
     integra: "Integrates",
+    instalacion: "Installation",
+    copiar: "Copy the command",
+    copiado: "Command copied",
+    volver: "All open source",
+    tipo: "Package",
   },
   aprende: {
     descripcion: (nombre) =>
@@ -408,6 +431,14 @@ const en: Textos = {
       `I earned my professional degree in Systems and Computer Engineering at the ${universidad}, with a thesis that evaluated Tu Coach UDH with 60 thesis students. I also completed the coursework of the ${maestria} at ${escuela}.`,
     escribo: "What I write",
   },
+  compartir: {
+    pregunta: "Found this interesting?",
+    invitacion: "Share it with someone it could help.",
+    titulo: "Share on social media",
+    en: "Share on",
+    copiar: "Copy link",
+    copiado: "Link copied",
+  },
   escritos: {
     descripcion: (nombre) =>
       `Articles and notes by ${nombre} about web development, the cloud and what he learns along the way.`,
@@ -417,6 +448,7 @@ const en: Textos = {
     nota: "Note",
     minutos: (n) => `${n} min read`,
     volver: "Back to the blog",
+    delProyecto: "From the project",
     etiquetas: "Tags",
     sobre: (etiqueta) => `Posts about ${etiqueta}`,
     suscribirse: "Subscribe via RSS",

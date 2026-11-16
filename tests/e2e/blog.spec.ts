@@ -36,7 +36,7 @@ test("el artículo tiene su título, datos de artículo y es accesible", async (
   expect(jsonLd).toContain('"@type":"BlogPosting"');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     "content",
-    /\/og\/blog\.jpg$/,
+    /\/og\/blog\/como-construi-mi-sitio\.jpg$/,
   );
   const { violations } = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])

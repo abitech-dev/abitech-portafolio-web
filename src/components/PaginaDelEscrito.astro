@@ -2,7 +2,8 @@
 import { render, type CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
-import { textosDe } from "@/i18n/idioma";
+import Compartir from "@/components/Compartir.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
 import { idiomaDeLaRuta, rutaEn } from "@/i18n/rutas";
 import Base from "@/layouts/Base.astro";
 import { articulo } from "@/lib/datos-estructurados";
@@ -17,7 +18,8 @@ const { escrito, hasTraduccion } = Astro.props;
 const idioma = idiomaDeLaRuta(Astro.url.pathname);
 const { escritos: t, fechas } = textosDe(idioma);
 const { Content } = await render(escrito);
-const { titulo, descripcion, fecha, tipo, etiquetas } = escrito.data;
+const { titulo, descripcion, fecha, tipo, etiquetas, proyecto } = escrito.data;
+const delProyecto = datosDe(idioma).projects.find((p) => p.id === proyecto);
 const formato = new Intl.DateTimeFormat(fechas.locale, {
   dateStyle: "long",
   timeZone: "UTC",
@@ -31,6 +33,7 @@ const etiquetaDelTipo = tipo === "articulo" ? t.articulo : t.nota;
   hasVersionEnIngles={hasTraduccion}
   nodos={[articulo(escrito.data, Astro.site ?? Astro.url, Astro.url, idioma)]}
   tipoEnBuscador={etiquetaDelTipo}
+  hasImagenPropia
 >
   <a
     data-pagefind-ignore
@@ -58,6 +61,17 @@ const etiquetaDelTipo = tipo === "articulo" ? t.articulo : t.nota;
       </time>{" "}
       <span>{t.minutos(minutosDeLectura(escrito.body ?? ""))}</span>
     </p>
+    {delProyecto && (
+      <p class="text-tenue mt-3 text-sm">
+        {t.delProyecto}{" "}
+        <a
+          href={rutaEn(idioma, `/proyectos/${delProyecto.id}`)}
+          class="text-acento font-medium hover:underline"
+        >
+          {delProyecto.name}
+        </a>
+      </p>
+    )}
     <ul class="mt-4 flex flex-wrap gap-2" aria-label={t.etiquetas}>
       {etiquetas.map((etiqueta) => (
         <li>
@@ -75,4 +89,6 @@ const etiquetaDelTipo = tipo === "articulo" ? t.articulo : t.nota;
   <div class="prose prose-lg dark:prose-invert prose-headings:font-display prose-a:text-acento prose-pre:rounded-md prose-pre:border prose-pre:border-borde prose-code:before:content-none prose-code:after:content-none prose-code:font-normal mt-10 max-w-3xl">
     <Content />
   </div>
+
+  <Compartir titulo={titulo} />
 </Base>

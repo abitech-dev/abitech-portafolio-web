@@ -123,8 +123,8 @@ test("el índice separa los datos que en pantalla van aparte", async ({
   await page.goto("/buscar");
   const casos = [
     ["Universidad", "/proyectos/banco-necesidades", "2024 Universidad"],
-    ["payments", "/codigo-abierto", "PHP 8.2+"],
-    ["payments", "/codigo-abierto", "licencia MIT"],
+    ["payments", "/codigo-abierto/payments-laravel", "PHP 8.2+"],
+    ["payments", "/codigo-abierto/payments-laravel", "licencia MIT"],
     ["actas", "/blog/actas-sin-senal-sin-duplicados", "2026 2 min"],
     ["peras", "/aprende/contenedores-con-peras-y-manzanas", "Libro En"],
     ["Interbank", "/cv", "PDF English version"],

@@ -5,6 +5,7 @@ fecha: 2026-11-12
 tipo: nota
 etiquetas: [pwa, offline, laravel]
 borrador: false
+proyecto: pwa-offline-de-actas-de-mantenimiento
 ---
 
 For a client, I built an installable web app where technicians fill in and

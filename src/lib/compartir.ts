@@ -1,12 +1,20 @@
 import { datosDe } from "@/i18n/idioma";
 import { IDIOMAS, idiomaDeLaRuta, rutaEn, type Idioma } from "@/i18n/rutas";
+import { idiomaDelEscrito, slugDelEscrito, type Escrito } from "@/lib/escritos";
 import { SECCIONES, seccionesDe } from "@/lib/navegacion";
-import { esPaquete } from "@/lib/trayectoria";
+import { esPaquete, slugDelPaquete } from "@/lib/trayectoria";
 
 export type PaginaParaCompartir = {
   ruta: string;
   titulo: string;
   idioma: Idioma;
+  etiquetas?: string[];
+};
+
+export type EnlaceParaCompartir = {
+  red: string;
+  icono: string;
+  href: string;
 };
 
 const RUTA_DE_INICIO = "/og/inicio.jpg";
@@ -29,7 +37,12 @@ function paginasDelIdioma(idioma: Idioma): PaginaParaCompartir[] {
       titulo: proyecto.name,
       idioma,
     }));
-  return [...secciones, ...proyectos];
+  const paquetes = datos.projects.filter(esPaquete).map((paquete) => ({
+    ruta: rutaEn(idioma, `/codigo-abierto/${slugDelPaquete(paquete)}`),
+    titulo: paquete.name,
+    idioma,
+  }));
+  return [...secciones, ...proyectos, ...paquetes];
 }
 
 /** Cada sección del menú y cada caso tiene su imagen, en ambos idiomas. */
@@ -55,4 +68,55 @@ export function imagenParaCompartir(ruta: string): string {
   const portada = rutaEn(idiomaDeLaRuta(limpia), "/");
   if (conImagen.has(limpia)) return archivoDeLaImagen(limpia);
   return archivoDeLaImagen(ancestro ?? portada);
+}
+
+export function paginaDelEscrito(escrito: Escrito): PaginaParaCompartir {
+  const idioma = idiomaDelEscrito(escrito);
+  return {
+    ruta: rutaEn(idioma, `/blog/${slugDelEscrito(escrito)}`),
+    titulo: escrito.data.titulo,
+    idioma,
+    etiquetas: escrito.data.etiquetas,
+  };
+}
+
+export function paginaDelMaterial(
+  material: { id: string; publicacion: { name: string } },
+  idioma: Idioma,
+): PaginaParaCompartir {
+  return {
+    ruta: rutaEn(idioma, `/aprende/${material.id}`),
+    titulo: material.publicacion.name,
+    idioma,
+  };
+}
+
+/** Enlaces directos de cada red, sin sus scripts ni su rastreo. */
+export function enlacesParaCompartir(
+  url: string,
+  titulo: string,
+): EnlaceParaCompartir[] {
+  const direccion = encodeURIComponent(url);
+  return [
+    {
+      red: "LinkedIn",
+      icono: "simple-icons:linkedin",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${direccion}`,
+    },
+    {
+      red: "WhatsApp",
+      icono: "simple-icons:whatsapp",
+      href: `https://wa.me/?text=${encodeURIComponent(`${titulo} ${url}`)}`,
+    },
+    {
+      red: "X",
+      icono: "simple-icons:x",
+      href: `https://x.com/intent/post?text=${encodeURIComponent(titulo)}&url=${direccion}`,
+    },
+    {
+      red: "Facebook",
+      icono: "simple-icons:facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${direccion}`,
+    },
+  ];
 }

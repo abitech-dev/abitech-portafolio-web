@@ -1,0 +1,37 @@
+---
+import FilaProyecto from "@/components/FilaProyecto.astro";
+import TituloDePagina from "@/components/TituloDePagina.astro";
+import { datosDe, textosDe } from "@/i18n/idioma";
+import { idiomaDeLaRuta, rutaEn, rutasPorIdioma } from "@/i18n/rutas";
+import Base from "@/layouts/Base.astro";
+import { esPaquete, nombreCorto, slugDelPaquete } from "@/lib/trayectoria";
+
+export function getStaticPaths() {
+  return rutasPorIdioma();
+}
+
+const idioma = idiomaDeLaRuta(Astro.url.pathname);
+const resume = datosDe(idioma);
+const t = textosDe(idioma);
+const paquetes = resume.projects.filter(esPaquete);
+---
+
+<Base
+  titulo={t.secciones.codigoAbierto}
+  descripcion={t.codigoAbierto.descripcion(nombreCorto(resume.basics.name))}
+>
+  <TituloDePagina titulo={t.secciones.codigoAbierto} icono="lucide:package" />
+  <p class="text-tenue mt-3 max-w-prose">{t.codigoAbierto.intro}</p>
+
+  <ul class="divide-borde border-borde mt-8 divide-y border-t">
+    {paquetes.map((paquete) => (
+      <li>
+        <FilaProyecto
+          proyecto={paquete}
+          ruta={rutaEn(idioma, `/codigo-abierto/${slugDelPaquete(paquete)}`)}
+          detalle={"package" in paquete ? paquete.package : undefined}
+        />
+      </li>
+    ))}
+  </ul>
+</Base>
