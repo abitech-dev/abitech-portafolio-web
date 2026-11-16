@@ -425,7 +425,8 @@
       "startDate": "2026-01",
       "endDate": "2026-10",
       "type": "application",
-      "roles": ["Desarrollador principal del backend"]
+      "roles": ["Desarrollador principal del backend"],
+      "challenge": "Una academia de idiomas tenía una plataforma de cursos heredada, con 3 archivos de prueba, sin despliegue automático y con cobros recurrentes sin un historial confiable."
     },
     {
       "id": "sistema-de-empeno-y-compraventa-de-oro",
@@ -456,9 +457,10 @@
       "name": "PWA offline de actas de mantenimiento",
       "description": "Aplicación web instalable (PWA) para que los técnicos llenen y firmen en el celular sus actas de mantenimiento eléctrico, incluso sin señal.",
       "highlights": [
-        "Desarrollé el modo sin conexión (offline), para que los técnicos trabajen sin señal y sus actas, con firmas cifradas, se envíen sin duplicarse al volver la conexión.",
+        "Desarrollé el modo sin conexión (offline), para que los técnicos trabajen sin señal y sus actas, con firmas cifradas, se envíen sin duplicarse al volver la conexión. Hoy la usan en producción.",
         "Dejé lista la integración con el ERP del cliente, para que ningún dato se pierda ni se repita si un envío falla. Se activa cuando el cliente publique su API.",
-        "Respaldé la aplicación con más de 1800 pruebas automatizadas, incluidas 35 que recorren el flujo completo en el navegador (E2E)."
+        "Respaldé la aplicación con más de 1800 pruebas automatizadas, incluidas 35 que recorren el flujo completo en el navegador (E2E).",
+        "Convertí los formatos de acta en plantillas versionadas, para que un tipo de equipo nuevo no requiera tocar el código."
       ],
       "keywords": [
         "Laravel 13",
@@ -474,7 +476,8 @@
       ],
       "startDate": "2026-08",
       "type": "application",
-      "roles": ["Desarrollador principal"]
+      "roles": ["Desarrollador principal"],
+      "challenge": "Una empresa de mantenimiento eléctrico llenaba en papel sus actas de UPS, grupos electrógenos y tableros, porque sus técnicos trabajan en sótanos y salas de máquinas sin señal."
     },
     {
       "id": "plataforma-de-una-casa-de-cambio-digital",
@@ -563,7 +566,7 @@
       "highlights": [
         "Entregué el sistema en 6 días, listo para los 9401 establecimientos de salud del país registrados en RENIPRESS.",
         "Verifiqué con la herramienta axe, en 7 tamaños de pantalla, que no tiene fallas de accesibilidad según las reglas WCAG 2.2 AA.",
-        "Rediseñé los recordatorios para que su costo dependa de los avisos pendientes y no del número de madres registradas."
+        "Rediseñé los recordatorios, que costaban 13 consultas por madre en cada envío, para que su costo dependa solo de los avisos pendientes."
       ],
       "keywords": [
         "Laravel 12",
@@ -579,14 +582,17 @@
       "startDate": "2026-10",
       "url": "https://cred.abitech.dev/",
       "type": "application",
-      "roles": ["Desarrollador único"]
+      "roles": ["Desarrollador único"],
+      "challenge": "Que una madre lleve en el celular los controles de crecimiento (CRED), las vacunas y la planificación familiar de su familia, con avisos a tiempo, y que el sistema soporte miles de madres sin atrasar los envíos."
     },
     {
       "id": "yachacuy",
       "name": "Yachakuy",
       "description": "Plataforma de venta de cursos en línea (LMS), con la pasarela de pagos Mercado Pago y certificados verificables con QR.",
       "highlights": [
-        "Lideré a 4 desarrolladores e integré los 314 cambios del equipo. De 53 despliegues a producción, 51 salieron sin fallas. Hoy la plataforma suma 498 alumnos."
+        "Lideré a 4 desarrolladores e integré los 314 cambios del equipo. De 53 despliegues a producción, 51 salieron sin fallas.",
+        "Construí el cobro con Mercado Pago, que verifica la firma de cada aviso y consulta el pago antes de inscribir al alumno. Hoy la plataforma suma 498 alumnos.",
+        "Configuré el renderizado en el servidor (SSR) y el mapa del sitio para que Google indexe cada curso."
       ],
       "keywords": [
         "Laravel 11",
@@ -601,7 +607,8 @@
       "url": "https://yachacuy.com/",
       "entity": "Yachakuy Perú",
       "type": "application",
-      "roles": ["Líder de un equipo de 5"]
+      "roles": ["Líder de un equipo de 5"],
+      "challenge": "Yachakuy Perú quería vender cursos en línea con cobro por Mercado Pago, aula virtual y certificados con QR, construidos por un equipo de 5 personas, 4 de ellas en formación."
     },
     {
       "id": "la-fruteria",
@@ -662,14 +669,15 @@
       "startDate": "2025-12",
       "url": "https://optipix.abitech.com.pe/",
       "type": "application",
-      "roles": []
+      "roles": [],
+      "challenge": "Optimizar muchas fotos a la vez sin subirlas a internet. Squoosh de Google trabaja con una imagen por vez, y con cientos de fotos la pestaña se quedaba sin memoria."
     },
     {
       "id": "tu-coach",
       "name": "Tu Coach UDH",
       "description": "Plataforma de cursos en línea (LMS) de la Universidad de Huánuco sobre investigación y redacción de tesis.",
       "highlights": [
-        "La construí como único desarrollador, y tiene más de 8800 usuarios y más de 7700 certificados emitidos en 4 cursos.",
+        "Desarrollé la plataforma con lecciones en video, evaluaciones de intentos limitados y certificados con código de verificación. Hoy suma más de 8 900 usuarios y 7 900 certificados en 4 cursos.",
         "Los tesistas que la usaron mejoraron su redacción académica, según una medición con 60 de ellos."
       ],
       "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],
@@ -677,7 +685,8 @@
       "url": "https://tucoach.udh.edu.pe/",
       "entity": "Universidad de Huánuco",
       "type": "application",
-      "roles": ["Desarrollador único"]
+      "roles": ["Desarrollador único"],
+      "challenge": "Los estudiantes y tesistas de la Universidad de Huánuco necesitaban formarse en investigación y redacción de tesis a su ritmo, con un certificado que cualquiera pudiera verificar."
     },
     {
       "id": "hackathon-udh",
@@ -782,6 +791,6 @@
     }
   ],
   "meta": {
-    "version": "1.3.0"
+    "version": "1.4.0"
   }
 }
