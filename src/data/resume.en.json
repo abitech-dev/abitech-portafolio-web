@@ -57,8 +57,11 @@
       "endDate": "2025-10",
       "summary": "Technology vendor for Interbank.",
       "highlights": [
-        "Built for Interbank, one of Peru's four largest banks, about 10 integration flows in IBM App Connect Enterprise, now in production, for its card system.",
-        "Took each integration from development to monitoring, with ESQL, CI/CD in Azure DevOps, Docker containers, testing in Postman and Bruno, and tracking in New Relic."
+        "Built for Interbank, one of Peru's four largest banks, about 10 integration services for its card system, all released to production, on IBM App Connect Enterprise (ACE).",
+        "Published each service's REST APIs on IBM API Connect, with their documentation and access rules, and integrated SOAP services from other systems.",
+        "Connected the COBOL card core system so other bank systems can use it as REST APIs, keeping the card number masked until the last step (DFDL, ESQL and copybooks).",
+        "Migrated services from IBM Integration Bus (IIB) to App Connect Enterprise, the platform that replaces it.",
+        "Took each integration from development to support, with automated deployments to OpenShift from Azure DevOps, testing in Postman, Bruno and SoapUI, and monitoring in New Relic."
       ]
     },
     {
@@ -306,6 +309,16 @@
       "keywords": ["Cloud and DevOps"]
     },
     {
+      "name": "OpenShift",
+      "level": "Beginner",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
+      "name": "Kubernetes",
+      "level": "Beginner",
+      "keywords": ["Cloud and DevOps"]
+    },
+    {
       "name": "Nginx",
       "level": "Intermediate",
       "keywords": ["Cloud and DevOps"]
@@ -373,6 +386,21 @@
     {
       "name": "IBM App Connect Enterprise",
       "level": "Intermediate",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "IBM API Connect",
+      "level": "Intermediate",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "IBM Integration Bus",
+      "level": "Intermediate",
+      "keywords": ["Integration"]
+    },
+    {
+      "name": "DFDL",
+      "level": "Beginner",
       "keywords": ["Integration"]
     },
     {
