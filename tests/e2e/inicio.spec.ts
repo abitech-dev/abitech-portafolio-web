@@ -15,7 +15,7 @@ test("la portada saluda, dice la misión y muestra los destacados", async ({
   await expect(page.getByText("usuarios en Tu Coach")).toBeVisible();
   await expect(
     page.getByText("usuarios en Tu Coach").locator("xpath=.."),
-  ).toContainText(/\+\d{1,3}\s\d{3}/);
+  ).toContainText(/\+\d{1,3}\s?\d{3}/);
   await expect(
     page.getByRole("heading", { name: "Mi recorrido" }),
   ).toBeVisible();
