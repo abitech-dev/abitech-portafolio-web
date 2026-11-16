@@ -426,19 +426,20 @@
       "endDate": "2026-10",
       "type": "application",
       "roles": ["Lead backend developer"],
-      "challenge": "A language academy had an inherited course platform with 3 test files, no automated deployment and recurring billing without a reliable history."
+      "challenge": "A language academy had its course platform half built by another team, with 3 test files, no automated deployment and recurring billing without a reliable history."
     },
     {
       "id": "sistema-de-empeno-y-compraventa-de-oro",
       "name": "Gold pawn and trading system",
       "description": "Gold pawn and trading system, with cash desks per branch, a vault and bank reconciliation.",
       "highlights": [
-        "Connected the system to the business's currency exchange software, so every transaction goes through the SBS anti-money laundering checks.",
-        "Integrated a fingerprint reader so each customer signs contracts and sworn statements with their fingerprint, as anti-money laundering rules require.",
-        "Wrote the tests for the daily check that screens customers against about 20,000 names on the UN and OFAC sanctions lists.",
-        "Restricted system access to authorized networks, so it cannot be used from outside the business.",
-        "Automated staging deployments, so the client could review changes about 6 times a week before production.",
-        "Sped up inventory lot withdrawals, with 42% fewer database queries."
+        "Built the core of the system, with karat-based quotes, loans, disbursements, returns, cash desks with a vault and jewelry inventory.",
+        "Integrated a fingerprint reader and a Topaz signature pad in the browser, so every pawn contract carries the customer's fingerprint and signature.",
+        "Connected the currency exchange software to the cash desk through an API, so every exchange and every reversal posts its movement per currency without duplicates.",
+        "Addressed the compliance officer's findings on the UIF-SBS anti-money laundering module, rebuilt its screens and covered it with more than 90 browser tests.",
+        "Sped up inventory lot withdrawal, from 168 to 98 database queries.",
+        "Restricted system access to authorized networks, per user, role and branch.",
+        "Automated deployment to the staging environment, with more than 300 releases and a 99% success rate."
       ],
       "keywords": [
         "Laravel 12",
@@ -450,14 +451,15 @@
       ],
       "startDate": "2025-11",
       "type": "application",
-      "roles": ["Lead developer"]
+      "roles": ["Lead developer"],
+      "challenge": "A gold pawn and trading business needed one system for its gold-backed loans, cash desks per branch, vault and jewelry inventory, with the customer's signature and fingerprint on every contract."
     },
     {
       "id": "pwa-offline-de-actas-de-mantenimiento",
       "name": "Offline maintenance reports PWA",
       "description": "Installable web app (PWA) that lets technicians fill out and sign electrical maintenance reports on their phones, even without signal.",
       "highlights": [
-        "Built the offline mode, so technicians can work without signal and their reports, with encrypted signatures, sync without duplicates once back online. It is now in production use.",
+        "Built the offline mode, so technicians can work without signal and their reports, with encrypted signatures, sync without duplicates once back online. It is already in production.",
         "Prepared the integration with the client's ERP so no data is lost or duplicated when a request fails. It turns on once the client publishes its API.",
         "Backed the app with over 1,800 automated tests, including 35 that walk through the full flow in the browser (E2E).",
         "Turned the report formats into versioned templates, so a new type of equipment needs no code changes."
@@ -515,7 +517,7 @@
     {
       "id": "pilot-ssh",
       "name": "Pilot SSH",
-      "description": "Cloud service (SaaS), now in testing, that controls who accesses each server and logs every connection, with an in-browser terminal.",
+      "description": "Cloud service (SaaS), in testing, that controls who accesses each server and logs every connection, with an in-browser terminal.",
       "highlights": [
         "Designed the REST API and the web terminal. Credentials are stored encrypted and the audit log is read-only."
       ],
@@ -591,7 +593,7 @@
       "description": "Online course store (LMS) with the Mercado Pago payment gateway and QR-verifiable certificates.",
       "highlights": [
         "Led 4 developers and merged the team's 314 pull requests. Of 53 production deployments, 51 succeeded.",
-        "Built the Mercado Pago checkout, which verifies the signature of every notification and checks the payment before enrolling the student. The platform now has 498 students.",
+        "Built the Mercado Pago checkout, which verifies the signature of every notification and checks the payment before enrolling the student. The platform already has more than 490 students.",
         "Set up server-side rendering (SSR) and the sitemap so Google indexes every course."
       ],
       "keywords": [
@@ -641,7 +643,7 @@
       "name": "Configuración de Claude Code",
       "description": "Rules and validators I use to work with AI (Claude Code) the same way across all my projects.",
       "highlights": [
-        "Unified how I work with AI across 10 repositories, with validators covered by 19 automated tests."
+        "Unified how I work with AI across more than 10 repositories, with rules, hooks and validators tested in real sessions."
       ],
       "keywords": ["Claude Code", "Python"],
       "startDate": "2026-10",
@@ -677,7 +679,7 @@
       "name": "Tu Coach UDH",
       "description": "Online course platform (LMS) at Universidad de Huánuco on research and thesis writing.",
       "highlights": [
-        "Built the platform with video lessons, limited-attempt quizzes and certificates with a verification code. It now has more than 8,900 users and 7,900 certificates across 4 courses.",
+        "Built the platform with video lessons, limited-attempt quizzes and certificates with a verification code. It has more than 8,900 users and 7,900 certificates across 4 courses.",
         "Thesis students who used it improved their academic writing, according to a study with 60 of them."
       ],
       "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],
@@ -691,23 +693,25 @@
     {
       "id": "hackathon-udh",
       "name": "Hackathon UDH 2024",
-      "description": "Team registration system for the university hackathon.",
+      "description": "Registration platform for Hackathon UDH 2024, the programming contest of the Systems Engineering program, where student teams solved real problems from public institutions.",
       "highlights": [
-        "Led a team of 4 that put the system into production in 3 weeks."
+        "Led a team of 4 that had the platform ready in 9 days, before the event.",
+        "Each member signed up with their student code, checked against the university roster, and the organizers received the participant list in Excel."
       ],
       "keywords": ["Laravel 11", "Inertia", "Vue 3", "PhpSpreadsheet"],
       "startDate": "2024-11",
       "endDate": "2024-12",
       "entity": "Universidad de Huánuco",
       "type": "application",
-      "roles": ["Led a team of 4"]
+      "roles": ["Led a team of 4"],
+      "challenge": "The program needed to register teams of 4 students in a few days, checked against the student roster and split into two categories by year, for its hackathon on November 26, 2024."
     },
     {
       "id": "sigep",
       "name": "SIGEP UDH",
       "description": "Universidad de Huánuco system for calling for research projects and receiving applications.",
       "highlights": [
-        "I was its sole developer, and the university has run 11 grant calls on it between 2024 and 2026."
+        "The university has run more than 10 research grant calls on it since 2024."
       ],
       "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
       "url": "https://sigep.udh.edu.pe/",

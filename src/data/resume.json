@@ -426,19 +426,20 @@
       "endDate": "2026-10",
       "type": "application",
       "roles": ["Desarrollador principal del backend"],
-      "challenge": "Una academia de idiomas tenía una plataforma de cursos heredada, con 3 archivos de prueba, sin despliegue automático y con cobros recurrentes sin un historial confiable."
+      "challenge": "Una academia de idiomas tenía su plataforma de cursos a medio construir por otro equipo, con 3 archivos de prueba, sin despliegue automático y con cobros recurrentes sin un historial confiable."
     },
     {
       "id": "sistema-de-empeno-y-compraventa-de-oro",
       "name": "Sistema de empeño y compraventa de oro",
       "description": "Sistema de empeño y compraventa de oro, con caja por sucursal, bóveda y conciliación bancaria.",
       "highlights": [
-        "Conecté el sistema con el programa de cambio de divisas del negocio, para que cada operación pase por el control contra el lavado de activos de la SBS.",
-        "Integré un lector de huellas para que cada cliente firme con su huella los contratos y las declaraciones juradas, como exige la normativa contra el lavado de activos.",
-        "Escribí las pruebas de la revisión diaria que cruza a los clientes con unos 20 000 nombres de las listas de sanciones de la ONU y la OFAC.",
-        "Restringí el acceso al sistema a redes autorizadas, para que no se pueda usar desde fuera del negocio.",
-        "Automaticé la publicación en el ambiente de pruebas, para que el cliente revisara los cambios unas 6 veces por semana antes de producción.",
-        "Aceleré el retiro de lotes del inventario, con un 42 % menos de consultas a la base de datos."
+        "Construí el núcleo del sistema, con cotización por quilataje, préstamos, desembolsos, devoluciones, caja con bóveda e inventario de joyas.",
+        "Integré un lector de huellas y una tableta de firma Topaz en el navegador, para que cada contrato de empeño quede firmado con la huella y la firma del cliente.",
+        "Conecté el programa de cambio de divisas con la caja mediante una API, para que cada cambio y cada anulación asienten su movimiento por moneda sin duplicarse.",
+        "Atendí las observaciones de la oficial de cumplimiento sobre el módulo antilavado UIF-SBS, rehíce sus pantallas y lo cubrí con más de 90 pruebas de navegador.",
+        "Aceleré el retiro de lotes del inventario, de 168 a 98 consultas a la base de datos.",
+        "Restringí el acceso al sistema a redes autorizadas, por usuario, rol y sucursal.",
+        "Automaticé el despliegue al ambiente de pruebas, con más de 300 publicaciones y un 99 % de éxito."
       ],
       "keywords": [
         "Laravel 12",
@@ -450,14 +451,15 @@
       ],
       "startDate": "2025-11",
       "type": "application",
-      "roles": ["Desarrollador principal"]
+      "roles": ["Desarrollador principal"],
+      "challenge": "Una casa de empeño y compraventa de oro necesitaba llevar a un solo sistema sus préstamos con garantía de oro, la caja por sucursal, la bóveda y el inventario de joyas, con la firma y la huella del cliente en cada contrato."
     },
     {
       "id": "pwa-offline-de-actas-de-mantenimiento",
       "name": "PWA offline de actas de mantenimiento",
       "description": "Aplicación web instalable (PWA) para que los técnicos llenen y firmen en el celular sus actas de mantenimiento eléctrico, incluso sin señal.",
       "highlights": [
-        "Desarrollé el modo sin conexión (offline), para que los técnicos trabajen sin señal y sus actas, con firmas cifradas, se envíen sin duplicarse al volver la conexión. Hoy la usan en producción.",
+        "Desarrollé el modo sin conexión (offline), para que los técnicos trabajen sin señal y sus actas, con firmas cifradas, se envíen sin duplicarse al volver la conexión. Ya está en producción.",
         "Dejé lista la integración con el ERP del cliente, para que ningún dato se pierda ni se repita si un envío falla. Se activa cuando el cliente publique su API.",
         "Respaldé la aplicación con más de 1800 pruebas automatizadas, incluidas 35 que recorren el flujo completo en el navegador (E2E).",
         "Convertí los formatos de acta en plantillas versionadas, para que un tipo de equipo nuevo no requiera tocar el código."
@@ -515,7 +517,7 @@
     {
       "id": "pilot-ssh",
       "name": "Pilot SSH",
-      "description": "Servicio en la nube (SaaS), hoy en fase de pruebas, que controla quién ingresa a cada servidor y registra cada conexión, con una terminal en el navegador.",
+      "description": "Servicio en la nube (SaaS), en fase de pruebas, que controla quién ingresa a cada servidor y registra cada conexión, con una terminal en el navegador.",
       "highlights": [
         "Diseñé la API REST y la terminal web. Las claves se guardan cifradas y la auditoría es de solo lectura."
       ],
@@ -591,7 +593,7 @@
       "description": "Plataforma de venta de cursos en línea (LMS), con la pasarela de pagos Mercado Pago y certificados verificables con QR.",
       "highlights": [
         "Lideré a 4 desarrolladores e integré los 314 cambios del equipo. De 53 despliegues a producción, 51 salieron sin fallas.",
-        "Construí el cobro con Mercado Pago, que verifica la firma de cada aviso y consulta el pago antes de inscribir al alumno. Hoy la plataforma suma 498 alumnos.",
+        "Construí el cobro con Mercado Pago, que verifica la firma de cada aviso y consulta el pago antes de inscribir al alumno. La plataforma ya tiene más de 490 alumnos.",
         "Configuré el renderizado en el servidor (SSR) y el mapa del sitio para que Google indexe cada curso."
       ],
       "keywords": [
@@ -641,7 +643,7 @@
       "name": "Configuración de Claude Code",
       "description": "Reglas y validadores con los que trabajo con IA (Claude Code) de la misma forma en todos mis proyectos.",
       "highlights": [
-        "Unifiqué mi forma de trabajar con IA en 10 repositorios, con validadores cubiertos por 19 pruebas automatizadas."
+        "Unifiqué mi forma de trabajar con IA en más de 10 repositorios, con reglas, hooks y validadores que se prueban en sesiones reales."
       ],
       "keywords": ["Claude Code", "Python"],
       "startDate": "2026-10",
@@ -677,7 +679,7 @@
       "name": "Tu Coach UDH",
       "description": "Plataforma de cursos en línea (LMS) de la Universidad de Huánuco sobre investigación y redacción de tesis.",
       "highlights": [
-        "Desarrollé la plataforma con lecciones en video, evaluaciones de intentos limitados y certificados con código de verificación. Hoy suma más de 8 900 usuarios y 7 900 certificados en 4 cursos.",
+        "Desarrollé la plataforma con lecciones en video, evaluaciones de intentos limitados y certificados con código de verificación. Supera los 8 900 usuarios y los 7 900 certificados en 4 cursos.",
         "Los tesistas que la usaron mejoraron su redacción académica, según una medición con 60 de ellos."
       ],
       "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],
@@ -691,23 +693,25 @@
     {
       "id": "hackathon-udh",
       "name": "Hackathon UDH 2024",
-      "description": "Sistema de inscripción de equipos para el hackathon de la universidad.",
+      "description": "Plataforma de inscripción del Hackathon UDH 2024, el concurso de programación del programa de Ingeniería de Sistemas, en el que equipos de estudiantes resolvieron problemas reales de instituciones públicas.",
       "highlights": [
-        "Lideré un equipo de 4 personas que puso el sistema en producción en 3 semanas."
+        "Lideré a un equipo de 4 que tuvo la plataforma lista en 9 días, antes del evento.",
+        "Cada integrante se inscribía con su código de estudiante, validado contra el padrón de la universidad, y la organización recibía la lista de participantes en Excel."
       ],
       "keywords": ["Laravel 11", "Inertia", "Vue 3", "PhpSpreadsheet"],
       "startDate": "2024-11",
       "endDate": "2024-12",
       "entity": "Universidad de Huánuco",
       "type": "application",
-      "roles": ["Líder de un equipo de 4"]
+      "roles": ["Líder de un equipo de 4"],
+      "challenge": "El programa necesitaba inscribir en pocos días a equipos de 4 estudiantes, validados contra el padrón y separados en dos categorías por ciclo, para su hackathon del 26 de noviembre de 2024."
     },
     {
       "id": "sigep",
       "name": "SIGEP UDH",
       "description": "Sistema de la Universidad de Huánuco para convocar proyectos de investigación y recibir sus postulaciones.",
       "highlights": [
-        "Fui su único desarrollador, y la universidad ya lanzó en él 11 concursos entre 2024 y 2026."
+        "La universidad ya lanzó en él más de 10 concursos de investigación desde 2024."
       ],
       "keywords": ["Laravel 10", "Inertia", "Vue 3", "Tailwind CSS"],
       "url": "https://sigep.udh.edu.pe/",
