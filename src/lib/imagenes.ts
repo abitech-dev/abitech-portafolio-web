@@ -29,8 +29,6 @@ export const RUBRO_DEL_PROYECTO: Record<string, string> = {
   sigep: "lucide:graduation-cap",
   "portal-investigacion": "lucide:microscope",
   "banco-necesidades": "lucide:handshake",
-  "abitech-payments": "lucide:credit-card",
-  "antibot-laravel": "lucide:shield-check",
 };
 
 export type ImagenDeProyecto =

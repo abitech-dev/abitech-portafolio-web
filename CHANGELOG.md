@@ -7,6 +7,9 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Agregado
 
+- Logo propio de cada paquete de código abierto en la lista y en su página.
+- La imagen para compartir un proyecto, un paquete o un libro muestra su
+  logo, su ícono o su portada, centrada para el recorte de WhatsApp.
 - Los proyectos principales cuentan «El reto» antes de sus resultados.
 - Cada proyecto dice el rol que tuvo: desarrollador único, principal o
   líder de un equipo.
@@ -62,6 +65,8 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Corregido
 
+- La instalación de un paquete ya no tiene barra de desplazamiento y el
+  título ocupa todo el ancho.
 - Los periodos se leen mejor: «ene. a oct. 2026», «nov. 2024 a feb. 2025»
   y «desde may. 2023».
 - La página de un paquete ya no se desborda a lo ancho en el celular.

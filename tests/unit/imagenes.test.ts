@@ -18,6 +18,8 @@ const CON_LOGO = [
   "optipix",
   "tu-coach",
   "hostal-pacifico",
+  "abitech-payments",
+  "antibot-laravel",
 ];
 
 function iconosDelSet(set: string): Set<string> {

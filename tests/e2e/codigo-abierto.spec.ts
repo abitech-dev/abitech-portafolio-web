@@ -98,3 +98,17 @@ test("la página del paquete no se desborda en el celular", async ({ page }) => 
   const ancho = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(ancho).toBeLessThanOrEqual(360);
 });
+
+test("el comando de instalación entra sin barra de desplazamiento", async ({
+  page,
+}) => {
+  await page.goto("/codigo-abierto/payments-laravel");
+  const comando = page.getByText(
+    "composer require abitechdev/payments-laravel",
+  );
+
+  const desborde = await comando.evaluate(
+    (elemento) => elemento.scrollWidth - elemento.clientWidth,
+  );
+  expect(desborde).toBeLessThanOrEqual(0);
+});
