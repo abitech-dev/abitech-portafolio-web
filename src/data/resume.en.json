@@ -425,7 +425,8 @@
       "startDate": "2026-01",
       "endDate": "2026-10",
       "type": "application",
-      "roles": ["Lead backend developer"]
+      "roles": ["Lead backend developer"],
+      "challenge": "A language academy had an inherited course platform with 3 test files, no automated deployment and recurring billing without a reliable history."
     },
     {
       "id": "sistema-de-empeno-y-compraventa-de-oro",
@@ -456,9 +457,10 @@
       "name": "Offline maintenance reports PWA",
       "description": "Installable web app (PWA) that lets technicians fill out and sign electrical maintenance reports on their phones, even without signal.",
       "highlights": [
-        "Built the offline mode, so technicians can work without signal and their reports, with encrypted signatures, sync without duplicates once back online.",
+        "Built the offline mode, so technicians can work without signal and their reports, with encrypted signatures, sync without duplicates once back online. It is now in production use.",
         "Prepared the integration with the client's ERP so no data is lost or duplicated when a request fails. It turns on once the client publishes its API.",
-        "Backed the app with over 1,800 automated tests, including 35 that walk through the full flow in the browser (E2E)."
+        "Backed the app with over 1,800 automated tests, including 35 that walk through the full flow in the browser (E2E).",
+        "Turned the report formats into versioned templates, so a new type of equipment needs no code changes."
       ],
       "keywords": [
         "Laravel 13",
@@ -474,7 +476,8 @@
       ],
       "startDate": "2026-08",
       "type": "application",
-      "roles": ["Lead developer"]
+      "roles": ["Lead developer"],
+      "challenge": "An electrical maintenance company filled out its UPS, generator and switchboard reports on paper, because its technicians work in basements and machine rooms with no signal."
     },
     {
       "id": "plataforma-de-una-casa-de-cambio-digital",
@@ -563,7 +566,7 @@
       "highlights": [
         "Delivered the system in 6 days, ready for all 9,401 health facilities in Peru listed in the RENIPRESS registry.",
         "Verified with the axe tool, at 7 screen sizes, that it has no accessibility violations under the WCAG 2.2 AA rules.",
-        "Redesigned reminders so their cost depends on pending notices, not on the number of registered mothers."
+        "Redesigned reminders, which cost 13 queries per mother on every run, so their cost depends only on pending notices."
       ],
       "keywords": [
         "Laravel 12",
@@ -579,14 +582,17 @@
       "startDate": "2026-10",
       "url": "https://cred.abitech.dev/",
       "type": "application",
-      "roles": ["Sole developer"]
+      "roles": ["Sole developer"],
+      "challenge": "Let a mother track her family's growth checkups (CRED), vaccines and family planning on her phone, with timely reminders, and keep the system on time with thousands of mothers."
     },
     {
       "id": "yachacuy",
       "name": "Yachakuy",
       "description": "Online course store (LMS) with the Mercado Pago payment gateway and QR-verifiable certificates.",
       "highlights": [
-        "Led 4 developers and merged the team's 314 pull requests. Of 53 production deployments, 51 succeeded. The platform now has 498 students."
+        "Led 4 developers and merged the team's 314 pull requests. Of 53 production deployments, 51 succeeded.",
+        "Built the Mercado Pago checkout, which verifies the signature of every notification and checks the payment before enrolling the student. The platform now has 498 students.",
+        "Set up server-side rendering (SSR) and the sitemap so Google indexes every course."
       ],
       "keywords": [
         "Laravel 11",
@@ -601,7 +607,8 @@
       "url": "https://yachacuy.com/",
       "entity": "Yachakuy Perú",
       "type": "application",
-      "roles": ["Led a team of 5"]
+      "roles": ["Led a team of 5"],
+      "challenge": "Yachakuy Perú wanted to sell online courses with Mercado Pago payments, a virtual classroom and QR certificates, built by a team of 5 people, 4 of them still in training."
     },
     {
       "id": "la-fruteria",
@@ -662,14 +669,15 @@
       "startDate": "2025-12",
       "url": "https://optipix.abitech.com.pe/",
       "type": "application",
-      "roles": []
+      "roles": [],
+      "challenge": "Optimize many photos at once without uploading them. Google's Squoosh handles one image at a time, and with hundreds of photos the tab ran out of memory."
     },
     {
       "id": "tu-coach",
       "name": "Tu Coach UDH",
       "description": "Online course platform (LMS) at Universidad de Huánuco on research and thesis writing.",
       "highlights": [
-        "Built it as the sole developer, and it has more than 8,800 users and more than 7,700 certificates issued across 4 courses.",
+        "Built the platform with video lessons, limited-attempt quizzes and certificates with a verification code. It now has more than 8,900 users and 7,900 certificates across 4 courses.",
         "Thesis students who used it improved their academic writing, according to a study with 60 of them."
       ],
       "keywords": ["Laravel 10", "MySQL", "Blade", "Bootstrap 4.6", "jQuery"],
@@ -677,7 +685,8 @@
       "url": "https://tucoach.udh.edu.pe/",
       "entity": "Universidad de Huánuco",
       "type": "application",
-      "roles": ["Sole developer"]
+      "roles": ["Sole developer"],
+      "challenge": "Students and thesis writers at Universidad de Huánuco needed to learn research and thesis writing at their own pace, with a certificate anyone could verify."
     },
     {
       "id": "hackathon-udh",
@@ -782,6 +791,6 @@
     }
   ],
   "meta": {
-    "version": "1.3.0"
+    "version": "1.4.0"
   }
 }
