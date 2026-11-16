@@ -7,6 +7,8 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 
 ### Agregado
 
+- Cada proyecto dice el rol que tuvo: desarrollador único, principal o
+  líder de un equipo.
 - Cada proyecto enlaza las notas del blog que cuentan cómo se resolvió, y
   cada nota enlaza su proyecto.
 - Imagen propia para redes en cada libro de Aprende.
