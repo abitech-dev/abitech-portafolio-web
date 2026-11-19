@@ -8,3 +8,11 @@ vulnerabilities:
       sirve archivos estáticos y no analiza HTML. Caddy 2.11.9 aún no trae
       la versión corregida.
     expired_at: 2026-12-31
+  - id: CVE-2026-97054
+    paths:
+      - usr/bin/caddy
+    statement: >-
+      Falla de Go en MaxBytesReader. Solo afecta a servidores que limitan el
+      cuerpo del pedido, y este Caddy sirve archivos estáticos sin
+      request_body. Caddy 2.11.9 aún se compila con Go 1.27.3.
+    expired_at: 2026-12-31
