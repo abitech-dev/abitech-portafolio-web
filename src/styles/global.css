@@ -56,9 +56,20 @@
     outline-offset: 3px;
   }
 
-  /* Al volver atrás la página cambia sin fundido, para que nada se mueva. */
-  html[data-astro-transition="back"]::view-transition-old(*),
-  html[data-astro-transition="back"]::view-transition-new(*) {
+  /* Solo el contenido se funde. La barra y el pie cambian sin fundido. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
+  /* El contenido no se estira del tamaño de una página al de la otra. */
+  ::view-transition-group(*) {
+    animation: none;
+  }
+
+  /* Atrás y adelante del navegador cambian la página al instante. */
+  html[data-navegacion="traverse"]::view-transition-old(*),
+  html[data-navegacion="traverse"]::view-transition-new(*) {
     animation: none;
   }
 

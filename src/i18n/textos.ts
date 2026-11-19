@@ -76,7 +76,7 @@ const es = {
       {
         anio: "2023",
         texto:
-          "Construí Tu Coach UDH como único desarrollador. Hoy tiene más de 8800 usuarios.",
+          "Desarrollé Tu Coach UDH, una plataforma de cursos con más de {usuarios} usuarios.",
         ruta: "/proyectos/tu-coach",
         enlace: "Ver el proyecto",
       },
@@ -88,7 +88,7 @@ const es = {
       {
         anio: "2025",
         texto:
-          "Desarrollé unos 10 flujos de integración para el sistema de tarjetas de Interbank.",
+          "Desarrollé unos 10 servicios de integración para el sistema de tarjetas de Interbank.",
       },
       {
         anio: "2025",
@@ -310,7 +310,7 @@ const en: Textos = {
       {
         anio: "2023",
         texto:
-          "Built Tu Coach UDH as the sole developer. Today it has more than 8,800 users.",
+          "Built Tu Coach UDH, a course platform with more than {usuarios} users.",
         ruta: "/proyectos/tu-coach",
         enlace: "See the project",
       },
@@ -321,7 +321,8 @@ const en: Textos = {
       },
       {
         anio: "2025",
-        texto: "Built about 10 integration flows for Interbank's card system.",
+        texto:
+          "Built about 10 integration services for Interbank's card system.",
       },
       {
         anio: "2025",

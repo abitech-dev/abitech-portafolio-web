@@ -33,6 +33,15 @@ const [antesDelResalte, despuesDelResalte] = inicio.mision.split(
 );
 const tuCoach = proyectosPorId(datosDe("es"), ["tu-coach"])[0];
 const usuariosTuCoach = tuCoach && usuariosDelProyecto(tuCoach);
+const hitos = inicio.hitos.map((hito) => {
+  if (!hito.texto.includes("{usuarios}")) return hito;
+  if (!usuariosTuCoach) {
+    throw new Error(
+      "El recorrido cita los usuarios de Tu Coach y no hay cifra.",
+    );
+  }
+  return { ...hito, texto: hito.texto.replace("{usuarios}", usuariosTuCoach) };
+});
 const anioDeInicio = Math.min(
   ...resume.work.map((trabajo) => Number(trabajo.startDate.slice(0, 4))),
 );
@@ -185,7 +194,7 @@ const flecha = "size-4 transition-transform group-hover:translate-x-1";
 
   <Seccion titulo={inicio.recorrido} id="recorrido">
     <ol class="space-y-6">
-      {inicio.hitos.map((hito) => (
+      {hitos.map((hito) => (
         <li class="revelar grid grid-cols-[4rem_1fr] gap-4 sm:grid-cols-[5rem_1fr]">
           <span class="text-tenue pt-0.5 font-mono text-sm">{hito.anio}</span>
           <p class="leading-relaxed">

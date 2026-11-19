@@ -174,15 +174,19 @@ const metadatos = metadatosDe(
       // Astro restaura la altura antes de cambiar la página y una página corta
       // la recorta. Al ir atrás o adelante se vuelve a aplicar la guardada.
       let alturaGuardada: number | undefined;
+      let navegacion = "push";
 
       document.addEventListener("astro:before-preparation", (evento) => {
+        navegacion = evento.navigationType;
         alturaGuardada =
           evento.navigationType === "traverse"
             ? (history.state as { scrollY?: number } | null)?.scrollY
             : undefined;
       });
 
+      // El cambio copia los atributos de <html>, así que se marca después.
       document.addEventListener("astro:after-swap", () => {
+        document.documentElement.dataset.navegacion = navegacion;
         if (alturaGuardada !== undefined) {
           window.scrollTo({ top: alturaGuardada, behavior: "instant" });
         }

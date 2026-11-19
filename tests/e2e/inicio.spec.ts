@@ -25,6 +25,26 @@ test("la portada saluda, dice la misión y muestra los destacados", async ({
   await expect(page.getByRole("article")).toHaveCount(4);
 });
 
+for (const ruta of ["/", "/en"]) {
+  test(`${ruta} cita en el recorrido la cifra de Tu Coach de los datos`, async ({
+    page,
+  }) => {
+    await page.goto(ruta);
+    const cifra = await page
+      .getByText(/usuarios en Tu Coach|users on Tu Coach/)
+      .locator("xpath=..")
+      .textContent();
+    const usuarios = cifra?.match(/\+(\d[\d\s]*\d)/)?.[1];
+    expect(usuarios).toBeTruthy();
+
+    const recorrido = page.locator('section[aria-labelledby="recorrido"]');
+    await expect(recorrido).toContainText(`${usuarios ?? ""} `);
+    await expect(recorrido).not.toContainText(
+      /único desarrollador|sole developer/,
+    );
+  });
+}
+
 test("la portada declara la persona en el grafo para buscadores", async ({
   page,
 }) => {
