@@ -47,6 +47,26 @@ test("la portada declara la persona en el grafo para buscadores", async ({
   );
 });
 
+test("el nombre del sitio coincide en Open Graph y en el grafo", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute(
+    "content",
+    "Abimael Fernandez",
+  );
+  const jsonLd = await page
+    .locator('script[type="application/ld+json"]')
+    .textContent();
+  const { "@graph": grafo } = JSON.parse(jsonLd ?? "{}") as {
+    "@graph": Record<string, unknown>[];
+  };
+  expect(grafo).toContainEqual(
+    expect.objectContaining({ "@type": "WebSite", name: "Abimael Fernandez" }),
+  );
+});
+
 test("el botón de tema cambia y recuerda el modo", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
