@@ -10,6 +10,7 @@ import { idiomaDeLaRuta, rutaEn, sinIdioma } from "@/i18n/rutas";
 import { archivoDeLaImagen, imagenParaCompartir } from "@/lib/compartir";
 import { grafo, type Nodo } from "@/lib/datos-estructurados";
 import { metadatosDe } from "@/lib/seo";
+import { nombreCorto } from "@/lib/trayectoria";
 import "@/styles/global.css";
 
 interface Props {
@@ -44,6 +45,7 @@ const datosEstructurados = grafo(
 if (!Astro.site) {
   throw new Error("Falta `site` en astro.config.ts.");
 }
+const nombreDelSitio = nombreCorto(datosDe(idioma).basics.name);
 const imagen = new URL(
   hasImagenPropia
     ? archivoDeLaImagen(Astro.url.pathname)
@@ -87,6 +89,7 @@ const metadatos = metadatosDe(
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:site_name" content={nombreDelSitio} />
     <meta property="og:title" content={metadatos.titulo} />
     <meta property="og:description" content={metadatos.descripcion} />
     <meta property="og:url" content={metadatos.canonica} />
