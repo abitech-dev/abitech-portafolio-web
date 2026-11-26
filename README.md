@@ -31,6 +31,7 @@ Huánuco, Perú.
 | Aprende        | Libros para aprender tecnología en español                   |
 | Código abierto | Paquetes para Laravel                                        |
 | CV             | Trayectoria completa, con descarga en PDF en los dos idiomas |
+| Datos          | `/resume.json` y `/en/resume.json`, en formato JSON Resume   |
 
 ## Cómo está hecho
 
@@ -46,7 +47,9 @@ Huánuco, Perú.
   elección de cada visitante.
 
 La historia completa está en el artículo
-[Cómo construí mi sitio](https://abitech.dev/blog/como-construi-mi-sitio).
+[Cómo construí mi sitio](https://abitech.dev/blog/como-construi-mi-sitio),
+y cómo bajé el tiempo de carga sin CDN, en
+[Cómo aceleré mi sitio sin CDN](https://abitech.dev/blog/primer-byte-sin-cdn).
 
 ## Tecnologías
 
@@ -112,6 +115,11 @@ Cada cambio entra por PR a `develop` y pasa seguridad, análisis
 estático, pruebas unitarias, Playwright y Lighthouse. `develop` publica
 una imagen de Docker, y `main` despliega esa misma imagen sin volver a
 construirla. El detalle está en la [documentación](docs/).
+
+Por qué uso estas ramas está en la
+[guía de ramas y ambientes](https://abitech.dev/blog/ramas-y-ambientes), y
+cómo `main` encuentra la imagen probada, en la
+[nota sobre promover la imagen](https://abitech.dev/blog/promover-la-imagen).
 
 ## Contacto
 
