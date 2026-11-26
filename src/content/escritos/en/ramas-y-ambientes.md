@@ -204,8 +204,9 @@ I use the simplest variant of GitLab Flow, strategy 3, which GitLab calls
 | `develop`            | Finished changes            | None, it only passes the automated tests |
 | `main`               | What is published           | `prod`                                   |
 
-The image follows option B. It is built once, when merging into `develop`, and
-merging into `main` ships that same image to production unchanged.
+The image follows option B. It is built once, on `develop`, and `main` ships it
+unchanged, as the
+[note on promoting the image](/en/blog/promover-la-imagen) explains.
 
 ## Five questions to choose
 
