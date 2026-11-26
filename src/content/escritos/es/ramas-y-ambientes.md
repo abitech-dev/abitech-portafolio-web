@@ -204,8 +204,9 @@ porque en un sitio personal no hay cliente que apruebe.
 | `develop`            | Los cambios terminados       | Ninguno, solo pasa las pruebas automáticas |
 | `main`               | Lo publicado                 | `prod`                                     |
 
-La imagen sigue la forma B. Se arma una sola vez, al unir a `develop`, y al
-unir a `main` producción recibe esa misma imagen sin volver a armarla.
+La imagen sigue la forma B. Se arma una sola vez, en `develop`, y `main` la
+publica sin cambios, como explica la
+[nota sobre promover la imagen](/blog/promover-la-imagen).
 
 ## Cinco preguntas para elegir
 
