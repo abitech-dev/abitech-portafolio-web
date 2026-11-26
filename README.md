@@ -31,6 +31,7 @@ Huánuco, Perú.
 | Aprende        | Libros para aprender tecnología en español                   |
 | Código abierto | Paquetes para Laravel                                        |
 | CV             | Trayectoria completa, con descarga en PDF en los dos idiomas |
+| Datos          | `/resume.json` y `/en/resume.json`, en formato JSON Resume   |
 
 ## Cómo está hecho
 
