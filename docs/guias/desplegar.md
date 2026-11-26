@@ -27,7 +27,7 @@ flowchart LR
    GHCR con la etiqueta `arbol-<huella>`.
 4. Abre el PR de `develop` a `main`. Solo comprueba que esa imagen exista.
 5. Une el PR. **Desplegar a producción** marca la imagen como
-   `produccion`, avisa a Dokploy y espera a que el sitio muestre la versión
+   `prod`, avisa a Dokploy y espera a que el sitio muestre la versión
    nueva.
 
 Un arreglo urgente sale de `main` como `hotfix/nombre`, vuelve a `main`
@@ -57,17 +57,17 @@ Se hace una sola vez. Cada paso indica dónde se configura.
 
 Crea una aplicación de tipo **Application** y configúrala así.
 
-| Pestaña y sección           | Campo           | Valor                                                   |
-| --------------------------- | --------------- | ------------------------------------------------------- |
-| General → Provider          | Docker Image    | `ghcr.io/abitech-dev/abitech-portafolio-web:produccion` |
-| General → Provider          | Registry URL    | `ghcr.io`, sin usuario ni contraseña                    |
-| General                     | Autodeploy      | Encendido                                               |
-| Advanced → Ports            | Puerto          | `8085` publicado, `80` destino, TCP, modo **Ingress**   |
-| Advanced → Resources        | Memory Limit    | `134217728` (128 MB)                                    |
-| Advanced → Resources        | CPU Limit       | `500000000` (medio CPU)                                 |
-| Advanced → Swarm → Network  | Network Name    | `abitechportafolio-red`                                 |
-| Advanced → Swarm → Update   | Ver tabla abajo |                                                         |
-| Advanced → Swarm → Rollback | Ver tabla abajo |                                                         |
+| Pestaña y sección           | Campo           | Valor                                                 |
+| --------------------------- | --------------- | ----------------------------------------------------- |
+| General → Provider          | Docker Image    | `ghcr.io/abitech-dev/abitech-portafolio-web:prod`     |
+| General → Provider          | Registry URL    | `ghcr.io`, sin usuario ni contraseña                  |
+| General                     | Autodeploy      | Encendido                                             |
+| Advanced → Ports            | Puerto          | `8085` publicado, `80` destino, TCP, modo **Ingress** |
+| Advanced → Resources        | Memory Limit    | `134217728` (128 MB)                                  |
+| Advanced → Resources        | CPU Limit       | `500000000` (medio CPU)                               |
+| Advanced → Swarm → Network  | Network Name    | `abitechportafolio-red`                               |
+| Advanced → Swarm → Update   | Ver tabla abajo |                                                       |
+| Advanced → Swarm → Rollback | Ver tabla abajo |                                                       |
 
 La red overlay se crea antes en el servidor.
 
@@ -120,7 +120,7 @@ Un puerto nuevo se agrega a su lista y se aplica con
 
 | Dónde                                        | Qué                                                      |
 | -------------------------------------------- | -------------------------------------------------------- |
-| Settings → Environments                      | Entorno `produccion`, limitado a la rama `main`          |
+| Settings → Environments                      | Entorno `prod`, limitado a la rama `main`                |
 | Ese entorno → Secrets                        | `DOKPLOY_WEBHOOK_URL`, la URL de Dokploy → Deployments   |
 | Settings → Secrets and variables → Variables | `URL_DEL_SITIO` = `https://abitech.dev`, sin barra final |
 | Settings → Rules                             | `develop` y `main` solo por PR y con la CI en verde      |
@@ -129,7 +129,7 @@ El secreto se guarda sin mostrarlo.
 
 ```powershell
 $env:GH_TOKEN = gh auth token -u abitech-dev
-gh secret set DOKPLOY_WEBHOOK_URL --env produccion -R abitech-dev/abitech-portafolio-web
+gh secret set DOKPLOY_WEBHOOK_URL --env prod -R abitech-dev/abitech-portafolio-web
 Remove-Item Env:GH_TOKEN
 ```
 
