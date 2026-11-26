@@ -467,7 +467,7 @@
         "Atendí las observaciones de la oficial de cumplimiento sobre el módulo antilavado UIF-SBS, rehíce sus pantallas y lo cubrí con más de 90 pruebas de navegador.",
         "Aceleré el retiro de lotes del inventario, de 168 a 98 consultas a la base de datos.",
         "Restringí el acceso al sistema a redes autorizadas, por usuario, rol y sucursal.",
-        "Automaticé el despliegue al ambiente de pruebas, con más de 300 publicaciones y un 99 % de éxito."
+        "Automaticé el despliegue al ambiente de pruebas, con más de 300 publicaciones y un 99 % de éxito."
       ],
       "keywords": [
         "Laravel 12",
@@ -573,7 +573,7 @@
       "description": "Servicio para pagar en Scotiabank los tributos de una municipalidad, entregado y en certificación.",
       "highlights": [
         "Implementé en SOAP las 5 operaciones que exige Scotiabank, con tramas de ancho fijo similares a ISO 8583, y las validé con tramas reales del banco.",
-        "Automaticé el empaquetado de cada entrega, que se detiene si falla una prueba o si encuentra una clave en el código."
+        "Automaticé el empaquetado de cada una de las 6 entregas, que se detiene si falla una prueba o si encuentra una clave en el código."
       ],
       "keywords": [
         "C#",
@@ -622,7 +622,7 @@
       "highlights": [
         "Lideré a 4 desarrolladores e integré los 314 cambios del equipo. De 53 despliegues a producción, 51 salieron sin fallas.",
         "Construí el cobro con Mercado Pago, que verifica la firma de cada aviso y consulta el pago antes de inscribir al alumno. La plataforma ya tiene más de 490 alumnos.",
-        "Configuré el renderizado en el servidor (SSR) y el mapa del sitio para que Google indexe cada curso."
+        "Configuré el renderizado en el servidor (SSR) y el mapa del sitio para que Google indexe sus 12 cursos."
       ],
       "keywords": [
         "Laravel 11",
@@ -686,7 +686,7 @@
         "Agregué la compresión por lotes, para optimizar muchas imágenes a la vez y descargarlas en archivos ZIP.",
         "Evité que el navegador se quede sin memoria con fotos grandes, al reducirlas antes de comprimir y repartir la descarga en ZIP de hasta 50 imágenes.",
         "Conservé los metadatos EXIF de las fotos JPEG y dejé el modo por lotes disponible sin conexión.",
-        "Automaticé el despliegue a producción con GitHub Actions."
+        "Automaticé el despliegue a producción con GitHub Actions, con 13 de 15 despliegues sin fallas."
       ],
       "keywords": [
         "TypeScript",
@@ -724,7 +724,7 @@
       "description": "Plataforma de inscripción del Hackathon UDH 2024, el concurso de programación del programa de Ingeniería de Sistemas, en el que equipos de estudiantes resolvieron problemas reales de instituciones públicas.",
       "highlights": [
         "Lideré a un equipo de 4 que tuvo la plataforma lista en 9 días, antes del evento.",
-        "Cada integrante se inscribía con su código de estudiante, validado contra el padrón de la universidad, y la organización recibía la lista de participantes en Excel."
+        "Los integrantes de 15 equipos de 3 o 4 personas se inscribían con su código de estudiante, validado contra el padrón de la universidad, y la organización recibía la lista en Excel."
       ],
       "keywords": ["Laravel 11", "Inertia", "Vue 3", "PhpSpreadsheet"],
       "startDate": "2024-11",
