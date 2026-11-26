@@ -823,6 +823,11 @@
     }
   ],
   "meta": {
-    "version": "1.4.0"
+    "version": "1.5.0",
+    "figures": {
+      "yearsOfExperience": 3,
+      "systemsInProduction": 15,
+      "sectors": 7
+    }
   }
 }
