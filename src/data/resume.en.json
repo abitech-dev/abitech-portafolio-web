@@ -573,7 +573,7 @@
       "description": "Service for paying a municipality's taxes at Scotiabank, delivered and in certification.",
       "highlights": [
         "Implemented in SOAP the 5 operations Scotiabank requires, with fixed-width messages similar to ISO 8583, and validated them with real bank messages.",
-        "Automated the packaging of each release, which stops if a test fails or if it finds a secret in the code."
+        "Automated the packaging of each of the 6 releases, which stops if a test fails or if it finds a secret in the code."
       ],
       "keywords": [
         "C#",
@@ -622,7 +622,7 @@
       "highlights": [
         "Led 4 developers and merged the team's 314 pull requests. Of 53 production deployments, 51 succeeded.",
         "Built the Mercado Pago checkout, which verifies the signature of every notification and checks the payment before enrolling the student. The platform already has more than 490 students.",
-        "Set up server-side rendering (SSR) and the sitemap so Google indexes every course."
+        "Set up server-side rendering (SSR) and the sitemap so Google indexes its 12 courses."
       ],
       "keywords": [
         "Laravel 11",
@@ -686,7 +686,7 @@
         "Added batch compression, to optimize many images at once and download them as ZIP files.",
         "Kept the browser from running out of memory with large photos, by resizing them before compressing and splitting the download into ZIP files of up to 50 images.",
         "Kept the EXIF metadata of JPEG photos and made batch mode available offline.",
-        "Automated deployment to production with GitHub Actions."
+        "Automated deployment to production with GitHub Actions, with 13 of 15 deployments succeeding."
       ],
       "keywords": [
         "TypeScript",
@@ -724,7 +724,7 @@
       "description": "Registration platform for Hackathon UDH 2024, the programming contest of the Systems Engineering program, where student teams solved real problems from public institutions.",
       "highlights": [
         "Led a team of 4 that had the platform ready in 9 days, before the event.",
-        "Each member signed up with their student code, checked against the university roster, and the organizers received the participant list in Excel."
+        "Members of 15 teams of 3 or 4 people signed up with their student code, checked against the university roster, and the organizers received the list in Excel."
       ],
       "keywords": ["Laravel 11", "Inertia", "Vue 3", "PhpSpreadsheet"],
       "startDate": "2024-11",
