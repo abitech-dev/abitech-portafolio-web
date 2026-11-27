@@ -11,7 +11,15 @@ RUN npm ci --ignore-scripts
 COPY . .
 RUN npm run build && node scripts/csp.mjs dist csp.caddy
 
-FROM caddy:2-alpine
+# Caddy se compila con Go y x/net sin vulnerabilidades altas conocidas.
+FROM golang:1.27.4-alpine AS caddy
+RUN apk add --no-cache git \
+  && go install github.com/caddyserver/xcaddy/cmd/xcaddy@v0.4.7 \
+  && xcaddy build v2.11.9 --output /usr/bin/caddy \
+    --replace golang.org/x/net=golang.org/x/net@v0.62.0
+
+FROM caddy:2.11.9-alpine
+COPY --from=caddy /usr/bin/caddy /usr/bin/caddy
 ARG VERSION=local
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=construccion /app/csp.caddy /etc/caddy/csp.caddy
