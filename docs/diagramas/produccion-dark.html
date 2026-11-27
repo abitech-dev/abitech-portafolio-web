@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Del cambio a producción en abitech.dev</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #080e16; color: #e3e8ee; padding: 3rem 1rem; }
+    .frame { max-width: 1200px; width: 100%; min-width: 0; margin: 0 auto; }
+    .diagram-container { width: 100%; overflow-x: auto; }
+    svg { width: 100%; min-width: 980px; display: block; }
+    @media print {
+      .diagram-container { overflow-x: visible; }
+      svg { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="diagram-container">
+      <svg viewBox="0 128 980 144" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="produccion-dark-title produccion-dark-desc">
+        <title id="produccion-dark-title">Del cambio a producción en abitech.dev</title>
+        <desc id="produccion-dark-desc">Cada cambio entra por PR a develop, que publica una imagen probada; main despliega esa misma imagen en abitech.dev con Dokploy, sin cortes.</desc>
+        <defs>
+          <marker id="produccion-dark-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a2acb7"/></marker>
+          <marker id="produccion-dark-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#5aa9f2"/></marker>
+        </defs>
+        <rect x="0" y="128" width="980" height="144" fill="#080e16"/>
+        <line x1="188" y1="200" x2="272" y2="200" stroke="#a2acb7" stroke-width="1.2" marker-end="url(#produccion-dark-arrow)"/>
+        <line x1="448" y1="200" x2="532" y2="200" stroke="#5aa9f2" stroke-width="1.4" marker-end="url(#produccion-dark-arrow-accent)"/>
+        <line x1="708" y1="200" x2="792" y2="200" stroke="#a2acb7" stroke-width="1.2" marker-end="url(#produccion-dark-arrow)"/>
+        <rect x="216.0" y="175" width="28" height="16" rx="2" fill="#080e16"/>
+        <text x="230" y="187" fill="#a2acb7" font-size="11" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">PR</text>
+        <rect x="460.0" y="175" width="60" height="16" rx="2" fill="#080e16"/>
+        <text x="490" y="187" fill="#a2acb7" font-size="11" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">IMAGEN</text>
+        <rect x="716.0" y="175" width="68" height="16" rx="2" fill="#080e16"/>
+        <text x="750" y="187" fill="#a2acb7" font-size="11" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">DOKPLOY</text>
+        <rect x="12" y="152" width="176" height="96" rx="6" fill="#080e16"/>
+        <rect x="12" y="152" width="176" height="96" rx="6" fill="#121921" stroke="#e3e8ee" stroke-width="1"/>
+        <text x="100.0" y="198.0" fill="#e3e8ee" font-size="16" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">feature/*</text>
+        <text x="100.0" y="216.0" fill="#a2acb7" font-size="12" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">un cambio</text>
+        <rect x="272" y="152" width="176" height="96" rx="6" fill="#080e16"/>
+        <rect x="272" y="152" width="176" height="96" rx="6" fill="rgba(90,169,242,0.12)" stroke="#5aa9f2" stroke-width="1.4"/>
+        <text x="360.0" y="198.0" fill="#e3e8ee" font-size="16" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">develop</text>
+        <text x="360.0" y="216.0" fill="#a2acb7" font-size="12" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">prueba la imagen</text>
+        <rect x="532" y="152" width="176" height="96" rx="6" fill="#080e16"/>
+        <rect x="532" y="152" width="176" height="96" rx="6" fill="#121921" stroke="#e3e8ee" stroke-width="1"/>
+        <text x="620.0" y="198.0" fill="#e3e8ee" font-size="16" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">main</text>
+        <text x="620.0" y="216.0" fill="#a2acb7" font-size="12" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">promueve la imagen</text>
+        <rect x="792" y="152" width="176" height="96" rx="6" fill="#080e16"/>
+        <rect x="792" y="152" width="176" height="96" rx="6" fill="rgba(227,232,238,0.03)" stroke="rgba(227,232,238,0.30)" stroke-width="1"/>
+        <text x="880.0" y="198.0" fill="#e3e8ee" font-size="16" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">abitech.dev</text>
+        <text x="880.0" y="216.0" fill="#a2acb7" font-size="12" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">sin cortes</text>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
