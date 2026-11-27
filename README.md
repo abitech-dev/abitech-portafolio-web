@@ -153,3 +153,5 @@ proyectos pertenecen a cada proyecto.
 ## Licencia
 
 Copyright © 2026 Abimael Fernandez. Todos los derechos reservados.
+
+Software propietario. Las condiciones de uso figuran en [LICENSE](LICENSE).
