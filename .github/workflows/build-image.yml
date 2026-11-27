@@ -1,4 +1,4 @@
-name: Construir imagen
+name: Construir la imagen
 
 on:
   workflow_call:
