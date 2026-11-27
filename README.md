@@ -76,7 +76,8 @@ npm run dev
 
 El sitio queda en `http://localhost:4321`. Los datos del CV y de los
 proyectos vienen en `src/data` y los PDF en `public/descargas`. No se editan
-a mano: los actualiza un PR automático desde el repositorio privado del autor.
+a mano, porque llegan por PR desde otro repositorio, como explica
+[De dónde salen los datos](#de-dónde-salen-los-datos).
 
 | Comando              | Qué hace                                                |
 | -------------------- | ------------------------------------------------------- |
@@ -101,6 +102,26 @@ src/
 tests/            pruebas unitarias y de navegador
 docs/             guías y decisiones de arquitectura
 ```
+
+## De dónde salen los datos
+
+```mermaid
+flowchart LR
+  A["abitech-trayectoria<br>datos/ en YAML"] -- "PR automático" --> B["src/data<br>resume.json"]
+  B -- "develop y main" --> C["abitech.dev/resume.json"]
+  C -- "cada día" --> D["Perfil de GitHub<br>abitech-dev"]
+```
+
+El CV, los proyectos y las cifras nacen en `abitech-trayectoria`, un
+repositorio privado con un YAML por sección. Al unir un cambio en su `main`,
+una Action exporta la vista pública y abre un PR a `develop` con
+`resume.json`, su versión en inglés y los dos PDF del CV. Ese PR pasa la
+misma CI que cualquier otro.
+
+El sitio publica esos datos en `/resume.json` y `/en/resume.json`. El
+[perfil de GitHub](https://github.com/abitech-dev/abitech-dev) los lee cada
+día para mostrar el mismo titular, el empleo actual y las cifras. Un dato se
+corrige solo en el origen, y aquí basta revisar y unir el PR.
 
 ## Del cambio a producción
 
