@@ -74,7 +74,7 @@ npm ci
 npm run dev
 ```
 
-El sitio queda en `http://localhost:4321`. Los datos del CV y de los
+El sitio se abre en `http://localhost:4321`. Los datos del CV y de los
 proyectos vienen en `src/data` y los PDF en `public/descargas`. No se editan
 a mano, porque llegan por PR desde otro repositorio, como explica
 [De dónde salen los datos](#de-dónde-salen-los-datos).
@@ -143,11 +143,13 @@ cómo `main` encuentra la imagen probada, en la
 Escríbeme desde [abitech.dev/contacto](https://abitech.dev/contacto) o
 por [LinkedIn](https://www.linkedin.com/in/abitechdev/).
 
-## Créditos y licencia
+## Créditos
 
 El emoji de saludo es de
 [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) de Microsoft,
 con licencia MIT ([texto](licencias/fluent-emoji.txt)). Los logos de los
 proyectos pertenecen a cada proyecto.
 
-© 2026 Abimael Fernandez. Todos los derechos reservados.
+## Licencia
+
+Copyright © 2026 Abimael Fernandez. Todos los derechos reservados.
