@@ -15,13 +15,13 @@ image.
 
 ## Five words, explained with a cake
 
-| Word   | What it is                                                          | At the bakery                       |
-| ------ | ------------------------------------------------------------------- | ----------------------------------- |
-| Commit | Each change saved in Git, with its code, date and author            | The order, with its number and date |
-| Image  | The application already built, ready to run                         | The baked cake                      |
-| Tag    | The name used to find the image, a word like `production` or a code | The cake's label                    |
-| Tree   | The files exactly as they are in that commit                        | The recipe                          |
-| Hash   | A code Git calculates from those files                              | A code that comes from the recipe   |
+| Word   | What it is                                                    | At the bakery                       |
+| ------ | ------------------------------------------------------------- | ----------------------------------- |
+| Commit | Each change saved in Git, with its code, date and author      | The order, with its number and date |
+| Image  | The application already built, ready to run                   | The baked cake                      |
+| Tag    | The name used to find the image, a word like `prod` or a code | The cake's label                    |
+| Tree   | The files exactly as they are in that commit                  | The recipe                          |
+| Hash   | A code Git calculates from those files                        | A code that comes from the recipe   |
 
 How the image moves from one environment to the next is explained in the
 [guide to branches and environments](/en/blog/ramas-y-ambientes).
@@ -64,7 +64,7 @@ If nobody changed `main` on its own, after the merge it has the same files as
 
 ## Find it and promote it
 
-Promoting means adding the `production` tag to the tested image, without
+Promoting means adding the `prod` tag to the tested image, without
 rebuilding it. It is like changing the cake's sign from “being tasted” to “for
 sale”.
 
@@ -78,13 +78,13 @@ IMAGE=ghcr.io/user/site
 tree=$(git rev-parse 'HEAD^{tree}')
 
 if docker buildx imagetools inspect "$IMAGE:tree-$tree" > /dev/null; then
-  docker buildx imagetools create --tag "$IMAGE:production" \
+  docker buildx imagetools create --tag "$IMAGE:prod" \
     "$IMAGE:tree-$tree"
 fi
 ```
 
 `git rev-parse` calculates the tree hash. `inspect` asks whether the image
-exists and `create` adds the `production` tag to it.
+exists and `create` adds the `prod` tag to it.
 
 If it is missing, as with a fix made directly on `main`, it is rebuilt and
 tested. At the end, the site must respond with the hash the image stores in

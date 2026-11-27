@@ -15,13 +15,13 @@ imagen.
 
 ## Cinco palabras, explicadas con un pastel
 
-| Palabra  | Qué es                                                                     | En la pastelería                 |
-| -------- | -------------------------------------------------------------------------- | -------------------------------- |
-| Commit   | Cada cambio guardado en Git, con su código, fecha y autor                  | El pedido, con su número y fecha |
-| Imagen   | La aplicación ya construida, lista para correr                             | El pastel horneado               |
-| Etiqueta | El nombre para buscar la imagen, una palabra como `produccion` o un código | El rótulo del pastel             |
-| Árbol    | Los archivos tal como quedan en ese commit                                 | La receta                        |
-| Huella   | Un código que Git calcula con esos archivos                                | Un código que sale de la receta  |
+| Palabra  | Qué es                                                               | En la pastelería                 |
+| -------- | -------------------------------------------------------------------- | -------------------------------- |
+| Commit   | Cada cambio guardado en Git, con su código, fecha y autor            | El pedido, con su número y fecha |
+| Imagen   | La aplicación ya construida, lista para correr                       | El pastel horneado               |
+| Etiqueta | El nombre para buscar la imagen, una palabra como `prod` o un código | El rótulo del pastel             |
+| Árbol    | Los archivos tal como quedan en ese commit                           | La receta                        |
+| Huella   | Un código que Git calcula con esos archivos                          | Un código que sale de la receta  |
 
 Cómo pasa la imagen de un ambiente a otro se explica en la
 [guía de ramas y ambientes](/blog/ramas-y-ambientes).
@@ -64,7 +64,7 @@ archivos que `develop`. Por eso la huella es la misma.
 
 ## Buscarla y promoverla
 
-Promover es ponerle la etiqueta `produccion` a la imagen probada, sin
+Promover es ponerle la etiqueta `prod` a la imagen probada, sin
 reconstruirla. Es como cambiar el cartel del pastel de «en prueba» a «a la
 venta».
 
@@ -77,13 +77,13 @@ IMAGEN=ghcr.io/usuario/sitio
 arbol=$(git rev-parse 'HEAD^{tree}')
 
 if docker buildx imagetools inspect "$IMAGEN:arbol-$arbol" > /dev/null; then
-  docker buildx imagetools create --tag "$IMAGEN:produccion" \
+  docker buildx imagetools create --tag "$IMAGEN:prod" \
     "$IMAGEN:arbol-$arbol"
 fi
 ```
 
 `git rev-parse` calcula la huella del árbol. `inspect` pregunta si la imagen
-existe y `create` le suma la etiqueta `produccion`.
+existe y `create` le suma la etiqueta `prod`.
 
 Si no la encuentra, como con un arreglo hecho directo en `main`, la
 reconstruye y la prueba. Al final, el sitio debe responder con la huella que
