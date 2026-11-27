@@ -20,5 +20,6 @@ decisión tomada y sus consecuencias.
 | [0001](decisiones/0001-sitio-estatico-con-astro.md)                | Sitio estático con Astro e islas de Vue   | Aceptada |
 | [0002](decisiones/0002-ramas-y-despliegue.md)                      | Ramas, integración continua y despliegue  | Aceptada |
 | [0003](decisiones/0003-editar-con-github-y-buscar-con-pagefind.md) | Editar desde GitHub y buscar con Pagefind | Aceptada |
+| [0004](decisiones/0004-ambiente-prod.md)                           | El ambiente de producción se llama prod   | Aceptada |
 
 Los cambios de cada versión están en el [CHANGELOG](../CHANGELOG.md).

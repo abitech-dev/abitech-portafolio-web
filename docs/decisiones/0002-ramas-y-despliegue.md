@@ -1,6 +1,6 @@
 # 0002. Ramas, integración continua y despliegue
 
-- Estado: aceptada
+- Estado: aceptada; el nombre del ambiente lo reemplaza la 0004
 - Fecha: 2026-11-14
 
 ## Contexto
