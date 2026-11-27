@@ -107,12 +107,12 @@ docs/             guías y decisiones de arquitectura
 
 ```mermaid
 flowchart LR
-  A["abitech-trayectoria<br>datos/ en YAML"] -- "PR automático" --> B["src/data<br>resume.json"]
+  A["abitech-trayectoria-cli<br>datos/ en YAML"] -- "PR automático" --> B["src/data<br>resume.json"]
   B -- "develop y main" --> C["abitech.dev/resume.json"]
   C -- "cada día" --> D["Perfil de GitHub<br>abitech-dev"]
 ```
 
-El CV, los proyectos y las cifras nacen en `abitech-trayectoria`, un
+El CV, los proyectos y las cifras nacen en `abitech-trayectoria-cli`, un
 repositorio privado con un YAML por sección. Al unir un cambio en su `main`,
 una Action exporta la vista pública y abre un PR a `develop` con
 `resume.json`, su versión en inglés y los dos PDF del CV. Ese PR pasa la
