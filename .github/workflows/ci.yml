@@ -1,4 +1,4 @@
-name: Revisar cambios
+name: Integración continua
 
 on:
   pull_request:

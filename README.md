@@ -9,7 +9,7 @@ Huánuco, Perú.
 [Leer el blog](https://abitech.dev/blog) &nbsp;|&nbsp;
 [English version](https://abitech.dev/en)
 
-[![Revisar cambios](https://github.com/abitech-dev/abitech-portafolio-web/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/abitech-dev/abitech-portafolio-web/actions/workflows/ci.yml)
+[![Integración continua](https://github.com/abitech-dev/abitech-portafolio-web/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/abitech-dev/abitech-portafolio-web/actions/workflows/ci.yml)
 ![Astro 7](https://img.shields.io/badge/Astro-7-BC52EE?logo=astro&logoColor=white)
 ![Vue 3.5](https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs&logoColor=white)
 ![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)

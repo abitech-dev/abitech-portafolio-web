@@ -26,7 +26,7 @@ flowchart LR
 3. Une el PR. `develop` construye la imagen, la prueba y la publica en
    GHCR con la etiqueta `arbol-<huella>`.
 4. Abre el PR de `develop` a `main`. Solo comprueba que esa imagen exista.
-5. Une el PR. **Publicar en prod** marca la imagen como
+5. Une el PR. **Desplegar a prod** marca la imagen como
    `prod`, avisa a Dokploy y espera a que el sitio muestre la versión
    nueva.
 

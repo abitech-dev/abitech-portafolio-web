@@ -1,4 +1,4 @@
-name: Publicar en prod
+name: Desplegar a prod
 
 on:
   push:
