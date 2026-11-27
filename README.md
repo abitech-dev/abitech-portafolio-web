@@ -105,12 +105,10 @@ docs/             guías y decisiones de arquitectura
 
 ## De dónde salen los datos
 
-```mermaid
-flowchart LR
-  A["abitech-trayectoria-cli<br>datos/ en YAML"] -- "PR automático" --> B["src/data<br>resume.json"]
-  B -- "develop y main" --> C["abitech.dev/resume.json"]
-  C -- "cada día" --> D["Perfil de GitHub<br>abitech-dev"]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagramas/datos-dark.svg">
+  <img alt="Los datos nacen en abitech-trayectoria-cli, llegan por PR a src/data, el sitio los publica en /resume.json y el perfil de GitHub los lee" src="docs/diagramas/datos.svg">
+</picture>
 
 El CV, los proyectos y las cifras nacen en `abitech-trayectoria-cli`, un
 repositorio privado con un YAML por sección. Al unir un cambio en su `main`,
@@ -125,12 +123,10 @@ corrige solo en el origen, y aquí basta revisar y unir el PR.
 
 ## Del cambio a producción
 
-```mermaid
-flowchart LR
-  A["feature/*"] -- "PR y CI" --> B["develop"]
-  B -- "imagen probada" --> C["main"]
-  C -- "Dokploy, sin cortes" --> D["abitech.dev"]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagramas/produccion-dark.svg">
+  <img alt="Un cambio entra por PR a develop, que prueba la imagen; main la promueve y Dokploy la despliega en abitech.dev sin cortes" src="docs/diagramas/produccion.svg">
+</picture>
 
 Cada cambio entra por PR a `develop` y pasa seguridad, análisis
 estático, pruebas unitarias, Playwright y Lighthouse. `develop` publica

@@ -8,3 +8,6 @@ test-results/
 # Los copia _claude con sync.py y se mantienen en ese repositorio.
 .claude/
 CLAUDE.md
+
+# HTML y SVG generados con diagram-design.
+docs/diagramas/
