@@ -39,7 +39,11 @@ export function llmsTxt(
       url("/proyectos"),
       "casos con resultados y tecnologías",
     ),
-    enlace("Código abierto", url("/codigo-abierto"), "paquetes para Laravel"),
+    enlace(
+      "Código abierto",
+      url("/codigo-abierto"),
+      "paquetes para Laravel y Node.js",
+    ),
     enlace("Sobre mí", url("/sobre-mi")),
     enlace("Contacto", url("/contacto")),
     "",
