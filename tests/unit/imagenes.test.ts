@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
@@ -20,6 +20,8 @@ const CON_LOGO = [
   "hostal-pacifico",
   "abitech-payments",
   "antibot-laravel",
+  "abitech-sso",
+  "abitech-openchasqui",
 ];
 
 function iconosDelSet(set: string): Set<string> {
@@ -64,6 +66,17 @@ describe("logos e íconos", () => {
       .filter((nombre) => !logoDeTecnologia(nombre));
 
     expect(sinIcono).toEqual([]);
+  });
+
+  it("cada servicio que integra un paquete tiene logo", () => {
+    const carpeta = "src/content/paquetes";
+    const servicios = readdirSync(carpeta).flatMap((archivo) => {
+      const yaml = readFileSync(`${carpeta}/${archivo}`, "utf8");
+      return /^integra: \[(.*)\]$/m.exec(yaml)?.[1]?.split(", ") ?? [];
+    });
+
+    expect(servicios.length).toBeGreaterThan(0);
+    expect(servicios.filter((nombre) => !logoDeTecnologia(nombre))).toEqual([]);
   });
 
   it("solo apunta a íconos que existen", () => {

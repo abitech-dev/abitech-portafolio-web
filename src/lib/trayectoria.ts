@@ -47,6 +47,28 @@ export function esPaquete(proyecto: Proyecto): boolean {
   return proyecto.type === "library";
 }
 
+export interface Registro {
+  nombre: "Packagist" | "npm";
+  comando: string;
+  url: string;
+}
+
+/** Trayectoria solo acepta «vendor/nombre» de Composer y «@scope/nombre» de npm. */
+export function registroDelPaquete(paquete: string): Registro {
+  if (paquete.startsWith("@")) {
+    return {
+      nombre: "npm",
+      comando: "npm i -D",
+      url: `https://www.npmjs.com/package/${paquete}`,
+    };
+  }
+  return {
+    nombre: "Packagist",
+    comando: "composer require",
+    url: `https://packagist.org/packages/${paquete}`,
+  };
+}
+
 /** «abitechdev/payments-laravel» se publica en /codigo-abierto/payments-laravel. */
 export function slugDelPaquete(paquete: Proyecto): string {
   const nombre = "package" in paquete ? paquete.package : paquete.id;

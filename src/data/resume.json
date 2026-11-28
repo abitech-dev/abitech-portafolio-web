@@ -809,6 +809,49 @@
       "roles": []
     },
     {
+      "id": "abitech-sso",
+      "name": "abitech-sso-laravel",
+      "description": "Paquete de código abierto para Laravel que conecta apps satélite con una central en Laravel Passport para el inicio de sesión único.",
+      "highlights": [
+        "Lo usan tres apps de un mismo ecosistema para iniciar sesión una sola vez, con cierre de sesión único por webhooks firmados."
+      ],
+      "keywords": [
+        "PHP 8.2",
+        "Laravel 12",
+        "Laravel 13",
+        "Laravel Passport",
+        "Socialite"
+      ],
+      "startDate": "2026-06",
+      "url": "https://packagist.org/packages/abitechdev/sso-laravel",
+      "type": "library",
+      "package": "abitechdev/sso-laravel",
+      "repository": "https://github.com/abitech-dev/abitech-sso-laravel",
+      "roles": []
+    },
+    {
+      "id": "abitech-openchasqui",
+      "name": "abitech-openchasqui-cli",
+      "description": "Herramienta de código abierto que genera colecciones de Postman y Bruno con pruebas de contrato desde un documento OpenAPI.",
+      "highlights": [
+        "Lo publiqué en npm como tres paquetes y lo cubren 92 pruebas automatizadas."
+      ],
+      "keywords": [
+        "TypeScript",
+        "Node.js 22",
+        "OpenAPI",
+        "Postman",
+        "Bruno",
+        "Vitest"
+      ],
+      "startDate": "2026-11",
+      "url": "https://www.npmjs.com/package/@abitechdev/openchasqui",
+      "type": "library",
+      "package": "@abitechdev/openchasqui",
+      "repository": "https://github.com/abitech-dev/abitech-openchasqui-cli",
+      "roles": []
+    },
+    {
       "id": "hostal-pacifico",
       "name": "Hostal Pacífico",
       "description": "Sitio web bilingüe de un hostal, en español e inglés, con sus habitaciones y solicitud de reservas.",
@@ -826,7 +869,7 @@
     "version": "1.5.0",
     "figures": {
       "yearsOfExperience": 3,
-      "systemsInProduction": 15,
+      "systemsInProduction": 17,
       "sectors": 7
     }
   }

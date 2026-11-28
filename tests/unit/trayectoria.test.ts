@@ -10,6 +10,7 @@ import {
 import { estaActiva } from "../../src/lib/seccion-activa";
 import {
   esPaquete,
+  registroDelPaquete,
   slugDelPaquete,
   conMayuscula,
   nivelDe,
@@ -69,7 +70,30 @@ describe("esPaquete", () => {
   it("separa los paquetes de las aplicaciones", () => {
     const paquetes = resume.projects.filter(esPaquete).map((p) => p.id);
 
-    expect(paquetes).toEqual(["abitech-payments", "antibot-laravel"]);
+    expect(paquetes).toEqual([
+      "abitech-payments",
+      "antibot-laravel",
+      "abitech-sso",
+      "abitech-openchasqui",
+    ]);
+  });
+});
+
+describe("registroDelPaquete", () => {
+  it("instala de Composer un paquete con vendor", () => {
+    expect(registroDelPaquete("ana/pagos-laravel")).toEqual({
+      nombre: "Packagist",
+      comando: "composer require",
+      url: "https://packagist.org/packages/ana/pagos-laravel",
+    });
+  });
+
+  it("instala de npm un paquete con scope", () => {
+    expect(registroDelPaquete("@ana/colecciones")).toEqual({
+      nombre: "npm",
+      comando: "npm i -D",
+      url: "https://www.npmjs.com/package/@ana/colecciones",
+    });
   });
 });
 
