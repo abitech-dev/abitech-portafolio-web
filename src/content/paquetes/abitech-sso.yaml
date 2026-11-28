@@ -18,8 +18,9 @@ ejemplo:
     use Abitech\Sso\Events\SsoUserAuthenticated;
     use Illuminate\Support\Facades\Event;
 
-    Event::listen(function (SsoUserAuthenticated $evento) {
-        $evento->user->update([
-            'avatar' => $evento->idpUser->getAvatar(),
-        ]);
-    });
+    Event::listen(
+        function (SsoUserAuthenticated $e) {
+            $avatar = $e->idpUser->getAvatar();
+            $e->user->update(compact('avatar'));
+        },
+    );
