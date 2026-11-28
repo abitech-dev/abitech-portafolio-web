@@ -9,12 +9,11 @@ datos:
     etiqueta: { es: OpenAPI, en: OpenAPI }
   - valor: { es: "2", en: "2" }
     etiqueta: { es: herramientas, en: tools }
-  - valor: { es: Apache-2.0, en: Apache-2.0 }
-    etiqueta: { es: licencia, en: license }
+  - valor: { es: "2.0", en: "2.0" }
+    etiqueta: { es: licencia Apache, en: Apache license }
 ejemplo:
   archivo: terminal
   lenguaje: bash
   codigo: |-
-    npm i -D @abitechdev/openchasqui
     npx openchasqui init
     npx openchasqui generate
