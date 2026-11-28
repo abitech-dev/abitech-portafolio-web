@@ -1,0 +1,19 @@
+lema:
+  es: Colecciones de Postman y Bruno con pruebas desde tu OpenAPI.
+  en: Postman and Bruno collections with tests from your OpenAPI.
+integra: [OpenAPI, Postman, Bruno]
+datos:
+  - valor: { es: 22+, en: 22+ }
+    etiqueta: { es: Node.js, en: Node.js }
+  - valor: { es: 3.0 y 3.1, en: 3.0 and 3.1 }
+    etiqueta: { es: OpenAPI, en: OpenAPI }
+  - valor: { es: "2", en: "2" }
+    etiqueta: { es: herramientas, en: tools }
+  - valor: { es: "2.0", en: "2.0" }
+    etiqueta: { es: licencia Apache, en: Apache license }
+ejemplo:
+  archivo: terminal
+  lenguaje: bash
+  codigo: |-
+    npx openchasqui init
+    npx openchasqui generate

@@ -1,0 +1,26 @@
+lema:
+  es: Inicio de sesión único entre tus apps Laravel y su central.
+  en: Single sign-on between your Laravel apps and their hub.
+integra: [Laravel Passport, Socialite]
+datos:
+  - valor: { es: 8.2+, en: 8.2+ }
+    etiqueta: { es: PHP, en: PHP }
+  - valor: { es: 12 y 13, en: 12 and 13 }
+    etiqueta: { es: Laravel, en: Laravel }
+  - valor: { es: "5", en: "5" }
+    etiqueta: { es: eventos, en: events }
+  - valor: { es: MIT, en: MIT }
+    etiqueta: { es: licencia, en: license }
+ejemplo:
+  archivo: AppServiceProvider.php
+  lenguaje: php
+  codigo: |-
+    use Abitech\Sso\Events\SsoUserAuthenticated;
+    use Illuminate\Support\Facades\Event;
+
+    Event::listen(
+        function (SsoUserAuthenticated $e) {
+            $avatar = $e->idpUser->getAvatar();
+            $e->user->update(compact('avatar'));
+        },
+    );

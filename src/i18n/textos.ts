@@ -116,7 +116,8 @@ const es = {
     },
     comparto: {
       titulo: "Comparto",
-      texto: "Paquetes de código abierto para Laravel, listos para usar.",
+      texto:
+        "Paquetes de código abierto para Laravel y Node.js, listos para usar.",
       enlace: (n: number) => `${n} paquetes`,
     },
     destacados: "Proyectos destacados",
@@ -159,10 +160,10 @@ const es = {
   },
   codigoAbierto: {
     descripcion: (nombre: string) =>
-      `Paquetes de código abierto de ${nombre} para Laravel, con licencia MIT y listos para usar en tus proyectos.`,
+      `Paquetes de código abierto de ${nombre} para Laravel y Node.js, listos para usar en tus proyectos.`,
     intro: "Paquetes que saqué de mis proyectos para que otros los usen.",
     verEnGithub: "Ver en GitHub",
-    verEnPackagist: "Ver en Packagist",
+    verEn: "Ver en",
     integra: "Integra",
     instalacion: "Instalación",
     copiar: "Copiar el comando",
@@ -350,7 +351,7 @@ const en: Textos = {
     },
     comparto: {
       titulo: "I share",
-      texto: "Open source Laravel packages, ready to use.",
+      texto: "Open source packages for Laravel and Node.js, ready to use.",
       enlace: (n) => `${n} packages`,
     },
     destacados: "Featured projects",
@@ -392,10 +393,10 @@ const en: Textos = {
   },
   codigoAbierto: {
     descripcion: (nombre) =>
-      `Open source Laravel packages by ${nombre}, MIT licensed and ready to use in your projects.`,
+      `Open source packages by ${nombre} for Laravel and Node.js, ready to use in your projects.`,
     intro: "Packages I extracted from my projects so others can use them.",
     verEnGithub: "View on GitHub",
-    verEnPackagist: "View on Packagist",
+    verEn: "View on",
     integra: "Integrates",
     instalacion: "Installation",
     copiar: "Copy the command",

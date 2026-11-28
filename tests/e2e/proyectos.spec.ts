@@ -70,7 +70,7 @@ test("los paquetes van en Código abierto y no en Proyectos", async ({
   ).toHaveCount(0);
 
   await page.goto("/codigo-abierto");
-  await expect(page.getByRole("article")).toHaveCount(2);
+  await expect(page.getByRole("article")).toHaveCount(4);
 
   await page.goto("/codigo-abierto/payments-laravel");
   await expect(page.locator("pre.astro-code")).toHaveCount(1);

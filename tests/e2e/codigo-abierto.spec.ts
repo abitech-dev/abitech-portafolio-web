@@ -4,12 +4,30 @@ const PAQUETES = [
   {
     nombre: "abitech-payments-laravel",
     ruta: "/codigo-abierto/payments-laravel",
-    composer: "abitechdev/payments-laravel",
+    instalacion: "composer require abitechdev/payments-laravel",
+    registro: "Packagist",
+    url: "https://packagist.org/packages/abitechdev/payments-laravel",
   },
   {
     nombre: "abitech-antibot-laravel",
     ruta: "/codigo-abierto/antibot-laravel",
-    composer: "abitechdev/antibot-laravel",
+    instalacion: "composer require abitechdev/antibot-laravel",
+    registro: "Packagist",
+    url: "https://packagist.org/packages/abitechdev/antibot-laravel",
+  },
+  {
+    nombre: "abitech-sso-laravel",
+    ruta: "/codigo-abierto/sso-laravel",
+    instalacion: "composer require abitechdev/sso-laravel",
+    registro: "Packagist",
+    url: "https://packagist.org/packages/abitechdev/sso-laravel",
+  },
+  {
+    nombre: "abitech-openchasqui-cli",
+    ruta: "/codigo-abierto/openchasqui",
+    instalacion: "npm i -D @abitechdev/openchasqui",
+    registro: "npm",
+    url: "https://www.npmjs.com/package/@abitechdev/openchasqui",
   },
 ];
 
@@ -27,7 +45,7 @@ test("la lista lleva a la página de cada paquete", async ({ page }) => {
   ).toHaveCount(0);
 });
 
-for (const { nombre, ruta, composer } of PAQUETES) {
+for (const { nombre, ruta, instalacion, registro, url } of PAQUETES) {
   test(`${ruta} tiene instalación, enlaces e imagen propia`, async ({
     page,
     request,
@@ -35,10 +53,10 @@ for (const { nombre, ruta, composer } of PAQUETES) {
     await page.goto(ruta);
 
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(nombre);
-    await expect(page.getByText(`composer require ${composer}`)).toBeVisible();
+    await expect(page.getByText(instalacion)).toBeVisible();
     await expect(
-      page.getByRole("link", { name: /Ver en Packagist/ }),
-    ).toHaveAttribute("href", `https://packagist.org/packages/${composer}`);
+      page.getByRole("link", { name: `Ver en ${registro}` }),
+    ).toHaveAttribute("href", url);
     await expect(
       page.getByRole("link", { name: /Ver en GitHub/ }),
     ).toHaveAttribute("href", /^https:\/\/github\.com\/abitech-dev\//);
