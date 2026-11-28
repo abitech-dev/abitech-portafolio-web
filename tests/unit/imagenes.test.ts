@@ -20,6 +20,8 @@ const CON_LOGO = [
   "hostal-pacifico",
   "abitech-payments",
   "antibot-laravel",
+  "abitech-sso",
+  "abitech-openchasqui",
 ];
 
 function iconosDelSet(set: string): Set<string> {

@@ -69,7 +69,12 @@ describe("esPaquete", () => {
   it("separa los paquetes de las aplicaciones", () => {
     const paquetes = resume.projects.filter(esPaquete).map((p) => p.id);
 
-    expect(paquetes).toEqual(["abitech-payments", "antibot-laravel"]);
+    expect(paquetes).toEqual([
+      "abitech-payments",
+      "antibot-laravel",
+      "abitech-sso",
+      "abitech-openchasqui",
+    ]);
   });
 });
 
